@@ -78,7 +78,7 @@ include("../config.php");
 								<label for="image">Image</label>
 								<div class="custom-file">
 									<input type="file" name="" class="custom-file-input" id="image">
-									<label class="custom-file-label" for="image">Image</label>
+									<label class="custom-file-label" for="image">Choose file</label>
 								</div>
 							</div>
 							<div class="col form-group">
@@ -117,8 +117,6 @@ include("../config.php");
 						<i class="far fa-chart-bar  mr-1 d-inline-flex"></i>
 						<span class="d-none d-md-inline-flex">DashBoard</span>
 					</a>
-					
-					
 				</li>
 			</ul>
 
