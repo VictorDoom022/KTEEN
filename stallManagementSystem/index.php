@@ -11,7 +11,7 @@ include("../config.php");
 	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
 	<title>KTEEN</title>
 </head>
-<body>
+<body class="bg-light">
 	<?php 
 	if (isset($_GET['logout'])) {
 		session_destroy();
@@ -24,7 +24,7 @@ include("../config.php");
 		echo "<script>window.location.assign('login.php');</script>";
 	}
 	?>
-	<nav class="navbar fixed-top navbar-light bg-light p-0 shadow">
+	<nav class="navbar fixed-top navbar-light bg-white p-0 shadow">
 		<a class="navbar-brand col-2" href="index.php">
 			KTEEN
 		</a>
@@ -39,19 +39,23 @@ include("../config.php");
 			<ul class="nav flex-column col-2 bg-light border-right pt-5" style="height: 100vh">
 				<li class="nav-item pl-2 pt-3">
 					<a href="index.php" class="nav-link bg-dark rounded text-white">
-						<i class="far fa-chart-bar d-flex d-md-none"></i>
-						<span class="d-none d-md-flex">DashBoard</span>
+						<i class="fas fa-home mr-1 d-inline-flex"></i>
+						<span class="d-none d-md-inline-flex">Home</span>
 					</a>
 					<a href="menu.php" class="nav-link text-dark">
-						<i class="fas fa-bars d-flex d-md-none"></i>
-						<span class="d-none d-md-flex">Menu</span>
+						<i class="fas fa-bars mr-1 d-inline-flex"></i>
+						<span class="d-none d-md-inline-flex">Menu</span>
+					</a>
+					<a href="#" class="nav-link text-dark">
+						<i class="far fa-chart-bar mr-1 d-inline-flex"></i>
+						<span class="d-none d-md-inline-flex">DashBoard</span>
 					</a>
 				</li>
 			</ul>
 			<div class="col-10 pt-5">
 				<div class="container-fluid">
 					<div class="row">
-						<h1 class="col">DashBoard</h1>
+						<h1 class="col">Home</h1>
 					</div>
 					<div class="row">
 						<div class="card p-3 col-md-12">

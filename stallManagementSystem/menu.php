@@ -11,7 +11,7 @@ include("../config.php");
 	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
 	<title>KTEEN</title>
 </head>
-<body>
+<body class="bg-light">
 	<?php 
 	if (isset($_GET['logout'])) {
 		session_destroy();
@@ -24,7 +24,7 @@ include("../config.php");
 		echo "<script>window.location.assign('login.php');</script>";
 	}
 	?>
-	<nav class="navbar fixed-top navbar-light bg-light p-0 shadow">
+	<nav class="navbar fixed-top navbar-light bg-white p-0 shadow">
 		<a class="navbar-brand col-2" href="index.php">
 			KTEEN
 		</a>
@@ -35,10 +35,10 @@ include("../config.php");
 		</ul>
 	</nav>
 
-	<div class="fixed-bottom col-10 ml-auto mb-2">
-		<div class="card bg-secondary">
+	<div class="fixed-bottom col-10 ml-auto mb-3">
+		<div class="card bg-secondary shadow-lg">
 			<form class="form-inline m-2">
-				<button type="button" data-toggle="modal" data-target="#addfood" class="ml-2 btn"><i class="fas fa-plus text-light"></i></button>
+				<a href="#addfood" data-toggle="modal" class="btn"><i class="fas fa-plus text-light"></i></button>
 				<a href="" class="mx-2 btn"><i class="far fa-trash-alt text-light"></i></i></a>
 				<input type="search" name="" placeholder="Search" class="form-control col mr-2 ml-auto">
 				<input type="submit" name="" value="Search" class="btn btn-outline-light ml-2 mr-2">
@@ -47,7 +47,7 @@ include("../config.php");
 	</div>
 
 	<div class="modal fade" id="addfood" tabindex="-1" role="modal">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="header-title">Add Menu</h5>
@@ -58,17 +58,29 @@ include("../config.php");
 				<form>
 					<div class="modal-body">
 						<form>
-							<div class="form-group">
-								<label></label>
-								<input type="text" name="">
+							<div class="form-row">
+								<div class="col-7 form-group">
+									<input type="text" name="" id="name" class="form-control" placeholder="Name">
+								</div>
+								<div class="col form-group">
+									<input type="text" list="category_list" name="" class="form-control" placeholder="Category">
+									<datalist id="category_list">
+										<option value="jjyy">
+										<option value="yyjj">
+										<option value="jyjy">
+									</datalist>
+								</div>
 							</div>
-							<div class="form-group">
-								<label></label>
-								<input type="text" name="">
-							</div>
-							<div class="form-group">
-								<label></label>
-								<input type="text" name="">
+							<div class="form-row">
+								<div class="col-7 form-group">
+									<div class="custom-file">
+										<input type="file" name="" class="custom-file-input" id="image">
+										<label class="custom-file-label" for="image">Image</label>
+									</div>
+								</div>
+								<div class="col form-group">
+									<input type="number" name="" id="name" class="form-control" placeholder="Price">
+								</div>
 							</div>
 						</form>
 					</div>
@@ -86,13 +98,19 @@ include("../config.php");
 			<ul class="nav sticky-top flex-column col-2 bg-light pt-5 border-right" style="height: 100vh;">
 				<li class="nav-item pl-2 pt-3">
 					<a href="index.php" class="nav-link text-dark">
-						<i class="far fa-chart-bar d-flex d-md-none"></i>
-						<span class="d-none d-md-flex">DashBoard</span>
+						<i class="fas fa-home mr-1 d-inline-flex"></i>
+						<span class="d-none d-md-inline-flex">Home</span>
 					</a>
 					<a href="menu.php" class="nav-link bg-dark rounded text-white">
-						<i class="fas fa-bars d-flex d-md-none"></i>
-						<span class="d-none d-md-flex">Menu</span>
+						<i class="fas fa-bars mr-1 d-inline-flex"></i>
+						<span class="d-none d-md-inline-flex">Menu</span>
 					</a>
+					<a href="#" class="nav-link text-dark">
+						<i class="far fa-chart-bar  mr-1 d-inline-flex"></i>
+						<span class="d-none d-md-inline-flex">DashBoard</span>
+					</a>
+					
+					
 				</li>
 			</ul>
 

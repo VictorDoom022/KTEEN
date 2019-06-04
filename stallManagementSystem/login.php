@@ -8,7 +8,7 @@
 	<title>Stall login</title>
 </head>
 <body class="bg-light">
-	<nav class="navbar navbar-dark bg-dark shadow">
+	<nav class="navbar navbar-light bg-white shadow">
 		<a class="navbar-brand" href="index.php">
 			KTEEN | Stall Owner Login
 		</a>
@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<div class="card shadow-sm" style="padding: 20px;">
+				<div class="card shadow" style="padding: 20px;">
 					<form method="post" action="login.php">
 						<div class="form-group">
 							<label for="email">Email</label>
