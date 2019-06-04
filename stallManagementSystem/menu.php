@@ -57,13 +57,16 @@ include("../config.php");
 				</div>
 				<form>
 					<div class="modal-body">
-						<form>
+						<form action="menu.php" method="post">
+							<input type="hidden" name="stall_ID" value="">
 							<div class="form-row">
-								<div class="col-7 form-group">
-									<input type="text" name="" id="name" class="form-control" placeholder="Name">
+								<div class="col form-group">
+									<label for="name">Food Name</label>
+									<input type="text" name="" id="name" class="form-control" placeholder="Food Name">
 								</div>
 								<div class="col form-group">
-									<input type="text" list="category_list" name="" class="form-control" placeholder="Category">
+									<label for="category">Category</label>
+									<input type="text" list="category_list" name="" id="category" class="form-control" placeholder="Category">
 									<datalist id="category_list">
 										<option value="jjyy">
 										<option value="yyjj">
@@ -73,13 +76,21 @@ include("../config.php");
 							</div>
 							<div class="form-row">
 								<div class="col-7 form-group">
+									<label for="image">Image</label>
 									<div class="custom-file">
 										<input type="file" name="" class="custom-file-input" id="image">
 										<label class="custom-file-label" for="image">Image</label>
 									</div>
 								</div>
 								<div class="col form-group">
-									<input type="number" name="" id="name" class="form-control" placeholder="Price">
+									<label for="price">Price</label>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<div class="input-group-text">RM</div>
+										</div>
+										<input type="number" name="" id="price" min="0" class="form-control" placeholder="Price">
+									</div>
+									
 								</div>
 							</div>
 						</form>
