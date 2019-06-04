@@ -38,7 +38,7 @@ include("../config.php");
 		<div class="row">
 			<ul class="nav flex-column col-2 bg-light border-right pt-5" style="height: 100vh">
 				<li class="nav-item pl-2 pt-3">
-					<a href="index.php" class="nav-link bg-dark rounded text-white">
+					<a href="index.php" class="nav-link text-dark">
 						<i class="fas fa-home mr-1 d-inline-flex"></i>
 						<span class="d-none d-md-inline-flex">Home</span>
 					</a>
@@ -46,7 +46,7 @@ include("../config.php");
 						<i class="fas fa-bars mr-1 d-inline-flex"></i>
 						<span class="d-none d-md-inline-flex">Menu</span>
 					</a>
-					<a href="dashboard.php" class="nav-link text-dark">
+					<a href="dashboard.php" class="nav-link bg-dark rounded text-white">
 						<i class="far fa-chart-bar mr-1 d-inline-flex"></i>
 						<span class="d-none d-md-inline-flex">DashBoard</span>
 					</a>
@@ -55,7 +55,7 @@ include("../config.php");
 			<div class="col-10 pt-5">
 				<div class="container-fluid">
 					<div class="row">
-						<h1 class="col">Home</h1>
+						<h1 class="col">DashBoard</h1>
 					</div>
 					<div class="row">
 						<div class="card p-3 col-md-12">
