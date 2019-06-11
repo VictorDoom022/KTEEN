@@ -231,7 +231,7 @@ if(isset($_POST['addmenu'])){
 		<div class="row">
 			<div class="col-2"></div>
 			<main class="col-10 p-4" style="margin-bottom: 100px;">
-				<?php include('menutable.php'); ?>
+				<?php include('menutable_test.php'); ?>
 			</main>
 		</div>
 	</div>

@@ -11,16 +11,17 @@ if(isset($_POST['login'])){
     //$sql = "SELECT stall_name, email, password FROM stall WHERE email = '$email' AND password = '$password'";
     //$result = $conn->query($sql);
 
-    if ($stmt = $conn->prepare("SELECT email, password FROM stall WHERE email = ? AND password = ?")){
+    if ($stmt = $conn->prepare("SELECT ID, stall_name, email, password FROM stall WHERE email = ? AND password = ?")){
         $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
-        $stmt->bind_result($email, $password);
-        if ($stmt->fetch()) {  
-            $_SESSION['user'] = $email;
+        $stmt->bind_result($stall_ID, $stall_name, $email, $password);
+        if ($stmt->fetch()) {
+            $_SESSION['kteen_stallID'] = $stall_ID;
+            // $_SESSION['kteen_stallN'] = $stall_name;
             $error = "";
             header('location: index.php');
         }else{
-            $error = "your email or password is invalid";
+            $error = "Your email or password is invalid";
         }
         $stmt->close();
     }
