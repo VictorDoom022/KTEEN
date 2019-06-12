@@ -79,8 +79,21 @@ if (isset($_SESSION['kteen_stallID'])) {
     </nav>
     
     <nav class="k-side-nav-r nav flex-column col-2 border-left bg-white p-0 d-none d-md-flex overflow-auto">
-        <div class="mt-3 container-fluid">
+        <div class="container-fluid p-3">
+            <div class="custom-control custom-switch border-bottom">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1">Stall Status</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="w-100"></div>
             <canvas id="myChart" width="100%" height="100%"></canvas>
+            <div class="w-100"></div>
+        </div>
+        <div class="mt-3 container-fluid">
+            
+            
+            
         </div>
     </nav>
 
@@ -152,34 +165,32 @@ if (isset($_SESSION['kteen_stallID'])) {
                 data: {
                     labels: [
                         'mee goreng', 
-                        'fried rice'
+                        'fried rice',
+                        'jjyy'
                     ],
                     datasets: [{
                         data: [
                             600,
+                            400,
                             400
                         ],
                         backgroundColor:[
-                            'rgba(255, 99, 132, 0.6)',
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
+                            '#0078C8',
+                            '#55A4D9',
+                            '#8DC2E5',
+                            '#8DC2E5',
                             'rgba(153, 102, 255, 0.6)',
                             'rgba(255, 159, 64, 0.6)',
                             'rgba(255, 99, 132, 0.6)'
                         ],
-                        label: 'Population',
-                        borderWidth:1,
-                        borderColor:'#777',
-                        hoverBorderWidth:3,
-                        hoverBorderColor:'#000'
+                        label: 'Population'
                     }],
                 },
                 options: {
                     title:{
-                        display:false,
-                        text:'Top 2',
-                        fontSize:25
+                        display:true,
+                        text:'Top 3',
+                        fontSize:20
                     },
                     legend:{
                         display: false,
