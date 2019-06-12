@@ -1,11 +1,12 @@
 <?php
-include("connect.php");
+include("../config.php");
 
 session_start();
 	//logout
 	if(isset($_GET['u'])){
 			if ($_GET['u'] == 'logout') {
 				session_destroy();
+
 				echo "<script>window.location.assign('Login.html');</script>";
 				}
 		}
@@ -16,6 +17,25 @@ session_start();
 				echo "<script>window.location.assign('Login.html');</script>";
 			}
 	//delete item
+			if(isset($_GET['del'])){
+				if($_GET['del'] != ''){
+					$id = $_GET['del'];
+					$sql = "DELETE FROM stall where id = '$id'"; 
+					$result = $conn->query($sql);
+				}
+			}
+	//edit
+		if(isset($_POST['edit'])){
+		$id = $_POST['id'];
+		$stallName = $_POST['stallName'];
+		$ownerName = $_POST['ownerName'];
+		$email = $_POST['email'];
+		$phoneNo = $_POST['phoneNo'];
+		$password = $_POST['password'];
+
+		$sql = "UPDATE stall SET stallName = '$stallName', ownerName = '$ownerName' , email = '$email',phoneNo = '$phoneNo', password = '$password'where id = '$id'";
+		$result = $conn->query($sql);
+	}
 	// foreach ($_REQUEST['item'] as $deleteStall) {
 	// 	$sql = "update stall set status='0' where stallName = '$deleteName'";
 	// 	$result = $conn -> query($sql);	
@@ -38,9 +58,9 @@ session_start();
 		<div onclick="location.href='adminmain.php';" style="cursor: pointer;">
 			<p class="navbar-brand bg-dark">KTeen Management System</p>
 		</div>
-		<ul class="navbar-nav px-3">
+		<ul class="navbar-nav ml-auto">
 			<li class="nav-item text-nowrap">
-				<button type="button" class="btn btn-outline-light mb-3 mb-md-0 ml-md-3" style="float: right;" onclick="location.href='Login.html?u=logout';">Sign Out</button>
+				<button type="button" class="btn btn-outline-light mb-3 mb-md-0 ml-md-3" style="float: right;" onclick="location.href='adminmain.php?u=logout';">Sign Out</button>
 			</li>
 		</ul>
 	</nav>
@@ -54,19 +74,20 @@ session_start();
                         <li class="list-group-item bg-light" onclick="location.href='addstall.php';" style="cursor: pointer;"><p>Add Stall</p></li>
                     </ul>                
             </div>
-            <div class="container">
+            <div class="col-md-10">
 			<div class="card">
                         <div class="row">
                         	<?php
-                        		$sql = "select stallName, ownerName, email, phoneNo from stall";
+                        		$sql = "SELECT ID, stall_name, owner_name, email, contact_no FROM stall";
                         		$result = $conn -> query($sql);
 
                         		if($result -> num_rows >0){
                         			while ($row = $result -> fetch_assoc()){
-                        				$stallName = $row['stallName'];
-                        				$ownerName = $row['ownerName'];
+                        				$id = $row['ID'];
+                        				$stallName = $row['stall_name'];
+                        				$ownerName = $row['owner_name'];
                         				$email = $row['email'];
-                        				$phoneNo = $row['phoneNo'];
+                        				$phoneNo = $row['contact_no'];
                         			
                         	?>
                             <div class="card" style="width: 18rem;">
@@ -80,8 +101,59 @@ session_start();
                                         </ul>
                                 </div>
                                 <div class="card-body">
-                                	<a href="#" class="card-link">Edit</a>
-                                	<a href="#" class="card-link" onclick="return ComfirmDelete()">Delete</a>
+                                	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit-<?php echo $id; ?>">
+  										Edit
+									</button>
+                       
+                                	<a href="adminmain.php?del=<?php echo $id; ?>" class="card-link" onclick="return ComfirmDelete()">Delete</a>
+
+                                	<div class="modal fade" id="edit-<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  										<div class="modal-dialog" role="document">
+    										<div class="modal-content">
+      											<div class="modal-header">
+       	 											<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          												<span aria-hidden="true">&times;</span>
+        											</button>
+      											</div>
+      											<div class="modal-body">
+        											<form method="post" action="adminmain.php">
+								    					<input type="hidden" value="<?php echo $id; ?>" name="id">
+								            			<div class="form-group">
+								    						<label for="stallName">Stall Name</label>
+								    						<input type="text" class="form-control" value="<?php echo $stallName; ?>" name="stallName" id="stallName">
+								  						</div>
+								  						<div class="form-group">
+								    						<label for="exampleInputEmail1">Owner Name</label>
+								    						<input type="text" class="form-control" value="<?php echo $ownerName; ?>" name="ownerName" id="ownerName">
+								  						</div>
+								  						<div class="form-group">
+								    						<label for="exampleInputEmail1">Email address</label>
+								    						<input type="email" class="form-control" value="<?php echo $email; ?>" name="email" id="email">
+								  						</div>
+								  						<div class="form-group">
+								    						<label for="exampleInputPassword1">Phone No</label>
+								    						<input type="number" class="form-control" value="<?php echo $phoneNo; ?>" name="phoneNo" id="phoneNo">
+								  						</div>
+								  						<div class="form-group">
+								    						<label for="exampleInputPassword1">Password</label>
+								    						<input type="password" class="form-control" value="<?php echo $password; ?>" name="password" id="password">
+								  						</div>
+								  				</div>
+								  				<div class="modal-footer">
+        											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        											
+        											<input type="submit" class="btn btn-primary bg-warning" value="edit" name="edit">
+      											</div>
+		
+													</form>
+        												
+        											
+      											
+      										
+    										</div>
+  										</div>
+									</div>
                                 </div>			
                             </div> 
                             <?php
@@ -101,5 +173,9 @@ session_start();
 	function ComfirmDelete(){
 		return confirm("Are you sure you want to delete?");
 	}
+
+	$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
 </script>
 </html>

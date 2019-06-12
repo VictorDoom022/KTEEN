@@ -1,5 +1,5 @@
 <?php
-include("connect.php");
+include("../config.php");
 
 session_start();
 	//logout
@@ -22,10 +22,10 @@ session_start();
 		$email = $_POST['email'];
 		$phoneNo = $_POST['phoneNo'];
 		$password = $_POST['password'];
+		$password = md5($password);
 
-		$sql = "insert into stall values('1', $stallName','$ownerName','$email','$phoneNo','$password', '1')";
+		$sql = "INSERT into stall(stall_name, owner_name, email, contact_no, password, status) values ('$stallName','$ownerName','$email','$phoneNo','$password', '1')";
 		$result = $conn->query($sql);
-	
 	}		
 ?>
 <!DOCTYPE html>
@@ -45,7 +45,7 @@ session_start();
 		<div onclick="location.href='adminmain.php';" style="cursor: pointer;">
 			<p class="navbar-brand bg-dark">KTeen Management System</p>
 		</div>
-		<ul class="navbar-nav px-3">
+		<ul class="navbar-nav ml-auto">
 			<li class="nav-item text-nowrap">
 				<button type="button" class="btn btn-outline-light mb-3 mb-md-0 ml-md-3" style="float: right;" onclick="location.href='Login.html?u=logout';">Sign Out</button>
 			</li>
@@ -62,11 +62,11 @@ session_start();
                     </ul>                
             </div>
             <!-- stallName, ownerName,email,phoneNo,password,status -->
-            <div class="container">
-            		<form method="post" action="adminmain.php" class="subform" enctype="multipart/form-data">
+            <div class="col-md-10">
+            		<form method="post" action="addstall.php">
             			<div class="form-group">
     						<label for="stallName">Stall Name</label>
-    						<input type="text" class="form-control"  placeholder="Enter stall name" name="stallName" id="stallName">
+    						<input type="text" class="form-control" placeholder="Enter stall name" name="stallName" id="stallName">
   						</div>
   						<div class="form-group">
     						<label for="exampleInputEmail1">Owner Name</label>
@@ -84,7 +84,7 @@ session_start();
     						<label for="exampleInputPassword1">Password</label>
     						<input type="password" class="form-control" placeholder="Password" name="password" id="password">
   						</div>
-  						<button type="submit" class="btn btn-primary bg-dark" value="add" name="add">Submit</button>
+  						<input type="submit" class="btn btn-primary bg-warning" value="add" name="add">
 					</form>
             </div>
         </div>

@@ -1,12 +1,21 @@
 <?php
 session_start();
-include ("connect.php");
+include("../config.php");
 $u = $_POST['username'];
 $p = $_POST['password'];
 $sql = "select * from admin where username = '$u' and password = '$p'";
 $result = $conn->query($sql);
 
-if($stmt = $conn->prepare("select username,password from admin where username=? and password=?")){
+// if($result -> num_rows>0){
+// 	while ($row = $result -> fetch_assoc()) {
+// 		$_SESSION['username'] = $u;
+// 		echo $_SESSION['username']." login Successful";
+// 	}
+// }else{
+// 	echo "Login Failed";
+// }
+
+if($stmt = $conn->prepare("SELECT name,password from admin where name=? and password=?")){
 		/*bind parameters for markers*/
 		$stmt->bind_param("ss",$u,$p);
 		$stmt->execute();
