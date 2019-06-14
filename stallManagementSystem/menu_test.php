@@ -142,6 +142,9 @@ if(isset($_POST['editmenu'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link rel="stylesheet" href="../css/kteen_style.css">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
 	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
@@ -201,9 +204,8 @@ if(isset($_POST['editmenu'])){
 	<div class="fixed-bottom col-10 ml-auto mb-3">
 		<div class="card bg-secondary shadow-lg">
 			<form class="form-inline m-2">
-				<a href="#addfood" data-toggle="modal" class="btn"><i class="fas fa-plus text-light"></i></button>
-				<a href="" class="mx-2 btn"><i class="far fa-trash-alt text-light"></i></i></a>
-				<select name="category" id="" class="col-3 mr-2 form-control">
+				<a href="#addfood" data-toggle="modal" class="btn"><i class="fas fa-plus text-light"></i></a>
+				<select name="category" id="" class="col-3 mx-2 form-control">
 					<option value="">All</option>
 					<?php
 						$sql = "SELECT * FROM category";

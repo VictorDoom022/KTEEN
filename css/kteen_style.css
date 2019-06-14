@@ -78,3 +78,29 @@ nav.k-side-nav-r{
 main{
     margin-top: 90px;
 }
+
+div.k-card{
+    position: relative;
+    background-color: white;
+    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.07);
+}
+
+div.k-card div.k-card-header{
+
+}
+
+div.k-card div.k-card-body{
+
+}
+
+div.k-card div.k-card-body{
+    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+}
+
+.k-hover-shadow{
+    transition: all .2s ease;
+}
+
+.k-hover-shadow:hover{
+    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.25);
+}

@@ -1,64 +1,37 @@
-<div class="card overflow-auto">
-    <div class="card-body">
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th>#</th>
-                    <th>Food Name</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $sql = "SELECT food.ID AS food_ID, food.name AS food_name, category.name AS category_name, category.ID as category_ID, image, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '$id'";
-                $result = $conn -> query($sql);
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) { 
-                        $food_ID = $row['food_ID'];
-                        $food_name = $row['food_name'];
-                        $category_ID = $row['category_ID'];
-                        $category_name = $row['category_name'];
-                        $price = $row['price'];
-                        $image = $row['image'];
-                ?>
-                    <tr>
-                        <td>
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="check<?php echo $food_ID; ?>">
-                            <label class="custom-control-label" for="check<?php echo $food_ID; ?>"></label>
+<div class="container-fluid">
+    <div class="row">
+        <?php
+        $sql = "SELECT food.ID AS food_ID, food.name AS food_name, category.name AS category_name, category.ID as category_ID, image, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '$id'";
+        $result = $conn -> query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) { 
+                $food_ID = $row['food_ID'];
+                $food_name = $row['food_name'];
+                $category_ID = $row['category_ID'];
+                $category_name = $row['category_name'];
+                $price = $row['price'];
+                $image = $row['image'];
+        ?>
+        <div class="col-md-6 col-lg-4 p-2">
+            <div class="k-card k-hover-shadow">
+                <img src="../images/<?php echo $image; ?>" style="width: 100%;height: 100%;align-self: center;vertical-align: center;">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $food_name; ?></h5>
+                    <p class="card-text">
+                        <small class="text-muted"><?php echo $category_name; ?></small>
+                    </p>
+                    <p class="card-text">
+                        <?php echo $price; ?>
+                    </p>
+                </div>
+                <div class="card-footer bg-white">
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="#editfood<?php echo $food_ID; ?>" data-toggle="modal" class="card-link text-warning mx-auto"><i class="fas fa-pen"></i></a>
                         </div>
-                        </td>
-                        <td>            
-                            <h6 class="card-title">
-                                <a href="#fooddetail<?php echo $food_ID; ?>" data-toggle="modal" class="card-link text-dark"><?php echo $food_name; ?></a>
-                            </h6>
-                        </td>
-                        <td>
-                            <p class="card-text"><?php echo $category_name; ?></p>
-                        </td>
-                        <td>
-                            <div class="card-text"><?php echo $price; ?></div>
-                        </td>
-                        <td>
-                            <a href="#editfood<?php echo $food_ID; ?>" data-toggle="modal" class="btn btn-outline-dark">Edit</a>
-                        </td>
-                    </tr>
-
-        <div class="modal fade" id="fooddetail<?php echo $food_ID; ?>" tabindex="-1" role="modal">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div>
-                        <img src="../images/<?php echo $image; ?>" alt="" class="img-fluid" style="position: relative;">
-                        <p style="position: absolute;bottom: 15%;right: 5%;background-color: rgba(255, 255, 255, 0.8);padding: 20px;">
-                            <?php echo $food_name; ?><br>
-                            Category: <?php echo $category_name; ?><br>
-                            RM <?php echo $price; ?>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-sm" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <div class="col-6">
+                            <a href="" class="card-link text-danger"><i class="fas fa-trash-alt"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,12 +99,10 @@
                 </div>
             </div>
         </div>
-                <?php
-                    }
-                }
-                ?>
-            </tbody>
-        </table>
+
+        <?php
+            }
+        }
+        ?>
     </div>
 </div>
-        
