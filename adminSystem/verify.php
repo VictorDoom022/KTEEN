@@ -23,7 +23,7 @@ if($stmt = $conn->prepare("SELECT name,password from admin where name=? and pass
 		if($stmt->fetch()){
 			$_SESSION['username'] = $u; //assign the username to session value
 			echo $_SESSION['username']."Login Successful";
-			echo "<script>window.location.assign('adminmain.php');</script>";
+			echo "<script>window.location.assign('index.php');</script>";
 		}else{
 			echo "Login Failed";
 			echo "<script>window.location.assign('Login.html');</script>";

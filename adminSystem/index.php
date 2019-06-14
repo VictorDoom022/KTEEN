@@ -60,7 +60,7 @@ session_start();
 		</div>
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item text-nowrap">
-				<button type="button" class="btn btn-outline-light mb-3 mb-md-0 ml-md-3" style="float: right;" onclick="location.href='adminmain.php?u=logout';">Sign Out</button>
+				<button type="button" class="btn btn-outline-light mb-3 mb-md-0 ml-md-3" style="float: right;" onclick="location.href='index.php?u=logout';">Sign Out</button>
 			</li>
 		</ul>
 	</nav>

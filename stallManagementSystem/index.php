@@ -24,6 +24,7 @@ if (isset($_SESSION['kteen_stallID'])) {
     <link rel="stylesheet" href="../css/kteen_style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
+    
 	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -51,25 +52,25 @@ if (isset($_SESSION['kteen_stallID'])) {
         <div class="k-nav-container h-75">
             <ul class="k-nav nav">
                 <li class="nav-item w-100 mb-1">
-                    <a href="index.php" class="nav-link rounded-pill w-100 active">
+                    <a href="index.php" class="nav-link w-100 active">
                         <i class="fas fa-home d-inline-flex px-auto"></i>
                         <span class="d-none d-md-inline-flex ml-3">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item w-100 mb-1">
-                    <a href="menu.php" class="nav-link rounded-pill w-100">
+                    <a href="menu.php" class="nav-link w-100">
                         <i class="fas fa-bars d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Menu</span>
                     </a>
                 </li>
                 <li class="nav-item  w-100 mb-1">
-                    <a href="report.php" class="nav-link rounded-pill w-100">
+                    <a href="report.php" class="nav-link w-100">
                         <i class="far fa-chart-bar d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Report</span>
                     </a>
                 </li>
                 <li class="nav-item  w-100 mb-1">
-                    <a href="" class="nav-link rounded-pill w-100">
+                    <a href="" class="nav-link w-100">
                         <i class="fas fa-home d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Employee</span>
                     </a>
