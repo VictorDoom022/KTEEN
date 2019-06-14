@@ -80,17 +80,7 @@ main{
 }
 
 div.k-card{
-    position: relative;
-    background-color: white;
     box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.07);
-}
-
-div.k-card div.k-card-header{
-
-}
-
-div.k-card div.k-card-body{
-
 }
 
 div.k-card div.k-card-body{

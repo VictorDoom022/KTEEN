@@ -12,24 +12,26 @@
                 $price = $row['price'];
                 $image = $row['image'];
         ?>
-        <div class="col-md-6 col-lg-4 p-2">
-            <div class="k-card k-hover-shadow">
-                <img src="../images/<?php echo $image; ?>" style="width: 100%;height: 100%;align-self: center;vertical-align: center;">
+        <div class="col-sm-6 col-md-4 col-lg-3 p-2">
+            <div class="k-card card k-hover-shadow h-100">
+                <div>
+                    <img src="../images/<?php echo $image; ?>" style="width: 100%;height: 200px;align-self: center;vertical-align: center;">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $food_name; ?></h5>
                     <p class="card-text">
                         <small class="text-muted"><?php echo $category_name; ?></small>
                     </p>
                     <p class="card-text">
-                        <?php echo $price; ?>
+                        RM <?php echo $price; ?>
                     </p>
                 </div>
                 <div class="card-footer bg-white">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-6 text-center">
                             <a href="#editfood<?php echo $food_ID; ?>" data-toggle="modal" class="card-link text-warning mx-auto"><i class="fas fa-pen"></i></a>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 text-center">
                             <a href="" class="card-link text-danger"><i class="fas fa-trash-alt"></i></a>
                         </div>
                     </div>
@@ -99,7 +101,6 @@
                 </div>
             </div>
         </div>
-
         <?php
             }
         }
