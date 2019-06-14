@@ -80,7 +80,8 @@ main{
 }
 
 div.k-card{
-    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.07);
+    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.1);
+    border: none;
 }
 
 div.k-card div.k-card-body{
@@ -92,5 +93,5 @@ div.k-card div.k-card-body{
 }
 
 .k-hover-shadow:hover{
-    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.25);
+    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.3);
 }
