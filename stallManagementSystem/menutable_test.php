@@ -1,43 +1,37 @@
-<div class="container-fluid">
-    <div class="row">
-        <?php
-        $sql = "SELECT food.ID AS food_ID, food.name AS food_name, category.name AS category_name, category.ID as category_ID, image, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '$id'";
-        $result = $conn -> query($sql);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) { 
-                $food_ID = $row['food_ID'];
-                $food_name = $row['food_name'];
-                $category_ID = $row['category_ID'];
-                $category_name = $row['category_name'];
-                $price = $row['price'];
-                $image = $row['image'];
-        ?>
-        <div class="col-md-6 col-lg-4 p-2">
-            <div class="k-card k-hover-shadow">
-                <img src="../images/<?php echo $image; ?>" style="width: 100%;height: 100%;align-self: center;vertical-align: center;">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $food_name; ?></h5>
-                    <p class="card-text">
-                        <small class="text-muted"><?php echo $category_name; ?></small>
-                    </p>
-                    <p class="card-text">
-                        <?php echo $price; ?>
-                    </p>
+<?php
+$sql = "SELECT food.ID AS food_ID, food.name AS food_name, category.name AS category_name, category.ID as category_ID, image, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '$id'";
+$result = $conn -> query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) { 
+        $food_ID = $row['food_ID'];
+        $food_name = $row['food_name'];
+        $category_ID = $row['category_ID'];
+        $category_name = $row['category_name'];
+        $price = $row['price'];
+
+?>
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="../images/<?php echo $row['image']; ?>" alt="" class="img-fluid">
                 </div>
-                <div class="card-footer bg-white">
-                    <div class="row">
-                        <div class="col-6">
-                            <a href="#editfood<?php echo $food_ID; ?>" data-toggle="modal" class="card-link text-warning mx-auto"><i class="fas fa-pen"></i></a>
-                        </div>
-                        <div class="col-6">
-                            <a href="" class="card-link text-danger"><i class="fas fa-trash-alt"></i></a>
+                <div class="col-md-8">
+                    <div class="card-body h-100">
+                        <h4 class="card-title"><?php echo $row['food_name']; ?></h4>
+                        <p class="card-text h-50">
+                            Category: <?php echo $row['category_name']; ?><br>
+                            Price: RM <?php echo $row['price']; ?>
+                        </p>
+                        <div class="row align-items-end h-25">
+                            <a href="#editfood<?php echo $row['food_ID']; ?>" data-toggle="modal" class="btn btn-outline-dark ml-auto mr-3 mt-auto">Edit</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="editfood<?php echo $food_ID; ?>" tabindex="-1" role="modal">
+        <div class="modal fade" id="editfood<?php echo $row['food_ID']; ?>" tabindex="-1" role="modal">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -46,8 +40,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="menu_test.php" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="<?php echo $food_ID; ?>">
+                    <form action="menu.php" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="form-row">
                                 <div class="col form-group">
@@ -76,7 +69,7 @@
                                 <div class="col-7 form-group">
                                     <label>Image</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile" name="fileToUpload" required>
+                                        <input type="file" class="custom-file-input" id="customFile" name="fileToUpload">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                 </div>
@@ -93,16 +86,13 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-sm" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <input type="submit" name="editmenu" class="btn btn-sm btn-warning" value="Edit">
+                            <input type="submit" name="addmenu" class="btn btn-sm btn-warning" value="Submit">
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
-        <?php
-            }
-        }
-        ?>
-    </div>
-</div>
+<?php
+    }
+}
+?>
