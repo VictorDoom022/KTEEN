@@ -76,6 +76,70 @@ if(isset($_POST['addmenu'])){
 	$conn->close();
 	header('location: menu.php'); 
 }
+
+if(isset($_POST['editmenu'])){
+	$foodid = $foodname = $category_ID = $image = $price = "";
+
+	$foodid = test_input($_POST['id']);
+	$foodname = test_input($_POST['name']);
+	$category_ID = test_input($_POST['category_ID']);
+	$image = test_input("S".$id."_".$foodname.".jpg");
+	$price = test_input($_POST['price']);
+
+	$sql = "UPDATE food SET name = '$foodname', category_ID = '$category_ID', image = '$image', price = '$price' WHERE ID = '$foodid'";
+	$result = $conn->query($sql);
+
+	$target_dir = "../images/";
+    $target_file = $target_dir.$image;
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    // Check if image file is a actual image or fake image
+    if(isset($_POST["editmenu"])) {
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+    // Check if file already exists
+    if (file_exists($target_file)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+    }
+    // Check file size
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+    }
+    // Allow certain file formats
+    if($imageFileType != "jpg") {
+            echo "Sorry, only JPG file are allowed.";
+            $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else {
+		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+			echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        } else {
+			echo "Sorry, there was an error uploading your file.";
+        }
+	}
+	$conn->close();
+	header('location: menu.php'); 
+}
+
+if (isset($_GET['dfid'])) {
+	$food_ID = $_GET['dfid'];
+	$sql = "UPDATE food SET available ='0' WHERE ID = '$food_ID';";
+	$result = $conn -> query($sql);
+	header("location: menu.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -87,6 +151,15 @@ if(isset($_POST['addmenu'])){
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
 	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
+	<script type="text/javascript">
+		function deleteMenu(x) {  
+			var confirmBox = confirm("Are you sure you want to delete?");
+			if (confirmBox == true) {
+				window.location.assign("menu.php?dfid="+ x);
+			}
+		}
+	</script>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -143,9 +216,8 @@ if(isset($_POST['addmenu'])){
 	<div class="fixed-bottom col-10 ml-auto mb-3">
 		<div class="card bg-secondary shadow-lg">
 			<form class="form-inline m-2">
-				<a href="#addfood" data-toggle="modal" class="btn"><i class="fas fa-plus text-light"></i></button>
-				<a href="" class="mx-2 btn"><i class="far fa-trash-alt text-light"></i></i></a>
-				<select name="category" id="" class="col-3 mr-2 form-control">
+				<a href="#addfood" data-toggle="modal" class="btn"><i class="fas fa-plus text-light"></i></a>
+				<select name="category" id="" class="col-3 mx-2 form-control">
 					<option value="">All</option>
 					<?php
 						$sql = "SELECT * FROM category";
@@ -226,7 +298,7 @@ if(isset($_POST['addmenu'])){
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2"></div>

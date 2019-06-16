@@ -32,7 +32,7 @@
                             <a href="#editfood<?php echo $food_ID; ?>" data-toggle="modal" class="card-link text-warning mx-auto"><i class="fas fa-pen"></i></a>
                         </div>
                         <div class="col-6 text-center">
-                            <a href="" class="card-link text-danger"><i class="fas fa-trash-alt"></i></a>
+                            <a onclick="deleteMenu(<?php echo $food_ID; ?>)" class="card-link text-danger"><i class="fas fa-trash-alt"></i></a>
                         </div>
                     </div>
                 </div>
