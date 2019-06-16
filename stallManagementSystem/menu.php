@@ -72,7 +72,6 @@ if(isset($_POST['addmenu'])){
 			echo "Sorry, there was an error uploading your file.";
         }
 	}
-	
 	$conn->close();
 	header('location: menu.php'); 
 }
