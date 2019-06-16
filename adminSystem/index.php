@@ -13,9 +13,9 @@ session_start();
 
 	if(isset($_SESSION['username'])){
 				$username = $_SESSION['username'];
-			}else{
-				echo "<script>window.location.assign('Login.html');</script>";
-			}
+	}else{
+		echo "<script>window.location.assign('Login.html');</script>";
+	}
 	//delete item
 			if(isset($_GET['del'])){
 				if($_GET['del'] != ''){
