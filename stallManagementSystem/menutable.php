@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <?php
-        $sql = "SELECT food.ID AS food_ID, food.name AS food_name, category.name AS category_name, category.ID as category_ID, image, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '$id'";
+        $sql = "SELECT food.ID AS food_ID, food.name AS food_name, category.name AS category_name, category.ID as category_ID, image, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '$id' AND available = '1'";
         $result = $conn -> query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) { 
