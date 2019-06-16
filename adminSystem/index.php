@@ -150,9 +150,7 @@ if(isset($_POST['edit'])){
                     	}
                 	}
                     ?>  
-                                        
                     </div>
-                    
                 </div>
                 </div>
             </div>
