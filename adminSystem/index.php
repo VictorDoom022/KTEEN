@@ -11,7 +11,7 @@ session_start();
 				}
 		}
 
-	if($_SESSION['username']!= ''){
+	if(isset($_SESSION['username'])){
 				$username = $_SESSION['username'];
 			}else{
 				echo "<script>window.location.assign('Login.html');</script>";
