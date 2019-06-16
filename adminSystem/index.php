@@ -2,44 +2,41 @@
 include("../config.php");
 
 session_start();
-	//logout
-	if(isset($_GET['u'])){
-			if ($_GET['u'] == 'logout') {
-				session_destroy();
+//logout
+if(isset($_GET['u'])){
+		if ($_GET['u'] == 'logout') {
+			session_destroy();
 
-				echo "<script>window.location.assign('Login.html');</script>";
-				}
-		}
-
-	if(isset($_SESSION['username'])){
-				$username = $_SESSION['username'];
-	}else{
-		echo "<script>window.location.assign('Login.html');</script>";
-	}
-	//delete item
-			if(isset($_GET['del'])){
-				if($_GET['del'] != ''){
-					$id = $_GET['del'];
-					$sql = "DELETE FROM stall where id = '$id'"; 
-					$result = $conn->query($sql);
-				}
+			echo "<script>window.location.assign('Login.html');</script>";
 			}
-	//edit
-		if(isset($_POST['edit'])){
-		$id = $_POST['id'];
-		$stallName = $_POST['stallName'];
-		$ownerName = $_POST['ownerName'];
-		$email = $_POST['email'];
-		$phoneNo = $_POST['phoneNo'];
-		$password = $_POST['password'];
+	}
 
-		$sql = "UPDATE stall SET stallName = '$stallName', ownerName = '$ownerName' , email = '$email',phoneNo = '$phoneNo', password = '$password'where id = '$id'";
+if(isset($_SESSION['username'])){
+			$username = $_SESSION['username'];
+}else{
+	echo "<script>window.location.assign('Login.html');</script>";
+}
+//delete item
+if(isset($_GET['del'])){
+	if($_GET['del'] != ''){
+		$id = $_GET['del'];
+		$sql = "DELETE FROM stall where id = '$id'"; 
 		$result = $conn->query($sql);
 	}
-	// foreach ($_REQUEST['item'] as $deleteStall) {
-	// 	$sql = "update stall set status='0' where stallName = '$deleteName'";
-	// 	$result = $conn -> query($sql);	
-	// }
+}
+//edit
+if(isset($_POST['edit'])){
+	$id = $_POST['id'];
+	$stallName = $_POST['stallName'];
+	$ownerName = $_POST['ownerName'];
+	$email = $_POST['email'];
+	$phoneNo = $_POST['phoneNo'];
+	$password = $_POST['password'];
+
+	$sql = "UPDATE stall SET stallName = '$stallName', ownerName = '$ownerName' , email = '$email',phoneNo = '$phoneNo', password = '$password'where id = '$id'";
+	$result = $conn->query($sql);
+}
+
 ?>
 <!DOCTYPE html>
 <html>
