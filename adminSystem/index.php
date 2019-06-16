@@ -163,7 +163,7 @@ if(isset($_POST['edit'])){
 	}
 
 	$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
+		$('#myInput').trigger('focus')
+	})
 </script>
 </html>
