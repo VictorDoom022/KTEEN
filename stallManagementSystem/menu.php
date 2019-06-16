@@ -138,6 +138,7 @@ if (isset($_GET['dfid'])) {
 	$food_ID = $_GET['dfid'];
 	$sql = "UPDATE food SET available ='0' WHERE ID = '$food_ID';";
 	$result = $conn -> query($sql);
+	$conn->close();
 	header("location: menu.php");
 }
 ?>
