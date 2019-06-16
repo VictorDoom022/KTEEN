@@ -65,11 +65,11 @@ if(isset($_POST['edit'])){
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2">
-                    <ul class="list-group">
-                        <li class="list-group-item"><p>Welcome,<strong><?php echo $username;?></strong> </p></li>
-                        <li class="list-group-item active bg-dark" onclick="location.href='adminmain.php';" style="cursor: pointer;"><p>Manage Stalls</p></li>
-                        <li class="list-group-item bg-light" onclick="location.href='addstall.php';" style="cursor: pointer;"><p>Add Stall</p></li>
-                    </ul>                
+                <ul class="list-group">
+                    <li class="list-group-item"><p>Welcome,<strong><?php echo $username;?></strong> </p></li>
+                    <li class="list-group-item active bg-dark" onclick="location.href='adminmain.php';" style="cursor: pointer;"><p>Manage Stalls</p></li>
+                    <li class="list-group-item bg-light" onclick="location.href='addstall.php';" style="cursor: pointer;"><p>Add Stall</p></li>
+                </ul>                
             </div>
             <div class="col-md-10">
 			<div class="card">
