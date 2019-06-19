@@ -1,8 +1,5 @@
 <?php 
-if(!isset($_SESSION['kteen_stallID'])){
-    session_start();
-}
-
+session_start();
 include('../config.php');
 $filterCategory = "";
 if(isset($_GET['category'])){
