@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<div class="card shadow" style="padding: 20px;">
+				<div class="card shadow-sm" style="padding: 20px;">
 					<form method="post" action="login.php">
 						<div class="form-group">
 							<label for="email">Email</label>
