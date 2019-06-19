@@ -217,7 +217,7 @@ if (isset($_GET['dfid'])) {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="menu.php" method="post" enctype="multipart/form-data">
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-row">
 							<div class="col form-group">
@@ -275,7 +275,7 @@ if (isset($_GET['dfid'])) {
 			<div class="col-2"></div>
 			<main class="col-10 p-4">
 				<div class="row pb-3">
-					<div class="col-12 col-sm-5 col-md-3">
+					<div class="col-12 col-sm-5 col-md-4 col-lg-3">
 						<div class="btn-group shadow-sm m-2">
 							<a href="#addfood" data-toggle="modal" class="btn bg-white">
 								<i class="fas fa-plus"></i>
@@ -297,14 +297,14 @@ if (isset($_GET['dfid'])) {
 							</select>
 						</div>
 					</div>
-					<div class="col-12 col-sm-5 col-md-9">
+					<div class="col-12 col-sm-7 col-md-8 col-lg-9">
 						<div class="input-group shadow-sm m-2">
 							<div class="input-group-prepend">
 								<div class="input-group-text border-0 bg-white">
 									<i class="fas fa-search"></i>
 								</div>
 						    </div>
-							<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" onkeyup="filter()">
+							<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" oninput="filter()">
 						</div>
 					</div>
 				</div>
