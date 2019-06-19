@@ -6,8 +6,7 @@ session_start();
 if(isset($_GET['u'])){
 		if ($_GET['u'] == 'logout') {
 			session_destroy();
-
-			echo "<script>window.location.assign('Login.html');</script>";
+			echo "<script>window.location.assign('login.html');</script>";
 			}
 	}
 
