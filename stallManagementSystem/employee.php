@@ -50,25 +50,25 @@ include("../config.php");
         <div class="k-nav-container h-75">
             <ul class="k-nav nav">
                 <li class="nav-item w-100 mb-1">
-                    <a href="index.php" class="nav-link rounded-pill w-100">
+                    <a href="index.php" class="nav-link w-100">
                         <i class="fas fa-home d-inline-flex px-auto"></i>
                         <span class="d-none d-md-inline-flex ml-3">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item w-100 mb-1">
-                    <a href="menu.php" class="nav-link rounded-pill w-100">
+                    <a href="menu.php" class="nav-link w-100">
                         <i class="fas fa-bars d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Menu</span>
                     </a>
                 </li>
                 <li class="nav-item  w-100 mb-1">
-                    <a href="report.php" class="nav-link rounded-pill w-100">
+                    <a href="report.php" class="nav-link w-100">
                         <i class="far fa-chart-bar d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Report</span>
                     </a>
                 </li>
                 <li class="nav-item  w-100 mb-1">
-                    <a href="employee.php" class="nav-link rounded-pill w-100 active">
+                    <a href="employee.php" class="nav-link w-100 active">
                         <i class="fas fa-user d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Employee</span>
                     </a>
