@@ -68,7 +68,7 @@ include("../config.php");
                     </a>
                 </li>
                 <li class="nav-item  w-100 mb-1">
-                    <a href="" class="nav-link w-100">
+                    <a href="employee.php" class="nav-link w-100">
                         <i class="fas fa-home d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Employee</span>
                     </a>
