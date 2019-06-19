@@ -152,12 +152,7 @@ if (isset($_GET['dfid'])) {
 	
 	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
 	<script type="text/javascript">
-		function deleteMenu(x) {  
-			var confirmBox = confirm("Are you sure you want to delete?");
-			if (confirmBox == true) {
-				window.location.assign("menu.php?dfid="+ x);
-			}
-		}
+		
 	</script>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -212,30 +207,6 @@ if (isset($_GET['dfid'])) {
             </ul>
         </div>
     </nav>
-
-	<div class="fixed-bottom col-10 ml-auto mb-3">
-		<div class="card bg-secondary shadow-lg">
-			<form class="form-inline m-2">
-				<a href="#addfood" data-toggle="modal" class="btn"><i class="fas fa-plus text-light"></i></a>
-				<select name="category" id="" class="col-3 mx-2 form-control">
-					<option value="">All</option>
-					<?php
-						$sql = "SELECT * FROM category";
-						$result = $conn -> query($sql);
-						if($result->num_rows > 0){
-							while($row = $result -> fetch_assoc()){
-					?>
-					<option value="<?php echo $row['ID'] ?>"><?php echo $row['name'] ?></option>
-					<?php
-							}
-						}
-					?>
-				</select>
-				<input type="search" name="" placeholder="Search" class="form-control col mr-2 ml-auto">
-				<input type="submit" name="" value="Search" class="btn btn-outline-light ml-2 mr-2">
-			</form>
-		</div>
-	</div>
 
 	<div class="modal fade" id="addfood" tabindex="-1" role="modal">
 		<div class="modal-dialog modal-lg" role="document">
@@ -302,8 +273,44 @@ if (isset($_GET['dfid'])) {
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2"></div>
-			<main class="col-10 p-4" style="margin-bottom: 100px;">
-				<?php include('menutable.php'); ?>
+			<main class="col-10 p-4">
+				<div class="row pb-3">
+					<div class="col-12 col-sm-5 col-md-3">
+						<div class="btn-group shadow-sm m-2">
+							<a href="#addfood" data-toggle="modal" class="btn bg-white">
+								<i class="fas fa-plus"></i>
+							</a>
+							<a href="" class="btn bg-white"><i class="fas fa-list"></i></a>
+							<select name="category" class="btn bg-white" onchange="filter()" id="categoryID">
+								<option value="">All</option>
+								<?php
+									$sql = "SELECT * FROM category";
+									$result = $conn -> query($sql);
+									if($result->num_rows > 0){
+										while($row = $result -> fetch_assoc()){
+								?>
+								<option value="<?php echo $row['ID'] ?>"><?php echo $row['name'] ?></option>
+								<?php
+										}
+									}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="col-12 col-sm-5 col-md-9">
+						<div class="input-group shadow-sm m-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text border-0 bg-white">
+									<i class="fas fa-search"></i>
+								</div>
+						    </div>
+							<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" onkeyup="filter()">
+						</div>
+					</div>
+				</div>
+				<div id="menu">
+					<?php include('menutable.php'); ?>
+				</div>
 			</main>
 		</div>
 	</div>
@@ -312,6 +319,40 @@ if (isset($_GET['dfid'])) {
 			var fileName = $(this).val().split("\\").pop();
 			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 		});
+
+		function deleteMenu(x) {  
+			var confirmBox = confirm("Are you sure you want to delete?");
+			if (confirmBox == true) {
+				window.location.assign("menu.php?dfid="+ x);
+			}
+		}
+		function filter(){
+			var c = document.getElementById("categoryID").value;
+			var k = document.getElementById("search").value;
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("menu").innerHTML = this.responseText;
+				}
+			};
+			if (c == "" && k == ""){
+				xhttp.open("GET", "menutable.php", true);
+				xhttp.send();
+				return;
+			}else if(c == "" && k != ""){
+				xhttp.open("GET", "menutable.php?k="+k, true);
+				xhttp.send();
+				return;
+			}else if(c != "" && k == ""){
+				xhttp.open("GET", "menutable.php?category="+c, true);
+				xhttp.send();
+				return;
+			}else{
+				xhttp.open("GET", "menutable.php?category="+c+"&k="+k, true);
+				xhttp.send();
+			}
+		}
 	</script>
 </body>
 </html>
