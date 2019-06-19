@@ -56,14 +56,19 @@ nav.k-side-nav ul li a{
 nav.k-side-nav ul li a.active{
     background: black;
     color: white;
+    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.2);
 }
 
 nav.k-side-nav ul li a i{
     padding: 7px;
 }
 
-nav.k-side-nav ul li a:hover{
+nav.k-side-nav ul li a:not(.active):hover{
     background-color: rgb(0, 0, 0, 0.1);
+}
+
+nav.k-side-nav ul li a.active:hover{
+    background-color: rgb(70, 70, 70);
 }
 
 nav.k-side-nav-r{
