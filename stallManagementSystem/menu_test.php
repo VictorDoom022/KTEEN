@@ -72,7 +72,6 @@ if(isset($_POST['addmenu'])){
 			echo "Sorry, there was an error uploading your file.";
         }
 	}
-	
 	$conn->close();
 	header('location: menu.php'); 
 }
@@ -94,7 +93,7 @@ if(isset($_POST['editmenu'])){
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     // Check if image file is a actual image or fake image
-    if(isset($_POST["Edit"])) {
+    if(isset($_POST["editmenu"])) {
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if($check !== false) {
             echo "File is an image - " . $check["mime"] . ".";
@@ -130,9 +129,16 @@ if(isset($_POST['editmenu'])){
 			echo "Sorry, there was an error uploading your file.";
         }
 	}
-	
 	$conn->close();
 	header('location: menu.php'); 
+}
+
+if (isset($_GET['dfid'])) {
+	$food_ID = $_GET['dfid'];
+	$sql = "UPDATE food SET available ='0' WHERE ID = '$food_ID';";
+	$result = $conn -> query($sql);
+	$conn->close();
+	header("location: menu.php");
 }
 ?>
 <!DOCTYPE html>
@@ -142,12 +148,13 @@ if(isset($_POST['editmenu'])){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link rel="stylesheet" href="../css/kteen_style.css">
-
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
 	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
+	<script type="text/javascript">
+		
+	</script>
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -174,25 +181,25 @@ if(isset($_POST['editmenu'])){
         <div class="k-nav-container h-75">
             <ul class="k-nav nav">
                 <li class="nav-item w-100 mb-1">
-                    <a href="index.php" class="nav-link rounded-pill w-100">
+                    <a href="index.php" class="nav-link w-100">
                         <i class="fas fa-home d-inline-flex px-auto"></i>
                         <span class="d-none d-md-inline-flex ml-3">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item w-100 mb-1">
-                    <a href="menu.php" class="nav-link rounded-pill w-100 active">
+                    <a href="menu.php" class="nav-link w-100 active">
                         <i class="fas fa-bars d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Menu</span>
                     </a>
                 </li>
                 <li class="nav-item  w-100 mb-1">
-                    <a href="report.php" class="nav-link rounded-pill w-100">
+                    <a href="report.php" class="nav-link w-100">
                         <i class="far fa-chart-bar d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Report</span>
                     </a>
                 </li>
                 <li class="nav-item  w-100 mb-1">
-                    <a href="" class="nav-link rounded-pill w-100">
+                    <a href="" class="nav-link w-100">
                         <i class="fas fa-home d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Employee</span>
                     </a>
@@ -200,30 +207,6 @@ if(isset($_POST['editmenu'])){
             </ul>
         </div>
     </nav>
-
-	<div class="fixed-bottom col-10 ml-auto mb-3">
-		<div class="card bg-secondary shadow-lg">
-			<form class="form-inline m-2">
-				<a href="#addfood" data-toggle="modal" class="btn"><i class="fas fa-plus text-light"></i></a>
-				<select name="category" id="" class="col-3 mx-2 form-control">
-					<option value="">All</option>
-					<?php
-						$sql = "SELECT * FROM category";
-						$result = $conn -> query($sql);
-						if($result->num_rows > 0){
-							while($row = $result -> fetch_assoc()){
-					?>
-					<option value="<?php echo $row['ID'] ?>"><?php echo $row['name'] ?></option>
-					<?php
-							}
-						}
-					?>
-				</select>
-				<input type="search" name="" placeholder="Search" class="form-control col mr-2 ml-auto">
-				<input type="submit" name="" value="Search" class="btn btn-outline-light ml-2 mr-2">
-			</form>
-		</div>
-	</div>
 
 	<div class="modal fade" id="addfood" tabindex="-1" role="modal">
 		<div class="modal-dialog modal-lg" role="document">
@@ -286,12 +269,48 @@ if(isset($_POST['editmenu'])){
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2"></div>
-			<main class="col-10 p-4" style="margin-bottom: 100px;">
-				<?php include('menutable_test.php'); ?>
+			<main class="col-10 p-4">
+				<div class="row pb-3">
+					<div class="col-12 col-sm-5 col-md-3">
+						<div class="btn-group shadow-sm m-2">
+							<a href="#addfood" data-toggle="modal" class="btn bg-white">
+								<i class="fas fa-plus"></i>
+							</a>
+							<a href="" class="btn bg-white"><i class="fas fa-list"></i></a>
+							<select name="category" class="btn bg-white" onchange="filter()" id="categoryID">
+								<option value="">All</option>
+								<?php
+									$sql = "SELECT * FROM category";
+									$result = $conn -> query($sql);
+									if($result->num_rows > 0){
+										while($row = $result -> fetch_assoc()){
+								?>
+								<option value="<?php echo $row['ID'] ?>"><?php echo $row['name'] ?></option>
+								<?php
+										}
+									}
+								?>
+							</select>
+						</div>
+					</div>
+					<div class="col-12 col-sm-5 col-md-9">
+						<div class="input-group shadow-sm m-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text border-0 bg-white">
+									<i class="fas fa-search"></i>
+								</div>
+						    </div>
+							<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" onkeyup="filter()">
+						</div>
+					</div>
+				</div>
+				<div id="menu">
+					<?php include('menutable_test.php'); ?>
+				</div>
 			</main>
 		</div>
 	</div>
@@ -300,6 +319,40 @@ if(isset($_POST['editmenu'])){
 			var fileName = $(this).val().split("\\").pop();
 			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 		});
+
+		function deleteMenu(x) {  
+			var confirmBox = confirm("Are you sure you want to delete?");
+			if (confirmBox == true) {
+				window.location.assign("menu.php?dfid="+ x);
+			}
+		}
+		function filter(){
+			var c = document.getElementById("categoryID").value;
+			var k = document.getElementById("search").value;
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("menu").innerHTML = this.responseText;
+				}
+			};
+			if (c == "" && k == ""){
+				xhttp.open("GET", "menutable_test.php", true);
+				xhttp.send();
+				return;
+			}else if(c == "" && k != ""){
+				xhttp.open("GET", "menutable_test.php?k="+k, true);
+				xhttp.send();
+				return;
+			}else if(c != "" && k == ""){
+				xhttp.open("GET", "menutable_test.php?category="+c, true);
+				xhttp.send();
+				return;
+			}else{
+				xhttp.open("GET", "menutable_test.php?category="+c+"&k="+k, true);
+				xhttp.send();
+			}
+		}
 	</script>
 </body>
 </html>
