@@ -3,17 +3,15 @@ include("../config.php");
 
 session_start();
 //logout
-if(isset($_GET['u'])){
-		if ($_GET['u'] == 'logout') {
-			session_destroy();
-			echo "<script>window.location.assign('login.html');</script>";
-			}
-	}
+if (isset($_GET['logout'])) {
+	session_destroy();
+	echo "<script>window.location.assign('login.php');</script>";
+}
 
 if(isset($_SESSION['username'])){
-			$username = $_SESSION['username'];
+	$username = $_SESSION['username'];
 }else{
-	echo "<script>window.location.assign('login.html');</script>";
+	echo "<script>window.location.assign('login.php');</script>";
 }
 //delete item
 if(isset($_GET['del'])){
@@ -35,7 +33,6 @@ if(isset($_POST['edit'])){
 	$sql = "UPDATE stall SET stallName = '$stallName', ownerName = '$ownerName' , email = '$email',phoneNo = '$phoneNo', password = '$password'where id = '$id'";
 	$result = $conn->query($sql);
 }
-
 ?>
 <!DOCTYPE html>
 <html>
