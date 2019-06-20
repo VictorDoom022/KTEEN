@@ -20,7 +20,7 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<div class="card shadow-sm" style="padding: 20px;">
-					<form method="post" action="login.php">
+					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 						<div class="form-group">
 							<label for="email">Email</label>
 							<input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
