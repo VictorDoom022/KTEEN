@@ -147,21 +147,17 @@ if (isset($_GET['dfid'])) {
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link rel="stylesheet" href="../css/kteen_style.css">
+	<link rel="stylesheet" href="../css/kteen_style_test.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	
-	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
-	<script type="text/javascript">
-		
-	</script>
 
+	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
 	<title>KTEEN</title>
 </head>
-<body class="bg-light">
+<body class="bg-light" onload="filter()">
 	<nav class="k-top-nav navbar navbar-expand-lg navbar-light pl-4 col-10 bg-white border-bottom">
 		<span class="navbar-brand h1 mb-0 col"><i class="fas fa-bars d-inline-flex mr-2"></i>Menu</span>
 		<ul class="navbar-nav px-4">
@@ -192,14 +188,14 @@ if (isset($_GET['dfid'])) {
                         <span class="d-none d-md-inline-flex ml-3">Menu</span>
                     </a>
                 </li>
-                <li class="nav-item  w-100 mb-1">
+                <li class="nav-item w-100 mb-1">
                     <a href="report.php" class="nav-link w-100">
                         <i class="far fa-chart-bar d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Report</span>
                     </a>
                 </li>
-                <li class="nav-item  w-100 mb-1">
-                    <a href="" class="nav-link w-100">
+                <li class="nav-item w-100 mb-1">
+                    <a href="employee.php" class="nav-link w-100">
                         <i class="fas fa-home d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Employee</span>
                     </a>
@@ -217,7 +213,7 @@ if (isset($_GET['dfid'])) {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="menu.php" method="post" enctype="multipart/form-data">
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-row">
 							<div class="col form-group">
@@ -275,7 +271,7 @@ if (isset($_GET['dfid'])) {
 			<div class="col-2"></div>
 			<main class="col-10 p-4">
 				<div class="row pb-3">
-					<div class="col-12 col-sm-5 col-md-3">
+					<div class="col-12 col-sm-5 col-md-4 col-lg-3">
 						<div class="btn-group shadow-sm m-2">
 							<a href="#addfood" data-toggle="modal" class="btn bg-white">
 								<i class="fas fa-plus"></i>
@@ -297,20 +293,18 @@ if (isset($_GET['dfid'])) {
 							</select>
 						</div>
 					</div>
-					<div class="col-12 col-sm-5 col-md-9">
+					<div class="col-12 col-sm-7 col-md-8 col-lg-9">
 						<div class="input-group shadow-sm m-2">
 							<div class="input-group-prepend">
 								<div class="input-group-text border-0 bg-white">
 									<i class="fas fa-search"></i>
 								</div>
 						    </div>
-							<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" onkeyup="filter()">
+							<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" oninput="filter()">
 						</div>
 					</div>
 				</div>
-				<div id="menu">
-					<?php include('menutable_test.php'); ?>
-				</div>
+				<div id="menu"></div>
 			</main>
 		</div>
 	</div>
@@ -326,6 +320,7 @@ if (isset($_GET['dfid'])) {
 				window.location.assign("menu.php?dfid="+ x);
 			}
 		}
+		
 		function filter(){
 			var c = document.getElementById("categoryID").value;
 			var k = document.getElementById("search").value;
