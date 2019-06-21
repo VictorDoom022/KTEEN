@@ -4,7 +4,7 @@ include("../config.php");
 $u = $_POST['staffid'];
 $p = $_POST['password'];
 
- if($stmt = $conn->prepare("SELECT staffid, password FROM staff where staffid=? and password=?")){
+ if($stmt = $conn->prepare("SELECT staffID, password FROM staff where staffID=? and password=?")){
 		/*bind parameters for markers*/
 		$stmt->bind_param("ss",$u,$p);
 		$stmt->execute();
