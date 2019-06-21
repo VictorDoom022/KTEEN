@@ -21,7 +21,7 @@ if(isset($_GET['del'])){
 		$result = $conn->query($sql);
 	}
 }
-//edit
+
 if(isset($_POST['edit'])){
 	$id = $_POST['id'];
 	$stallName = $_POST['stallName'];
