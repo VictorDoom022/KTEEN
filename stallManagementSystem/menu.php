@@ -332,19 +332,19 @@ if (isset($_GET['dfid'])) {
 				}
 			};
 			if (c == "" && k == ""){
-				xhttp.open("GET", "menutable.php", true);
+				xhttp.open("GET", "menucard.php", true);
 				xhttp.send();
 				return;
 			}else if(c == "" && k != ""){
-				xhttp.open("GET", "menutable.php?k="+k, true);
+				xhttp.open("GET", "menucard.php?k="+k, true);
 				xhttp.send();
 				return;
 			}else if(c != "" && k == ""){
-				xhttp.open("GET", "menutable.php?category="+c, true);
+				xhttp.open("GET", "menucard.php?category="+c, true);
 				xhttp.send();
 				return;
 			}else{
-				xhttp.open("GET", "menutable.php?category="+c+"&k="+k, true);
+				xhttp.open("GET", "menucard.php?category="+c+"&k="+k, true);
 				xhttp.send();
 			}
 		}
