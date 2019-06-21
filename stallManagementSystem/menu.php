@@ -320,6 +320,7 @@ if (isset($_GET['dfid'])) {
 				window.location.assign("menu.php?dfid="+ x);
 			}
 		}
+		
 		function filter(){
 			var c = document.getElementById("categoryID").value;
 			var k = document.getElementById("search").value;
