@@ -9,7 +9,7 @@ if (isset($_GET['logout'])) {
 }
 
 if(isset($_SESSION['username'])){
-	$username = $_SESSION['username'];
+			$username = $_SESSION['username'];
 }else{
 	echo "<script>window.location.assign('login.php');</script>";
 }
@@ -33,6 +33,19 @@ if(isset($_POST['edit'])){
 	$sql = "UPDATE stall SET stallName = '$stallName', ownerName = '$ownerName' , email = '$email',phoneNo = '$phoneNo', password = '$password'where id = '$id'";
 	$result = $conn->query($sql);
 }
+
+if(isset($_POST['add'])){
+		$stallName = $_POST['stallName'];
+		$ownerName = $_POST['ownerName'];
+		$email = $_POST['email'];
+		$phoneNo = $_POST['phoneNo'];
+		$password = $_POST['password'];
+		$password = md5($password);
+
+		$sql = "INSERT into stall(stall_name, owner_name, email, contact_no, password, status) values ('$stallName','$ownerName','$email','$phoneNo','$password', '1')";
+		$result = $conn->query($sql);
+	}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,9 +62,9 @@ if(isset($_POST['edit'])){
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 	</script>
 </head>
-<body class="bg-light">
+<body class="bg-light" onload="filter()">
 	<nav class="k-top-nav navbar navbar-expand-lg navbar-light pl-4 col-10 bg-white border-bottom">
-		<span class="navbar-brand h1 mb-0 col"><i class="fas fa-bars d-inline-flex mr-2"></i>Menu</span>
+		<span class="navbar-brand h1 mb-0 col"><i class="fas fa-bars d-inline-flex mr-2"></i>Stalls</span>
 		<ul class="navbar-nav px-4">
 			<li class="nav-item">
 				<a href="index.php?logout='1'" class="btn btn-outline-dark" role="button" aria-pressed="true">Log Out</a>
@@ -73,12 +86,7 @@ if(isset($_POST['edit'])){
                         <span class="d-none d-md-inline-flex ml-3">Home</span>
                     </a>
                 </li>
-                 <li class="nav-item w-100 mb-1">
-                    <a href="addstall.php" class="nav-link w-100">
-                        <i class="fas fa-bars d-inline-flex"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Add Stall</span>
-                    </a>
-                </li>
+                 
             </ul>
         </div>
     </nav>
@@ -90,7 +98,7 @@ if(isset($_POST['edit'])){
 				<div class="row pb-3">
 					<div class="col-12 col-sm-5 col-md-4 col-lg-3">
 						<div class="btn-group shadow-sm m-2">
-							<a href="#addfood" data-toggle="modal" class="btn bg-white">
+							<a href="#addstall" data-toggle="modal" class="btn bg-white">
 								<i class="fas fa-plus"></i>
 							</a>
 							<a href="" class="btn bg-white"><i class="fas fa-list"></i></a>
@@ -103,14 +111,55 @@ if(isset($_POST['edit'])){
 									<i class="fas fa-search"></i>
 								</div>
 						    </div>
-							<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" oninput="">
+							<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" oninput="filter()">
+							<div id="result"></div>
 						</div>
 					</div>
 				</div>
-				<div>
-					<div class="row">
-						<?php include("stall.php") ?>
+
+				<div class="modal fade" id="addstall" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Add Stall</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form method="post" action="index.php">
+	            					<div class="form-group">
+	    								<label for="stallName">Stall Name</label>
+	    								<input type="text" class="form-control" placeholder="Enter stall name" name="stallName" id="stallName">
+	  								</div>
+	  							<div class="form-group">
+	    								<label for="exampleInputEmail1">Owner Name</label>
+	    								<input type="text" class="form-control" placeholder="Enter owner's name" name="ownerName" id="ownerName">
+	  							</div>
+	  							<div class="form-group">
+	    							<label for="exampleInputEmail1">Email address</label>
+	    							<input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
+	  							</div>
+	  							<div class="form-group">
+	    							<label for="exampleInputPassword1">Phone No</label>
+	    							<input type="number" class="form-control" placeholder="Enter contact number" name="phoneNo" id="phoneNo">
+	  							</div>
+	  							<div class="form-group">
+	    							<label for="exampleInputPassword1">Password</label>
+	    							<input type="password" class="form-control" placeholder="Password" name="password" id="password">
+	  							</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary bg-dark" data-dismiss="modal">Close</button>
+													
+								<input type="submit" class="btn btn-primary bg-warning bg-dark" value="Add" name="add">
+							</div>
+								</form>
+						</div>
 					</div>
+*				</div>
+				<div>
+					<div id="stall"></div>
 				</div>
 			</main>
 		</div>
@@ -124,5 +173,46 @@ if(isset($_POST['edit'])){
 	$('#myModal').on('shown.bs.modal', function () {
 		$('#myInput').trigger('focus')
 	})
+
+// 	function showResult(str) {
+//   if (str.length==0) { 
+//     document.getElementById("livesearch").innerHTML="";
+//     document.getElementById("livesearch").style.border="0px";
+//     return;
+//   }
+//   if (window.XMLHttpRequest) {
+//     // code for IE7+, Firefox, Chrome, Opera, Safari
+//     xmlhttp=new XMLHttpRequest();
+//   } else {  // code for IE6, IE5
+//     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+//   }
+//   xmlhttp.onreadystatechange=function() {
+//     if (this.readyState==4 && this.status==200) {
+//       document.getElementById("livesearch").innerHTML=this.responseText;
+//       document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+//     }
+//   }
+//   xmlhttp.open("GET","livesearch.php?q="+str,true);
+//   xmlhttp.send();
+// }
+	function filter(){
+		var k = document.getElementById("search").value;
+		var xhttp;
+		xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				document.getElementById("stall").innerHTML = this.responseText;
+			}
+		};
+		if(k == ""){
+			xhttp.open("GET", "stall.php", true);
+			xhttp.send();
+			return;
+		}else if(k != ""){
+			xhttp.open("GET" , "stall.php?k="+k, true);
+			xhttp.send();
+			return;
+		}
+	}
 </script>
 </html>
