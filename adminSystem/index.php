@@ -109,7 +109,7 @@ if(isset($_POST['add'])){
 </head>
 <body class="bg-light" onload="filter()">
 	<nav class="k-top-nav navbar navbar-expand-lg navbar-light pl-4 col-10 bg-white border-bottom">
-		<span class="navbar-brand h1 mb-0 col"><i class="fas fa-bars d-inline-flex mr-2"></i>Stalls</span>
+		<span class="navbar-brand h1 mb-0 col"><i class="fas fa-bars d-inline-flex mr-2"></i>Stall</span>
 		<ul class="navbar-nav px-4">
 			<li class="nav-item">
 				<a href="index.php?logout='1'" class="btn btn-outline-dark" role="button" aria-pressed="true">Log Out</a>
@@ -181,10 +181,6 @@ if(isset($_POST['add'])){
 	    								<label for="exampleInputEmail1">Owner Name</label>
 	    								<input type="text" class="form-control" placeholder="Enter owner's name" name="ownerName" id="ownerName">
 	  							</div>
-	  							<!-- <div class="form-group">
-	    							<label for="exampleInputEmail1">NRIC NO</label>
-	    							<input type="text" class="form-control" placeholder="Enter NRIC" name="nric" id="nric">
-	  							</div> -->
 	  							<div class="row">
 	  								<div class="col">
 	  									<label for="exampleInputEmail1">NRIC NO</label>
@@ -220,15 +216,6 @@ if(isset($_POST['add'])){
 	  								</div>
 
 	  							</div>
-	  							<!-- <div class="form-group">
-	    							<label for="exampleInputPassword1">Password</label>
-	    							<input type="password" class="form-control" placeholder="Password" name="password" id="password" onkeyup="">
-	  							</div>
-	  							<div class="form-group">
-	    							<label for="exampleInputPassword1">Re-Type Password</label>
-	    							<input type="password" class="form-control" placeholder="Password" name="password" id="password1" onkeyup="">
-	    							<p id="validate-status"></p>
-	  							</div> -->
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary bg-dark" data-dismiss="modal">Close</button>
@@ -236,7 +223,6 @@ if(isset($_POST['add'])){
 								<input type="submit" class="btn btn-primary bg-warning bg-dark" value="Add" name="add" id="add">
 							</div>
 								</form>
-
 						</div>
 					</div>
 				</div>
