@@ -1,0 +1,3 @@
+<?php 
+inclube("../config.php");
+ ?>
