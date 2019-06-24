@@ -205,7 +205,7 @@ if (isset($_GET['dfid'])) {
     </nav>
 
 	<div class="modal fade" id="addfood" tabindex="-1" role="modal">
-		<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="header-title">Add Menu</h5>
