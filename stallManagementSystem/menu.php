@@ -258,7 +258,7 @@ if (isset($_GET['dfid'])) {
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn btn-sm" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button class="btn btn-sm" data-dismiss="modal">Cancel</button>
 						<input type="submit" name="addmenu" class="btn btn-sm btn-warning" value="Submit">
 					</div>
 				</form>
