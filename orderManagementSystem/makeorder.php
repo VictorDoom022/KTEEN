@@ -1,7 +1,6 @@
 <?php
-include ("../connect.php");
+include ("../config.php");
 
-include("../connect.php");
 
 session_start();
 	//logout
@@ -54,7 +53,42 @@ session_start();
                     </ul>                
             </div>
             <div class="container">
-            	
+            	<button type="button" class="btn btn-primary bg-dark">
+ 					Added &nbsp;<span class="badge badge-light">0</span>
+				</button><br><br>
+            	<form action="makeorder.php" method="post">
+            		<div class="row">
+            			
+            			<?php
+            				$sql = "SELECT ID, name, image, price from food where available = 1";
+
+            				$result = $conn-> query($sql);
+
+            				if($result -> num_rows >0){
+            					while ($row = $result -> fetch_assoc()){
+            						$ID=$row['ID'];
+            						$name=$row['name'];
+            						$image=$row['image'];
+            						$price=$row['price'];
+
+            			?>
+	            			<div class="col-md-6">
+	            				<div class="card">
+	            					<img src="images/<?php echo $image; ?>" class="img-fluid">
+		            				<div class="card-body">
+		            					<h5 class="card-title"><?php echo $name; ?></h5>
+		            					<p class="card-text">RM <?php echo $price; ?></p>
+		            					<input class="btn btn-primary bg-dark" type="submit" value="add" name="add">
+		            				</div>
+		            			</div>
+	            			</div>
+	            		<?php
+	            		   		}
+            				}
+            			?>
+            		</div>
+            		
+            	</form>
 			</div>
 
 		</div>
