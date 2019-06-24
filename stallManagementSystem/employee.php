@@ -27,7 +27,7 @@ if(isset($_POST['addEmployee'])){
     $address = test_input($_POST['address']);
     $salary = test_input($_POST['salary']);
 
-    $sql = "INSERT INTO employee (name, position, image, contact, ic, birthday, address, salary) VALUES ('$name', '$position', '$image', '$number', '$ic', '$birthday', '$address', '$salary')";
+    $sql = "INSERT INTO staff (name, position, image, contact_no, NRIC, birthday, address, salary, available) VALUES ('$name', '$position', '$image', '$number', '$ic', '$birthday', '$address', '$salary', '1')";
     $result = $conn->query($sql);
     $target_dir = "../images/";
     $target_file = $target_dir.$image;
@@ -244,7 +244,7 @@ if (isset($_GET['deid'])) {
                             <div class="col-7 form-group">
                                 <label>Image</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile" name="image" required>
+                                    <input type="file" class="custom-file-input" id="customFile" name="fileToUpload" required>
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>
@@ -343,7 +343,11 @@ if (isset($_GET['deid'])) {
         </div>
     </div>
     <script type="text/javascript">
-   
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+
         function deleteemployee(x) {  
             var confirmBox = confirm("Are you sure you want to delete?");
             if (confirmBox == true) {
