@@ -1,6 +1,7 @@
 <?php
 session_start();
 include ('../config.php');
+
 $keyword = "";
 
 if(isset($_GET['k'])){
@@ -41,21 +42,21 @@ if(isset($_GET['k'])){
 						<div class="modal-dialog" role="document">
 						<div class="modal-content">
 								<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+										<h5 class="modal-title" id="exampleModalLabel">Edit stall</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 								</button>
 								</div>
-								<div class="modal-body">
 								<form method="post" action="index.php">
+								<div class="modal-body">
 			    					<input type="hidden" value="<?php echo $id; ?>" name="id">
 			            			<div class="form-group">
 			    						<label for="stallName">Stall Name</label>
-			    						<input type="text" class="form-control" value="<?php echo $stallName; ?>" name="stallName" id="stallName">
+			    						<input type="text" class="form-control" value="<?php echo $stallName; ?>" name="stall_name" id="stallName">
 			  						</div>
 			  						<div class="form-group">
 			    						<label for="exampleInputEmail1">Owner Name</label>
-			    						<input type="text" class="form-control" value="<?php echo $ownerName; ?>" name="ownerName" id="ownerName">
+			    						<input type="text" class="form-control" value="<?php echo $ownerName; ?>" name="owner_name" id="ownerName">
 			  						</div>
 			  						<div class="form-group">
 			    						<label for="exampleInputEmail1">Email address</label>
@@ -63,7 +64,7 @@ if(isset($_GET['k'])){
 			  						</div>
 			  						<div class="form-group">
 			    						<label for="exampleInputPassword1">Phone No</label>
-			    						<input type="number" class="form-control" value="<?php echo $phoneNo; ?>" name="phoneNo" id="phoneNo">
+			    						<input type="number" class="form-control" value="<?php echo $phoneNo; ?>" name="contact_no" id="phoneNo">
 			  						</div>
 			  						<div class="form-group">
 			    						<label for="exampleInputPassword1">Password</label>
@@ -71,9 +72,9 @@ if(isset($_GET['k'])){
 			  						</div>
 			  				</div>
 			  				<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button class="btn btn-secondary bg-dark" data-dismiss="modal">Close</button>
 								
-								<input type="submit" class="btn btn-primary bg-warning" value="edit" name="edit">
+								<input type="submit" class="btn btn-primary bg-warning bg-dark" value="Submit" name="edit">
 								</div>
 								</form>
 						</div>
