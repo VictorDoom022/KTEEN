@@ -136,6 +136,75 @@ if(isset($_POST['add'])){
         </div>
     </nav>
 
+	<div class="modal fade" id="addstall" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add Stall</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form method="post" action="index.php">
+					<div class="modal-body">
+						<div class="form-row">
+							<div class="col form-group">
+								<label for="stallName">Stall Name</label>
+								<input type="text" class="form-control" placeholder="Enter stall name" name="stallName" id="stallName">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col form-group">
+								<label for="exampleInputEmail1">Owner Name</label>
+								<input type="text" class="form-control" placeholder="Enter owner's name" name="ownerName" id="ownerName">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col form-group">
+								<label for="exampleInputEmail1">NRIC NO</label>
+								<input type="text" class="form-control" placeholder="Enter NRIC" name="NRIC" id="NRIC">
+							</div>
+							<div class="col form-group">
+								<label>Image</label>
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" id="customFile" name="fileToUpload" required>
+									<label class="custom-file-label" for="customFile">Choose file</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col form-group">
+								<label for="exampleInputEmail1">Email address</label>
+								<input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
+							</div>
+							<div class="col form-group">
+								<label for="exampleInputPassword1">Phone No</label>
+								<input type="number" class="form-control" placeholder="Enter contact number" name="phoneNo" id="phoneNo">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col form-group">
+								<label for="exampleInputPassword1">Password</label>
+									<input type="password" class="form-control" placeholder="Password" name="password" id="password">
+							</div>
+							<div class="col form-group">
+								<label for="exampleInputPassword1">Comfirm Password</label>
+									<input type="password" class="form-control" placeholder="Password" name="Comfirm password" id="password1">
+									<div class="invalid-feedback" role="alert" id="validate-status">
+										<p id="validate-status"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn" data-dismiss="modal">Close</button>
+						<input type="submit" class="btn btn-sm btn-dark" value="Submit" name="add" id="add">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+    			
     <div class="container-fluid">
 		<div class="row">
 			<div class="col-2"></div>
@@ -162,70 +231,7 @@ if(isset($_POST['add'])){
 					</div>
 				</div>
 
-				<div class="modal fade" id="addstall" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Add Stall</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<form method="post" action="index.php">
-	            					<div class="form-group">
-	    								<label for="stallName">Stall Name</label>
-	    								<input type="text" class="form-control" placeholder="Enter stall name" name="stallName" id="stallName">
-	  								</div>
-	  							<div class="form-group">
-	    								<label for="exampleInputEmail1">Owner Name</label>
-	    								<input type="text" class="form-control" placeholder="Enter owner's name" name="ownerName" id="ownerName">
-	  							</div>
-	  							<div class="row">
-	  								<div class="col">
-	  									<label for="exampleInputEmail1">NRIC NO</label>
-	    								<input type="text" class="form-control" placeholder="Enter NRIC" name="NRIC" id="NRIC">
-	  								</div>
-	  								<div class="col">
-  											<input type="file" class="custom-file-input" id="fileToUpload" name="fileToUpload">
-  											<label class="custom-file-label" for="customFile">Choose file</label>
-										
-	  								</div>
-	  							</div>
-	  							<div class="row">
-	  								<div class="col">
-	  									<label for="exampleInputEmail1">Email address</label>
-	    								<input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
-	  								</div>
-	  								<div class="col">
-	  									<label for="exampleInputPassword1">Phone No</label>
-	    								<input type="number" class="form-control" placeholder="Enter contact number" name="phoneNo" id="phoneNo">
-	  								</div>
-	  							</div>
-	  							<div class="row">
-	  								<div class="col">
-	  									<label for="exampleInputPassword1">Password</label>
-	  									<input type="password" class="form-control" placeholder="Password" name="password" id="password">
-	  								</div>
-	  								<div class="col">
-	  									<label for="exampleInputPassword1">Comfirm Password</label>
-	  									<input type="password" class="form-control" placeholder="Password" name="Comfirm password" id="password1">
-	  									<div class="invalid-feedback" role="alert" id="validate-status">
- 											<!-- <p id="validate-status"></p> -->
-										</div>
-	  								</div>
-
-	  							</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary bg-dark" data-dismiss="modal">Close</button>
-													
-								<input type="submit" class="btn btn-primary bg-warning bg-dark" value="Add" name="add" id="add">
-							</div>
-								</form>
-						</div>
-					</div>
-				</div>
+				
 
 				<div>
 					<div id="stall">
