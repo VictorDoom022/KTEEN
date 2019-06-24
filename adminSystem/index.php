@@ -251,7 +251,7 @@ if(isset($_POST['add'])){
     		$('#submitbtn').removeAttr('disabled');
   		} 
   		if ($('#password').val() != $('#password1').val()) {
-    		$('#validate-status').html('Not Match').css('display', 'flex');
+    		$('#validate-status').html('The password Not Match').css('display', 'flex');
     		// document.getElementById("add").diabled = true;
     		$('#submitbtn').attr('disabled','disabled');
   		}
