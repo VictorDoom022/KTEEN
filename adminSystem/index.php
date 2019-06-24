@@ -5,13 +5,13 @@ session_start();
 //logout
 if (isset($_GET['logout'])) {
 	session_destroy();
-	echo "<script>window.location.assign('login.html');</script>";
+	echo "<script>window.location.assign('login.php');</script>";
 }
 
 if(isset($_SESSION['username'])){
 			$username = $_SESSION['username'];
 }else{
-	echo "<script>window.location.assign('login.html');</script>";
+	echo "<script>window.location.assign('login.php');</script>";
 }
 //delete item
 if(isset($_GET['del'])){
