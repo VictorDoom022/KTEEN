@@ -52,7 +52,7 @@ if (isset($_GET['k'])) {
     </div>
 
     <div class="modal fade" id="editfood<?php echo $food_ID; ?>" tabindex="-1" role="modal">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="header-title">Edit Menu</h5>
