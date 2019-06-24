@@ -179,32 +179,30 @@ if(isset($_POST['add'])){
 							</div>
 							<div class="col form-group">
 								<label for="exampleInputPassword1">Phone No</label>
-								<input type="number" class="form-control" placeholder="Enter contact number" name="phoneNo" id="phoneNo">
+								<input type="number" class="form-control" placeholder="Enter contact number" name="phoneNo" id="phoneNo" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col form-group">
 								<label for="exampleInputPassword1">Password</label>
-									<input type="password" class="form-control" placeholder="Password" name="password" id="password">
+									<input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
 							</div>
 							<div class="col form-group">
 								<label for="exampleInputPassword1">Comfirm Password</label>
-									<input type="password" class="form-control" placeholder="Password" name="Comfirm password" id="password1">
-									<div class="invalid-feedback" role="alert" id="validate-status">
-										<p id="validate-status"></p>
-								</div>
+								<input type="password" class="form-control" placeholder="Password" name="Comfirm password" id="password1" required>
+								<div class="invalid-feedback" role="alert" id="validate-status"></div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
 						<button class="btn" data-dismiss="modal">Close</button>
-						<input type="submit" class="btn btn-sm btn-dark" value="Submit" name="add" id="add">
+						<input type="submit" class="btn btn-sm btn-dark" value="Submit" name="add" id="submitbtn">
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-    			
+
     <div class="container-fluid">
 		<div class="row">
 			<div class="col-2"></div>
@@ -247,23 +245,15 @@ if(isset($_POST['add'])){
 		return confirm("Are you sure you want to delete?");
 	}
 
-	$('#myModal').on('shown.bs.modal', function () {
-		$('#myInput').trigger('focus')
-	})
-
-	
-
-	$('#password, #password1').on('keyup', function () {
+	$('#password1').on('keyup', function () {
   		if ($('#password').val() == $('#password1').val()) {
-    		// document.getElementById("add").removeAttr("")
-    		$('#validate-status').html('Matched').css('color', 'white');
-    		//$('#add').romoveAttr('disabled', 'disabled');
-    		$('#add').removeAttr('disabled');
+    		$('#validate-status').html('Matched').css('display', 'none');
+    		$('#submitbtn').removeAttr('disabled');
   		} 
   		if ($('#password').val() != $('#password1').val()) {
-    		$('#validate-status').html('Not Match').css('color', 'white');
+    		$('#validate-status').html('Not Match').css('display', 'flex');
     		// document.getElementById("add").diabled = true;
-    		$('#add').attr('disabled','disabled');
+    		$('#submitbtn').attr('disabled','disabled');
   		}
 	});
 
