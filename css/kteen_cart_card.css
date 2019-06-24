@@ -1,0 +1,41 @@
+div.k-cart{
+	width: 100vw;
+	height: 50px;
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	z-index: 2;
+	transform: translateX(-50%);
+}
+
+div.k-cart-card{
+	background-color: black;
+	box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.3);
+	color: white;
+	padding: 15px 20px;
+	height: 100%;
+}
+
+@media screen and (min-width: 882px){
+	div.k-cart{
+		width: 350px;
+		height: 100vh;
+		left: auto;
+		right: 0;
+		transform: translateX(0);
+		padding: 100px 10px 10px 10px;
+		z-index: 1;
+	}
+	div.k-cart-card{
+		transition: 
+	}
+	div.k-cart-card{
+		background-color: white;
+		box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.3);
+		padding: 15px;
+		height: 100%;
+	}
+	main{
+		width: calc(100vw - 350px);
+	}
+}
