@@ -89,7 +89,7 @@ if(isset($_POST['add'])){
         }
 	}
 	$conn->close();
-	//header('location: menu.php'); 
+	header('location: index.php'); 
 }
 	
 
@@ -147,7 +147,7 @@ if(isset($_POST['add'])){
 					<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form method="post" action="index.php" enctype="multipart/form-data">
+				<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-row">
 							<div class="col form-group">
