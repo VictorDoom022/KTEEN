@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2019 at 05:09 PM
+-- Generation Time: Jun 25, 2019 at 10:11 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -59,7 +59,8 @@ CREATE TABLE `category` (
 INSERT INTO `category` (`ID`, `name`) VALUES
 (1, 'Rice'),
 (2, 'Noodles'),
-(3, 'Drink');
+(3, 'Drink'),
+(5, 'Other');
 
 -- --------------------------------------------------------
 
@@ -95,8 +96,15 @@ CREATE TABLE `food` (
 --
 
 INSERT INTO `food` (`ID`, `name`, `stall_ID`, `category_ID`, `image`, `price`, `available`) VALUES
-(73, 'Maggi Goreng', 1, 2, 'S1_Maggi Goreng.jpg', 5.00, '1'),
-(76, 'Fried Rice', 1, 1, 'S1_Fried Rice.jpg', 5.00, '1');
+(73, 'Maggi Goreng Mee', 1, 2, 'S1_Maggi Goreng Mee.jpg', 5.00, '0'),
+(76, 'Fried Rice', 1, 1, 'S1_Fried Rice.jpg', 5.00, '0'),
+(77, 'Nasi Pattaya', 1, 1, 'S1_Nasi Pattaya.jpg', 6.00, '1'),
+(78, 'Nasi Lemak', 1, 1, 'S1_Nasi Lemak.jpg', 5.00, '1'),
+(79, 'Mee Siam', 1, 2, 'S1_Mee Siam.jpg', 5.00, '1'),
+(80, 'Laksa', 1, 2, 'S1_Laksa.jpg', 6.00, '1'),
+(82, 'Maggi Goreng', 1, 2, 'S1_Maggi Goreng.jpg', 5.00, '1'),
+(83, '123', 1, 1, 'S1_123.jpg', 999.00, '0'),
+(84, 'Fried Rice', 1, 1, 'S1_Fried Rice.jpg', 234.00, '0');
 
 -- --------------------------------------------------------
 
@@ -137,7 +145,7 @@ CREATE TABLE `order_detail` (
   `order_ID` int(7) NOT NULL,
   `food_ID` int(6) NOT NULL,
   `quantity` int(2) NOT NULL,
-  `accept` int(1) NOT NULL
+  `remark` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -204,10 +212,34 @@ CREATE TABLE `purchase_detail` (
 CREATE TABLE `staff` (
   `ID` int(6) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `NRIC` int(12) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `stall_ID` varchar(10) NOT NULL,
   `contact_no` varchar(11) NOT NULL,
+  `birthday` date NOT NULL,
+  `address` text NOT NULL,
   `password` varchar(32) NOT NULL,
-  `type` varchar(15) NOT NULL
+  `position` varchar(50) NOT NULL,
+  `salary` int(7) NOT NULL,
+  `available` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`ID`, `name`, `NRIC`, `image`, `stall_ID`, `contact_no`, `birthday`, `address`, `password`, `position`, `salary`, `available`) VALUES
+(1, 'hongyee', 215, 'S1_ Nasi Lemak.jpg', '1', '123456789', '0000-00-00', 'etgwgt', '', 'Counter', 500, '1'),
+(2, 'victor', 215, 'S1_ Nasi Lemak.jpg', '1', '132961599', '0000-00-00', 'etgwgt', 'victor', 'dishwasher', 500, '1'),
+(3, 'kaizhi', 215, 'S1_ Nasi Lemak.jpg', '1', '142', '0000-00-00', 'etgwgt', '', 'Kitchen Porter', 500, '1'),
+(4, 'jingyong', 215, 'S1_ Nasi Lemak.jpg', '1', '142', '0000-00-00', 'etgwgt', '', 'Kitchen Porter', 500, '1'),
+(5, 'chuangxi', 215, 'S1_ Nasi Lemak.jpg', '1', '142', '0000-00-00', 'etgwgt', '', 'Head Chef', 500, '1'),
+(6, 'hongyee', 215, 'S1_hongyee.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 600, ''),
+(7, 'hongyee', 215, 'S1_hongyee.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 600, ''),
+(8, 'hongye', 215, 'S1_hongye.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 600, ''),
+(9, 'hongyee', 215, 'S1_hongyee.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 600, ''),
+(10, 'hongyee', 215, 'S1_hongyee.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 800, ''),
+(11, 'hongyee', 215, 'S1_hongyee.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 600, '');
 
 -- --------------------------------------------------------
 
@@ -219,6 +251,8 @@ CREATE TABLE `stall` (
   `ID` int(6) NOT NULL,
   `stall_name` varchar(20) NOT NULL,
   `owner_name` varchar(20) NOT NULL,
+  `NRIC` int(12) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `contact_no` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `password` varchar(32) NOT NULL,
@@ -229,8 +263,15 @@ CREATE TABLE `stall` (
 -- Dumping data for table `stall`
 --
 
-INSERT INTO `stall` (`ID`, `stall_name`, `owner_name`, `contact_no`, `email`, `password`, `status`) VALUES
-(1, 'stall 01', 'xxx', '011-1111111', 'stall01@gmail.com', 'b2ca12dcc3fc922a59956e9b9a4c1484', 1);
+INSERT INTO `stall` (`ID`, `stall_name`, `owner_name`, `NRIC`, `image`, `contact_no`, `email`, `password`, `status`) VALUES
+(1, 'stall 01', 'xxx', 0, '', '011-1111111', 'stall01@gmail.com', 'b2ca12dcc3fc922a59956e9b9a4c1484', 1),
+(2, 'Fried Rice', 'Tuan Hee', 0, '', '4567890', 'tuanheekuehdiao@gmai', '202cb962ac59075b964b07152d234b70', 1),
+(3, 'SWERTE', 'lesen/ body check-up', 0, '', '2345', 'tuanheekuehdiao@gmai', '202cb962ac59075b964b07152d234b70', 1),
+(4, 'add stall ID or user', 'Tuan Hee', 0, '', '21345', 'tuanheekuehdiao@gmai', '74c43b7ec689955c9c1517294e92500f', 0),
+(5, 'zhenghao', 'zhenghao', 0, '', '0123456789', 'zhenghao@gmail.com', '53cad2e8b932f58a5755a03e92f8df61', 1),
+(6, 'stall02', 'zhenghao', 2147483647, '.jpg', '0222222222', 'teotuanhee0726@outlo', '202cb962ac59075b964b07152d234b70', 1),
+(7, 'stall02', 'zhenghao', 2147483647, 'stall02.jpg', '0222222222', 'teotuanhee0726@outlo', '202cb962ac59075b964b07152d234b70', 1),
+(8, 'stall02', 'zhenghao', 2147483647, 'stall02.jpg', '022222222', 'stall02@gmail.com', 'bcbe3365e6ac95ea2c0343a2395834dd', 1);
 
 -- --------------------------------------------------------
 
@@ -336,7 +377,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -348,7 +389,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `notice`
@@ -384,13 +425,13 @@ ALTER TABLE `purchase_detail`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `stall`
 --
 ALTER TABLE `stall`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `timeable`
