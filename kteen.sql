@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2019 at 10:11 AM
+-- Generation Time: Jun 25, 2019 at 04:07 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -231,7 +231,7 @@ CREATE TABLE `staff` (
 INSERT INTO `staff` (`ID`, `name`, `NRIC`, `image`, `stall_ID`, `contact_no`, `birthday`, `address`, `password`, `position`, `salary`, `available`) VALUES
 (1, 'hongyee', 215, 'S1_ Nasi Lemak.jpg', '1', '123456789', '0000-00-00', 'etgwgt', '', 'Counter', 500, '1'),
 (2, 'victor', 215, 'S1_ Nasi Lemak.jpg', '1', '132961599', '0000-00-00', 'etgwgt', 'victor', 'dishwasher', 500, '1'),
-(3, 'kaizhi', 215, 'S1_ Nasi Lemak.jpg', '1', '142', '0000-00-00', 'etgwgt', '', 'Kitchen Porter', 500, '1'),
+(3, 'kaizhi', 215, 'S1_ Nasi Lemak.jpg', '1', '142', '2019-06-11', 'etgwgt', '', 'Kitchen Porter', 500, '1'),
 (4, 'jingyong', 215, 'S1_ Nasi Lemak.jpg', '1', '142', '0000-00-00', 'etgwgt', '', 'Kitchen Porter', 500, '1'),
 (5, 'chuangxi', 215, 'S1_ Nasi Lemak.jpg', '1', '142', '0000-00-00', 'etgwgt', '', 'Head Chef', 500, '1'),
 (6, 'hongyee', 215, 'S1_hongyee.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 600, ''),
@@ -253,6 +253,7 @@ CREATE TABLE `stall` (
   `owner_name` varchar(20) NOT NULL,
   `NRIC` int(12) NOT NULL,
   `image` varchar(255) NOT NULL,
+  `stall_image` varchar(255) NOT NULL,
   `contact_no` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `password` varchar(32) NOT NULL,
@@ -263,15 +264,13 @@ CREATE TABLE `stall` (
 -- Dumping data for table `stall`
 --
 
-INSERT INTO `stall` (`ID`, `stall_name`, `owner_name`, `NRIC`, `image`, `contact_no`, `email`, `password`, `status`) VALUES
-(1, 'stall 01', 'xxx', 0, '', '011-1111111', 'stall01@gmail.com', 'b2ca12dcc3fc922a59956e9b9a4c1484', 1),
-(2, 'Fried Rice', 'Tuan Hee', 0, '', '4567890', 'tuanheekuehdiao@gmai', '202cb962ac59075b964b07152d234b70', 1),
-(3, 'SWERTE', 'lesen/ body check-up', 0, '', '2345', 'tuanheekuehdiao@gmai', '202cb962ac59075b964b07152d234b70', 1),
-(4, 'add stall ID or user', 'Tuan Hee', 0, '', '21345', 'tuanheekuehdiao@gmai', '74c43b7ec689955c9c1517294e92500f', 0),
-(5, 'zhenghao', 'zhenghao', 0, '', '0123456789', 'zhenghao@gmail.com', '53cad2e8b932f58a5755a03e92f8df61', 1),
-(6, 'stall02', 'zhenghao', 2147483647, '.jpg', '0222222222', 'teotuanhee0726@outlo', '202cb962ac59075b964b07152d234b70', 1),
-(7, 'stall02', 'zhenghao', 2147483647, 'stall02.jpg', '0222222222', 'teotuanhee0726@outlo', '202cb962ac59075b964b07152d234b70', 1),
-(8, 'stall02', 'zhenghao', 2147483647, 'stall02.jpg', '022222222', 'stall02@gmail.com', 'bcbe3365e6ac95ea2c0343a2395834dd', 1);
+INSERT INTO `stall` (`ID`, `stall_name`, `owner_name`, `NRIC`, `image`, `stall_image`, `contact_no`, `email`, `password`, `status`) VALUES
+(1, 'stall 01', 'xxx', 0, '', '', '011-1111111', 'stall01@gmail.com', 'b2ca12dcc3fc922a59956e9b9a4c1484', 1),
+(2, 'Fried Rice', 'Tuan Hee', 0, '', '', '4567890', 'tuanheekuehdiao@gmai', '202cb962ac59075b964b07152d234b70', 1),
+(3, 'SWERTE', 'lesen/ body check-up', 0, '', '', '2345', 'tuanheekuehdiao@gmai', '202cb962ac59075b964b07152d234b70', 1),
+(4, 'add stall ID or user', 'Tuan Hee', 0, '', '', '21345', 'tuanheekuehdiao@gmai', '74c43b7ec689955c9c1517294e92500f', 0),
+(5, 'zhenghao', 'zhenghao', 0, '', '', '0123456789', 'zhenghao@gmail.com', '53cad2e8b932f58a5755a03e92f8df61', 1),
+(20, 'stall02', 'zhenghao', 2147483647, 'stall02.jpg', '', '123', 'stall02@gmail.com', '202cb962ac59075b964b07152d234b70', 1);
 
 -- --------------------------------------------------------
 
@@ -431,7 +430,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `stall`
 --
 ALTER TABLE `stall`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `timeable`
