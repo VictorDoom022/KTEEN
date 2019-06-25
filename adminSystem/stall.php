@@ -20,6 +20,7 @@ if(isset($_GET['k'])){
 			$ownerName = $row['owner_name'];
 			$email = $row['email'];
 			$phoneNo = $row['contact_no'];
+			$image = $row['image'];
 	?>
 	<div class="col-12 col-md-4 col-lg-3 p-2">
 		<div class="k-card card k-hover-shadow h-100">
