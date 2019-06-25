@@ -43,12 +43,11 @@ if(isset($_POST['add'])){
 		$password = $_POST['password'];
 		$image=$ID.'.jpg';
 		$password = md5($password);
-
+		28
 		$sql = "INSERT into stall(stall_name, owner_name,NRIC,image ,email, contact_no, password, status) values ('$stallName','$ownerName','$NRIC','$image','$email','$phoneNo','$password', '1')";
 		$result = $conn->query($sql);
 
-		//------File upload
-		$target_dir = "images/"; //folder name
+		$target_dir = "../images/stall/"; //folder name
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //type of image
 		$uploadOk = 1;
 		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
