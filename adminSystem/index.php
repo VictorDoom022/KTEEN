@@ -91,8 +91,6 @@ if(isset($_POST['add'])){
 	$conn->close();
 	header('location: index.php'); 
 }
-	
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -215,7 +213,6 @@ if(isset($_POST['add'])){
 							<a href="#addstall" data-toggle="modal" class="btn bg-white">
 								<i class="fas fa-plus"></i>
 							</a>
-							<a href="" class="btn bg-white"><i class="fas fa-list"></i></a>
 						</div>
 					</div>
 					<div class="col-12 col-sm-7 col-md-8 col-lg-9">
