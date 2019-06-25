@@ -9,7 +9,7 @@ if (isset($_GET['logout'])) {
 }
 
 if(isset($_SESSION['username'])){
-			$username = $_SESSION['username'];
+	$username = $_SESSION['username'];
 }else{
 	echo "<script>window.location.assign('login.php');</script>";
 }
@@ -147,7 +147,7 @@ if(isset($_POST['add'])){
 					<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form method="post" action="index.php">
+				<form method="post" action="index.php" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-row">
 							<div class="col form-group">
