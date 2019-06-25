@@ -114,7 +114,7 @@ if (isset($_GET['k'])) {
                             <div class="col form-group">
                                 <label>Birthday</label>
                                 <div class="input-group">
-                                    <input type="date" name="birthday" id="birthday" class="form-control"  value=" <?php echo $birthday; ?>" required>
+                                    <input type="date" name="birthday" id="birthday" class="form-control"  value="<?php echo $birthday; ?>" required>
                                 </div>
                             </div>
                         </div>
