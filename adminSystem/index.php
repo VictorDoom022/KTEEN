@@ -128,7 +128,7 @@ if(isset($_POST['add'])){
         <div class="k-nav-container h-75">
             <ul class="k-nav nav">
                 <li class="nav-item w-100 mb-1">
-                    <a href="menu.php" class="nav-link w-100 active">
+                    <a href="index.php" class="nav-link w-100 active">
                         <i class="fas fa-bars d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Home</span>
                     </a>
