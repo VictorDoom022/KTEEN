@@ -223,7 +223,7 @@ if (isset($_GET['dfid'])) {
 							<div class="col form-group">
 								<label for="category">Category</label>
 								<select name="category_ID" id="category" class="form-control" required>
-								<option value="">Select a category</option>
+									<option value="">Select a category</option>
 									<?php
 									$sql = "SELECT * FROM category";
 									$result = $conn -> query($sql);
