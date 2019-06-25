@@ -83,7 +83,7 @@ if(isset($_POST['edit_employee'])){
     $birthday = test_input($_POST['birthday']);
     $address = test_input($_POST['address']);
     $salary = test_input($_POST['salary']);
-    $sql = "UPDATE staff SET name = '$name', position = '$position', image = '$image', contact = '$number', NRIC = '$ic', birthday = '$birthday', address = '$address', salary = '$salary' WHERE ID = $staff_ID";
+    echo $sql = "UPDATE staff SET name = '$name', position = '$position', image = '$image', contact_no = '$number', NRIC = '$ic', birthday = '$birthday', address = '$address', salary = '$salary' WHERE ID = $staff_ID";
     $result = $conn->query($sql);
     $target_dir = "../images/staff/";
     $target_file = $target_dir.$image;
@@ -101,10 +101,10 @@ if(isset($_POST['edit_employee'])){
         }
     }
     // Check if file already exists
-    if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
-            $uploadOk = 0;
-    }
+    // if (file_exists($target_file)) {
+    //         echo "Sorry, file already exists.";
+    //         $uploadOk = 0;
+    // }
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
             echo "Sorry, your file is too large.";
