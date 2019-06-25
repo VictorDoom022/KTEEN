@@ -10,7 +10,7 @@ if(isset($_GET['k'])){
 
 <div class="row">
 	<?php 
-	$sql = "SELECT ID, stall_name, owner_name, email, contact_no FROM stall".$keyword;
+	$sql = "SELECT ID, stall_name, owner_name, image, email, contact_no FROM stall".$keyword;
 	$result = $conn -> query($sql);
 
 	if($result ->num_rows >0){
@@ -22,7 +22,8 @@ if(isset($_GET['k'])){
 			$phoneNo = $row['contact_no'];
 	?>
 	<div class="col-12 col-md-4 col-lg-3 p-2">
-		<div class="card">
+		<div class="k-card card k-hover-shadow h-100">
+			<img src="../images/stall/<?php echo $image; ?>" style="width: 100%;height: 200px;align-self: center;vertical-align: center;">
 	        <div class="card-body">
 	            <h5 class="card-title" name="item[]"><?php echo $stallName; ?></h5>	
 	            <ul class="list-group list-group-flush">
@@ -31,7 +32,7 @@ if(isset($_GET['k'])){
 	            	<li class="list-group-item"><?php echo $phoneNo; ?></li>
 	            </ul>
 	        </div>
-	        <div class="card-body">
+	        <div class="card-footer bg-white">
 	        	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit-<?php echo $id; ?>">
 						Edit
 				</button>
@@ -87,3 +88,4 @@ if(isset($_GET['k'])){
 		}
 	}
 	?>		
+</div>
