@@ -8,7 +8,7 @@ if(isset($_GET['category'])){
 
 $keyword = "";
 if (isset($_GET['k'])) {
-    $keyword = " AND employee.name LIKE '%".$_GET['k']."%'";
+    $keyword = " AND staff.name LIKE '%".$_GET['k']."%'";
 }
 ?>
 <div class="row">
@@ -30,7 +30,7 @@ if (isset($_GET['k'])) {
     <div class="col-sm-6 col-md-4 col-lg-3 p-2">
         <div class="k-card card k-hover-shadow h-100">
             <div>
-                <img src="../images/<?php echo $image; ?>" style="width: 100%;height: 200px;align-self: center;vertical-align: center;">
+                <img src="../images/staff/<?php echo $image; ?>" style="width: 100%;height: 200px;align-self: center;vertical-align: center;">
             </div>
             <div class="card-body">
                 <h5 class="card-title"><?php echo $employee_name; ?></h5>
@@ -64,6 +64,7 @@ if (isset($_GET['k'])) {
                     </button>
                 </div>
                 <form action="employee.php" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="<?php echo $staff_ID; ?>">
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="col form-group">
@@ -98,8 +99,6 @@ if (isset($_GET['k'])) {
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="form-row">
                             <div class="col-7 form-group">
                                 <label>IC Number</label>
@@ -116,8 +115,6 @@ if (isset($_GET['k'])) {
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="form-row">
                             <div class="col-7 form-group">
                                 <label>Address</label>
@@ -132,15 +129,14 @@ if (isset($_GET['k'])) {
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                     </div>
-                                    <input type="number" name="salary" id="salary" value="<?php echo $salary; ?>" min="0" step="200" class="form-control"  required>
+                                    <input type="number" name="salary" id="salary" value="<?php echo $salary; ?>" min="0" step="10" class="form-control"  required>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-sm" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input type="submit" name="addEmployee" class="btn btn-sm btn-warning" value="Submit">
+                        <input type="submit" name="edit_employee" class="btn btn-sm btn-warning" value="Submit">
                     </div>
                 </form>
             </div>

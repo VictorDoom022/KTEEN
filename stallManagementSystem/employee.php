@@ -3,7 +3,7 @@ session_start();
 include("../config.php");
 
 if (isset($_SESSION['kteen_stallID'])) {
-    $id = $_SESSION['kteen_stallID'];
+    $stall_ID = $_SESSION['kteen_stallID'];
 }else{
     echo "<script>window.location.assign('login.php');</script>";
 }
@@ -17,19 +17,18 @@ function test_input($data) {
 
 if(isset($_POST['addEmployee'])){
     $name = $position = $image = $number = "";
-
     $name = test_input($_POST['name']);
     $position = test_input($_POST['position']);
-    $image = test_input("S".$id."_".$name.".jpg");
+    $image = test_input("S".$stall_ID."_".$name.".jpg");
     $number = test_input($_POST['number']);
     $ic = test_input($_POST['ic']);
     $birthday = test_input($_POST['birthday']);
     $address = test_input($_POST['address']);
     $salary = test_input($_POST['salary']);
 
-    $sql = "INSERT INTO staff (name, position, image, contact_no, NRIC, birthday, address, salary, available) VALUES ('$name', '$position', '$image', '$number', '$ic', '$birthday', '$address', '$salary', '1')";
+    $sql = "INSERT INTO staff (name, position, image, stall_ID, contact_no, NRIC, birthday, address, salary, available) VALUES ('$name', '$position', '$image', '$stall_ID', '$number', '$ic', '$birthday', '$address', '$salary', '1')";
     $result = $conn->query($sql);
-    $target_dir = "../images/";
+    $target_dir = "../images/staff/";
     $target_file = $target_dir.$image;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -71,20 +70,22 @@ if(isset($_POST['addEmployee'])){
         }
     }
     $conn->close();
-    header('location: employee.php'); 
+    header('location: employee.php');
 }
+
 if(isset($_POST['edit_employee'])){
+    $staff_ID = test_input($_POST['id']);
     $name = test_input($_POST['name']);
     $position = test_input($_POST['position']);
-    $image = test_input("S".$id."_".$name.".jpg");
+    $image = test_input("S".$stall_ID."_".$name.".jpg");
     $number = test_input($_POST['number']);
     $ic = test_input($_POST['ic']);
     $birthday = test_input($_POST['birthday']);
     $address = test_input($_POST['address']);
     $salary = test_input($_POST['salary']);
-    $sql = "UPDATE employee (name, position, image, contact, ic, birthday, address, salary) VALUES ('$name', '$position', '$image', '$number', '$ic', '$birthday', '$address', '$salary')";
+    $sql = "UPDATE staff SET name = '$name', position = '$position', image = '$image', contact = '$number', NRIC = '$ic', birthday = '$birthday', address = '$address', salary = '$salary' WHERE ID = $staff_ID";
     $result = $conn->query($sql);
-    $target_dir = "../images/";
+    $target_dir = "../images/staff/";
     $target_file = $target_dir.$image;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -130,9 +131,9 @@ if(isset($_POST['edit_employee'])){
 }
 
 if (isset($_GET['deid'])) {
-    $food_ID = $_GET['deid'];
-    $sql = "UPDATE employee SET available ='0' WHERE ID = '$employee_ID'; $";
-    $result = $conn -> query($sql);
+    $staff_ID = $_GET['deid'];
+    $sql = "UPDATE staff SET available ='0' WHERE ID = '$staff_ID'";
+    $result = $conn->query($sql);
     $conn->close();
     header("location: employee.php");
 }
@@ -348,10 +349,10 @@ if (isset($_GET['deid'])) {
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
 
-        function deleteemployee(x) {  
+        function delete_employee(x) {  
             var confirmBox = confirm("Are you sure you want to delete?");
             if (confirmBox == true) {
-                window.location.assign("employee.php?dfid="+ x);
+                window.location.assign("employee.php?deid="+ x);
             }
         }
         function filter_employee(){
