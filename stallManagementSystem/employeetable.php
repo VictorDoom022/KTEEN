@@ -63,8 +63,6 @@ if (isset($_GET['k'])) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
-
                 <form action="employee.php" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-row">
