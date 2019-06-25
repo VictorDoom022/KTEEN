@@ -12,21 +12,21 @@ if (isset($_GET['k'])) {
 }
 ?>
 <div class="row">
-            <?php
-                $sql = "SELECT * FROM staff WHERE stall_ID = '".$_SESSION['kteen_stallID']."' AND available = '1'".$filterCategory.$keyword;
-                $result = $conn -> query($sql);
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) { 
-                            $staff_ID = $row['ID'];
-                            $employee_name = $row['name'];
-                            $employee_position = $row['position'];
-                            $birthday= $row['birthday'];
-                            $contact = $row['contact_no'];
-                            $image = $row['image'];
-                            $ic = $row['NRIC'];
-                            $salary = $row['salary'];
-                            $address = $row['address'];
-            ?>
+    <?php
+        $sql = "SELECT * FROM staff WHERE stall_ID = '".$_SESSION['kteen_stallID']."' AND available = '1'".$filterCategory.$keyword;
+        $result = $conn -> query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) { 
+                    $staff_ID = $row['ID'];
+                    $employee_name = $row['name'];
+                    $employee_position = $row['position'];
+                    $birthday= $row['birthday'];
+                    $contact = $row['contact_no'];
+                    $image = $row['image'];
+                    $ic = $row['NRIC'];
+                    $salary = $row['salary'];
+                    $address = $row['address'];
+    ?>
     <div class="col-sm-6 col-md-4 col-lg-3 p-2">
         <div class="k-card card k-hover-shadow h-100">
             <div>
