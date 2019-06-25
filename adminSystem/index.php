@@ -41,18 +41,18 @@ if(isset($_POST['add'])){
 		$email = $_POST['email'];
 		$phoneNo = $_POST['phoneNo'];
 		$password = $_POST['password'];
-		$image=$ID.'.jpg';
+		$image= $stallName.'.jpg';
 		$password = md5($password);
 		
 		$sql = "INSERT into stall(stall_name, owner_name,NRIC,image ,email, contact_no, password, status) values ('$stallName','$ownerName','$NRIC','$image','$email','$phoneNo','$password', '1')";
 		$result = $conn->query($sql);
 
 		$target_dir = "../images/stall/"; //folder name
-		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //type of image
+		$target_file = $target_dir . $image; //type of image
 		$uploadOk = 1;
 		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 		// Check if image file is a actual image or fake image
-		if(isset($_POST["submit"])) {
+		if(isset($_POST["add"])) {
 		    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 		    if($check !== false) {
 		        echo "File is an image - " . $check["mime"] . ".";
@@ -227,13 +227,8 @@ if(isset($_POST['add'])){
 						</div>
 					</div>
 				</div>
-
-				
-
 				<div>
-					<div id="stall">
-						
-						
+					<div id="stall"></div>
 				</div>
 			</main>
 		</div>
@@ -244,7 +239,7 @@ if(isset($_POST['add'])){
 		var fileName = $(this).val().split("\\").pop();
 		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 	});
-	
+
 	function ComfirmDelete(){
 		return confirm("Are you sure you want to delete?");
 	}
