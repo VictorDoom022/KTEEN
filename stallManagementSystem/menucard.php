@@ -27,7 +27,7 @@ if (isset($_GET['k'])) {
     <div class="col-sm-6 col-md-4 col-lg-3 p-2">
         <div class="k-card card k-hover-shadow h-100">
             <div>
-                <img src="../images/<?php echo $image; ?>" style="width: 100%;height: 200px;align-self: center;vertical-align: center;">
+                <img src="../images/menu/<?php echo $image; ?>" style="width: 100%;height: 200px;align-self: center;vertical-align: center;">
             </div>
             <div class="card-body">
                 <h5 class="card-title"><?php echo $food_name; ?></h5>

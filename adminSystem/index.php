@@ -43,7 +43,7 @@ if(isset($_POST['add'])){
 		$password = $_POST['password'];
 		$image=$ID.'.jpg';
 		$password = md5($password);
-		28
+		
 		$sql = "INSERT into stall(stall_name, owner_name,NRIC,image ,email, contact_no, password, status) values ('$stallName','$ownerName','$NRIC','$image','$email','$phoneNo','$password', '1')";
 		$result = $conn->query($sql);
 
@@ -166,7 +166,7 @@ if(isset($_POST['add'])){
 							<div class="col form-group">
 								<label>Image</label>
 								<div class="custom-file">
-									<input type="file" class="custom-file-input" id="customFile" name="fileToUpload" required>
+									<input type="file" class="custom-file-input" id="customFile" name="fileToUpload" accept="image/*" required>
 									<label class="custom-file-label" for="customFile">Choose file</label>
 								</div>
 							</div>
@@ -240,6 +240,11 @@ if(isset($_POST['add'])){
 	</div>
 </body>
 <script>
+	$(".custom-file-input").on("change", function() {
+		var fileName = $(this).val().split("\\").pop();
+		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+	});
+	
 	function ComfirmDelete(){
 		return confirm("Are you sure you want to delete?");
 	}
