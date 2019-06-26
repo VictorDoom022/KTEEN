@@ -31,7 +31,7 @@ if(isset($_POST['addmenu'])){
 	$sql = "INSERT INTO food (name, stall_ID, category_ID, image, price, available) VALUES ('$foodname', '$id', '$category_ID', '$image', '$price', '1')";
 	$result = $conn->query($sql);
 
-	$target_dir = "../images/";
+	$target_dir = "../images/menu/";
     $target_file = $target_dir.$image;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

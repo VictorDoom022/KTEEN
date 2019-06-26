@@ -153,6 +153,13 @@ if(isset($_POST['add'])){
 								<label for="addStallName">Stall Name</label>
 								<input type="text" class="form-control" placeholder="Enter stall name" name="stallName" id="addStallName">
 							</div>
+							<div class="col form-group">
+								<label>Stall Image</label>
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" id="customFile" name="fileToUpload" required>
+									<label class="custom-file-label" for="customFile">Choose file</label>
+								</div>
+							</div>
 						</div>
 						<div class="form-row">
 							<div class="col form-group">
@@ -166,9 +173,9 @@ if(isset($_POST['add'])){
 								<input type="text" class="form-control" placeholder="Enter NRIC" name="NRIC" id="NRIC">
 							</div>
 							<div class="col form-group">
-								<label>Image</label>
+								<label>Owner Passport Photo</label>
 								<div class="custom-file">
-									<input type="file" class="custom-file-input" id="customFile" name="fileToUpload" required>
+									<input type="file" class="custom-file-input" id="customFile" name="ownerImage" required>
 									<label class="custom-file-label" for="customFile">Choose file</label>
 								</div>
 							</div>

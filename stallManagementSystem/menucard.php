@@ -113,8 +113,23 @@ if (isset($_GET['k'])) {
             </div>
         </div>
     </div>
+    <?php } ?>
+
     <?php
-        }
+    } else if($keyword != ""){
+    ?>
+    <div class="col">
+        <h4 class="text-center"><?php echo "No result for '".$_GET['k']."'"; ?></h4>
+    </div>
+    <?php
+    }else{
+    ?>
+    <div class="col">
+        <h4 class="text-center">
+            Click the <i class="fas fa-plus"></i> button to add Food
+        </h4>
+    </div>
+    <?php
     }
     ?>
 </div>
