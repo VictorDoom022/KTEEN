@@ -20,6 +20,7 @@ if(isset($_GET['del'])){
 		$sql = "DELETE FROM stall where id = '$id'"; 
 		$result = $conn->query($sql);
 	}
+	header("location: index.php");
 }
 //edit
 if(isset($_POST['edit'])){
@@ -149,19 +150,19 @@ if(isset($_POST['add'])){
 					<div class="modal-body">
 						<div class="form-row">
 							<div class="col form-group">
-								<label for="stallName">Stall Name</label>
-								<input type="text" class="form-control" placeholder="Enter stall name" name="stallName" id="stallName">
+								<label for="addStallName">Stall Name</label>
+								<input type="text" class="form-control" placeholder="Enter stall name" name="stallName" id="addStallName">
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col form-group">
-								<label for="exampleInputEmail1">Owner Name</label>
-								<input type="text" class="form-control" placeholder="Enter owner's name" name="ownerName" id="ownerName">
+								<label for="addOwnerName">Owner Name</label>
+								<input type="text" class="form-control" placeholder="Enter owner's name" name="ownerName" id="addOwnerName">
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col form-group">
-								<label for="exampleInputEmail1">NRIC NO</label>
+								<label for="NRIC">NRIC NO</label>
 								<input type="text" class="form-control" placeholder="Enter NRIC" name="NRIC" id="NRIC">
 							</div>
 							<div class="col form-group">
@@ -174,21 +175,21 @@ if(isset($_POST['add'])){
 						</div>
 						<div class="form-row">
 							<div class="col form-group">
-								<label for="exampleInputEmail1">Email address</label>
-								<input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
+								<label for="addEmail">Email address</label>
+								<input type="email" class="form-control" placeholder="Enter email" name="email" id="addEmail">
 							</div>
 							<div class="col form-group">
-								<label for="exampleInputPassword1">Phone No</label>
-								<input type="number" class="form-control" placeholder="Enter contact number" name="phoneNo" id="phoneNo" required>
+								<label for="addPhoneNo">Phone No</label>
+								<input type="number" class="form-control" placeholder="Enter contact number" name="phoneNo" id="addPhoneNo" required>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="col form-group">
-								<label for="exampleInputPassword1">Password</label>
+								<label for="password">Password</label>
 									<input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
 							</div>
 							<div class="col form-group">
-								<label for="exampleInputPassword1">Comfirm Password</label>
+								<label for="password1">Comfirm Password</label>
 								<input type="password" class="form-control" placeholder="Password" name="Comfirm password" id="password1" required>
 								<div class="invalid-feedback" role="alert" id="validate-status"></div>
 							</div>
@@ -240,8 +241,11 @@ if(isset($_POST['add'])){
 		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 	});
 
-	function ComfirmDelete(){
-		return confirm("Are you sure you want to delete?");
+	function ComfirmDelete(x){
+		var confirmBox = confirm("Are you sure you want to delete?");
+		if (confirmBox == true) {
+			window.location.assign("index.php?del="+ x);
+		}
 	}
 
 	$('#password1').on('keyup', function () {
