@@ -87,6 +87,18 @@ function test_input($data) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+
+    <style type="text/css">
+        .edit-image-btn{
+            display: none;
+        }
+        .edit-image:hover{
+            opacity: 0.8;
+        }
+        .edit-image:hover .edit-image-btn{
+            display: block;
+        }
+    </style>
 </head>
 <body class="bg-light">
     <nav class="k-top-nav navbar navbar-expand-lg navbar-light pl-4 col-10 bg-white border-bottom">
@@ -134,12 +146,13 @@ function test_input($data) {
                         <div class="k-card card col-12 px-0">
                             <div class="card-header bg-white p-0 m-0" style=";position: relative;">
                                 <div class="row p-0 m-0" style="height: 200px;overflow: hidden;">
-                                    <img src="../images/stall/<?php echo $row['image']; ?>" style="width: 100%;height: 500px;align-self: center;vertical-align: center;opacity: 0.7;">
+                                    <img class="edit-image" src="../images/stall/<?php echo $row['stall_image']; ?>" style="width: 100%;height: 500px;align-self: center;vertical-align: center;opacity: 0.7;">
                                 </div>
                             </div>
                             <form action="index.php" method="post" enctype="multipart/form-data">
                                 <div class="card-body" style="position: relative;">
-                                    <img class="rounded-circle" src="../images/stall/<?php echo $row['image']; ?>" style="position: absolute;top: -60px;left: 60px;height: 100px;width: 100px;">
+                                    <img class="edit-image rounded-circle shadow" src="../images/stall/owner/<?php echo $row['owner_image']; ?>" style="position: absolute;top: -60px;left: 60px;height: 100px;width: 100px;">
+                                    <label class="edit-image-btn" style="position: absolute;top: -25px;left: 100px;"><i class="fas fa-edit"></i></label>
                                     <div class="pt-5 px-5">
                                         <div class="form-row">
                                             <div class="form-group col-md">
