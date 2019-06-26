@@ -103,10 +103,14 @@ if(isset($_GET['k'])){
             					</div>
             				</div>
             				<div class="col">
-            					<small class="text-muted col">Email</small>
+            					<small class="text-muted col">Status</small>
             					<div class="w-100"></div>
             					<div class="col">
-            						<?php echo $email; ?>
+            						<?php if ($status == "1") { ?>
+                                        <small class="text-success">opening</small>
+                                    <?php }else{ ?>
+                                        <small class="text-danger">closing</small>
+                                    <?php } ?>
             					</div>
             				</div>
             			</div>
