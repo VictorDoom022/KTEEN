@@ -10,7 +10,7 @@ if(isset($_GET['k'])){
 
 <div class="row">
 	<?php 
-	$sql = "SELECT ID, stall_name, owner_name, image, email, contact_no, status FROM stall".$keyword;
+	$sql = "SELECT ID, stall_name, owner_name, image, email, NRIC, contact_no, status FROM stall".$keyword;
 	$result = $conn -> query($sql);
 
 	if($result ->num_rows >0){
@@ -19,7 +19,8 @@ if(isset($_GET['k'])){
 			$stall_name = $row['stall_name'];
 			$owner_name = $row['owner_name'];
 			$email = $row['email'];
-			$phoneNo = $row['contact_no'];
+			$contact_no = $row['contact_no'];
+			$NRIC = $row['NRIC'];
 			$image = $row['image'];
 			$status = $row['status'];
 	?>
@@ -27,10 +28,10 @@ if(isset($_GET['k'])){
 		<a href="#view<?php echo $stall_id; ?>" data-toggle="modal" style="text-decoration: none;color: black;">
 			<div class="k-card card k-hover-shadow h-100">
 				<div class="row no-gutters">
-					<div class="col-md-4">
+					<div class="col-4">
 						<img class="rounded-circle p-2" src="../images/stall/<?php echo $image; ?>" style="width: 100%;height: 100%;align-self: center;vertical-align: center;">
 					</div>
-					<div class="col-md-8">
+					<div class="col-8">
 						<div class="card-body">
 							<h5 class="card-title">
 								<?php echo $stall_name ?>
@@ -59,66 +60,63 @@ if(isset($_GET['k'])){
                 	<div class="row p-0 m-0" style="height: 200px;overflow: hidden;">
                 		<img src="../images/stall/<?php echo $image; ?>" style="width: 100%;height: 500px;align-self: center;vertical-align: center;opacity: 0.7;">
                 	</div>
+                	<span style="position: absolute;transform: translate(-50%, -50%);top: 50%;left: 50%;z-index: 2;">
+            			<h3><?php echo $stall_name; ?></h3>
+            		</span>
                     <button type="button" class="btn btn-dark rounded-circle" data-dismiss="modal" aria-label="Close" style="position: absolute;top: -20px;right: 20px;z-index: 3;">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="index.php" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="<?php echo $stall_id; ?>">
-                    <div class="modal-body" style="position: relative;">
-                    	<img class="rounded-circle" src="../images/stall/<?php echo $image ?>" style="position: absolute;top: -110px;left: 10px;height: 100px;width: 100px;">
-                        <div class="form-row">
-							<div class="col form-group">
-								<label for="stallName">Stall Name</label>
-								<input type="text" class="form-control" placeholder="Enter stall name" name="stallName" id="stallName">
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col form-group">
-								<label for="exampleInputEmail1">Owner Name</label>
-								<input type="text" class="form-control" placeholder="Enter owner's name" name="ownerName" id="ownerName">
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col form-group">
-								<label for="exampleInputEmail1">NRIC NO</label>
-								<input type="text" class="form-control" placeholder="Enter NRIC" name="NRIC" id="NRIC">
-							</div>
-							<div class="col form-group">
-								<label>Image</label>
-								<div class="custom-file">
-									<input type="file" class="custom-file-input" id="customFile" name="fileToUpload" required>
-									<label class="custom-file-label" for="customFile">Choose file</label>
-								</div>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col form-group">
-								<label for="exampleInputEmail1">Email address</label>
-								<input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
-							</div>
-							<div class="col form-group">
-								<label for="exampleInputPassword1">Phone No</label>
-								<input type="number" class="form-control" placeholder="Enter contact number" name="phoneNo" id="phoneNo" required>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="col form-group">
-								<label for="exampleInputPassword1">Password</label>
-									<input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
-							</div>
-							<div class="col form-group">
-								<label for="exampleInputPassword1">Comfirm Password</label>
-								<input type="password" class="form-control" placeholder="Password" name="Comfirm password" id="password1" required>
-								<div class="invalid-feedback" role="alert" id="validate-status"></div>
-							</div>
-						</div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-sm" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input type="submit" name="editmenu" class="btn btn-sm btn-warning" value="Edit">
-                    </div>
-                </form>
+                <div class="modal-body" style="position: relative;">
+                	<div class="row m-0 p-0" style="position: absolute;top: -60px;">
+                		<img class="rounded-circle" src="../images/stall/<?php echo $image ?>" style="left: 10px;height: 100px;width: 100px;">
+                		<div>
+                			<h3 class="pt-4 pl-2 m-0">
+                			<?php echo $owner_name; ?>
+                		</h3>
+                		</div>
+                		<br>
+                	</div>
+                	<div class="pt-5 px-5">
+            			<div class="row pb-2">
+            				<div class="col row">
+            					<small class="text-muted col">Email</small>
+            					<div class="w-100"></div>
+            					<div class="col">
+            						<?php echo $email; ?>
+            					</div>
+            				</div>
+            				<div class="col">
+            					<small class="text-muted col">Contact No</small>
+            					<div class="w-100"></div>
+            					<div class="col">
+            						<?php echo $contact_no; ?>
+            					</div>
+            				</div>
+            			</div>
+            			<div class="row pb-2">
+            				<div class="col row">
+            					<small class="text-muted col">NRIC</small>
+            					<div class="w-100"></div>
+            					<div class="col">
+            						<?php echo $NRIC; ?>
+            					</div>
+            				</div>
+            				<div class="col">
+            					<small class="text-muted col">Email</small>
+            					<div class="w-100"></div>
+            					<div class="col">
+            						<?php echo $email; ?>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+                </div>
+                <div class="modal-footer">
+					<button class="btn text-dark" data-dismiss="modal">CLOSE</button>
+					<a href="editStall.php" class="btn text-warning">EDIT</a>
+					<button onclick="ComfirmDelete(<?php echo $stall_id; ?>)" class="btn text-danger">DELETE</button>
+				</div>
             </div>
         </div>
     </div>
