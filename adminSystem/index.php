@@ -48,6 +48,8 @@ if(isset($_POST['add'])){
 			$maxID = number_format($getMaxRow['LAST_ID']) + 1;
 			
 		}
+	}else{
+		$maxID = '1';
 	}
 
 	$stall_image = "S".$maxID.'_stall.jpg';
