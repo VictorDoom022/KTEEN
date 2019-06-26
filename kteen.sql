@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2019 at 04:07 PM
+-- Generation Time: Jun 26, 2019 at 03:40 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -96,15 +96,8 @@ CREATE TABLE `food` (
 --
 
 INSERT INTO `food` (`ID`, `name`, `stall_ID`, `category_ID`, `image`, `price`, `available`) VALUES
-(73, 'Maggi Goreng Mee', 1, 2, 'S1_Maggi Goreng Mee.jpg', 5.00, '0'),
-(76, 'Fried Rice', 1, 1, 'S1_Fried Rice.jpg', 5.00, '0'),
-(77, 'Nasi Pattaya', 1, 1, 'S1_Nasi Pattaya.jpg', 6.00, '1'),
-(78, 'Nasi Lemak', 1, 1, 'S1_Nasi Lemak.jpg', 5.00, '1'),
-(79, 'Mee Siam', 1, 2, 'S1_Mee Siam.jpg', 5.00, '1'),
-(80, 'Laksa', 1, 2, 'S1_Laksa.jpg', 6.00, '1'),
-(82, 'Maggi Goreng', 1, 2, 'S1_Maggi Goreng.jpg', 5.00, '1'),
-(83, '123', 1, 1, 'S1_123.jpg', 999.00, '0'),
-(84, 'Fried Rice', 1, 1, 'S1_Fried Rice.jpg', 234.00, '0');
+(85, 'Maggi Goreng', 1, 2, 'S1_Maggi Goreng.jpg', 5.00, '0'),
+(86, 'Maggi Goreng', 1, 2, 'S1_Maggi Goreng.jpg', 5.00, '0');
 
 -- --------------------------------------------------------
 
@@ -229,17 +222,17 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`ID`, `name`, `NRIC`, `image`, `stall_ID`, `contact_no`, `birthday`, `address`, `password`, `position`, `salary`, `available`) VALUES
-(1, 'hongyee', 215, 'S1_ Nasi Lemak.jpg', '1', '123456789', '0000-00-00', 'etgwgt', '', 'Counter', 500, '1'),
-(2, 'victor', 215, 'S1_ Nasi Lemak.jpg', '1', '132961599', '0000-00-00', 'etgwgt', 'victor', 'dishwasher', 500, '1'),
+(1, 'hongyee', 215, 'S1_ Nasi Lemak.jpg', '1', '123456789', '2019-06-21', 'etgwgt', '', 'Counter', 500, '1'),
+(2, 'victor', 215, 'S1_ Nasi Lemak.jpg', '1', '132961599', '2019-06-12', 'etgwgt', 'victor', 'dishwasher', 500, '1'),
 (3, 'kaizhi', 215, 'S1_ Nasi Lemak.jpg', '1', '142', '2019-06-11', 'etgwgt', '', 'Kitchen Porter', 500, '1'),
-(4, 'jingyong', 215, 'S1_ Nasi Lemak.jpg', '1', '142', '0000-00-00', 'etgwgt', '', 'Kitchen Porter', 500, '1'),
-(5, 'chuangxi', 215, 'S1_ Nasi Lemak.jpg', '1', '142', '0000-00-00', 'etgwgt', '', 'Head Chef', 500, '1'),
-(6, 'hongyee', 215, 'S1_hongyee.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 600, ''),
-(7, 'hongyee', 215, 'S1_hongyee.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 600, ''),
-(8, 'hongye', 215, 'S1_hongye.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 600, ''),
-(9, 'hongyee', 215, 'S1_hongyee.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 600, ''),
-(10, 'hongyee', 215, 'S1_hongyee.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 800, ''),
-(11, 'hongyee', 215, 'S1_hongyee.jpg', '0', '123456789', '0000-00-00', 'etgwgt', '', 'head chef', 600, '');
+(4, 'jingyong', 215, 'S1_ Nasi Lemak.jpg', '1', '142', '2019-06-03', 'etgwgt', '', 'Kitchen Porter', 500, '1'),
+(5, 'chuangxi', 215, 'S1_chuangxi.jpg', '1', '142', '2019-06-19', 'etgwgt', '', 'head chef', 500, '1'),
+(12, 'Fried Rice', 12345678, 'S_Fried Rice.jpg', '1', '12345', '2019-06-20', 'etgwgt', '', 'kitchen porter', 1200, '0'),
+(13, 'Fried Rice', 12345678, 'S1_Fried Rice.jpg', '1', '12345', '2019-06-20', 'etgwgt', '', 'kitchen porter', 1200, '0'),
+(14, 'Fried Rice', 12345678, 'S1_Fried Rice.jpg', '1', '12345', '2019-06-20', 'etgwgt', '', 'kitchen porter', 1200, '0'),
+(15, 'Fried Rice', 12345678, 'S1_Fried Rice.jpg', '1', '12345', '2019-06-20', 'etgwgt', '', 'head chef', 1200, '0'),
+(16, 'Fried Rice', 12345678, 'S1_Fried Rice.jpg', '1', '12345', '2019-06-20', 'etgwgt', '', 'head chef', 1200, '0'),
+(17, '123', 123123, 'S1_123.jpg', '1', '123', '0001-01-01', 'etgwgt', '', 'kitchen porter', 1200, '1');
 
 -- --------------------------------------------------------
 
@@ -252,7 +245,7 @@ CREATE TABLE `stall` (
   `stall_name` varchar(20) NOT NULL,
   `owner_name` varchar(20) NOT NULL,
   `NRIC` int(12) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `owner_image` varchar(255) NOT NULL,
   `stall_image` varchar(255) NOT NULL,
   `contact_no` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
@@ -264,13 +257,12 @@ CREATE TABLE `stall` (
 -- Dumping data for table `stall`
 --
 
-INSERT INTO `stall` (`ID`, `stall_name`, `owner_name`, `NRIC`, `image`, `stall_image`, `contact_no`, `email`, `password`, `status`) VALUES
+INSERT INTO `stall` (`ID`, `stall_name`, `owner_name`, `NRIC`, `owner_image`, `stall_image`, `contact_no`, `email`, `password`, `status`) VALUES
 (1, 'stall 01', 'xxx', 0, '', '', '011-1111111', 'stall01@gmail.com', 'b2ca12dcc3fc922a59956e9b9a4c1484', 1),
 (2, 'Fried Rice', 'Tuan Hee', 0, '', '', '4567890', 'tuanheekuehdiao@gmai', '202cb962ac59075b964b07152d234b70', 1),
 (3, 'SWERTE', 'lesen/ body check-up', 0, '', '', '2345', 'tuanheekuehdiao@gmai', '202cb962ac59075b964b07152d234b70', 1),
 (4, 'add stall ID or user', 'Tuan Hee', 0, '', '', '21345', 'tuanheekuehdiao@gmai', '74c43b7ec689955c9c1517294e92500f', 0),
-(5, 'zhenghao', 'zhenghao', 0, '', '', '0123456789', 'zhenghao@gmail.com', '53cad2e8b932f58a5755a03e92f8df61', 1),
-(20, 'stall02', 'zhenghao', 2147483647, 'stall02.jpg', '', '123', 'stall02@gmail.com', '202cb962ac59075b964b07152d234b70', 1);
+(27, 'aaaa', 'jjyy', 2147483647, 'S21_owner.jpg', 'S21_stall.jpg', '1234', 'tt@gmail.com', '202cb962ac59075b964b07152d234b70', 1);
 
 -- --------------------------------------------------------
 
@@ -388,7 +380,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `notice`
@@ -424,13 +416,13 @@ ALTER TABLE `purchase_detail`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `stall`
 --
 ALTER TABLE `stall`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `timeable`
