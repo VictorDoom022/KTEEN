@@ -27,7 +27,7 @@ if (isset($_GET['k'])) {
     ?>
         <li class="list-group-item k-hover-shadow mb-1 border-0 shadow-sm">
             <div class="row">
-                <img src="../images/<?php echo $image ?>" class="mr-2" style="width: 200px;height: 100px;align-self: center;vertical-align: center;">
+                <img src="../images/menu/<?php echo $image ?>" class="mr-2" style="width: 200px;height: 100px;align-self: center;vertical-align: center;">
                 <div class="food-info">
                     <h5 class="food-name">
                         <span><?php echo $food_name ?></span>
