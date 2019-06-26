@@ -97,6 +97,7 @@ function test_input($data) {
         }
         .edit-image:hover .edit-image-btn{
             display: block;
+            z-index: 4;
         }
     </style>
 </head>
@@ -150,6 +151,7 @@ function test_input($data) {
                                 </div>
                             </div>
                             <form action="index.php" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="stall_ID" value="<?php $row['stall_ID'] ?>">
                                 <div class="card-body" style="position: relative;">
                                     <img class="edit-image rounded-circle shadow" src="../images/stall/owner/<?php echo $row['owner_image']; ?>" style="position: absolute;top: -60px;left: 60px;height: 100px;width: 100px;">
                                     <label class="edit-image-btn" style="position: absolute;top: -25px;left: 100px;"><i class="fas fa-edit"></i></label>
