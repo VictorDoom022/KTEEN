@@ -21,23 +21,6 @@ if(isset($_POST['edit'])){
     $phoneNo = $_POST['contact_no'];
     $password = $_POST['password'];
 
-    $sql = "UPDATE stall SET stall_name = '$stallName', owner_name = '$ownerName' , email = '$email',contact_no = '$phoneNo', password = '$password'where id = '$id'";
-    $result = $conn->query($sql);
-}
-
-if(isset($_POST['add'])){
-    $stallName = $_POST['stallName'];
-    $ownerName = $_POST['ownerName'];
-    $NRIC = $_POST['NRIC'];
-    $email = $_POST['email'];
-    $phoneNo = $_POST['phoneNo'];
-    $password = $_POST['password'];
-    $image= $stallName.'.jpg';
-    $password = md5($password);
-    
-    $sql = "INSERT into stall(stall_name, owner_name,NRIC,image ,email, contact_no, password, status) values ('$stallName','$ownerName','$NRIC','$image','$email','$phoneNo','$password', '1')";
-    $result = $conn->query($sql);
-
     $target_dir = "../images/stall/"; //folder name
     $target_file = $target_dir.$image; //type of image
     $uploadOk = 1;
@@ -79,8 +62,15 @@ if(isset($_POST['add'])){
             echo "Sorry, there was an error uploading your file.";
         }
     }
-    $conn->close();
-    header('location: index.php'); 
+
+    $sql = "UPDATE stall SET stall_name = '$stallName', owner_name = '$ownerName' , email = '$email',contact_no = '$phoneNo', password = '$password'where id = '$id'";
+    $result = $conn->query($sql);
+}
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 ?>
 <!DOCTYPE html>
@@ -117,9 +107,9 @@ if(isset($_POST['add'])){
         <div class="k-nav-container h-75">
             <ul class="k-nav nav">
                 <li class="nav-item w-100 mb-1">
-                    <a href="index.php" class="nav-link w-100 active">
-                        <i class="fas fa-bars d-inline-flex"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Home</span>
+                    <a href="index.php" class="nav-link w-100">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="d-none d-md-inline-flex ml-3">BACK</span>
                     </a>
                 </li>
             </ul>
@@ -132,70 +122,63 @@ if(isset($_POST['add'])){
             <main class="col-10 p-4">
                 <div class="container">
                     <div class="row">
-                        <div class="k-card card col-12 p-0">
+                        <?php 
+                        if (isset($_GET['sid'])) {
+                            $stall_ID = test_input($_GET['sid']);
+                        }
+                        $sql = "SELECT * FROM stall WHERE ID = '$stall_ID'";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows == 1) {
+                            while ($row = $result->fetch_assoc()) {
+                        ?>
+                        <div class="k-card card col-12 px-0">
                             <div class="card-header bg-white p-0 m-0" style=";position: relative;">
                                 <div class="row p-0 m-0" style="height: 200px;overflow: hidden;">
-                                    <img src="../images/stall/<?php echo $image; ?>" style="width: 100%;height: 500px;align-self: center;vertical-align: center;opacity: 0.7;">
+                                    <img src="../images/stall/<?php echo $row['image']; ?>" style="width: 100%;height: 500px;align-self: center;vertical-align: center;opacity: 0.7;">
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <form action="index.php" method="post" enctype="multipart/form-data">
-                                    <div class="modal-body" style="position: relative;">
-                                        <img class="rounded-circle" src="../images/stall/<?php echo $image ?>" style="position: absolute;top: -110px;left: 10px;height: 100px;width: 100px;">
+                            <form action="index.php" method="post" enctype="multipart/form-data">
+                                <div class="card-body" style="position: relative;">
+                                    <img class="rounded-circle" src="../images/stall/<?php echo $row['image']; ?>" style="position: absolute;top: -60px;left: 60px;height: 100px;width: 100px;">
+                                    <div class="pt-5 px-5">
                                         <div class="form-row">
-                                        <div class="col form-group">
-                                        <label for="stallName">Stall Name</label>
-                                        <input type="text" class="form-control" placeholder="Enter stall name" name="stallName" id="stallName">
-                                        </div>
-                                        </div>
-                                        <div class="form-row">
-                                        <div class="col form-group">
-                                        <label for="exampleInputEmail1">Owner Name</label>
-                                        <input type="text" class="form-control" placeholder="Enter owner's name" name="ownerName" id="ownerName">
-                                        </div>
+                                            <div class="form-group col-md">
+                                                <label for="stall_name">Stall Name</label>
+                                                <input type="text" name="" id="stall_name" class="form-control" value="<?php echo $row['stall_name'] ?>">
+                                            </div>
+                                            <div class="form-group col-md">
+                                                <label for="owner_name">Owner Name</label>
+                                                <input type="text" name="" id="owner_name" class="form-control" value="<?php echo $row['owner_name']; ?>">
+                                            </div>
                                         </div>
                                         <div class="form-row">
-                                        <div class="col form-group">
-                                        <label for="exampleInputEmail1">NRIC NO</label>
-                                        <input type="text" class="form-control" placeholder="Enter NRIC" name="NRIC" id="NRIC">
-                                        </div>
-                                        <div class="col form-group">
-                                        <label>Image</label>
-                                        <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile" name="fileToUpload" required>
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                        </div>
-                                        </div>
+                                            <div class="form-group col">
+                                                <label for="owner_name">Email</label>
+                                                <input type="text" name="" id="owner_name" class="form-control" value="<?php echo $row['email']; ?>">
+                                            </div>
                                         </div>
                                         <div class="form-row">
-                                        <div class="col form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" placeholder="Enter email" name="email" id="email">
+                                            <div class="form-group col-md">
+                                                <label for="stall_name">NRIC</label>
+                                                <input type="text" name="" id="stall_name" class="form-control" value="<?php echo $row['NRIC'] ?>">
+                                            </div>
+                                            <div class="form-group col-md">
+                                                <label for="owner_name">Contact No</label>
+                                                <input type="text" name="" id="owner_name" class="form-control" value="<?php echo $row['contact_no']; ?>">
+                                            </div>
                                         </div>
-                                        <div class="col form-group">
-                                        <label for="exampleInputPassword1">Phone No</label>
-                                        <input type="number" class="form-control" placeholder="Enter contact number" name="phoneNo" id="phoneNo" required>
-                                        </div>
-                                        </div>
-                                        <div class="form-row">
-                                        <div class="col form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control password" placeholder="Password" name="password" id="password" required>
-                                        </div>
-                                        <div class="col form-group">
-                                        <label for="exampleInputPassword1">Comfirm Password</label>
-                                        <input type="password" class="form-control password1" placeholder="Password" name="Comfirm password" id="password1" required>
-                                        <div class="invalid-feedback" role="alert" id="validate-status"></div>
-                                        </div>
-                                        </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button class="btn btn-sm" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <input type="submit" name="editmenu" class="btn btn-sm btn-warning" value="Edit">
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="card-footer bg-white container-fluid">
+                                    <input type="submit" name="" value="SUBMIT" class="btn btn-dark float-right mb-2">
+                                </div>
+                            </form>
                         </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                        
                     </div>
                 </div>
             </main>
