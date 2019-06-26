@@ -10,7 +10,7 @@ if(isset($_GET['k'])){
 
 <div class="row">
 	<?php 
-	$sql = "SELECT ID, stall_name, owner_name, image, email, NRIC, contact_no, status FROM stall".$keyword;
+	$sql = "SELECT ID, stall_name, owner_name, stall_image, owner_image, email, NRIC, contact_no, status FROM stall".$keyword;
 	$result = $conn -> query($sql);
 
 	if($result ->num_rows >0){
@@ -21,7 +21,8 @@ if(isset($_GET['k'])){
 			$email = $row['email'];
 			$contact_no = $row['contact_no'];
 			$NRIC = $row['NRIC'];
-			$image = $row['image'];
+            $stall_image = $row['stall_image'];
+			$owner_image = $row['owner_image'];
 			$status = $row['status'];
 	?>
 	<div class="col-12 col-md-4 p-2">
@@ -29,7 +30,7 @@ if(isset($_GET['k'])){
 			<div class="k-card card k-hover-shadow h-100">
 				<div class="row no-gutters">
 					<div class="col-4">
-						<img class="rounded-circle p-2" src="../images/stall/<?php echo $image; ?>" style="width: 100%;height: 100%;align-self: center;vertical-align: center;">
+						<img class="rounded-circle p-2" src="../images/stall/owner/<?php echo $owner_image; ?>" style="width: 100%;height: 100%;align-self: center;vertical-align: center;">
 					</div>
 					<div class="col-8">
 						<div class="card-body">
@@ -57,8 +58,8 @@ if(isset($_GET['k'])){
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header p-0" style=";position: relative;">
-                	<div class="row p-0 m-0" style="height: 200px;overflow: hidden;">
-                		<img src="../images/stall/<?php echo $image; ?>" style="width: 100%;height: 500px;align-self: center;vertical-align: center;opacity: 0.7;">
+                	<div class="row p-0 m-0 w-100" style="height: 200px;overflow: hidden;">
+                		<img style="width: 100%;height: 500px;align-self: center;vertical-align: center;opacity: 0.7;" src="../images/stall/<?php echo $stall_image; ?>" >
                 	</div>
                 	<span style="position: absolute;transform: translate(-50%, -50%);top: 50%;left: 50%;z-index: 2;">
             			<h3><?php echo $stall_name; ?></h3>
@@ -69,7 +70,7 @@ if(isset($_GET['k'])){
                 </div>
                 <div class="modal-body" style="position: relative;">
                 	<div class="row m-0 p-0" style="position: absolute;top: -60px;">
-                		<img class="rounded-circle" src="../images/stall/<?php echo $image ?>" style="left: 10px;height: 100px;width: 100px;">
+                		<img class="rounded-circle" src="../images/stall/owner/<?php echo $owner_image ?>" style="left: 10px;height: 100px;width: 100px;">
                 		<div>
                 			<h3 class="pt-4 pl-2 m-0">
                 			<?php echo $owner_name; ?>
