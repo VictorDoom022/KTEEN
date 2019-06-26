@@ -113,9 +113,7 @@ if (isset($_GET['k'])) {
             </div>
         </div>
     </div>
-    <?php } ?>
-
-    <?php
+    <?php } 
     } else if($keyword != ""){
     ?>
     <div class="col">
