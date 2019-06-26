@@ -1,6 +1,5 @@
 <?php
 include("../config.php");
-
 session_start();
 //logout
 if (isset($_GET['logout'])) {
@@ -13,48 +12,57 @@ if(isset($_SESSION['username'])){
 }else{
 	echo "<script>window.location.assign('login.php');</script>";
 }
+
+function test_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+
 //delete item
 if(isset($_GET['del'])){
 	if($_GET['del'] != ''){
-		$id = $_GET['del'];
+		$id = test_input($_GET['del']);
 		$sql = "DELETE FROM stall where id = '$id'"; 
 		$result = $conn->query($sql);
 	}
 	header("location: index.php");
 }
-//edit
-if(isset($_POST['edit'])){
-	$id = $_POST['id'];
-	$stallName = $_POST['stall_name'];
-	$ownerName = $_POST['owner_name'];
-	$email = $_POST['email'];
-	$phoneNo = $_POST['contact_no'];
-	$password = $_POST['password'];
-
-	$sql = "UPDATE stall SET stall_name = '$stallName', owner_name = '$ownerName' , email = '$email',contact_no = '$phoneNo', password = '$password'where id = '$id'";
-	$result = $conn->query($sql);
-}
 
 if(isset($_POST['add'])){
-	$stallName = $_POST['stallName'];
-	$ownerName = $_POST['ownerName'];
-	$NRIC = $_POST['NRIC'];
-	$email = $_POST['email'];
-	$phoneNo = $_POST['phoneNo'];
-	$password = $_POST['password'];
-	$image= $stallName.'.jpg';
+	$stallName = $ownerName = $NRIC = $email = $phoneNo = $password = $image = "";
+
+	$stall_name = test_input($_POST['stallName']);
+	$owner_name = test_input($_POST['ownerName']);
+	$NRIC = test_input($_POST['NRIC']);
+	$email = test_input($_POST['email']);
+	$contact_no = test_input($_POST['phoneNo']);
+	$password = test_input($_POST['password']);
 	$password = md5($password);
+
+	$getmaxid = "SELECT MAX(ID) AS LAST_ID FROM stall";
+	$result_getMax = $conn->query($getmaxid);
+	if($result_getMax->num_rows > 0){
+		while ($getMaxRow = $result_getMax->fetch_assoc()) {
+			$maxID = number_format($getMaxRow['LAST_ID']) + 1;
+			
+		}
+	}
+
+	$stall_image = "S".$maxID.'_stall.jpg';
+	$owner_image = "S".$maxID.'_owner.jpg';
 	
-	$sql = "INSERT into stall(stall_name, owner_name,NRIC,image ,email, contact_no, password, status) values ('$stallName','$ownerName','$NRIC','$image','$email','$phoneNo','$password', '1')";
+	$sql = "INSERT into stall(stall_name, owner_name, NRIC, owner_image, stall_image, contact_no, email, password, status) values ('$stall_name','$owner_name','$NRIC','$owner_image', '$stall_image', '$contact_no', '$email', '$password', '1')";
 	$result = $conn->query($sql);
 
 	$target_dir = "../images/stall/"; //folder name
-	$target_file = $target_dir.$image; //type of image
+	$target_file = $target_dir.$stall_image; //type of image
 	$uploadOk = 1;
 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 	// Check if image file is a actual image or fake image
-    if(isset($_POST["add"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if(isset($_POST["stall_image"])) {
+        $check = getimagesize($_FILES["stall_image"]["tmp_name"]);
         if($check !== false) {
             echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
@@ -69,7 +77,7 @@ if(isset($_POST['add'])){
         $uploadOk = 0;
     }
     // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
+    if ($_FILES["stall_image"]["size"] > 500000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
@@ -83,8 +91,50 @@ if(isset($_POST['add'])){
         echo "Sorry, your file was not uploaded.";
     // if everything is ok, try to upload file
     } else {
-		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-			echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+		if (move_uploaded_file($_FILES["stall_image"]["tmp_name"], $target_file)) {
+			echo "The file ". basename( $_FILES["stall_image"]["name"]). " has been uploaded.";
+        } else {
+			echo "Sorry, there was an error uploading your file.";
+        }
+	}
+
+	$target_dir_owner = "../images/stall/owner/"; //folder name
+	$target_file_owner = $target_dir_owner.$owner_image; //type of image
+	$uploadOk_owner = 1;
+	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+	// Check if image file is a actual image or fake image
+    if(isset($_POST["add"])) {
+        $check = getimagesize($_FILES["owner_image"]["tmp_name"]);
+        if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+    // Check if file already exists
+    if (file_exists($target_file_owner)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+    // Check file size
+    if ($_FILES["owner_image"]["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+    // Allow certain file formats
+    if($imageFileType != "jpg") {
+        echo "Sorry, only JPG file are allowed.";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else {
+		if (move_uploaded_file($_FILES["owner_image"]["tmp_name"], $target_file_owner)) {
+			echo "The file ". basename( $_FILES["owner_image"]["name"]). " has been uploaded.";
         } else {
 			echo "Sorry, there was an error uploading your file.";
         }
@@ -156,8 +206,8 @@ if(isset($_POST['add'])){
 							<div class="col form-group">
 								<label>Stall Image</label>
 								<div class="custom-file">
-									<input type="file" class="custom-file-input" id="customFile" name="fileToUpload" required>
-									<label class="custom-file-label" for="customFile">Choose file</label>
+									<input type="file" class="custom-file-input" id="stall_image" name="stall_image" required>
+									<label class="custom-file-label" for="stall_image">Choose file</label>
 								</div>
 							</div>
 						</div>
@@ -175,8 +225,8 @@ if(isset($_POST['add'])){
 							<div class="col form-group">
 								<label>Owner Passport Photo</label>
 								<div class="custom-file">
-									<input type="file" class="custom-file-input" id="customFile" name="ownerImage" required>
-									<label class="custom-file-label" for="customFile">Choose file</label>
+									<input type="file" class="custom-file-input" id="owner_image" name="owner_image" required>
+									<label class="custom-file-label" for="owner_image">Choose file</label>
 								</div>
 							</div>
 						</div>
