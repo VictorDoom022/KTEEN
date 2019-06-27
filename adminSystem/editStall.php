@@ -12,22 +12,44 @@ if(isset($_SESSION['username'])){
 }else{
     echo "<script>window.location.assign('login.php');</script>";
 }
-//edit
-if(isset($_POST['edit'])){
-    $id = $_POST['id'];
-    $stallName = $_POST['stall_name'];
-    $ownerName = $_POST['owner_name'];
-    $email = $_POST['email'];
-    $phoneNo = $_POST['contact_no'];
-    $password = $_POST['password'];
 
+$stall_ID = "";
+if (isset($_GET['sid'])) {
+    $stall_ID = test_input($_GET['sid']);
+}
+
+//edit
+if(isset($_POST['edit_stall_information'])){
+    $id = $_POST['stall_ID'];
+    $stall_name = $_POST['stall_name'];
+    $owner_name = $_POST['owner_name'];
+    $email = $_POST['email'];
+    $NRIC = $_POST['NRIC'];
+    $contact_no = $_POST['contact_no'];
+
+    echo $sql = "UPDATE stall SET stall_name = '$stall_name', owner_name = '$owner_name' , email = '$email',contact_no = '$contact_no', NRIC = '$NRIC'where ID = '$id'";
+    $result = $conn->query($sql);
+    header("location: index.php");
+}
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+if (isset($_POST["edit_stall_image"])) {
+    $stall_image = "S".$stall_ID.'_stall.jpg';
+    echo $sql = "UPDATE stall SET stall_image = '$stall_image' WHERE ID = '$stall_ID'";
+    $result = $conn->query($sql);
+    
     $target_dir = "../images/stall/"; //folder name
-    $target_file = $target_dir.$image; //type of image
+    $target_file = $target_dir.$stall_image; //type of image
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     // Check if image file is a actual image or fake image
     if(isset($_POST["add"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        $check = getimagesize($_FILES["edit_stall_image"]["tmp_name"]);
         if($check !== false) {
             echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
@@ -42,7 +64,7 @@ if(isset($_POST['edit'])){
         $uploadOk = 0;
     }
     // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
+    if ($_FILES["edit_stall_image"]["size"] > 500000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
@@ -56,21 +78,12 @@ if(isset($_POST['edit'])){
         echo "Sorry, your file was not uploaded.";
     // if everything is ok, try to upload file
     } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        if (move_uploaded_file($_FILES["edit_stall_image"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $_FILES["edit_stall_image"]["name"]). " has been uploaded.";
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
     }
-
-    $sql = "UPDATE stall SET stall_name = '$stallName', owner_name = '$ownerName' , email = '$email',contact_no = '$phoneNo', password = '$password'where id = '$id'";
-    $result = $conn->query($sql);
-}
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
 }
 ?>
 <!DOCTYPE html>
@@ -87,17 +100,27 @@ function test_input($data) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-
     <style type="text/css">
         .edit-image-btn{
-            display: none;
-        }
-        .edit-image:hover{
-            opacity: 0.8;
+            opacity: 0;
+            position: absolute;
+            z-index: 3;
+            text-align: center;
+            vertical-align: middle;
+            height: 100px;
+            width: 100px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.8);
+            font-size: 25px;
+            padding: 29px 28px;
         }
         .edit-image:hover .edit-image-btn{
-            display: block;
+            opacity: 1;
             z-index: 4;
+            cursor: pointer;
+        }
+        input[type=file]{
+            display: none;
         }
     </style>
 </head>
@@ -136,9 +159,7 @@ function test_input($data) {
                 <div class="container">
                     <div class="row">
                         <?php 
-                        if (isset($_GET['sid'])) {
-                            $stall_ID = test_input($_GET['sid']);
-                        }
+                        
                         $sql = "SELECT * FROM stall WHERE ID = '$stall_ID'";
                         $result = $conn->query($sql);
                         if ($result->num_rows == 1) {
@@ -149,45 +170,54 @@ function test_input($data) {
                                 <div class="row p-0 m-0" style="height: 200px;overflow: hidden;">
                                     <img class="edit-image" src="../images/stall/<?php echo $row['stall_image']; ?>" style="width: 100%;height: 500px;align-self: center;vertical-align: center;opacity: 0.7;">
                                 </div>
+                                <form enctype="multipart/form-data" method="post" action="editStall.php?sid=<?php echo $stall_ID; ?>" id="stall_image_form">
+                                    <label for="edit_stall_image" style="position: absolute;bottom: 0;right: 25px;font-size: 30px;cursor: pointer;height: 40px;width: 40px;">
+                                        <i class="fas fa-edit"></i>
+                                    </label>
+                                    <input type="file" name="edit_stall_image" id="edit_stall_image" onchange="submit_stall_image()">
+                                </form>
                             </div>
-                            <form action="index.php" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="stall_ID" value="<?php $row['stall_ID'] ?>">
                                 <div class="card-body" style="position: relative;">
-                                    <img class="edit-image rounded-circle shadow" src="../images/stall/owner/<?php echo $row['owner_image']; ?>" style="position: absolute;top: -60px;left: 60px;height: 100px;width: 100px;">
-                                    <label class="edit-image-btn" style="position: absolute;top: -25px;left: 100px;"><i class="fas fa-edit"></i></label>
+                                    <div class="edit-image rounded-circle border-0" style="position: absolute;top: -60px;left: 60px;background-image: url(../images/stall/owner/<?php echo $row['owner_image']; ?>);background-size: cover;height: 100px;width: 100px;">
+                                        <label for="edit_owner_image" class="rounded-circle edit-image-btn" style=""><i class="fas fa-edit"></i></label>
+                                        <input type="file" name="" id="edit_owner_image">
+                                    </div>
+                                    <form method="post">
+                                        <input type="hidden" name="stall_ID" value="<?php echo $stall_ID; ?>">
                                     <div class="pt-5 px-5">
                                         <div class="form-row">
                                             <div class="form-group col-md">
                                                 <label for="stall_name">Stall Name</label>
-                                                <input type="text" name="" id="stall_name" class="form-control" value="<?php echo $row['stall_name'] ?>">
+                                                <input type="text" name="stall_name" id="stall_name" class="form-control" value="<?php echo $row['stall_name'] ?>">
                                             </div>
                                             <div class="form-group col-md">
                                                 <label for="owner_name">Owner Name</label>
-                                                <input type="text" name="" id="owner_name" class="form-control" value="<?php echo $row['owner_name']; ?>">
+                                                <input type="text" name="owner_name" id="owner_name" class="form-control" value="<?php echo $row['owner_name']; ?>">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col">
-                                                <label for="owner_name">Email</label>
-                                                <input type="text" name="" id="owner_name" class="form-control" value="<?php echo $row['email']; ?>">
+                                                <label for="email">Email</label>
+                                                <input type="text" name="email" id="email" class="form-control" value="<?php echo $row['email']; ?>">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md">
-                                                <label for="stall_name">NRIC</label>
-                                                <input type="text" name="" id="stall_name" class="form-control" value="<?php echo $row['NRIC'] ?>">
+                                                <label for="NRIC">NRIC</label>
+                                                <input type="text" name="NRIC" id="NRIC" class="form-control" value="<?php echo $row['NRIC'] ?>">
                                             </div>
                                             <div class="form-group col-md">
-                                                <label for="owner_name">Contact No</label>
-                                                <input type="text" name="" id="owner_name" class="form-control" value="<?php echo $row['contact_no']; ?>">
+                                                <label for="contact_no">Contact No</label>
+                                                <input type="text" name="contact_no" id="contact_no" class="form-control" value="<?php echo $row['contact_no']; ?>">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer bg-white container-fluid">
-                                    <input type="submit" name="" value="SUBMIT" class="btn btn-dark float-right mb-2">
+                                    <input type="submit" name="edit_stall_information" value="SUBMIT" class="btn btn-dark float-right mb-2">
                                 </div>
-                            </form>
+                                </form>
+                            
                         </div>
                         <?php
                             }
@@ -217,5 +247,12 @@ function test_input($data) {
             $('#submitbtn').attr('disabled','disabled');
         }
     });
+
+    function submit_owner_image(){
+        document.getElementById("owner_image_form").submit();
+    }
+    function submit_stall_image(){
+        document.getElementById("stall_image_form").submit();
+    }
 </script>
 </html>
