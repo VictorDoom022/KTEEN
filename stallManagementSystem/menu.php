@@ -88,7 +88,7 @@ if(isset($_POST['editmenu'])){
 	$sql = "UPDATE food SET name = '$foodname', category_ID = '$category_ID', image = '$image', price = '$price' WHERE ID = '$foodid'";
 	$result = $conn->query($sql);
 
-	$target_dir = "../images/";
+	$target_dir = "../images/menu/";
     $target_file = $target_dir.$image;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -104,10 +104,10 @@ if(isset($_POST['editmenu'])){
         }
     }
     // Check if file already exists
-    if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
-            $uploadOk = 0;
-    }
+    // if (file_exists($target_file)) {
+    //         echo "Sorry, file already exists.";
+    //         $uploadOk = 0;
+    // }
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
             echo "Sorry, your file is too large.";
