@@ -60,7 +60,7 @@ if (isset($_GET['k'])) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="menu_test.php" method="post" enctype="multipart/form-data">
+                <form action="menu.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?php echo $food_ID; ?>">
                     <div class="modal-body">
                         <div class="form-row">
