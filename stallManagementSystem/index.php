@@ -13,6 +13,16 @@ if (isset($_SESSION['kteen_stallID'])) {
     echo "<script>window.location.assign('login.php');</script>";
 }
 
+$sql = "SELECT stall_name, owner_name, owner_image, stall_image FROM stall WHERE id = '$ID'";
+$result = $conn->query($sql);
+if($result->num_rows == 1){
+    while ($row = $result->fetch_assoc()) {
+        $stall_name = $row['stall_name'];
+        $owner_name = $row['owner_name'];
+        $owner_image = $row['owner_image'];
+        $stall_image = $row['stall_image'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,56 +111,20 @@ if (isset($_SESSION['kteen_stallID'])) {
     <div class="container-fluid">
         <div class="row">
             <div class="col-2"></div>
-            <main class="col-10 col-md-8  p-4">
+            <main class="col-10 col-md-8 p-4">
                 <div class="row">
-                    <div class="col-12 card">
-                        <div class="card-body">
-                            <div class="card-title">Notice</div>
+                    <div class="col-12 card k-card px-0">
+                        <div class="card-header bg-white p-0">
+                            <div class="row p-0 m-0" style="height: 200px;overflow: hidden;">
+                                <img class="edit-image" src="../images/stall/<?php echo $stall_image; ?>" style="width: 100%;height: 500px;align-self: center;vertical-align: center;opacity: 0.7;">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 card">
-                        <div class="card-body">
-                            <div class="card-title">Notice</div>
-                        </div>
-                    </div>
-                    <div class="col-12 card">
-                        <div class="card-body">
-                            <div class="card-title">Notice</div>
-                        </div>
-                    </div>
-                    <div class="col-12 card">
-                        <div class="card-body">
-                            <div class="card-title">Notice</div>
-                        </div>
-                    </div>
-                    <div class="col-12 card">
-                        <div class="card-body">
-                            <div class="card-title">Notice</div>
-                        </div>
-                    </div>
-                    <div class="col-12 card">
-                        <div class="card-body">
-                            <div class="card-title">Notice</div>
-                        </div>
-                    </div>
-                    <div class="col-12 card">
-                        <div class="card-body">
-                            <div class="card-title">Notice</div>
-                        </div>
-                    </div>
-                    <div class="col-12 card">
-                        <div class="card-body">
-                            <div class="card-title">Notice</div>
-                        </div>
-                    </div>
-                    <div class="col-12 card">
-                        <div class="card-body">
-                            <div class="card-title">Notice</div>
-                        </div>
-                    </div>
-                    <div class="col-12 card">
-                        <div class="card-body">
-                            <div class="card-title">Notice</div>
+                        <div class="card-body" style="position: relative;">
+                            <div class="edit-image rounded-circle border-0" style="position: absolute;top: -60px;left: 60px;background-image: url(../images/stall/owner/<?php echo $owner_image; ?>);background-size: cover;height: 100px;width: 100px;">
+                            </div>
+                            <div class="pt-5">
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

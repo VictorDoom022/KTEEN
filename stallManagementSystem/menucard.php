@@ -120,7 +120,7 @@ if (isset($_GET['k'])) {
         <h4 class="text-center"><?php echo "No result for '".$_GET['k']."'"; ?></h4>
     </div>
     <?php
-    }else{
+    }else if($filterCategory == ""){
     ?>
     <div class="col">
         <h4 class="text-center">

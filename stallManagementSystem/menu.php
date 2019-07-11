@@ -346,6 +346,7 @@ if (isset($_GET['dfid'])) {
 			}else{
 				xhttp.open("GET", "menucard.php?category="+c+"&k="+k, true);
 				xhttp.send();
+				return
 			}
 		}
 	</script>

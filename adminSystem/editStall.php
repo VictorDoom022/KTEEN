@@ -159,7 +159,6 @@ if (isset($_POST["edit_stall_image"])) {
                 <div class="container">
                     <div class="row">
                         <?php 
-                        
                         $sql = "SELECT * FROM stall WHERE ID = '$stall_ID'";
                         $result = $conn->query($sql);
                         if ($result->num_rows == 1) {
