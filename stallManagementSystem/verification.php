@@ -14,7 +14,7 @@ if(isset($_POST['login'])){
         $stmt->bind_result($stall_ID, $stall_name, $email, $password);
         if ($stmt->fetch()) {
             $_SESSION['kteen_stallID'] = $stall_ID;
-            // $_SESSION['kteen_stallN'] = $stall_name;
+            $_SESSION['kteen_stallN'] = $stall_name;
             $error = "";
             header('location: index.php');
         }else{
