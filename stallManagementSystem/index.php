@@ -58,7 +58,7 @@ if($result->num_rows == 1){
                 </a>
                 <div class="dropdown-menu dropdown-menu-right rounded-0 shadow border-0" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Notification</a>
-                    <a class="dropdown-item" href="#">Setting</a>
+                    <a class="dropdown-item" href="setting.php">Setting</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="index.php?logout='1'">Log Out</a>
                 </div>
