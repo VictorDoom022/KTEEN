@@ -9,6 +9,7 @@ if (isset($_GET['logout'])) {
 
 if (isset($_SESSION['kteen_stallID'])) {
     $ID = $_SESSION['kteen_stallID'];
+    $stall_name = $_SESSION['kteen_stallN'];
 }else{
     echo "<script>window.location.assign('login.php');</script>";
 }
@@ -48,7 +49,20 @@ if($result->num_rows == 1){
         <span class="navbar-brand h1 mb-0 col"><i class="fas fa-home d-inline-flex mr-2"></i>Dashboard</span>
         <ul class="navbar-nav px-4">
             <li class="nav-item">
-                <a href="index.php?logout='1'" class="btn btn-outline-dark" role="button" aria-pressed="true">Log Out</a>
+                
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+                    <div class="edit-image rounded-circle border-0" style="position: absolute;transform: translate(-50%, -50%);top: 50%;left: -20px;background-image: url(../images/stall/owner/<?php echo $owner_image; ?>);background-size: cover;height: 40px;width: 40px;">
+                    </div>
+                    <?php echo $stall_name; ?>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right rounded-0 shadow border-0" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Notification</a>
+                    <a class="dropdown-item" href="#">Setting</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="index.php?logout='1'">Log Out</a>
+                </div>
             </li>
         </ul>
     </nav>
@@ -101,11 +115,7 @@ if($result->num_rows == 1){
             <canvas id="myChart" width="100%" height="100%"></canvas>
             <div class="w-100"></div>
         </div>
-        <div class="mt-3 container-fluid">
-            
-            
-            
-        </div>
+        <div class="mt-3 container-fluid"></div>
     </nav>
 
     <div class="container-fluid">
