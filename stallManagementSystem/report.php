@@ -1,6 +1,9 @@
 <?php 
 session_start();
-include("../server/config.php");
+include '../server/config.php';
+include '../server/logout.php';
+include 'controller/handle_login.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,61 +24,11 @@ include("../server/config.php");
 </head>
 <body class="bg-light">
 	<?php 
-	if (isset($_GET['logout'])) {
-		session_destroy();
-		echo "<script>window.location.assign('login.php');</script>";
-	}
-
-	if (isset($_SESSION['kteen_stallID'])) {
-		$user = $_SESSION['kteen_stallID'];
-	}else{
-		echo "<script>window.location.assign('login.php');</script>";
-	}
+	$site = "Report";
+	include 'layout/topnav.php';
+	include 'layout/sidenav.php';
 	?>
-	<nav class="k-top-nav navbar navbar-expand-lg navbar-light pl-4 col-10 bg-white border-bottom">
-        <span class="navbar-brand h1 mb-0 col"><i class="far fa-chart-bar d-inline-flex mr-2"></i>Report</span>
-        <ul class="navbar-nav px-4">
-            <li class="nav-item">
-                <a href="index.php?logout='1'" class="btn btn-outline-dark" role="button" aria-pressed="true">Log Out</a>
-            </li>
-        </ul>
-    </nav>
-    <nav class="k-side-nav nav flex-column col-2 border-right bg-white p-0">
-        <div class="logo">
-            <h2>
-                <a href="index.php" class="d-flex d-md-none">K</a>
-                <a href="index.php" class="d-none d-md-flex">KTEEN</a>
-            </h2>
-        </div>
-        <div class="k-nav-container h-75">
-            <ul class="k-nav nav">
-                <li class="nav-item w-100 mb-1">
-                    <a href="index.php" class="nav-link w-100">
-                        <i class="fas fa-home d-inline-flex px-auto"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item w-100 mb-1">
-                    <a href="menu.php" class="nav-link w-100">
-                        <i class="fas fa-bars d-inline-flex"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Menu</span>
-                    </a>
-                </li>
-                <li class="nav-item  w-100 mb-1">
-                    <a href="report.php" class="nav-link w-100 active">
-                        <i class="far fa-chart-bar d-inline-flex"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Report</span>
-                    </a>
-                </li>
-                <li class="nav-item  w-100 mb-1">
-                    <a href="employee.php" class="nav-link w-100">
-                        <i class="fas fa-home d-inline-flex"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Employee</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    
 	<div class="container-fluid">
         <div class="row">
             <div class="col-2"></div>
