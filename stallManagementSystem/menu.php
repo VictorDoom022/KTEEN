@@ -4,9 +4,11 @@ include '../server/config.php';
 include '../server/logout.php';
 
 if (isset($_SESSION['kteen_stallID'])) {
-	$id = $_SESSION['kteen_stallID'];
+    $ID = $_SESSION['kteen_stallID'];
+    $stall_name = $_SESSION['kteen_stallN'];
+    $owner_image = $_SESSION['kteen_stallOI'];
 }else{
-	echo "<script>window.location.assign('login.php');</script>";
+    echo "<script>window.location.assign('login.php');</script>";
 }
 
 function test_input($data) {
@@ -154,15 +156,10 @@ if (isset($_GET['dfid'])) {
 	<title>KTEEN</title>
 </head>
 <body class="bg-light" onload="filter()">
-	<nav class="k-top-nav navbar navbar-expand-lg navbar-light pl-4 col-10 bg-white border-bottom">
-		<span class="navbar-brand h1 mb-0 col"><i class="fas fa-bars d-inline-flex mr-2"></i>Menu</span>
-		<ul class="navbar-nav px-4">
-			<li class="nav-item">
-				<a href="index.php?logout='1'" class="btn btn-outline-dark" role="button" aria-pressed="true">Log Out</a>
-			</li>
-		</ul>
-	</nav>
-
+	<?php 
+	$site = "Menu";
+	include 'layout/topnav.php';
+	 ?>
 	<nav class="k-side-nav nav flex-column col-2 border-right bg-white p-0">
         <div class="logo">
             <h2>

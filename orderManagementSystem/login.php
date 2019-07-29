@@ -1,4 +1,6 @@
-<?php include('verification.php'); ?>
+<?php 
+include 'verification.php'; 
+?>
 <!DOCTYPE html>
 <html>
 <head>

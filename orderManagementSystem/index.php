@@ -1,12 +1,6 @@
 <?php 
-include('../config.php');
-
-if (isset($_GET['logout'])) {
-    session_destroy();
-    echo "<script>window.location.assign('login.php');</script>";
-}
-
-
+include '../server/config.php';
+include '../server/logout.php';
 
 ?>
 <!DOCTYPE html>
