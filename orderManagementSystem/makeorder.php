@@ -12,11 +12,11 @@ session_start();
 				}
 		}
 
-	if($_SESSION['staffid']!= ''){
-				$username = $_SESSION['staffid'];
-			}else{
-				echo "<script>window.location.assign('stafflogin.html');</script>";
-			}
+	// if($_SESSION['staffid']!= ''){
+	// 			$username = $_SESSION['staffid'];
+	// 		}else{
+	// 			echo "<script>window.location.assign('stafflogin.html');</script>";
+	// 		}
 
 ?>
 <!DOCTYPE html>

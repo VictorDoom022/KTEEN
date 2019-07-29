@@ -1,29 +1,16 @@
 <?php 
 session_start();
-include('../config.php');
-
-if (isset($_GET['logout'])) {
-    session_destroy();
-    echo "<script>window.location.assign('login.php');</script>";
-}
+include '../server/config.php';
+include '../server/logout.php';
 
 if (isset($_SESSION['kteen_stallID'])) {
     $ID = $_SESSION['kteen_stallID'];
     $stall_name = $_SESSION['kteen_stallN'];
+    $owner_image = $_SESSION['kteen_stallOI'];
 }else{
     echo "<script>window.location.assign('login.php');</script>";
 }
 
-$sql = "SELECT stall_name, owner_name, owner_image, stall_image FROM stall WHERE id = '$ID'";
-$result = $conn->query($sql);
-if($result->num_rows == 1){
-    while ($row = $result->fetch_assoc()) {
-        $stall_name = $row['stall_name'];
-        $owner_name = $row['owner_name'];
-        $owner_image = $row['owner_image'];
-        $stall_image = $row['stall_image'];
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,6 +113,7 @@ if($result->num_rows == 1){
             <div class="d-none d-md-flex col-md-2"></div>
         </div>
     </div>
+
     <script>
             var myChart = document.getElementById('myChart').getContext('2d');
     

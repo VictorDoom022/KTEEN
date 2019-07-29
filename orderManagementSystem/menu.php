@@ -25,7 +25,7 @@ if (isset($_GET['logout'])) {
 </head>
 <body class="bg-light">
 	<nav class="k-top-nav navbar navbar-expand-lg navbar-light pl-4 col-10 bg-white border-bottom">
-		<span class="navbar-brand h1 mb-0 col"><i class="fas fa-home d-inline-flex mr-2"></i>Home</span>
+		<span class="navbar-brand h1 mb-0 col"><i class="fas fa-bars d-inline-flex mr-2"></i>Menu</span>
 		<ul class="navbar-nav px-4 ml-auto">
 			<li class="nav-item dropdown">
 				<a href="#" class="btn btn-outline-dark dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">wdwo</a>
@@ -48,13 +48,13 @@ if (isset($_GET['logout'])) {
 		<div class="k-nav-container h-75">
             <ul class="k-nav nav">
                 <li class="nav-item w-100 mb-1">
-                    <a href="index.php" class="nav-link w-100 active">
+                    <a href="index.php" class="nav-link w-100">
                         <i class="fas fa-home d-inline-flex px-auto"></i>
                         <span class="d-none d-md-inline-flex ml-3">Home</span>
                     </a>
                 </li>
                 <li class="nav-item w-100 mb-1">
-                    <a href="menu.php" class="nav-link w-100">
+                    <a href="menu.php" class="nav-link w-100 active">
                         <i class="fas fa-bars d-inline-flex"></i>
                         <span class="d-none d-md-inline-flex ml-3">Menu</span>
                     </a>

@@ -1,11 +1,7 @@
 <?php 
 session_start();
-include("../config.php");
-
-if (isset($_GET['logout'])) {
-	session_destroy();
-	echo "<script>window.location.assign('login.php');</script>";
-}
+include '../server/config.php';
+include '../server/logout.php';
 
 if (isset($_SESSION['kteen_stallID'])) {
 	$id = $_SESSION['kteen_stallID'];

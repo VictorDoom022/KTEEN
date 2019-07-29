@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../server/config.php");
+include("../config.php");
 $error = "";
 
 if(isset($_POST['login'])){
@@ -8,14 +8,13 @@ if(isset($_POST['login'])){
     $password = $_POST['password'];
     $password = md5($password);
 
-    if ($stmt = $conn->prepare("SELECT ID, stall_name, owner_image FROM stall WHERE email = ? AND password = ?")){
+    if ($stmt = $conn->prepare("SELECT ID, email, password FROM staff WHERE email = ? AND password = ?")){
         $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
-        $stmt->bind_result($stall_ID, $stall_name, $owner_image);
+        $stmt->bind_result($stall_ID, $stall_name, $email, $password);
         if ($stmt->fetch()) {
             $_SESSION['kteen_stallID'] = $stall_ID;
-            $_SESSION['kteen_stallN'] = $stall_name;
-            $_SESSION['kteen_stallOI'] = $owner_image;
+            // $_SESSION['kteen_stallN'] = $stall_name;
             $error = "";
             header('location: index.php');
         }else{

@@ -5,19 +5,19 @@ session_start();
 
 
 	//logout
-	if(isset($_GET['u'])){
-			if ($_GET['u'] == 'logout') {
-				session_destroy();
+	// if(isset($_GET['u'])){
+	// 		if ($_GET['u'] == 'logout') {
+	// 			session_destroy();
 
-				echo "<script>window.location.assign('stafflogin.html');</script>";
-				}
-		}
+	// 			echo "<script>window.location.assign('stafflogin.html');</script>";
+	// 			}
+	// 	}
 
-	if($_SESSION['staffid']!= ''){
-				$staffid = $_SESSION['staffid'];
-			}else{
-				echo "<script>window.location.assign('stafflogin.html');</script>";
-			}
+	// if($_SESSION['staffid']!= ''){
+	// 			$staffid = $_SESSION['staffid'];
+	// 		}else{
+	// 			echo "<script>window.location.assign('stafflogin.html');</script>";
+	// 		}
 
 	if(isset($_POST['in'])){
 		$staffid = $_POST['staffid'];

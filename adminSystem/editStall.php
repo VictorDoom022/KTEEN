@@ -1,11 +1,8 @@
 <?php
-include("../config.php");
+include '../server/config.php';
+include '../server/logout.php';
+
 session_start();
-//logout
-if (isset($_GET['logout'])) {
-    session_destroy();
-    echo "<script>window.location.assign('login.php');</script>";
-}
 
 if(isset($_SESSION['username'])){
     $username = $_SESSION['username'];

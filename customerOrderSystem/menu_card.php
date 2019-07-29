@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include('../config.php');
+include '../server/config.php';
 $filterCategory = "";
 if(isset($_GET['category'])){
     $filterCategory = " AND category_ID = '".$_GET['category']."'";

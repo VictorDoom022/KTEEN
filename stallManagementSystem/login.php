@@ -30,7 +30,7 @@
 							<input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
 						</div>
 						<div class="form-group-sm text-center">
-							<?php include('../error.php'); ?>
+							<?php include('../server/error.php'); ?>
 						</div>
 						<div class="form-group">
 							<input type="submit" name="login" class="btn btn-warning" value="Login">

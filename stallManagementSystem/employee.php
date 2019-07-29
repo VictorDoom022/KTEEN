@@ -1,6 +1,7 @@
 <?php  
 session_start();
-include("../config.php");
+include '../server/config.php';
+include '../server/logout.php';
 
 if (isset($_SESSION['kteen_stallID'])) {
     $stall_ID = $_SESSION['kteen_stallID'];
@@ -156,11 +157,6 @@ if (isset($_GET['deid'])) {
 </head>
 <body class="bg-light" onload="filter_employee()">
     <?php 
-    if (isset($_GET['logout'])) {
-        session_destroy();
-        echo "<script>window.location.assign('login.php');</script>";
-    }
-
     if (isset($_SESSION['kteen_stallID'])) {
         $user = $_SESSION['kteen_stallID'];
     }else{

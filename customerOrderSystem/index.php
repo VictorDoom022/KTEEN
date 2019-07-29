@@ -1,5 +1,6 @@
 <?php 
-include("../config.php")
+include("../server/config.php");
+
 ?>
 
 <!DOCTYPE html>
