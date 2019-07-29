@@ -2,14 +2,7 @@
 session_start();
 include '../server/config.php';
 include '../server/logout.php';
-
-if (isset($_SESSION['kteen_stallID'])) {
-    $ID = $_SESSION['kteen_stallID'];
-    $stall_name = $_SESSION['kteen_stallN'];
-    $owner_image = $_SESSION['kteen_stallOI'];
-}else{
-    echo "<script>window.location.assign('login.php');</script>";
-}
+include 'controller/handle_login.php';
 
 ?>
 <!DOCTYPE html>
@@ -35,43 +28,8 @@ if (isset($_SESSION['kteen_stallID'])) {
     <?php 
     $site = "Dashboard";
     include 'layout/topnav.php';
+    include 'layout/sidenav.php';
      ?>
-    <nav class="k-side-nav nav flex-column col-2 border-right bg-white p-0">
-        <div class="logo">
-            <h2>
-                <a href="index.php" class="d-flex d-md-none">K</a>
-                <a href="index.php" class="d-none d-md-flex">KTEEN</a>
-            </h2>
-        </div>
-        <div class="k-nav-container h-75">
-            <ul class="k-nav nav">
-                <li class="nav-item w-100 mb-1">
-                    <a href="index.php" class="nav-link w-100 active">
-                        <i class="fas fa-home d-inline-flex px-auto"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item w-100 mb-1">
-                    <a href="menu.php" class="nav-link w-100">
-                        <i class="fas fa-bars d-inline-flex"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Menu</span>
-                    </a>
-                </li>
-                <li class="nav-item  w-100 mb-1">
-                    <a href="report.php" class="nav-link w-100">
-                        <i class="far fa-chart-bar d-inline-flex"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Report</span>
-                    </a>
-                </li>
-                <li class="nav-item  w-100 mb-1">
-                    <a href="employee.php" class="nav-link w-100">
-                        <i class="fas fa-home d-inline-flex"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Employee</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
     
     <nav class="k-side-nav-r nav flex-column col-2 border-left bg-white p-0 d-none d-md-flex overflow-auto">
         <div class="container-fluid p-3">
