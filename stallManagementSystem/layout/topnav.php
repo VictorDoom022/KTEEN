@@ -6,11 +6,11 @@ switch ($site) {
     case 'Menu':
         $icon = '<i class="fas fa-bars d-inline-flex mr-2"></i>';
         break;
-    case 'Dashboard':
-        $icon = '<i class="fas fa-home d-inline-flex mr-2"></i>';
+    case 'Employee':
+        $icon = '<i class="fas fa-user d-inline-flex mr-2"></i>';
         break;
-    case 'Dashboard':
-        $icon = '<i class="fas fa-home d-inline-flex mr-2"></i>';
+    case 'Report':
+        $icon = '<i class="far fa-chart-bar d-inline-flex mr-2"></i>';
         break;
 }
 
