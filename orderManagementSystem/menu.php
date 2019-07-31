@@ -1,5 +1,5 @@
 <?php 
-include('../config.php');
+include('../server/config.php');
 
 if (isset($_GET['logout'])) {
     session_destroy();
