@@ -142,7 +142,7 @@ if (isset($_POST["edit_stall_image"])) {
                 <li class="nav-item w-100 mb-1">
                     <a href="index.php" class="nav-link w-100">
                         <i class="fas fa-arrow-left"></i>
-                        <span class="d-none d-md-inline-flex ml-3">BACK</span>
+                        <span class="d-none d-md-inline-flex ml-3">Cancel</span>
                     </a>
                 </li>
             </ul>
