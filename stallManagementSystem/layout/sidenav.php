@@ -19,16 +19,22 @@
                     <span class="d-none d-md-inline-flex ml-3">Menu</span>
                 </a>
             </li>
-            <li class="nav-item  w-100 mb-1">
+            <li class="nav-item w-100 mb-1">
                 <a href="report.php" class="nav-link w-100 <?php if($site == 'Report'){ echo 'active'; } ?>">
                     <i class="far fa-chart-bar d-inline-flex"></i>
                     <span class="d-none d-md-inline-flex ml-3">Report</span>
                 </a>
             </li>
-            <li class="nav-item  w-100 mb-1">
+            <li class="nav-item w-100 mb-1">
                 <a href="employee.php" class="nav-link w-100 <?php if($site == 'Employee'){ echo 'active'; } ?>">
                     <i class="fas fa-user d-inline-flex"></i>
                     <span class="d-none d-md-inline-flex ml-3">Employee</span>
+                </a>
+            </li>
+            <li class="nav-item w-100 mb-1">
+                <a href="purchase.php" class="nav-link w-100 <?php if($site == 'Purchase'){ echo 'active'; } ?>">
+                    <i class="fas fa-user d-inline-flex"></i>
+                    <span class="d-none d-md-inline-flex ml-3">Purchase</span>
                 </a>
             </li>
         </ul>
