@@ -27,7 +27,7 @@ include '../server/logout.php';
 					<a class="dropdown-item" href="#">Action</a>
 					<a class="dropdown-item" href="#">Another action</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Log Out</a>
+					<a class="dropdown-item" href="index.php?logout='1'">Log Out</a>
 				</div>
 			</li>
 		</ul>
