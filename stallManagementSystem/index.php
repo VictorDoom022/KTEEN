@@ -30,29 +30,30 @@ include 'controller/handle_login.php';
     include 'layout/topnav.php';
     include 'layout/sidenav.php';
      ?>
-    
-    <nav class="k-side-nav-r nav flex-column col-2 border-left bg-white p-0 d-none d-md-flex overflow-auto">
-        <div class="container-fluid p-3">
-            <div class="custom-control custom-switch border-bottom">
-                <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                <label class="custom-control-label" for="customSwitch1">Stall Status</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="w-100"></div>
-            <canvas id="myChart" width="100%" height="100%"></canvas>
-            <div class="w-100"></div>
-        </div>
-        <div class="mt-3 container-fluid"></div>
-    </nav>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-2"></div>
-            <main class="col-10 col-md-8 p-4">
-                
+            <main class="col-10 p-4">
+                <div class="row">
+                    <div class="col-md-6 p-2">
+                        <div class="k-card card">
+                            <div class="card-body">
+                                <div class="chart-container" style="position: relative;">
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-2">
+                        <div class="k-card card h-100">
+                            <div class="card-body">
+                                Total
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
-            <div class="d-none d-md-flex col-md-2"></div>
         </div>
     </div>
 
@@ -60,7 +61,7 @@ include 'controller/handle_login.php';
             var myChart = document.getElementById('myChart').getContext('2d');
     
             var myDoughnutChart = new Chart(myChart, {
-                type:'doughnut',
+                type:'bar',
                 data: {
                     labels: [
                         'mee goreng', 
@@ -69,9 +70,9 @@ include 'controller/handle_login.php';
                     ],
                     datasets: [{
                         data: [
-                            600,
                             400,
-                            400
+                            200,
+                            100
                         ],
                         backgroundColor:[
                             '#0078C8',
@@ -92,8 +93,8 @@ include 'controller/handle_login.php';
                         fontSize:20
                     },
                     legend:{
-                        display: false,
-                        position:'bottom',
+                        display: true,
+                        position:'left',
                         labels:{
                             fontColor:'#000'
                         }
