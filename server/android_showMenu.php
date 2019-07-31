@@ -1,7 +1,7 @@
 <?php 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-	include '../config.php';
+	include 'config.php';
 	showMenu();
 }
 
