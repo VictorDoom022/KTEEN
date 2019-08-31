@@ -1,5 +1,4 @@
 <?php 
-
 if (isset($_SESSION['kteen_stallID'])) {
     $ID = $_SESSION['kteen_stallID'];
     $stall_name = $_SESSION['kteen_stallN'];

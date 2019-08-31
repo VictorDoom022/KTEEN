@@ -4,17 +4,17 @@ include("../server/config.php");
 $error = "";
 
 if(isset($_POST['login'])){
-    $email = $_POST['email'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
-    $password = md5($password);
+    //$password = md5($password);
 
-    if ($stmt = $conn->prepare("SELECT ID, email, password FROM staff WHERE email = ? AND password = ?")){
-        $stmt->bind_param("ss", $email, $password);
+    if ($stmt = $conn->prepare("SELECT ID, username FROM staff WHERE username = ? AND password = ?")){
+        $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
-        $stmt->bind_result($stall_ID, $stall_name, $email, $password);
+        $stmt->bind_result($staff_ID, $staff_name);
         if ($stmt->fetch()) {
-            $_SESSION['kteen_stallID'] = $stall_ID;
-            // $_SESSION['kteen_stallN'] = $stall_name;
+            $_SESSION['kteen_staff_ID'] = $staff_ID;
+            $_SESSION['kteen_staff_name'] = $staff_name;
             $error = "";
             header('location: index.php');
         }else{

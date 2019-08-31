@@ -33,7 +33,7 @@
             </li>
             <li class="nav-item w-100 mb-1">
                 <a href="purchase.php" class="nav-link w-100 <?php if($site == 'Purchase'){ echo 'active'; } ?>">
-                    <i class="fas fa-user d-inline-flex"></i>
+                    <i class="fas fa-boxes d-inline-flex"></i>
                     <span class="d-none d-md-inline-flex ml-3">Purchase</span>
                 </a>
             </li>

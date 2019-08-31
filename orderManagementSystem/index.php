@@ -1,7 +1,7 @@
 <?php 
+session_start();
 include '../server/config.php';
 include '../server/logout.php';
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@ include '../server/logout.php';
 		<span class="navbar-brand h1 mb-0 col"><i class="fas fa-home d-inline-flex mr-2"></i>Home</span>
 		<ul class="navbar-nav px-4 ml-auto">
 			<li class="nav-item dropdown">
-				<a href="#" class="btn btn-outline-dark dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">wdwo</a>
+				<a href="#" class="btn btn-outline-dark dropdown-toggle" id="navbarDropdown" data-toggle="dropdown"><?php echo $_SESSION['kteen_staff_name']; ?></a>
 				<div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="#">Action</a>
 					<a class="dropdown-item" href="#">Another action</a>
@@ -62,5 +62,62 @@ include '../server/logout.php';
             </ul>
         </div>
 	</nav>
+	<div class="container-fluid">
+        <div class="row">
+            <div class="col-2"></div>
+            <main class="col-10 p-4">
+                <div class="row">
+                    <div class="card col-12">
+						<div class="card-body" style="height: 400px;">
+							<div class="row h-50">
+								<div class="col-md-3 p-2">
+									<button class="btn btn-danger w-100 h-100">
+										<span style="font-size: 48px;">
+											<i class="fas fa-list"></i>
+										</span>
+										<div>
+											Veiw Order
+										</div>
+									</button>
+								</div>
+								<div class="col-md-3 p-2">
+									<button class="btn btn-warning w-100 h-100">
+										<span style="font-size: 48px;">
+											<i class="fas fa-cash-register"></i>
+										</span>
+										<div>
+											Make Payment
+										</div>
+									</button>
+								</div>
+								<div class="col-md-3 p-2">
+									<button class="btn btn-dark w-100 h-100">
+										<span style="font-size: 48px;">
+											<i class="fas fa-clipboard-list"></i>
+										</span>
+										<div>
+											Make Order
+										</div>
+									</button>
+								</div>
+								<div class="col-md-3 p-2 h-100">
+									<button class="btn btn-dark w-100 h-100">
+										Make Order
+									</button>
+								</div>
+							</div>
+							<div class="row h-100">
+								<div class="col-md-3 p-2 h-50">
+									<button class="btn btn-dark w-100 h-100">
+										Make Order
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+            </main>
+        </div>
+    </div>
 </body>
 </html>

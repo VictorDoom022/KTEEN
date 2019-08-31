@@ -1,8 +1,8 @@
-<?php 
-session_start();
+<?php
+session_start(); 
 include '../server/config.php';
 include '../server/logout.php';
-include 'controller/handle_login.php';
+include 'activity/handle_login.php';
 
 ?>
 <!DOCTYPE html>
@@ -93,7 +93,7 @@ include 'controller/handle_login.php';
                         fontSize:20
                     },
                     legend:{
-                        display: true,
+                        display: false,
                         position:'left',
                         labels:{
                             fontColor:'#000'

@@ -1,13 +1,15 @@
 <?php 
-include 'verification.php'; 
+include 'verification.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- css -->
+	<link rel="stylesheet" href="../css/kteen_style.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<title>Stall login</title>
+	<title>Staff login</title>
 </head>
 <body class="bg-light">
 	<nav class="navbar navbar-light bg-white shadow">
@@ -19,29 +21,31 @@ include 'verification.php';
 	<br>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
-				<div class="card shadow-sm" style="padding: 20px;">
-					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-						<div class="form-group">
-							<label for="email">Email</label>
-							<input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
-						</div>
-						<div class="form-group">
-							<label for="password">Password</label>
-							<input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
-						</div>
-						<div class="form-group-sm text-center">
-							<?php include('../server/error.php'); ?>
-						</div>
-						<div class="form-group">
-							<input type="submit" name="login" class="btn btn-warning" value="Login">
-						</div>
-					</form>
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="k-card card p-0 shadow">
+					<div class="card-body">
+						<h4 class="card-title pb-3">Staff Login</h4>
+						<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+							<div class="form-group">
+								<label for="username">Username</label>
+								<input id="username" type="text" name="username" class="form-control rounded-0" required>
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" name="password" class="form-control rounded-0" id="password" required>
+							</div>
+							<div class="form-group-sm text-center">
+								<?php include('../server/error.php'); ?>
+							</div>
+							<div class="form-group text-right">
+								<input type="submit" name="login" class="btn btn-dark" value="Login">
+							</div>
+						</form>
+					</div>
 				</div>
-				
 			</div>
-			<div class="col-md-1"></div>
+			<div class="col-md-2"></div>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

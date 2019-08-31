@@ -12,6 +12,12 @@ switch ($site) {
     case 'Report':
         $icon = '<i class="far fa-chart-bar d-inline-flex mr-2"></i>';
         break;
+    case 'Purchase':
+        $icon = '<i class="fas fa-boxes d-inline-flex mr-2"></i>';
+        break;
+    case 'Setting':
+        $icon = '<i class="fas fa-cog d-inline-flex mr-2"></i>';
+        break;
 }
 
  ?>
