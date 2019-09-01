@@ -1,3 +1,4 @@
+<?php include '../process/verification_staff.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>

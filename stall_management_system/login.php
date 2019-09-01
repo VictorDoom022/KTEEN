@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<div class="k-card card" style="padding: 20px;">
+				<div class="k-card card p-0" style="padding: 20px;">
 					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 						<div class="card-body">
 							<div class="form-group">
