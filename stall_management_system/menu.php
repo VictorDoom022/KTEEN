@@ -28,7 +28,7 @@ include '../process/handle_logout.php';
 				<div class="row">
 					<div class="col-12 col-sm-5 col-md-4 col-lg-3">
 						<div class="btn-group shadow-sm m-2">
-							<a href="add_employee.php" class="btn bg-white">
+							<a href="add_menu.php" class="btn bg-white">
 								<i class="fas fa-plus"></i>
 							</a>
 							<a href="" class="btn bg-white"><i class="fas fa-list"></i></a>
