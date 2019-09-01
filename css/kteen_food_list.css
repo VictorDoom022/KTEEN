@@ -1,7 +1,0 @@
-.food-info{
-	display: flex;
-}
-.food-info:first-child, .food-name:only-child{
-	display: flex;
-	align-items: center;
-}
