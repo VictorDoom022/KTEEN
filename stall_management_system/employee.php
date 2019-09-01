@@ -20,7 +20,14 @@ include '../process/handle_logout.php';
 	include '../layout/top_nav_stall.php';
 	include '../layout/side_nav_stall.php';
 	?>
-	
+	<main>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-10">
+				
+			</div>
+		</div>
+	</main>
 	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
