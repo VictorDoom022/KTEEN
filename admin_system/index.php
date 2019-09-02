@@ -34,9 +34,7 @@ include '../process/handle_if_logout.php';
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<?php include 'stall_card.php'; ?>
-				</div>
+				<?php include 'stall_card.php'; ?>
 			</main>
 		</div>
 	</div>
