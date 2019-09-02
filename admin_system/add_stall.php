@@ -35,6 +35,10 @@
 								<div class="col-8">
 									<div class="form-group">
 										<input type="" name="" class="form-control">
+										<?php 
+										echo __dir__ . "<br>";
+										echo __file__ . "<br>";
+										?>
 									</div>
 								</div>
 							</div>
