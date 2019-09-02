@@ -44,20 +44,26 @@ session_start();
 								</div>
 								<div class="col-md-8">
 									<div class="form-group row">
-										<label class="col-md-2 col-form-label">Food Name :</label>
-										<div class="col-md-10">
+										<label class="col-md-3 col-form-label text-nowrap">Food ID :</label>
+										<div class="col-md-9">
 											<input type="text" name="" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-md-2 col-form-label">Price :</label>
-										<div class="col-md-10">
+										<label class="col-md-3 col-form-label text-nowrap">Food Name :</label>
+										<div class="col-md-9">
 											<input type="text" name="" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-md-2 col-form-label">Category :</label>
-										<div class="col-md-10">
+										<label class="col-md-3 col-form-label">Price :</label>
+										<div class="col-md-9">
+											<input type="text" name="" class="form-control">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-md-3 col-form-label">Category :</label>
+										<div class="col-md-9">
 											<select class="form-control">
 												<option></option>
 											</select>
@@ -65,8 +71,13 @@ session_start();
 									</div>
 								</div>
 							</div>
-							<div class="h3 pl-5 mb-0">Food Detail</div>
+							<div class="h3 pl-5 mb-0">Op</div>
 							<hr class="mt-0">
+							<div class="row">
+								<div class="col-12 text-right">
+									<input type="submit" name="" class="btn btn-dark">
+								</div>
+							</div>
 						</form>
 					</div>
 				</div>
