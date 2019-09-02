@@ -19,7 +19,6 @@ switch ($site) {
         $icon = '<i class="fas fa-cog d-inline-flex mr-2"></i>';
         break;
 }
-
  ?>
 
 <nav class="k-top-nav navbar navbar-expand-lg navbar-light pl-4 col-10 bg-white border-bottom">
