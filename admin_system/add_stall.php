@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="../css/kteen_style.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<!-- Bootstarp CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -37,6 +37,7 @@
 										<input type="" name="" class="form-control">
 										<?php 
 										echo __dir__ . "<br>";
+										echo __file__ . "<br>";
 										echo __file__ . "<br>";
 										?>
 									</div>
