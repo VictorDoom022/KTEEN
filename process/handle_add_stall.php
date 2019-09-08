@@ -9,7 +9,10 @@ if (isset($_POST['add_stall'])) {
 	$contact_no = $_POST['contact_no'];
 	$email = $_POST['email'];
 	$password = $_POST['password'];
-	
+
+	mkdir('../images/'.$username);
+	mkdir('../images/'.$username.'/menu');
+	mkdir('../images/'.$username.'/employee');
 	// header('location: add_stall.php');
 }
 ?>
