@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal<?php echo $row['ID']; ?>" role="dialog">
+<div class="modal fade" id="modal<?= $row['ID']; ?>" role="dialog">
 	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-body">
