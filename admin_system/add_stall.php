@@ -56,9 +56,10 @@ include '../process/handle_if_logout.php';
 									<br>
 								</div>
 								<div class="col-md-8">
-									<div class="card-title h3 border-bottom">
+									<div class="card-title h3">
 										Personal Detail
 									</div>
+									<hr>
 									<div class="form-group row">
 										<label class="col-md-2 col-form-label">Name</label>
 										<div class="col-md-10">
