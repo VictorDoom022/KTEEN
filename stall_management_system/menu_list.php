@@ -1,3 +1,12 @@
+<?php 
+session_start();
+
+$keyword = "";
+if (isset($_GET['k'])) {
+    $keyword = " AND food.name LIKE '%".$_GET['k']."%'";
+}
+
+?>
 <div class="k-card card">
 	<div class="card-body">
 		<div class="table-responsive">
@@ -5,6 +14,7 @@
 				<thead class="thead-dark">
 					<tr>
 						<th>ID</th>
+						<th>Image</th>
 						<th>Name</th>
 						<th>Catergory</th>
 						<th>Price</th>
@@ -15,19 +25,20 @@
 				<tbody>
 					<?php 
 					include '../config/config.php';
-					$sql = "SELECT food.name AS name, category.name AS category, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '".$_SESSION['kteen_stall_id']."' LIMIT 10";
+					$sql = "SELECT food.ID AS ID, food.name AS name, image, category.name AS category, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '".$_SESSION['kteen_stall_id']."'".$keyword." LIMIT 10";
 					$result = mysqli_query($conn, $sql)  or die (mysqli_error($conn));
 					if(mysqli_num_rows($result)){
 						while ($row = mysqli_fetch_assoc($result)) {
 					?>
 					<tr>
-						<th></th>
-						<td><?php echo $row['name']; ?></td>
-						<td><?php echo $row['category']; ?></td>
-						<td>RM <?php echo $row['price']; ?></td>
-						<td><?php echo $r = ($row['available'] == 1) ? '<small class="text-success">action</small>' : '<small class="text-danger">hidden</small>' ; ?></td>
+						<th><?= $row['ID']; ?></th>
+						<td><img src="../images/menu/<?= $row['image'] ?>" style="width: 100px;height:75px;"></td>
+						<td><?= $row['name']; ?></td>
+						<td><?= $row['category']; ?></td>
+						<td>RM <?= $row['price']; ?></td>
+						<td><?= $r = ($row['available'] == 1) ? '<small class="text-success">action</small>' : '<small class="text-danger">hidden</small>' ; ?></td>
 						<td>
-							<button class="btn btn-sm btn-outline-dark">View</button>
+							<a href="#modal_<?= $row['ID']; ?>" class="btn btn-sm btn-outline-dark" data-toggle="modal">View</a>
 						</td>
 						<td>
 							<button class="btn btn-sm btn-outline-success">Edit</button>
@@ -40,6 +51,7 @@
 						</td>
 					</tr>
 					<?php
+					include 'menu_modal.php';
 						}
 					}
 					mysqli_close($conn);
