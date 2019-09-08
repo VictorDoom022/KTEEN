@@ -24,6 +24,7 @@ include '../process/handle_if_logout.php';
 </head>
 <body>
 	<?php 
+	$site = 'index';
 	include '../layout/top_nav_admin.php';
 	include '../layout/side_nav_admin.php';
 	?>
@@ -44,7 +45,5 @@ include '../process/handle_if_logout.php';
 			</main>
 		</div>
 	</div>
-
-	
 </body>
 </html>
