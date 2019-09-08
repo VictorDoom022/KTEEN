@@ -1,7 +1,8 @@
 <?php 
 session_start();
 include '../process/handle_logout.php';
-include '../process/handle_if_logout.php';
+include '../process/handle_if_logout_admin.php';
+include '../process/handle_add_stall.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,7 +39,7 @@ include '../process/handle_if_logout.php';
 								<img src="../images/stall_image.png" style="height: 250px; width: 100%;position: absolute;" id="img-stall">
 								<input type="file" name="" id="input-stall-image" required style="position: absolute;width: 100%;height: 100%;opacity: 0;" data-target="#img-stall">
 								<label for="input-stall-image" class="btn btn-light" style="position: absolute;right: 10px;bottom: 5px;"><i class="fas fa-camera"></i></label>
-								<div style="position: absolute;top: 50%;left: 1%;">
+								<div style="position: absolute;top: 50%;left: 3%;">
 									<div style="position: relative;width: 250px;height: 250px;">
 										<img src="../images/personal.jpg" class="rounded-circle" style="width: 250px;height: 250px;position: absolute;" id="img-owner">
 										<input type="file" name="" id="input-owner-image" data-target="#img-owner" style="width: 250px;height: 250px;position: absolute;border-radius: 50%;opacity: 0;">
@@ -55,54 +56,54 @@ include '../process/handle_if_logout.php';
 									<br>
 									<br>
 								</div>
-								<div class="col-md-8">
+								<div class="col-md-7">
 									<div class="card-title h3">
 										Personal Detail
 									</div>
 									<hr>
 									<div class="form-group row">
-										<label class="col-md-2 col-form-label">Name</label>
-										<div class="col-md-10">
-											<input type="text" name="" class="form-control">
+										<label class="col-md-3 col-form-label">Name</label>
+										<div class="col-md-9">
+											<input type="text" name="owner_name" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-md-2 col-form-label">NRIC</label>
-										<div class="col-md-10">
-											<input type="text" name="" class="form-control">
+										<label class="col-md-3 col-form-label">NRIC</label>
+										<div class="col-md-9">
+											<input type="text" name="NRIC" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-md-2 col-form-label">Contact No</label>
-										<div class="col-md-10">
-											<input type="text" name="" class="form-control">
+										<label class="col-md-3 col-form-label">Contact No</label>
+										<div class="col-md-9">
+											<input type="text" name="contact_no" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-md-2 col-form-label">Email</label>
-										<div class="col-md-10">
-											<input type="text" name="" class="form-control">
+										<label class="col-md-3 col-form-label">Email</label>
+										<div class="col-md-9">
+											<input type="email" name="email" class="form-control">
 										</div>
 									</div>
 								</div>
+								<div class="col-md-1"></div>
 							</div>
-							<div class="row">
-								<div class="col border-bottom card-title h3">
-									Account
-								</div>
+							<div class="col-12 card-title h3">
+								Account
 							</div>
+							<hr>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group row">
-										<label class="col-md-3 col-form-label">ID</label>
+										<label class="col-md-3 col-form-label">Username</label>
 										<div class="col-md-9">
-											<input type="text" name="" class="form-control">
+											<input type="text" name="username" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Password</label>
 										<div class="col-md-9">
-											<input type="text" name="" class="form-control">
+											<input type="text" name="password" class="form-control">
 										</div>
 									</div>
 								</div>
@@ -110,7 +111,7 @@ include '../process/handle_if_logout.php';
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Stall Name</label>
 										<div class="col-md-9">
-											<input type="text" name="" class="form-control">
+											<input type="text" name="stall_name" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row" style="font-size: 0.82rem;">
@@ -124,7 +125,7 @@ include '../process/handle_if_logout.php';
 							<div class="row">
 								<div class="col text-right">
 									<button class="btn text-danger">Cancel</button>
-									<input type="submit" class="btn" value="Submit">
+									<input type="submit" name="add_stall" class="btn" value="Submit">
 								</div>
 							</div>
 						</div>
