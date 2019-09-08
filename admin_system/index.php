@@ -2,7 +2,7 @@
 session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
-include '../process/handle_if_logout.php';
+include '../process/handle_if_logout_admin.php';
  ?>
 <!DOCTYPE html>
 <html>
