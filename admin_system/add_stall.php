@@ -65,25 +65,25 @@ include '../process/handle_add_stall.php';
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Name</label>
 										<div class="col-md-9">
-											<input type="text" name="owner_name" value="<?= $owner_name; ?>" class="form-control">
+											<input type="text" name="owner_name" value="<?= $owner_name; ?>" class="form-control <?= $owner_name_valid ?>">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">NRIC</label>
 										<div class="col-md-9">
-											<input type="text" name="NRIC" value="<?= $NRIC; ?>" class="form-control">
+											<input type="text" name="NRIC" value="<?= $NRIC; ?>" class="form-control <?= $NRIC_valid ?>">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Contact No</label>
 										<div class="col-md-9">
-											<input type="text" name="contact_no" value="<?= $contact_no; ?>" class="form-control">
+											<input type="text" name="contact_no" value="<?= $contact_no; ?>" class="form-control <?= $contact_no_valid ?>">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Email</label>
 										<div class="col-md-9">
-											<input type="email" name="email" value="<?= $email; ?>" class="form-control">
+											<input type="email" name="email" value="<?= $email; ?>" class="form-control <?= $email_valid ?>">
 										</div>
 									</div>
 								</div>
@@ -98,13 +98,13 @@ include '../process/handle_add_stall.php';
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Username</label>
 										<div class="col-md-9">
-											<input type="text" name="username" class="form-control" value="<?= $username ?>" required>
+											<input type="text" name="username" class="form-control <?= $username_valid ?>" value="<?= $username ?>" required>
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label" for="password">Password</label>
 										<div class="col-md-9">
-											<input type="password" name="password" id="password" class="form-control" value="<?= $password ?>" required>
+											<input type="password" name="password" id="password" class="form-control <?= $r = ($password_valid == 'is-invalid') ? '' : $password_valid ; ?>" value="<?= $password ?>" required>
 										</div>
 									</div>
 								</div>
@@ -112,14 +112,19 @@ include '../process/handle_add_stall.php';
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Stall Name</label>
 										<div class="col-md-9">
-											<input type="text" name="stall_name" class="form-control" value="<?= $stall_name; ?>">
+											<input type="text" name="stall_name" class="form-control <?= $stall_name_valid ?>" value="<?= $stall_name; ?>">
+											<div class="invalid-feedback">
+												That username is taken.Try another.
+											</div>
 										</div>
 									</div>
 									<div class="form-group row" style="font-size: 0.82rem;">
 										<label class="col-md-3 col-form-label" for="confirm_password">Confirm Password</label>
 										<div class="col-md-9">
-											<input type="password" name="confirm_password" id="confirm_password" class="form-control" value="<?= $password; ?>">
-											<div class="is-invalid"></div>
+											<input type="password" name="confirm_password" id="confirm_password" class="form-control <?= $password_valid; ?>" value="<?= $password; ?>">
+											<div class="invalid-feedback">
+												Those password didn't match.Try again.
+											</div>
 										</div>
 									</div>
 								</div>
