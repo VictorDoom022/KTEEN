@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include '../config/config.php';
 include '../process/handle_logout.php';
 include '../process/handle_if_logout_admin.php';
 include '../process/handle_add_stall.php';
@@ -33,7 +34,7 @@ include '../process/handle_add_stall.php';
 			<div class="col-2"></div>
 			<div class="col-10">
 				<div class="k-card card">
-					<form action="" method="post" enctype="multipart/form-data">
+					<form id="add_stall_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
 						<div class="row no-gutters">
 							<div style="position: relative;width: 100%;height: 250px;">
 								<img src="../images/stall_image.png" style="height: 250px; width: 100%;position: absolute;" id="img-stall">
@@ -64,25 +65,25 @@ include '../process/handle_add_stall.php';
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Name</label>
 										<div class="col-md-9">
-											<input type="text" name="owner_name" class="form-control">
+											<input type="text" name="owner_name" value="<?= $owner_name; ?>" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">NRIC</label>
 										<div class="col-md-9">
-											<input type="text" name="NRIC" class="form-control">
+											<input type="text" name="NRIC" value="<?= $NRIC; ?>" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Contact No</label>
 										<div class="col-md-9">
-											<input type="text" name="contact_no" class="form-control">
+											<input type="text" name="contact_no" value="<?= $contact_no; ?>" class="form-control">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Email</label>
 										<div class="col-md-9">
-											<input type="email" name="email" class="form-control">
+											<input type="email" name="email" value="<?= $email; ?>" class="form-control">
 										</div>
 									</div>
 								</div>
@@ -97,13 +98,13 @@ include '../process/handle_add_stall.php';
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Username</label>
 										<div class="col-md-9">
-											<input type="text" name="username" class="form-control">
+											<input type="text" name="username" class="form-control" value="<?= $username ?>" required>
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-md-3 col-form-label">Password</label>
+										<label class="col-md-3 col-form-label" for="password">Password</label>
 										<div class="col-md-9">
-											<input type="text" name="password" class="form-control">
+											<input type="password" name="password" id="password" class="form-control" value="<?= $password ?>" required>
 										</div>
 									</div>
 								</div>
@@ -111,13 +112,14 @@ include '../process/handle_add_stall.php';
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Stall Name</label>
 										<div class="col-md-9">
-											<input type="text" name="stall_name" class="form-control">
+											<input type="text" name="stall_name" class="form-control" value="<?= $stall_name; ?>">
 										</div>
 									</div>
 									<div class="form-group row" style="font-size: 0.82rem;">
-										<label class="col-md-3 col-form-label">Confirm Password</label>
+										<label class="col-md-3 col-form-label" for="confirm_password">Confirm Password</label>
 										<div class="col-md-9">
-											<input type="text" name="" class="form-control">
+											<input type="password" name="confirm_password" id="confirm_password" class="form-control" value="<?= $password; ?>">
+											<div class="is-invalid"></div>
 										</div>
 									</div>
 								</div>
