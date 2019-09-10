@@ -20,8 +20,6 @@ if (isset($_POST['add_stall'])) {
 	$owner_name = test_input($_POST['owner_name']);
 	$stall_name = test_input($_POST['stall_name']);
 	$NRIC = test_input($_POST['NRIC']);
-	// $owner_image = $_POST[''];
-	// $stall_image = $_POST[''];
 	$contact_no = test_input($_POST['contact_no']);
 	$email = test_input($_POST['email']);
 
@@ -43,8 +41,15 @@ if (isset($_POST['add_stall'])) {
 
 	if(mysqli_num_rows($result) == 0){
 		$username = test_input($_POST['username']);
+		$owner_image = $username.'_owner.jpg';
+		$stall_image = $username.'_stall.jpg';
 
 		$username_valid = 'is-valid';
+
+		$target_dir = "../images/".$username."/";
+		$target_owner_image = $target_dir.$owner_image;
+		$target_stall_image = $target_dir.$stall_image;
+
 	}else{
 		$username_valid = 'is-invalid';
 	}
@@ -53,10 +58,17 @@ if (isset($_POST['add_stall'])) {
 		$sql = "INSERT INTO stall(username, stall_name, owner_name, NRIC, contact_no, email, password, status) VALUES ('$username', '$stall_name', '$owner_name', '$NRIC', '$contact_no', '$email', '$password', '1');";
 		$result = mysqli_query($conn, $sql) or die(mysqli_error());
 
+		mysqli_close($conn);
 		mkdir('../images/'.$username);
 		mkdir('../images/'.$username.'/menu');
 		mkdir('../images/'.$username.'/staff');
-		mysqli_close($conn);
+
+		if (move_uploaded_file($_FILES["owner_image"]["tmp_name"], $target_owner_image)) {
+		    $error = "The file ". basename( $_FILES["owner_image"]["name"]). " has been uploaded.";
+		} else {
+		    $error = "Sorry, there was an error uploading your file.";
+		}
+
 		
 		header('location: index.php');
 	}
