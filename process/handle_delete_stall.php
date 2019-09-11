@@ -1,4 +1,5 @@
 <?php 
+include '../config/remove_dir.php';
 
 if (isset($_GET['st_u'])) {
 	$stall_username = $_GET['st_u'];
@@ -7,9 +8,7 @@ if (isset($_GET['st_u'])) {
 	$conn->close();
 
 	$path = '../images/'.$stall_username;
-	if(!rmdir($path)){
-		echo ("Could not remove $path");
-	}
-	// header("location: index.php");
+	remove_dir($path);
+	header("location: index.php");
 }
 ?>
