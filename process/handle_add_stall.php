@@ -55,7 +55,7 @@ if (isset($_POST['add_stall'])) {
 	}
 
 	if($username_valid == 'is-valid' && $owner_name_valid == 'is-valid' && $stall_name_valid == 'is-valid' && $NRIC_valid == 'is-valid' && $contact_no_valid == 'is-valid' && $email_valid == 'is-valid' && $password_valid == 'is-valid'){
-		$sql = "INSERT INTO stall(username, stall_name, owner_name, NRIC, contact_no, email, password, status) VALUES ('$username', '$stall_name', '$owner_name', '$NRIC', '$contact_no', '$email', '$password', '1');";
+		echo $sql = "INSERT INTO stall(username, stall_name, owner_name, NRIC, owner_image, stall_image, contact_no, email, password, status) VALUES ('$username', '$stall_name', '$owner_name', '$NRIC', '$owner_image', '$stall_image', '$contact_no', '$email', '$password', '1');";
 		$result = mysqli_query($conn, $sql) or die(mysqli_error());
 
 		mysqli_close($conn);
@@ -68,7 +68,12 @@ if (isset($_POST['add_stall'])) {
 		} else {
 		    $error = "Sorry, there was an error uploading your file.";
 		}
-
+		
+		if (move_uploaded_file($_FILES["stall_image"]["tmp_name"], $target_stall_image)) {
+		    $error = "The file ". basename( $_FILES["owner_image"]["name"]). " has been uploaded.";
+		} else {
+		    $error = "Sorry, there was an error uploading your file.";
+		}
 		
 		header('location: index.php');
 	}
