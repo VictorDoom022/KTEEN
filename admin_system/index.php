@@ -3,6 +3,7 @@ session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
 include '../process/handle_if_logout_admin.php';
+include '../process/handle_delete_stall.php'
  ?>
 <!DOCTYPE html>
 <html>
@@ -45,5 +46,13 @@ include '../process/handle_if_logout_admin.php';
 			</main>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function ComfirmDelete(x){
+			var confirmBox = confirm("Are you sure you want to delete?");
+			if (confirmBox == true) {
+				window.location.assign("index.php?st_u="+ x);
+			}
+		}
+	</script>
 </body>
 </html>
