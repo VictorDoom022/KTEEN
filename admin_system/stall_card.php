@@ -59,7 +59,7 @@ if(isset($_GET['k'])){
             <div class="modal-content">
                 <div class="modal-header p-0" style=";position: relative;">
                 	<div class="row p-0 m-0 w-100" style="height: 200px;overflow: hidden;">
-                		<img style="width: 100%;height: 500px;align-self: center;vertical-align: center;opacity: 0.7;" src="../images/<?= $row['username']; ?>/<?= $stall_image; ?>" >
+                		<img style="width: 100%;height: 500px;align-self: center;vertical-align: center;opacity: 0.7;" src="../images/<?= $row['username']; ?>/<?= $stall_image; ?>">
                 	</div>
                 	<span style="position: absolute;transform: translate(-50%, -50%);top: 50%;left: 50%;z-index: 2;">
             			<h3><?php echo $stall_name; ?></h3>
@@ -120,7 +120,7 @@ if(isset($_GET['k'])){
                 <div class="modal-footer">
 					<button class="btn text-dark" data-dismiss="modal">CLOSE</button>
 					<a href="edit_stall.php?sid=<?php echo $stall_id; ?>" class="btn text-warning">EDIT</a>
-					<button onclick="ComfirmDelete(<?php echo $stall_id; ?>)" class="btn text-danger">DELETE</button>
+					<button onclick="ComfirmDelete('<?= $row['username']; ?>')" class="btn text-danger">DELETE</button>
 				</div>
             </div>
         </div>
