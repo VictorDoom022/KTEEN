@@ -8,14 +8,15 @@ if(isset($_POST['login'])){
     $password = $_POST['password'];
     $password = md5($password);
 
-    if ($stmt = $conn->prepare("SELECT ID, stall_name, owner_image FROM stall WHERE email = ? AND password = ?")){
+    if ($stmt = $conn->prepare("SELECT ID, stall_name, owner_image, username FROM stall WHERE email = ? AND password = ?")){
         $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
-        $stmt->bind_result($stall_ID, $stall_name, $owner_image);
+        $stmt->bind_result($stall_ID, $stall_name, $owner_image, $username);
         if ($stmt->fetch()) {
             $_SESSION['kteen_stall_id'] = $stall_ID;
             $_SESSION['kteen_stall_name'] = $stall_name;
             $_SESSION['kteen_stall_owner_image'] = $owner_image;
+            $_SESSION['stall_username'] = $username;
             $error = "";
             header('location: index.php');
         }else{
