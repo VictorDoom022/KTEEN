@@ -27,8 +27,8 @@
 					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 						<div class="card-body">
 							<div class="form-group">
-								<label for="email">Email</label>
-								<input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
+								<label for="email">Username</label>
+								<input type="text" name="username" class="form-control" id="email" placeholder="Enter Username" required>
 							</div>
 							<div class="form-group">
 								<label for="password">Password</label>
