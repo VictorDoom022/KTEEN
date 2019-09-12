@@ -18,7 +18,6 @@ $password_valid = '';
 
 if (isset($_POST['add_stall'])) {
 	$owner_name = test_input($_POST['owner_name']);
-	$stall_name = test_input($_POST['stall_name']);
 	$NRIC = test_input($_POST['NRIC']);
 	$contact_no = test_input($_POST['contact_no']);
 	$email = test_input($_POST['email']);
@@ -36,25 +35,28 @@ if (isset($_POST['add_stall'])) {
 		$password_valid = 'is-invalid';
 	}
 
-	$sql = "SELECT username FROM stall WHERE username = '".test_input($_POST['username'])."';";
+	echo $sql = "SELECT username FROM stall WHERE username = '".test_input($_POST['username'])."' OR stall_name = '".test_input($_POST['stall_name'])."';";
 	$result = mysqli_query($conn, $sql);
 
 	if(mysqli_num_rows($result) == 0){
+		$username_valid = 'is-valid';
+		$stall_name_valid = 'is-valid';
+	}else{
+		$username_valid = 'is-invalid';
+		$stall_name_valid = 'is-invalid';
+	}
+
+	if($username_valid == 'is-valid' && $owner_name_valid == 'is-valid' && $stall_name_valid == 'is-valid' && $NRIC_valid == 'is-valid' && $contact_no_valid == 'is-valid' && $email_valid == 'is-valid' && $password_valid == 'is-valid'){
+
 		$username = test_input($_POST['username']);
+		$stall_name = test_input($_POST['stall_name']);
 		$owner_image = $username.'_owner.jpg';
 		$stall_image = $username.'_stall.jpg';
-
-		$username_valid = 'is-valid';
 
 		$target_dir = "../images/".$username."/";
 		$target_owner_image = $target_dir.$owner_image;
 		$target_stall_image = $target_dir.$stall_image;
 
-	}else{
-		$username_valid = 'is-invalid';
-	}
-
-	if($username_valid == 'is-valid' && $owner_name_valid == 'is-valid' && $stall_name_valid == 'is-valid' && $NRIC_valid == 'is-valid' && $contact_no_valid == 'is-valid' && $email_valid == 'is-valid' && $password_valid == 'is-valid'){
 		echo $sql = "INSERT INTO stall(username, stall_name, owner_name, NRIC, owner_image, stall_image, contact_no, email, password, status) VALUES ('$username', '$stall_name', '$owner_name', '$NRIC', '$owner_image', '$stall_image', '$contact_no', '$email', '$password', '1');";
 		$result = mysqli_query($conn, $sql) or die(mysqli_error());
 
