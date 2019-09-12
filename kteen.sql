@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2019 at 07:43 AM
+-- Generation Time: Sep 12, 2019 at 07:41 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -241,6 +241,7 @@ INSERT INTO `staff` (`ID`, `name`, `NRIC`, `image`, `stall_ID`, `contact_no`, `a
 
 CREATE TABLE `stall` (
   `ID` int(6) NOT NULL,
+  `username` varchar(20) NOT NULL,
   `stall_name` varchar(20) NOT NULL,
   `owner_name` varchar(20) NOT NULL,
   `NRIC` int(12) NOT NULL,
@@ -256,8 +257,9 @@ CREATE TABLE `stall` (
 -- Dumping data for table `stall`
 --
 
-INSERT INTO `stall` (`ID`, `stall_name`, `owner_name`, `NRIC`, `owner_image`, `stall_image`, `contact_no`, `email`, `password`, `status`) VALUES
-(1, 'stall01', 'stall01Owner', 2147483647, 'S1_owner.jpg', 'S1_stall.jpg', '0123456789', 'stall01@gmail.com', 'b2ca12dcc3fc922a59956e9b9a4c1484', 1);
+INSERT INTO `stall` (`ID`, `username`, `stall_name`, `owner_name`, `NRIC`, `owner_image`, `stall_image`, `contact_no`, `email`, `password`, `status`) VALUES
+(1, 'stall01', 'stall01', 'stall01Owner', 2147483647, 'S1_owner.jpg', 'S1_stall.jpg', '0123456789', 'stall01@gmail.com', 'b2ca12dcc3fc922a59956e9b9a4c1484', 1),
+(4, 'stall02', 'bbbb', 'victor', 2147483647, 'stall02_owner.jpg', 'stall02_stall.jpg', '01110011001', 'stall02@gmail.com', 'e7994bc07b3d3cc596624c07c9966bad', 1);
 
 -- --------------------------------------------------------
 
@@ -417,7 +419,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `stall`
 --
 ALTER TABLE `stall`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `timeable`
