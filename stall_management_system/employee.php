@@ -2,6 +2,7 @@
 session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
+include '../process/handle_if_logout_stall.php';
 ?>
 <!DOCTYPE html>
 <html>
