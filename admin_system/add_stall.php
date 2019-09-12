@@ -107,7 +107,7 @@ include '../process/handle_add_stall.php';
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label" for="password">Password</label>
 										<div class="col-md-9">
-											<input type="password" name="password" id="password" class="form-control <?= $r = ($password_valid == 'is-invalid') ? '' : $password_valid ; ?>" value="<?= $password ?>" required>
+											<input type="password" name="password" id="password" class="form-control <?= $password_valid; ?>" value="<?= $password ?>" required>
 										</div>
 									</div>
 								</div>
@@ -116,10 +116,13 @@ include '../process/handle_add_stall.php';
 										<label class="col-md-3 col-form-label">Stall Name</label>
 										<div class="col-md-9">
 											<input type="text" name="stall_name" class="form-control <?= $stall_name_valid ?>" value="<?= $stall_name; ?>" required>
+											<div class="invalid-feedback">
+												That stall is already exist.Try another.
+											</div>
 										</div>
 									</div>
-									<div class="form-group row" style="font-size: 0.82rem;">
-										<label class="col-md-3 col-form-label" for="confirm_password">Confirm Password</label>
+									<div class="form-group row">
+										<label class="col-md-3 col-form-label" for="confirm_password" style="font-size: 0.82rem;">Confirm Password</label>
 										<div class="col-md-9">
 											<input type="password" name="confirm_password" id="confirm_password" class="form-control <?= $password_valid; ?>" value="<?= $password; ?>" required>
 											<div class="invalid-feedback">
