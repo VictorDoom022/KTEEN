@@ -107,7 +107,7 @@ include '../process/handle_add_stall.php';
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label" for="password">Password</label>
 										<div class="col-md-9">
-											<input type="password" name="password" id="password" class="form-control <?= $password_valid; ?>" value="<?= $password ?>" required>
+											<input type="password" name="password" id="password" class="form-control <?= $password_valid; ?>" value="<?= $p ?>" required>
 										</div>
 									</div>
 								</div>
@@ -124,7 +124,7 @@ include '../process/handle_add_stall.php';
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label" for="confirm_password" style="font-size: 0.82rem;">Confirm Password</label>
 										<div class="col-md-9">
-											<input type="password" name="confirm_password" id="confirm_password" class="form-control <?= $password_valid; ?>" value="<?= $password; ?>" required>
+											<input type="password" name="confirm_password" id="confirm_password" class="form-control <?= $password_valid; ?>" value="<?= $p; ?>" required>
 											<div class="invalid-feedback">
 												Those password didn't match.Try again.
 											</div>
