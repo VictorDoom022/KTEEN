@@ -105,7 +105,6 @@ include '../process/handle_if_logout_stall.php';
 			live_search();
 		}
 		function live_search(){
-			// var category = document.getElementById().value;
 			category = document.getElementById('category').value;
 			var keyword = document.getElementById("keyword").value;
 			var xhttp;
