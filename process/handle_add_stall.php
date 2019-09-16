@@ -50,13 +50,14 @@ if (isset($_POST['add_stall'])) {
 		$owner_image = $username.'_owner.jpg';
 		$stall_image = $username.'_stall.jpg';
 
+		$sql = "INSERT INTO stall(username, stall_name, owner_name, NRIC, owner_image, stall_image, contact_no, email, password, status) VALUES ('$username', '$stall_name', '$owner_name', '$NRIC', '$owner_image', '$stall_image', '$contact_no', '$email', '$password', '1');";
+		$result = mysqli_query($conn, $sql) or die(mysqli_error());
+		
 		$target_dir = "../images/".$username."/";
 		$target_owner_image = $target_dir.$owner_image;
 		$target_stall_image = $target_dir.$stall_image;
 
-		echo $sql = "INSERT INTO stall(username, stall_name, owner_name, NRIC, owner_image, stall_image, contact_no, email, password, status) VALUES ('$username', '$stall_name', '$owner_name', '$NRIC', '$owner_image', '$stall_image', '$contact_no', '$email', '$password', '1');";
-		$result = mysqli_query($conn, $sql) or die(mysqli_error());
-
+		// open dir for menu and staff
 		mysqli_close($conn);
 		mkdir('../images/'.$username);
 		mkdir('../images/'.$username.'/menu');
