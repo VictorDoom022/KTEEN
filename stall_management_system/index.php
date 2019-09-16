@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include '../config/config.php';
 include '../process/handle_logout.php';
 include '../process/handle_if_logout_stall.php';
 ?>
@@ -21,6 +22,53 @@ include '../process/handle_if_logout_stall.php';
 	include '../layout/top_nav_stall.php';
 	include '../layout/side_nav_stall.php';
 	?>
+	<main class="container-fluid">
+		<div class="row py-3">
+			<div class="col-2"></div>
+			<div class="col-10">
+				<div class="row">
+					<div class="col">
+						<div class="k-card bg-white p-4">
+							<div class="">
+								<div class="row">
+									<div class="col-8">
+										<div class="card-title h3">
+											Notice Board
+										</div>
+									</div>
+									<button class="btn ml-auto mr-4">
+										<i class="fas fa-plus"></i>
+									</button>
+								</div>
+								<hr>
+								<?php 
+								$sql = "SELECT date, description FROM notice WHERE stall_ID = '".$_SESSION['kteen_stall_id']."' LIMIT 3";
+								$result = mysqli_query($conn, $sql);
+								if (mysqli_num_rows($result) > 0) {
+									while ($row = mysqli_fetch_assoc($result)) {
+								?>
+								<div class="row">
+									<div class="col-md-3 font-weight-bold">
+										<?= $row['date']; ?>
+									</div>
+									<div class="col-md-9">
+										<?= $row['description']; ?>
+									</div>
+								</div>
+								<?php
+									}
+								}else{
+									echo 'no result';
+								}
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</main>
 	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
