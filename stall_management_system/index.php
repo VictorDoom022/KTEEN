@@ -55,10 +55,11 @@ include '../process/handle_if_logout_stall.php';
 										<?= $row['description']; ?>
 									</div>
 								</div>
+								<hr>
 								<?php
 									}
 								}else{
-									echo 'no result';
+									echo '<div class="text-center text-muted">no notice</div>';
 								}
 								?>
 							</div>
