@@ -3,6 +3,11 @@ session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
 include '../process/handle_if_logout_stall.php';
+
+if (isset($_POST['add_notice'])) {
+	$description = $_POST[''];
+	$sql = "INSERT INTO notice";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,6 +27,36 @@ include '../process/handle_if_logout_stall.php';
 	include '../layout/top_nav_stall.php';
 	include '../layout/side_nav_stall.php';
 	?>
+	<div class="modal fade" tabindex="-1" role="dialog" id="add_notice">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body bg-light">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col">
+								<span class="modal-title h4">Notice</span>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</div>
+						<hr>
+						<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+							<label>Descripation</label>
+							<textarea class="form-control border-0 rounded-0" cols="30" rows="15"></textarea>
+							<hr>
+							<div class="row">
+								<div class="col text-right">
+									<button type="button" class="btn" data-dismiss="modal">Close</button>
+									<input type="submit" name="" class="btn btn-dark">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<main class="container-fluid">
 		<div class="row py-3">
 			<div class="col-2"></div>
@@ -36,7 +71,7 @@ include '../process/handle_if_logout_stall.php';
 											Notice Board
 										</div>
 									</div>
-									<button class="btn ml-auto mr-4">
+									<button type="button" data-toggle="modal" data-target="#add_notice" class="btn ml-auto mr-4">
 										<i class="fas fa-plus"></i>
 									</button>
 								</div>
