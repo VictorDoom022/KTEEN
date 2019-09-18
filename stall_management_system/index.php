@@ -4,6 +4,8 @@ include '../config/config.php';
 include '../process/handle_logout.php';
 include '../process/handle_if_logout_stall.php';
 include '../process/handle_add_notice.php';
+include '../process/handle_edit_notice.php';
+include '../process/handle_delete_notice.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,7 +32,7 @@ include '../process/handle_add_notice.php';
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col">
-								<span class="modal-title h4">Notice</span>
+								<span class="modal-title h4">Add Notice</span>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -38,8 +40,10 @@ include '../process/handle_add_notice.php';
 						</div>
 						<hr>
 						<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-							<label for="description">Description</label>
-							<textarea class="form-control border-0 rounded-0" cols="30" rows="15" name="description" id="description"></textarea>
+							<div class="form-group">
+								<label for="description">Description</label>
+								<textarea class="form-control border-0 rounded-0" cols="30" rows="15" name="description" id="description" required></textarea>
+							</div>
 							<hr>
 							<div class="row">
 								<div class="col text-right">
@@ -53,6 +57,7 @@ include '../process/handle_add_notice.php';
 			</div>
 		</div>
 	</div>
+	
 	<main class="container-fluid">
 		<div class="row py-3">
 			<div class="col-2"></div>
@@ -73,11 +78,44 @@ include '../process/handle_add_notice.php';
 								</div>
 								<hr>
 								<?php 
-								$sql = "SELECT date, description FROM notice WHERE stall_ID = '".$_SESSION['kteen_stall_id']."' LIMIT 3";
+								$sql = "SELECT ID, date, description FROM notice WHERE stall_ID = '".$_SESSION['kteen_stall_id']."' LIMIT 3";
 								$result = mysqli_query($conn, $sql);
 								if (mysqli_num_rows($result) > 0) {
 									while ($row = mysqli_fetch_assoc($result)) {
 								?>
+								<div class="modal fade" tabindex="-1" role="dialog" id="edit_notice_<?= $row['ID']; ?>">
+									<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+										<div class="modal-content">
+											<div class="modal-body bg-light">
+												<div class="container-fluid">
+													<div class="row">
+														<div class="col">
+															<span class="modal-title h4">Edit Notice</span>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+													</div>
+													<hr>
+													<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+														<input type="hidden" name="notice_id" value="<?= $row['ID']; ?>">
+														<div class="form-group">
+															<label for="description">Description</label>
+															<textarea class="form-control border-0 rounded-0" cols="30" rows="15" name="description" id="description" required><?= $row['description']; ?></textarea>
+														</div>
+														<hr>
+														<div class="row">
+															<div class="col text-right">
+																<button type="button" class="btn" data-dismiss="modal">Close</button>
+																<input type="submit" name="edit_notice" class="btn btn-dark">
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-md-3 font-weight-bold">
 										<?= $row['date']; ?>
@@ -86,8 +124,8 @@ include '../process/handle_add_notice.php';
 										<?= $row['description']; ?>
 									</div>
 									<div class="col-md-2 text-center p-2 p-lg-0">
-										<button class="btn btn-sm btn-outline-success">Edit</button>
-										<button class="btn btn-sm btn-outline-danger">Delete</button>
+										<button class="btn btn-sm btn-outline-success" type="button" data-toggle="modal" data-target="#edit_notice_<?= $row['ID']; ?>">Edit</button>
+										<button class="btn btn-sm btn-outline-danger" onclick="ask_delete_notice('<?= $row['ID'] ?>')">Delete</button>
 									</div>
 								</div>
 								<hr>
@@ -110,5 +148,13 @@ include '../process/handle_add_notice.php';
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		function ask_delete_notice(x){
+			var confirmBox = confirm("Are you want to delete the notice?");
+			if (confirmBox == true) {
+				window.location.assign("index.php?notice_id="+ x);
+			}
+		}
+	</script>
 </body>
 </html>
