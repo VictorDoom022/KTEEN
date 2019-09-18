@@ -3,11 +3,7 @@ session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
 include '../process/handle_if_logout_stall.php';
-
-if (isset($_POST['add_notice'])) {
-	$description = $_POST[''];
-	$sql = "INSERT INTO notice";
-}
+include '../process/handle_add_notice.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,13 +38,13 @@ if (isset($_POST['add_notice'])) {
 						</div>
 						<hr>
 						<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-							<label>Descripation</label>
-							<textarea class="form-control border-0 rounded-0" cols="30" rows="15"></textarea>
+							<label for="description">Description</label>
+							<textarea class="form-control border-0 rounded-0" cols="30" rows="15" name="description" id="description"></textarea>
 							<hr>
 							<div class="row">
 								<div class="col text-right">
 									<button type="button" class="btn" data-dismiss="modal">Close</button>
-									<input type="submit" name="" class="btn btn-dark">
+									<input type="submit" name="add_notice" class="btn btn-dark">
 								</div>
 							</div>
 						</form>
