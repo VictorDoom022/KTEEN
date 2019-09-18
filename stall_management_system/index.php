@@ -82,8 +82,12 @@ include '../process/handle_add_notice.php';
 									<div class="col-md-3 font-weight-bold">
 										<?= $row['date']; ?>
 									</div>
-									<div class="col-md-9">
+									<div class="col-md-7">
 										<?= $row['description']; ?>
+									</div>
+									<div class="col-md-2 text-center p-2 p-lg-0">
+										<button class="btn btn-sm btn-outline-success">Edit</button>
+										<button class="btn btn-sm btn-outline-danger">Delete</button>
 									</div>
 								</div>
 								<hr>
