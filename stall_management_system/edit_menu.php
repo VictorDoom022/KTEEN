@@ -39,7 +39,7 @@ include '../process/handle_edit_menu.php';
 							<div class="row">
 								<div class="col-md-4">
 									<div class="mx-auto" style="position: relative;height: 250px;width: 250px;">
-										<img src="../images/menu/<?= $image; ?>" style="width: 250px;height: 250px;position: absolute;" id="food_image">
+										<img src="../images/<?= $_SESSION['stall_username']; ?>/menu/<?= $image; ?>" style="width: 250px;height: 250px;position: absolute;" id="food_image">
 										<input type="file" name="fileToUpload" id="image" data-target="#food_image" style="opacity: 0;width: 100%;height: 100%;" required>
 										<label class="btn btn-dark m-0" for="image" style="position: absolute;right: -10px;bottom: 5px;">Browse</label>
 									</div>
