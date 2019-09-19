@@ -37,7 +37,7 @@ if(isset($_GET['c'])){
 					?>
 					<tr>
 						<th><?= $row['ID']; ?></th>
-						<td><img src="../images/menu/<?= $row['image'] ?>" style="width: 100px;height:75px;"></td>
+						<td><img src="../images/<?= $_SESSION['stall_username']; ?>/menu/<?= $row['image']; ?>" style="width: 100px;height:75px;"></td>
 						<td><?= $row['name']; ?></td>
 						<td><?= $row['category']; ?></td>
 						<td>RM <?= $row['price']; ?></td>
