@@ -41,7 +41,7 @@ if (isset($_GET['k'])) {
 							<a href="#modal_<?= $row['ID']; ?>" class="btn btn-sm btn-outline-dark" data-toggle="modal">View</a>
 						</td>
 						<td>
-							<button class="btn btn-sm btn-outline-success">Edit</button>
+							<a href="edit_menu.php?id=<?= $row['ID']; ?>" class="btn btn-sm btn-outline-success">Edit</a>
 						</td>
 						<td>
 							<button class="btn btn-sm btn-outline-primary">Hide</button>
