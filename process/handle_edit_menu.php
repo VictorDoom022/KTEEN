@@ -22,13 +22,14 @@ if(isset($_POST['add_menu'])){
 
     $food_name = test_input($_POST['name']);
     $category_ID = test_input($_POST['category_ID']);
-    $image = test_input("S".$_SESSION['kteen_stall_id']."_".$food_name.".jpg");
+    $image = test_input("S" . $_SESSION['kteen_stall_id'] . "_" . $food_name . ".jpg");
+    $image_time = $image . "?t=" . time();
     $price = test_input($_POST['price']);
 
-    echo $sql = "UPDATE food SET name = '$food_name', category_ID= '$category_ID', price = '$price' WHERE id = '$food_id';";
+    $sql = "UPDATE food SET name = '$food_name', category_ID= '$category_ID', price = '$price', image = '$image_time' WHERE id = '$food_id';";
     $result = $conn->query($sql);
 
-    $target_dir = "../images/menu/";
+    $target_dir = "../images/" . $_SESSION['stall_username'] . "/menu/";
     $target_file = $target_dir.$image;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
