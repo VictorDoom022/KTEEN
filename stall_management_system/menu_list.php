@@ -6,6 +6,11 @@ if (isset($_GET['k'])) {
     $keyword = " AND food.name LIKE '%".$_GET['k']."%'";
 }
 
+$search_category = "";
+if(isset($_GET['c'])){
+	$search_category = " AND category_ID = '".$_GET['c']."'";
+}
+
 ?>
 <div class="k-card card">
 	<div class="card-body">
@@ -25,7 +30,7 @@ if (isset($_GET['k'])) {
 				<tbody>
 					<?php 
 					include '../config/config.php';
-					$sql = "SELECT food.ID AS ID, food.name AS name, image, category.name AS category, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '".$_SESSION['kteen_stall_id']."'".$keyword." LIMIT 10";
+					$sql = "SELECT food.ID AS ID, food.name AS name, image, category.name AS category, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '".$_SESSION['kteen_stall_id']."'".$keyword.$search_category." LIMIT 10";
 					$result = mysqli_query($conn, $sql)  or die (mysqli_error($conn));
 					if(mysqli_num_rows($result)){
 						while ($row = mysqli_fetch_assoc($result)) {
