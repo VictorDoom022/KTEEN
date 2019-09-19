@@ -49,7 +49,16 @@ if(isset($_GET['c'])){
 							<a href="edit_menu.php?id=<?= $row['ID']; ?>" class="btn btn-sm btn-outline-success">Edit</a>
 						</td>
 						<td>
-							<button class="btn btn-sm btn-outline-primary">Hide</button>
+							<?php 
+							if ($row['available'] == 1) { ?>
+								<button class="btn btn-sm btn-outline-warning">hidden</button>
+							<?php
+							}else{
+							?>
+								<button class="btn btn-sm btn-outline-primary">action</button>
+							<?php 
+							}
+							?>
 						</td>
 						<td>
 							<button class="btn btn-sm btn-outline-danger">Delete</button>
