@@ -100,17 +100,17 @@ session_start();
                 <div id="display_item"></div>
                 <div class="row">
                 <?php
-			$sql = "SELECT * FROM food";
-			$result = $conn ->query($sql);
+        			$sql = "SELECT * FROM food";
+        			$result = $conn ->query($sql);
 
-			if($result ->num_rows>0){
-				while ($row = $result ->fetch_assoc()) {
-					$ID = $row['ID'];
-							$name = $row['name'];
-							$stall_ID = $row['stall_ID'];
-							$category_ID = $row['category_ID'];
-							$image = $row['image'];
-							$price = $row['price'];
+        			if($result ->num_rows>0){
+        				while ($row = $result ->fetch_assoc()) {
+        					$ID = $row['ID'];
+        							$name = $row['name'];
+        							$stall_ID = $row['stall_ID'];
+        							$category_ID = $row['category_ID'];
+        							$image = $row['image'];
+        							$price = $row['price'];
 			
 			?>
             <div class="col-sm-6 col-md-4 col-lg-3 p-2">
@@ -124,13 +124,13 @@ session_start();
                             <div class="card-text"><span class="name"><?php echo $name ?></span>: RM<span class="price"><?php echo $price ?></span> </div>
                         </div>
                     </div>
-                <div class="k-card card k-hover-shadow h-100">
+                </div>
             </div>
 			<?php
 				}
 			}	
 			?>
-            
+            </div>
             </main>
             <div style="width: 350px;"></div>
         </div>
