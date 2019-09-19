@@ -27,7 +27,7 @@ if (isset($_GET['k'])) {
             <div class="k-card card k-hover-shadow h-100">
                 <div class="row no-gutters">
                     <div class="col-5">
-                        <img style="width: 100%;height: 125px;" src="../images/menu/<?php echo $image; ?>">
+                        <img style="width: 100%;height: 125px;" src="../images/<?= $_SESSION['stall_username']; ?>/menu/<?= $image; ?>">
                     </div>
                     <div class="col-7">
                         <div class="card-body">

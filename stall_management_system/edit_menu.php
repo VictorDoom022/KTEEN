@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include '../config/config.php';
-include '../process/handle_add_menu.php';
+include '../process/handle_edit_menu.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,7 @@ include '../process/handle_add_menu.php';
 </head>
 <body>
 	<?php 
-	$site = 'Menu';
+	$site = 'Edit Menu';
 	include '../layout/top_nav_stall.php';
 	include '../layout/side_nav_stall.php';
 	?>
@@ -39,28 +39,29 @@ include '../process/handle_add_menu.php';
 							<div class="row">
 								<div class="col-md-4">
 									<div class="mx-auto" style="position: relative;height: 250px;width: 250px;">
-										<img src="../images/food_image.png" style="width: 250px;height: 250px;position: absolute;" id="food_image">
+										<img src="../images/<?= $_SESSION['stall_username']; ?>/menu/<?= $image; ?>" style="width: 250px;height: 250px;position: absolute;" id="food_image">
 										<input type="file" name="fileToUpload" id="image" data-target="#food_image" style="opacity: 0;width: 100%;height: 100%;" required>
 										<label class="btn btn-dark m-0" for="image" style="position: absolute;right: -10px;bottom: 5px;">Browse</label>
 									</div>
 								</div>
 								<div class="col-md-8">
+									<input type="hidden" name="food_id" value="<?= $food_id; ?>">
 									<div class="form-group row">
-										<label class="col-md-3 col-form-label text-nowrap">Food ID :</label>
+										<!-- <label class="col-md-3 col-form-label text-nowrap">Food ID :</label>
 										<div class="col-md-9">
-											<input type="text" name="ID" class="form-control" placeholder="">
-										</div>
+											<input type="text" name="ID" class="form-control">
+										</div> -->
 									</div>
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label text-nowrap">Food Name :</label>
 										<div class="col-md-9">
-											<input type="text" name="name" class="form-control">
+											<input type="text" name="name" class="form-control" value="<?= $food_name; ?>">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label">Price :</label>
 										<div class="col-md-9">
-											<input type="text" name="price" class="form-control">
+											<input type="text" name="price" class="form-control" value="<?= $price ?>">
 										</div>
 									</div>
 									<div class="form-group row">
@@ -74,7 +75,7 @@ include '../process/handle_add_menu.php';
 												if(mysqli_num_rows($result)){
 													while ($row = mysqli_fetch_assoc($result)) {
 												?>
-												<option value="<?= $row['ID'] ?>"><?= $row['name'] ?></option>
+												<option value="<?= $row['ID'] ?>" <?= $r = ($category_ID == $row['ID'])? 'selected':''; ?>><?= $row['name'] ?></option>
 												<?php
 													}
 												}

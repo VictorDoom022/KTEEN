@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include '../process/handle_logout.php';
+include '../process/handle_if_logout_staff.php';
 ?>
 <!DOCTYPE html>
 <html>

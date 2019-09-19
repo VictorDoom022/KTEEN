@@ -6,6 +6,11 @@ if (isset($_GET['k'])) {
     $keyword = " AND food.name LIKE '%".$_GET['k']."%'";
 }
 
+$search_category = "";
+if(isset($_GET['c'])){
+	$search_category = " AND category_ID = '".$_GET['c']."'";
+}
+
 ?>
 <div class="k-card card">
 	<div class="card-body">
@@ -25,14 +30,14 @@ if (isset($_GET['k'])) {
 				<tbody>
 					<?php 
 					include '../config/config.php';
-					$sql = "SELECT food.ID AS ID, food.name AS name, image, category.name AS category, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '".$_SESSION['kteen_stall_id']."'".$keyword." LIMIT 10";
+					$sql = "SELECT food.ID AS ID, food.name AS name, image, category.name AS category, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '".$_SESSION['kteen_stall_id']."'".$keyword.$search_category." LIMIT 10";
 					$result = mysqli_query($conn, $sql)  or die (mysqli_error($conn));
 					if(mysqli_num_rows($result)){
 						while ($row = mysqli_fetch_assoc($result)) {
 					?>
 					<tr>
 						<th><?= $row['ID']; ?></th>
-						<td><img src="../images/menu/<?= $row['image'] ?>" style="width: 100px;height:75px;"></td>
+						<td><img src="../images/<?= $_SESSION['stall_username']; ?>/menu/<?= $row['image']; ?>" style="width: 100px;height:75px;"></td>
 						<td><?= $row['name']; ?></td>
 						<td><?= $row['category']; ?></td>
 						<td>RM <?= $row['price']; ?></td>
@@ -41,10 +46,19 @@ if (isset($_GET['k'])) {
 							<a href="#modal_<?= $row['ID']; ?>" class="btn btn-sm btn-outline-dark" data-toggle="modal">View</a>
 						</td>
 						<td>
-							<button class="btn btn-sm btn-outline-success">Edit</button>
+							<a href="edit_menu.php?id=<?= $row['ID']; ?>" class="btn btn-sm btn-outline-success">Edit</a>
 						</td>
 						<td>
-							<button class="btn btn-sm btn-outline-primary">Hide</button>
+							<?php 
+							if ($row['available'] == 1) { ?>
+								<button class="btn btn-sm btn-outline-warning">hidden</button>
+							<?php
+							}else{
+							?>
+								<button class="btn btn-sm btn-outline-primary">action</button>
+							<?php 
+							}
+							?>
 						</td>
 						<td>
 							<button class="btn btn-sm btn-outline-danger">Delete</button>
