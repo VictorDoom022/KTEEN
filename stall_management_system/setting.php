@@ -13,8 +13,8 @@ session_start();
 
 	<script src="../js/show_input_image.js"></script>
 	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<title></title>
@@ -38,27 +38,62 @@ session_start();
 						<div class="row">
 							<div class="col-md-9"></div>
 							<div class="col-md-3 text-right">
-								<button class="btn btn-dark btn-sm">Edit</button>
+								<button class="btn btn-dark btn-sm edit">Edit</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="k-card bg-white p-4 mb-4">
+				<div class="k-card bg-white mb-4 p-4">
 					<div class="h4">
-						Login
+						Security
 					</div>
 					<hr>
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-9">Change password</div>
 							<div class="col-md-3 text-right">
-								<button class="btn btn-dark btn-sm">Edit</button>
+								<button class="btn btn-dark btn-sm edit" data-target="#change_password_panel">Edit</button>
 							</div>
 						</div>
+						<div id="change_password_panel" style="display: none;" class="pt-4">
+							<div class="row bg-light border p-3">
+								<form class="col-md-8">
+									<div class="form-group">
+										<label class="form-label-col">Current password</label>
+										<input type="" name="" class="form-control">
+									</div>
+									<div class="form-group">
+										<label>New password</label>
+										<input type="" name="" class="form-control">
+									</div>
+									<div class="form-group">
+										<label>Retype new  password</label>
+										<input type="" name="" class="form-control">
+									</div>
+									<hr>
+									<input type="submit" name="">
+								</form>
+								<div class="col-md-4"></div>
+							</div>
+							
+						</div>
+						
 					</div>
 				</div>
 			</div>
 		</div>
 	</main>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".edit").click(function(){
+				if ($(this).html() == "Edit") {
+					$($(this).attr("data-target")).fadeIn();
+					$(this).html("Cancel");
+				}else{
+					$(this).html("Edit");
+				}
+			});
+		});
+	</script>
 </body>
 </html>
