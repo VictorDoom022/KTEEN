@@ -33,9 +33,7 @@ include '../process/handle_change_password_stall.php';
 			<div class="col-2"></div>
 			<div class="col-10">
 				<div class="k-card bg-white p-4 mb-4">
-					<div class="h4">
-						Info
-					</div>
+					<div class="h4">Info</div>
 					<hr>
 					<div class="container-fluid">
 						<div class="row">
@@ -47,9 +45,7 @@ include '../process/handle_change_password_stall.php';
 					</div>
 				</div>
 				<div class="k-card bg-white mb-4 p-4">
-					<div class="h4">
-						Security
-					</div>
+					<div class="h4">Security</div>
 					<hr>
 					<div class="container-fluid">
 						<div class="row">
@@ -66,19 +62,25 @@ include '../process/handle_change_password_stall.php';
 										<div class="form-group row">
 											<label class="col-form-label col-md-3" style="font-size: 0.85rem;">Current password</label>
 											<div class="col-md-9">
-												<input type="password" name="current_password" class="form-control form-control-sm">
+												<input type="password" name="current_password" class="form-control form-control-sm <?= $valid_current_password; ?>" value="<?= $p; ?>" <?= $r = ($valid_current_password == 'is-invalid') ? 'autofocus' : ''; ?> required>
+												<div class="invalid-feedback">
+													wrong password.
+												</div>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-form-label col-md-3" style="font-size: 0.85rem;">New password</label>
 											<div class="col-md-9">
-												<input type="password" name="" class="form-control form-control-sm">
+												<input type="password" name="new_password" class="form-control form-control-sm <?= $valid_not_match_password; ?>" <?= $r = ($valid_not_match_password == 'is-invalid') ? 'autofocus' : ''; ?> required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-form-label col-md-3" style="font-size: 0.9rem;">Retype new password</label>
 											<div class="col-md-9">
-												<input type="password" name="" class="form-control form-control-sm">
+												<input type="password" name="retype_new_password" class="form-control form-control-sm <?= $valid_not_match_password; ?>">
+												<div class="invalid-feedback">
+													The password are not match
+												</div>
 											</div>
 										</div>
 										<hr>
@@ -101,6 +103,10 @@ include '../process/handle_change_password_stall.php';
 	</main>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			<?php if ($valid_current_password != ""): ?>
+				$("#change_password_panel").fadeIn();
+				$(this).html("Cancel");
+			<?php endif ?>
 			$(".edit").click(function(){
 				if ($(this).html() == "Edit") {
 					$($(this).attr("data-target")).fadeIn();
