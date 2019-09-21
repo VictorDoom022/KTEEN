@@ -1,4 +1,5 @@
 <?php
+$icon = '';
 switch ($site) {
     case 'Dashboard':
         $icon = '<i class="fas fa-home d-inline-flex mr-2"></i>';
@@ -15,7 +16,7 @@ switch ($site) {
     case 'Purchase':
         $icon = '<i class="fas fa-boxes d-inline-flex mr-2"></i>';
         break;
-    case 'Setting':
+    case 'Settings':
         $icon = '<i class="fas fa-cog d-inline-flex mr-2"></i>';
         break;
 }
@@ -31,7 +32,7 @@ switch ($site) {
             </a>
             <div class="dropdown-menu dropdown-menu-right rounded-0 shadow border-0" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="">Notification</a>
-                <a class="dropdown-item" href="setting.php">Setting</a>
+                <a class="dropdown-item" href="setting.php">Settings</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="index.php?logout='1'">Log Out</a>
             </div>
