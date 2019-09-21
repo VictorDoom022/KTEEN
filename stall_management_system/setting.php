@@ -1,5 +1,8 @@
 <?php
 session_start();
+include '../config/config.php';
+include '../process/handle_if_logout_stall.php';
+include '../process/handle_change_password_stall.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +24,7 @@ session_start();
 </head>
 <body>
 	<?php
-	$site = "Setting";
+	$site = "Settings";
 	include '../layout/top_nav_stall.php';
 	include '../layout/side_nav_stall.php';
 	?>
@@ -57,23 +60,36 @@ session_start();
 						</div>
 						<div id="change_password_panel" style="display: none;" class="pt-4">
 							<div class="row bg-light border p-3">
-								<form class="col-md-8">
-									<div class="form-group">
-										<label class="form-label-col">Current password</label>
-										<input type="" name="" class="form-control">
-									</div>
-									<div class="form-group">
-										<label>New password</label>
-										<input type="" name="" class="form-control">
-									</div>
-									<div class="form-group">
-										<label>Retype new  password</label>
-										<input type="" name="" class="form-control">
-									</div>
-									<hr>
-									<input type="submit" name="">
-								</form>
-								<div class="col-md-4"></div>
+								<div class="col-md-2"></div>
+								<div class="col-md-8">
+									<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="m-0">
+										<div class="form-group row">
+											<label class="col-form-label col-md-3" style="font-size: 0.85rem;">Current password</label>
+											<div class="col-md-9">
+												<input type="password" name="current_password" class="form-control form-control-sm">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-3" style="font-size: 0.85rem;">New password</label>
+											<div class="col-md-9">
+												<input type="password" name="" class="form-control form-control-sm">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-3" style="font-size: 0.9rem;">Retype new password</label>
+											<div class="col-md-9">
+												<input type="password" name="" class="form-control form-control-sm">
+											</div>
+										</div>
+										<hr>
+										<div class="row">
+											<div class="col-md-12 text-right">
+												<input type="submit" name="change_password" class="btn btn-dark btn-sm">
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="col-md-2"></div>
 							</div>
 							
 						</div>
@@ -90,6 +106,7 @@ session_start();
 					$($(this).attr("data-target")).fadeIn();
 					$(this).html("Cancel");
 				}else{
+					$($(this).attr("data-target")).fadeOut();
 					$(this).html("Edit");
 				}
 			});
