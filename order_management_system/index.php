@@ -26,6 +26,6 @@ include '../process/handle_if_logout_staff.php';
 	include '../layout/top_nav_staff.php';
 	include '../layout/side_nav_staff.php';
 	?>
-	
+	make order
 </body>
 </html>
