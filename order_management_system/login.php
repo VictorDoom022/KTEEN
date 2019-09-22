@@ -29,11 +29,11 @@
 						<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 							<div class="form-group">
 								<label for="username">Username</label>
-								<input id="username" type="text" name="username" class="form-control rounded-0" required>
+								<input id="username" type="text" name="username" class="form-control rounded-0" placeholder="Enter Username" required>
 							</div>
 							<div class="form-group">
 								<label for="password">Password</label>
-								<input type="password" name="password" class="form-control rounded-0" id="password" required>
+								<input type="password" name="password" placeholder="Enter password" class="form-control rounded-0" id="password" required>
 							</div>
 							<div class="form-group-sm text-center">
 								<?php include('../config/error.php'); ?>
