@@ -26,6 +26,25 @@ include '../process/handle_if_logout_staff.php';
 	include '../layout/top_nav_staff.php';
 	include '../layout/side_nav_staff.php';
 	?>
-	make order
+	<main class="row">
+		<div class="col-2"></div>
+		<div class="col-10">
+			<div class="container-fluid pt-3">
+				<div class="k-card card">
+					<div class="card-header bg-white">
+						<button onclick="open_add_menu_page()" class="btn btn-dark">Make order</button>
+					</div>
+					<div class="card-body">
+						div
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script>
+		function open_add_menu_page(){
+			add_menu_window = window.open("make_order.php", "","width=1400, height=500")
+		}
+	</script>
 </body>
 </html>
