@@ -1,9 +1,5 @@
 <?php 
-<<<<<<< HEAD
 include '../config/config.php';
-=======
-include '../server/config.php';
->>>>>>> 7edb6feafb501034ed0a7a6e134121f1e5361575
 
 session_start();
 
@@ -16,13 +12,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- css -->
-<<<<<<< HEAD
-    <link rel="stylesheet" href="../css/style.css">
-=======
     <link rel="stylesheet" href="../css/kteen_style.css">
     <link rel="stylesheet" type="text/css" href="../css/kteen_cart_card.css">
     <link rel="stylesheet" type="text/css" href="../css/kteen_food_list.css">
->>>>>>> 7edb6feafb501034ed0a7a6e134121f1e5361575
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
     
@@ -32,18 +24,11 @@ session_start();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<<<<<<< HEAD
     <script src="https://cdnjs.cloudflare.com/ajax/libs/livequery/1.1.1/jquery.livequery.js"></script>
 
     <title>KTEEN</title>
 </head>
 <body class="bg-light" onload="filter();">
-=======
-
-    <title>KTEEN</title>
-</head>
-<body class="bg-light" onload="filter()">
->>>>>>> 7edb6feafb501034ed0a7a6e134121f1e5361575
     <nav class="k-top-nav navbar navbar-expand-lg navbar-light pl-4 col-12 bg-white border-bottom">
         <span class="navbar-brand h1 mb-0 col">KTEEN</span>
         <ul class="navbar-nav px-4">
@@ -57,56 +42,29 @@ session_start();
         </ul>
     </nav>
 
-<<<<<<< HEAD
     
-    
-=======
-    <div class="k-cart">
-        <div id="left_bar"> 
-            
-            <form action="#" id="cart_form" name="cart_form">
-            
-            <div class="cart-info"></div>
-            
-            <div class="cart-total">
-            
-                <b>Total Charges:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> RM<span>0</span>
-                
-                <input type="hidden" name="total-hidden-charges" id="total-hidden-charges" value="0" />
-            </div>
-            
-            <button type="submit" id="Submit">CheckOut</button>
-            
-            </form>
-            
-        </div>
-    </div>
->>>>>>> 7edb6feafb501034ed0a7a6e134121f1e5361575
+    <div id="left_bar"> 
+		
+		<form action="#" id="cart_form" name="cart_form">
+		
+		<div class="cart-info"></div>
+		
+		<div class="cart-total">
+		
+			<b>Total Charges:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> RM<span>0</span>
+			
+			<input type="hidden" name="total-hidden-charges" id="total-hidden-charges" value="0" />
+		</div>
+		
+		<button type="submit" id="Submit">CheckOut</button>
+		
+		</form>
+		
+	</div> 
 
     <div class="container-fluid">
         
             <main class="p-4">
-<<<<<<< HEAD
-                    <div id="left_bar"> 
-                        
-                        <form id="cart_form" name="cart_form">
-                        
-                        <div class="cart-info"></div>
-                        
-                        <div class="cart-total">
-                        
-                            <b>Total Charges:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b> RM<span>0</span>
-                            
-                            <input type="hidden" name="total-hidden-charges" id="total-hidden-charges" value="0" />
-                        </div>
-                        
-                        <button type="submit" id="Submit">CheckOut</button>
-                        
-                        </form>
-                        
-                    </div> 
-=======
->>>>>>> 7edb6feafb501034ed0a7a6e134121f1e5361575
                 <div class="row pb-3">
                     <div class="col-12 col-sm-5 col-md-4 col-lg-3">
                         <div class="btn-group shadow-sm m-2">
@@ -159,11 +117,7 @@ session_start();
                 <div class="k-card card k-hover-shadow h-100">
                     <div id="<?php echo $ID ?>" class="jjyy">
                         <div> 
-<<<<<<< HEAD
                             <img src="../images/menu/<?php echo $image; ?>" class="items" height="100" alt="" style="width: 100%;height: 200px;align-self: center;vertical-align: center;" />
-=======
-                            <img src="../images/menu/<?php echo $image; ?>" class="items" height="100" alt="" />
->>>>>>> 7edb6feafb501034ed0a7a6e134121f1e5361575
                         </div>
                         <div class="card-body">
                             <br clear="all" />
@@ -176,11 +130,8 @@ session_start();
 				}
 			}	
 			?>
-<<<<<<< HEAD
 
             <br clear="all"/>
-=======
->>>>>>> 7edb6feafb501034ed0a7a6e134121f1e5361575
             </div>
             </main>
             <div style="width: 350px;"></div>
@@ -324,10 +275,7 @@ function getpos(arr, obj) {
 }
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 7edb6feafb501034ed0a7a6e134121f1e5361575
 </script>
 </html>
 
