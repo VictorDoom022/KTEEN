@@ -43,7 +43,7 @@ include '../process/handle_if_logout_staff.php';
 	</main>
 	<script>
 		function open_add_menu_page(){
-			add_menu_window = window.open("make_order.php", "","width=1400, height=500")
+			add_menu_window = window.open("make_order.php", "","width=1250, height=500")
 		}
 	</script>
 </body>
