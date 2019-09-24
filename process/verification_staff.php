@@ -8,12 +8,13 @@ if(isset($_POST['login'])){
     $password = $_POST['password'];
     //$password = md5($password);
 
-    if ($stmt = $conn->prepare("SELECT ID, username, image FROM staff WHERE username = ? AND password = ?")){
+    if ($stmt = $conn->prepare("SELECT ID, stall_ID, username, image FROM staff WHERE username = ? AND password = ?")){
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
-        $stmt->bind_result($staff_ID, $staff_name, $staff_photo);
+        $stmt->bind_result($staff_ID, $stall_ID, $staff_name, $staff_photo);
         if ($stmt->fetch()) {
             $_SESSION['staff_ID'] = $staff_ID;
+            $_SESSION['stall_ID'] = $stall_ID;
             $_SESSION['staff_name'] = $staff_name;
             $_SESSION['staff_image'] = $staff_photo;
             $error = "";
