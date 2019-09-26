@@ -1,6 +1,6 @@
 <?php 
-$conn = new mysqli('localhost', 'root', '', 'kteen');
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
+$conn = mysqli_connect('localhost', 'root', '', 'kteen');
+if (mysqli_connect_errno()) {
+	die("Connection failed: " . mysqli_connect_error());
 }
  ?>
