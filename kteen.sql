@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2019 at 07:41 AM
+-- Generation Time: Sep 26, 2019 at 08:08 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -96,15 +96,15 @@ CREATE TABLE `food` (
 --
 
 INSERT INTO `food` (`ID`, `name`, `stall_ID`, `category_ID`, `image`, `price`, `available`) VALUES
-(1, 'Fried Rice', 1, 1, 'S1_Fried Rice.jpg', 5.00, '1'),
+(1, 'Fried Rice', 1, 1, 'S1_Fried Rice.jpg?t=1569292667', 6.00, '1'),
 (2, 'Nasi Lemak', 1, 1, 'S1_Nasi Lemak.jpg', 4.00, '1'),
 (3, 'Mee Siam', 1, 2, 'S1_Mee Siam.jpg', 4.00, '1'),
 (4, 'Laksa', 1, 2, 'S1_Laksa.jpg', 6.00, '1'),
 (5, 'Prawn Noodle', 1, 2, 'S1_Prawn Noodle.jpg', 6.00, '1'),
-(6, 'Nasi Pattaya', 1, 1, 'S1_Nasi Pattaya.jpg', 5.00, '1'),
+(6, 'Nasi Pattaya', 1, 1, 'S1_Nasi Pattaya.jpg', 5.00, '0'),
 (7, 'Wan Tan Mee', 1, 2, 'S1_Wan Tan Mee.jpg', 6.00, '1'),
 (8, 'Maggi Mee', 1, 2, 'S1_Maggi Mee.jpg', 4.00, '1'),
-(9, 'Fried Rice', 1, 2, 'S1_Fried Rice.jpg', 6.00, '0');
+(9, 'Fried Rice', 1, 1, 'S1_Fried Rice.jpg', 6.00, '1');
 
 -- --------------------------------------------------------
 
@@ -116,8 +116,15 @@ CREATE TABLE `notice` (
   `ID` int(10) NOT NULL,
   `stall_ID` int(6) NOT NULL,
   `date` date NOT NULL,
-  `notice` varchar(200) NOT NULL
+  `description` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notice`
+--
+
+INSERT INTO `notice` (`ID`, `stall_ID`, `date`, `description`) VALUES
+(5, 1, '2019-09-19', 'We will closed form september 20 to 22');
 
 -- --------------------------------------------------------
 
@@ -127,9 +134,9 @@ CREATE TABLE `notice` (
 
 CREATE TABLE `orders` (
   `ID` int(11) NOT NULL,
-  `customer_ID` int(6) NOT NULL,
+  `Customer_ID` int(6) NOT NULL,
   `stall_ID` int(6) NOT NULL,
-  `date` date NOT NULL,
+  `date` datetime NOT NULL,
   `number` int(11) NOT NULL,
   `completed` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -141,7 +148,7 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `order_detail` (
-  `ID` int(20) NOT NULL,
+  `ID` int(6) NOT NULL,
   `order_ID` int(7) NOT NULL,
   `food_ID` int(6) NOT NULL,
   `quantity` int(2) NOT NULL,
@@ -259,7 +266,8 @@ CREATE TABLE `stall` (
 
 INSERT INTO `stall` (`ID`, `username`, `stall_name`, `owner_name`, `NRIC`, `owner_image`, `stall_image`, `contact_no`, `email`, `password`, `status`) VALUES
 (1, 'stall01', 'stall01', 'stall01Owner', 2147483647, 'S1_owner.jpg', 'S1_stall.jpg', '0123456789', 'stall01@gmail.com', 'b2ca12dcc3fc922a59956e9b9a4c1484', 1),
-(4, 'stall02', 'bbbb', 'victor', 2147483647, 'stall02_owner.jpg', 'stall02_stall.jpg', '01110011001', 'stall02@gmail.com', 'e7994bc07b3d3cc596624c07c9966bad', 1);
+(4, 'stall02', 'bbbb', 'victor', 2147483647, 'stall02_owner.jpg', 'stall02_stall.jpg', '01110011001', 'stall02@gmail.com', 'e7994bc07b3d3cc596624c07c9966bad', 1),
+(5, 'llc0202', 'Chicken Duck Shop', 'llc', 2147483647, 'llc0202_owner.jpg', 'llc0202_stall.jpg', '0187801201', 'liangjun487@gmail.co', '202cb962ac59075b964b07152d234b70', 1);
 
 -- --------------------------------------------------------
 
@@ -313,6 +321,12 @@ ALTER TABLE `notice`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `order_detail`
+--
+ALTER TABLE `order_detail`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -383,13 +397,19 @@ ALTER TABLE `food`
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `order_detail`
+--
+ALTER TABLE `order_detail`
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -419,7 +439,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `stall`
 --
 ALTER TABLE `stall`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `timeable`
