@@ -88,6 +88,7 @@ include '../process/handle_edit_menu.php';
 							</div>
 							<div class="row">
 								<div class="col-12 text-right">
+									<a href="menu.php" class="btn">Cancel</a>
 									<input type="submit" name="add_menu" class="btn btn-dark">
 								</div>
 							</div>
