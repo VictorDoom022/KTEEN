@@ -66,28 +66,6 @@ include '../process/handle_if_logout_stall.php';
 					</div>
 				</div>
 				<div id="view"></div>
-				<nav aria-label="..." class="row text-right">
-					<ul class="pagination">
-						<li class="page-item disabled">
-							<span class="btn">
-								<i class="fas fa-angle-left"></i>
-							</span>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item active" aria-current="page">
-							<span class="page-link">
-							2
-						<span class="sr-only">(current)</span>
-					</span>
-				    </li>
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
-				    <li class="page-item">
-				      <a class="btn" href="#">
-				      	<i class="fas fa-angle-right"></i>
-				      </a>
-				    </li>
-				  </ul>
-				</nav>
 			</div>
 		</div>
 	</main>

@@ -2,6 +2,7 @@
 session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
+include '../process/handle_add_employee.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,7 +46,7 @@ include '../process/handle_logout.php';
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Name</label>
 											<div class="col-md-9">
-												<input type="text" name="name" class="form-control" required>
+												<input type="text" name="employee_name" class="form-control" required>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -87,7 +88,7 @@ include '../process/handle_logout.php';
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Confirm Password</label>
 											<div class="col-md-9">
-												<input type="password" name="password" class="form-control">
+												<input type="password" name="password_confirm" class="form-control">
 											</div>
 										</div>
 									</div>

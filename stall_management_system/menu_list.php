@@ -68,10 +68,25 @@ if(isset($_GET['c'])){
 					include 'menu_modal.php';
 						}
 					}
-					mysqli_close($conn);
 					?>
 				</tbody>
 			</table>
 		</div>
 	</div>
+</div>
+<div class="pt-2">
+	<ul class="pagination">
+		<?php 
+		$result = mysqli_query($conn, "SELECT * FROM food WHERE  stall_ID = '". $_SESSION['kteen_stall_id'] ."'");
+		$count = mysqli_num_rows($result);
+		$a = $count = $count / 9;
+		$a = ceil($a);
+		mysqli_close($conn);
+
+		for ($i = 1; $i <= $a; $i++) { ?>
+		<li class="page-item">
+			<button class="page-link" onclick="live_search()"><?= $i ?></button>
+		</li>
+		<?php } ?>
+  </ul>
 </div>

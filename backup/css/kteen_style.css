@@ -1,0 +1,106 @@
+nav.k-top-nav{
+    height: 90px;
+    padding: 0;
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    top: 0;
+    right: 0;
+    margin: 0;
+}
+
+nav.k-side-nav{
+    z-index: 2;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+}
+
+nav.k-side-nav div.logo{
+    height: 90px;
+    width: 100%;
+    position: relative;
+}
+
+nav.k-side-nav div.logo h2{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+nav.k-side-nav div.logo h2 a{
+    color: #000000;
+}
+
+nav.k-side-nav div.logo h2 a:hover{
+    text-decoration: none;
+}
+
+div.k-nav-container{
+    width: 100%;
+    position: relative;
+}
+
+ul.k-nav{
+    position: absolute;
+    left: 50%;
+    width: 80%;
+    transform: translateX(-50%);
+}
+
+nav.k-side-nav ul li a{
+    color: #353535;
+}
+
+nav.k-side-nav ul li a.active{
+    background: black;
+    color: white;
+    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.2);
+}
+
+nav.k-side-nav ul li a i{
+    padding: 7px;
+}
+
+nav.k-side-nav ul li a:not(.active):hover{
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+nav.k-side-nav ul li a.active:hover{
+    background-color: rgb(70, 70, 70);
+}
+
+nav.k-side-nav-r{
+    z-index: 1;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 90px;
+}
+
+main{
+    margin-top: 90px;
+}
+
+div.k-card{
+    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.1);
+    border: none;
+}
+
+div.k-card div.k-card-body{
+    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+}
+
+.k-hover-shadow{
+    transition: all .2s ease;
+}
+
+.k-hover-shadow:hover{
+    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.3)!important;
+}
+
+a.card-link:hover{
+    cursor: pointer;
+}
