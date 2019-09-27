@@ -50,7 +50,7 @@ include '../process/handle_if_logout_staff.php';
 		$(document).ready(function() {
 			var auto_refresh_element = setInterval(function() {
 				$('#order_area').load('order_list.php');
-			}, 1000);
+			}, 2000);
 		});
 	</script>
 </body>
