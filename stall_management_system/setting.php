@@ -62,7 +62,7 @@ include '../process/handle_change_password_stall.php';
 										<div class="form-group row">
 											<label class="col-form-label col-md-3" style="font-size: 0.85rem;">Current password</label>
 											<div class="col-md-9">
-												<input type="password" name="current_password" class="form-control form-control-sm <?= $valid_current_password; ?>" value="<?= $p; ?>" <?= $r = ($valid_current_password == 'is-invalid') ? 'autofocus' : ''; ?> required>
+												<input type="password" name="current_password" class="form-control form-control-sm password <?= $valid_current_password; ?>" value="<?= $p; ?>" <?= $r = ($valid_current_password == 'is-invalid') ? 'autofocus' : ''; ?> required>
 												<div class="invalid-feedback">
 													wrong password.
 												</div>
@@ -71,16 +71,22 @@ include '../process/handle_change_password_stall.php';
 										<div class="form-group row">
 											<label class="col-form-label col-md-3" style="font-size: 0.85rem;">New password</label>
 											<div class="col-md-9">
-												<input type="password" name="new_password" class="form-control form-control-sm <?= $valid_not_match_password; ?>" <?= $r = ($valid_not_match_password == 'is-invalid') ? 'autofocus' : ''; ?> required>
+												<input type="password" name="new_password" class="form-control form-control-sm password <?= $valid_not_match_password; ?>" <?= $r = ($valid_not_match_password == 'is-invalid') ? 'autofocus' : ''; ?> required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-form-label col-md-3" style="font-size: 0.9rem;">Retype new password</label>
 											<div class="col-md-9">
-												<input type="password" name="retype_new_password" class="form-control form-control-sm <?= $valid_not_match_password; ?>">
+												<input type="password" name="retype_new_password" class="form-control form-control-sm password <?= $valid_not_match_password; ?>">
 												<div class="invalid-feedback">
 													The password are not match
 												</div>
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-md-3"></div>
+											<div class="col-md-9" >
+												<span role="button" class="btn btn-sm" id="form-password-toggle"></span>
 											</div>
 										</div>
 										<hr>
@@ -113,7 +119,22 @@ include '../process/handle_change_password_stall.php';
 					$(this).html("Cancel");
 				}else{
 					$($(this).attr("data-target")).fadeOut();
+					$($(this).attr("data-target")).find(":password").val("");
+					$($(this).attr("data-target")).find(":text").val("");
 					$(this).html("Edit");
+					$($(this).attr("data-target")).find("#form-password-toggle").html('<i class="far fa-eye"></i> Show password');
+					$(".password").attr("type", "password");
+				}
+			});
+
+			$("#form-password-toggle").html('<i class="far fa-eye"></i> Show password');
+			$("#form-password-toggle").click(function() {
+				if ($(".password").attr("type") == "password") {
+					$("#form-password-toggle").html('<i class="far fa-eye-slash"></i> Hide password');
+					$(".password").attr("type", "text");
+				}else{
+					$("#form-password-toggle").html('<i class="far fa-eye"></i> Show password');
+					$(".password").attr("type", "password");
 				}
 			});
 		});
