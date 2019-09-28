@@ -6,5 +6,5 @@
   * customer e-wallet
   * customer e-wallet topup
 
-# bug
-employee image file folder location
+* bug
+ * employee image file folder location
