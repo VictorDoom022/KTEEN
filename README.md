@@ -7,4 +7,4 @@
   * customer e-wallet topup
 
 * bug
- * employee image file folder location
+  * employee image file folder location
