@@ -83,10 +83,10 @@ include '../process/handle_change_password_stall.php';
 												</div>
 											</div>
 										</div>
-										<div class="form-group row">
+										<div class="row">
 											<div class="col-md-3"></div>
 											<div class="col-md-9" >
-												<span role="button" class="btn btn-sm" id="form-password-toggle"></span>
+												<span role="button" class="btn btn-sm p-0" id="form-password-toggle" style="font-size: 0.75rem;"></span>
 											</div>
 										</div>
 										<hr>
