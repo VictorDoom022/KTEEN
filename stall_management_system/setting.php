@@ -51,7 +51,7 @@ include '../process/handle_change_password_stall.php';
 						<div class="row">
 							<div class="col-md-9">Change password</div>
 							<div class="col-md-3 text-right">
-								<button class="btn btn-dark btn-sm edit" data-target="#change_password_panel">Edit</button>
+								<button class="btn btn-dark btn-sm edit" id="show_change_p_form" data-target="#change_password_panel">Edit</button>
 							</div>
 						</div>
 						<div id="change_password_panel" style="display: none;" class="pt-4">
@@ -110,8 +110,8 @@ include '../process/handle_change_password_stall.php';
 	<script type="text/javascript">
 		$(document).ready(function(){
 			<?php if ($valid_current_password != ""): ?>
-				$("#change_password_panel").fadeIn();
-				$(this).html("Cancel");
+				$("#change_password_panel").show();
+				$("#show_change_p_form").html("Cancel");
 			<?php endif ?>
 			$(".edit").click(function(){
 				if ($(this).html() == "Edit") {
@@ -124,6 +124,8 @@ include '../process/handle_change_password_stall.php';
 					$(this).html("Edit");
 					$($(this).attr("data-target")).find("#form-password-toggle").html('<i class="far fa-eye"></i> Show password');
 					$(".password").attr("type", "password");
+					$($(this).attr("data-target")).find(":password").removeClass("is-invalid");
+					$($(this).attr("data-target")).find(":password").removeClass("is-valid");
 				}
 			});
 
