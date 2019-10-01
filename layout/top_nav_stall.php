@@ -27,7 +27,7 @@ switch ($site) {
     <ul class="navbar-nav px-4">
         <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="rounded-circle" style="height: 40px;width: 40px;" src="../images/<?= $_SESSION['stall_username'] ?>/<?php echo $_SESSION['kteen_stall_owner_image']; ?>">
+                <img class="rounded-circle" style="height: 40px;width: 40px;" src="../images/<?= $_SESSION['stall_username'] ?>/owner.jpg">
                 <?php echo $_SESSION['kteen_stall_name']; ?>
             </a>
             <div class="dropdown-menu dropdown-menu-right rounded-0 shadow border-0" aria-labelledby="navbarDropdown">
