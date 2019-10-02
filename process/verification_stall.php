@@ -11,7 +11,7 @@ if(isset($_POST['login'])){
     if ($stmt = $conn->prepare("SELECT ID, username, stall_name FROM stall WHERE username = ? AND password = ?")){
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
-        $stmt->bind_result($stall_ID, $username, $stall_name, $owner_image);
+        $stmt->bind_result($stall_ID, $username, $stall_name);
         if ($stmt->fetch()) {
             $_SESSION['kteen_stall_id'] = $stall_ID;
             $_SESSION['kteen_stall_name'] = $stall_name;
