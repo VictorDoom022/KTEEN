@@ -57,6 +57,16 @@
 			}, function(data, status) {
 				$("#menu").html(data);
 			});
+
+			$("#search-bar").keyup(function() {
+				var keyword = $(this).val();
+				$.post("menu_card.php", {
+					stall_username: c, 
+					food_name: keyword
+				}, function(data, status) {
+					$("#menu").html(data);
+				});
+			})
 		});
 	</script>
 </body>
