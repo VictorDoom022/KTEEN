@@ -34,14 +34,28 @@ if (isset($_POST['stall_username'])) {
 <?php
 		}
 	}else{
+		if (isset($_POST['food_name'])) {
+		?>
+		<div class="col h5 text-center">
+			Not have the result for '<?= $_POST['food_name']; ?>'
+		</div>
+		<?php
+		}else{
+		?>
+		<div class="col h5 text-center">
+			Not have any food
+		</div>
+		<?php
+		}
 ?>
-<div class="col h5 text-center">
-	Not has the result for '<?= $_POST['food_name']; ?>'
-</div>
+
 <?php
 	}
 }else{
-	
+?>
+<div class="col text-center h5">
+	Not has the result for '<?= $_POST['search_stall_name']; ?>'
+</div>
+<?php	
 }
-
 ?>
