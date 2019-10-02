@@ -1,13 +1,18 @@
 <?php
+session_start();
 include '../config/config.php';
 
 if (isset($_POST['stall_username'])) {
+	$search = '';
+	if(isset($_POST['food_name'])){
+		$search = " AND food.name LIKE '%". $_POST['food_name'] ."%'";
+	}
 	$sql = "SELECT 
 	stall.username AS username, 
 	food.name AS food_name, 
 	food.image AS image, 
 	food.price AS price
-	FROM food LEFT JOIN stall ON food.stall_ID = stall.ID WHERE username = '". $_POST['stall_username'] ."' AND food.available = '1';";
+	FROM food LEFT JOIN stall ON food.stall_ID = stall.ID WHERE username = '". $_POST['stall_username'] ."' AND food.available = '1'". $search .";";
 	$result = mysqli_query($conn, $sql);
 	if(mysqli_num_rows($result) > 0){
 		while ($row = mysqli_fetch_assoc($result)) {
@@ -28,6 +33,12 @@ if (isset($_POST['stall_username'])) {
 </div>
 <?php
 		}
+	}else{
+?>
+<div class="col h5 text-center">
+	Not has the result for '<?= $_POST['food_name']; ?>'
+</div>
+<?php
 	}
 }else{
 	
