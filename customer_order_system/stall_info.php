@@ -32,6 +32,10 @@ if(isset($_POST['stall_username']) && !empty($_POST['stall_username'])){
 	</div>
 	<?php
 		}
+	}else{
+	?>
+	not has notice
+	<?php
 	}
 	?>
 	
