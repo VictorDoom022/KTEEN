@@ -46,25 +46,25 @@ include '../process/handle_add_employee.php';
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Name</label>
 											<div class="col-md-9">
-												<input type="text" name="employee_name" class="form-control" required>
+												<input type="text" name="employee_name" class="form-control <?= $valid_employee_name ?>" value="qwe" required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">NRIC</label>
 											<div class="col-md-9">
-												<input type="text" name="NRIC" class="form-control" required>
+												<input type="text" name="NRIC" class="form-control <?= $valid_NRIC; ?>" value="" required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Contact No</label>
 											<div class="col-md-9">
-												<input type="text" name="contact_no" class="form-control" required>
+												<input type="text" name="contact_no" class="form-control <?= $valid_contact_no; ?>" value="" required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Address</label>
 											<div class="col-md-9">
-												<textarea class="form-control" name="address"></textarea>
+												<textarea class="form-control <?= $valid_address; ?>" name="address" required><?php echo md5("stall01") ?></textarea>
 											</div>
 										</div>
 									</div>
@@ -76,19 +76,21 @@ include '../process/handle_add_employee.php';
 										<div class="form-group row">
 											<label for="employee_id" class="col-md-3 col-form-label">Employee ID</label>
 											<div class="col-md-9">
-												<input id="employee_id" type="text" name="employee_id" class="form-control">
+												<input id="employee_id" type="text" name="employee_id" class="form-control <?= $valid_staff_username; ?>" value="dww">
+												<div class="invalid-feedback">That username is taken.Try another.</div>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Password</label>
 											<div class="col-md-9">
-												<input type="password" name="password" class="form-control">
+												<input type="password" name="password" value="<?= $p; ?>" class="form-control <?= $valid_password; ?>">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-md-3 col-form-label">Confirm Password</label>
+											<label class="col-md-3 col-form-label" style="font-size: 0.8rem;">Confirm Password</label>
 											<div class="col-md-9">
-												<input type="password" name="password_confirm" class="form-control">
+												<input type="password" name="password_confirm" class="form-control <?= $valid_password; ?>" value="<?= $p; ?>">
+												<div class="invalid-feedback">Those password didn't match.Try again.</div>
 											</div>
 										</div>
 									</div>
@@ -96,7 +98,12 @@ include '../process/handle_add_employee.php';
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Position</label>
 											<div class="col-md-9">
-												<input type="text" name="position" class="form-control">
+												<select name="position" class="form-control" required="">
+													<option>Choose one</option>
+													<option value="Head Chef">Head Chef</option>
+													<option></option>
+													<option></option>
+												</select>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -105,7 +112,7 @@ include '../process/handle_add_employee.php';
 												<div class="input-group-prepend">
 													<span class="input-group-text">RM</span>
 												</div>
-												<input type="number" min="0" name="salary" class="form-control">
+												<input type="number" min="0" name="salary" class="form-control <?= $valid_salary; ?>" value="3000" required="">
 											</div>
 										</div>
 									</div>
