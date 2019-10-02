@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-	<!-- <script src="https://kit.fontawesome.com/baa8fb89d5.js"></script> -->
+	<script src="https://kit.fontawesome.com/baa8fb89d5.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -19,6 +19,23 @@
 	<div id="nav"></div>
 	<main class="container">
 		<div class="row py-4" id="stall_info"></div>
+		<div class="row pb-4">
+			<div class="col-12 bg-white shadow pl-0 pr-0">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<button class="btn btn-block btn-dark rounded-0 px-3" type="button"></button>
+					</div>
+					<input type="search" id="search-bar" placeholder="Search" class="form-control rounded-0 py-4 border-0">
+					<div class="input-group-append">
+						<button class="btn btn-block btn-dark rounded-0 px-3" id="search-btn">
+							<i class="fas fa-search"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" id="menu"></div>
+		<div class="row" id="pagination"></div>
 	</main>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -26,12 +43,19 @@
 					$("#nav").html(result);
 				}
 			});
-			var url = new URL(window.location.href);
-			var c = url.searchParams.get("stall_name");
+
+			var url = new URL(window.location.href);// get current url
+			var c = url.searchParams.get("stall");// get $_GET['stall'] (stall) value form url
 			$.post("stall_info.php", {
-				stall_name: c
+				stall_username: c
 			}, function(data, status) {
 				$("#stall_info").html(data);
+			});
+
+			$.post("menu_card.php", {
+				stall_username: c
+			}, function(data, status) {
+				$("#menu").html(data);
 			});
 		});
 	</script>
