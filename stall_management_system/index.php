@@ -78,7 +78,7 @@ include '../process/handle_delete_notice.php';
 								</div>
 								<hr>
 								<?php 
-								$sql = "SELECT ID, date, description FROM notice WHERE stall_ID = '".$_SESSION['kteen_stall_id']."' LIMIT 3";
+								$sql = "SELECT ID, date, description FROM notice WHERE stall_ID = '".$_SESSION['stall_username']."' LIMIT 3";
 								$result = mysqli_query($conn, $sql);
 								if (mysqli_num_rows($result) > 0) {
 									while ($row = mysqli_fetch_assoc($result)) {
