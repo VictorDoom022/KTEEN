@@ -3,9 +3,11 @@ session_start();
 include '../config/config.php';
 
 if (isset($_POST['stall_username'])) {
-	$page =@ $_GET['page'];
+	$page =@ $_POST['page'];
 	if ($page == 0 || $page == 1) {
-		
+		$page = 0;
+	}else{
+		$page = ($page * 8) - 8;
 	}
 	$search = '';
 	if(isset($_POST['food_name'])){
@@ -13,17 +15,18 @@ if (isset($_POST['stall_username'])) {
 	}
 	$sql = "SELECT 
 	stall.username AS username, 
+	food.ID AS food_id,
 	food.name AS food_name, 
 	food.image AS image, 
 	food.price AS price
-	FROM food LEFT JOIN stall ON food.stall_ID = stall.ID WHERE username = '". $_POST['stall_username'] ."' AND food.available = '1'". $search ." LIMIT 0, 8;";
+	FROM food LEFT JOIN stall ON food.stall_ID = stall.ID WHERE username = '". $_POST['stall_username'] ."' AND food.available = '1'". $search ." LIMIT ". $page .", 8;";
 	$result = mysqli_query($conn, $sql);
 	if(mysqli_num_rows($result) > 0){
 		while ($row = mysqli_fetch_assoc($result)) {
 			$image = $row['image'];
 ?>
 <div class="col-md-3 p-2">
-	<div class="k-card card k-hover-shadow h-100" style="cursor: pointer;">
+	<div class="k-card card k-hover-shadow h-100 stall_menu" style="cursor: pointer;" data-food_id="<?= $row['food_id']; ?>">
 		<div style="position: relative;overflow: hidden;"> 
 			<img src="../images/<?= $row['username']; ?>/menu/<?= $image; ?>" class="items" height="100" alt="" style="width: 100%;height: 200px;align-self: center;vertical-align: center;" />
 		</div>
@@ -74,13 +77,10 @@ $a = ceil($count / 8);
 ?>
 <div class="col-12 mt-2">
 	<ul class="pagination pagination-md">
-		<?php for ($i=0; $i < $a; $i++) { ?>
+		<?php for ($i=1; $i <= $a; $i++) { ?>
 		<li class="page-item">
-			<span class="page-link rounded-0 border-0 <?= $r = ($page == ($i))? 'bg-dark text-white': 'text-dark' ?>" style="cursor: pointer;">
-				<?= ($i + 1) ?>
-			</span>
+			<span class="page-link rounded-0 border-0 <?= $r = ($page == ($i * 8) - 8)? 'bg-dark text-white': 'text-dark' ?>" style="cursor: pointer;" data-page="<?= $i ?>"><?= $i ?></span>
 		</li>
 		<?php } ?>
-		
 	</ul>
 </div>
