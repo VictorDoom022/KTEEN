@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div id="nav"></div>
-	<main class="container">
+	<main class="container mb-5">
 		<div class="row py-4" id="stall_info"></div>
 		<div class="row pb-4">
 			<div class="col-12 bg-white shadow pl-0 pr-0">
@@ -35,8 +35,10 @@
 			</div>
 		</div>
 		<div class="row" id="menu"></div>
-		<div class="row" id="pagination"></div>
 	</main>
+	<div class="bg-dark h5 m-0 mr-5 text-white text-center px-5 py-2" style="position: fixed;bottom: 0;right: 0;height: 45px;width: 300px;">
+		Your Order
+	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$.ajax({url: "../layout/top_nav_customer.php", success: function(result) {
