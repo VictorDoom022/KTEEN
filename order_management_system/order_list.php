@@ -16,8 +16,11 @@ if($num_row > 0){
 			<div class="card-body">
 				<div class="container">
 					<div class="row border bg-light">
-						<div class="col-6">Number <?= $row['number']; ?></div>
-						<div class="col-6">Order by <?= $r = ($row['customer_ID'] == 0)? 'staff': $row['customer_ID']; ?></div>
+						<div class="col-5">Number <?= $row['number']; ?></div>
+						<div class="col-5">Order by <?= $r = ($row['customer_ID'] == 0)? 'staff': $row['customer_ID']; ?></div>
+						<div class="col-2">
+							<button class="btn btn-sm btn-dark btn-block">Complete</button>
+						</div>
 					</div>
 					<table class="table table-sm table-borderless">
 						<tr>
