@@ -13,7 +13,7 @@ if(isset($_POST['login'])){
             $stmt->execute();
             $stmt->bind_result($username,$password);
             if($stmt->fetch()){
-                $_SESSION['username'] = $username;
+                $_SESSION['customer_username'] = $username;
                 $error = "";
                 header('location: index.html');
             }else{
