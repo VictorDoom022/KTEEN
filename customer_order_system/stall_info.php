@@ -61,5 +61,4 @@ if(isset($_POST['stall_username']) && !empty($_POST['stall_username'])){
 </script>
 <?php
 }
-
 ?>
