@@ -18,7 +18,14 @@
 <body>
 	<div id="nav"></div>
 	<main class="container mb-5">
-		<div class="row py-4" id="stall_info"></div>
+		<div class="row py-4">
+			<div class="col">
+				<a href="index.html" class="btn btn-dark rounded-0 shadow">
+					<i class="fas fa-arrow-left"></i>
+				</a>
+			</div>
+		</div>
+		<div class="row pb-3" id="stall_info"></div>
 		<div class="row pb-4">
 			<div class="col-12 bg-white shadow pl-0 pr-0">
 				<div class="input-group">
@@ -36,10 +43,23 @@
 		</div>
 		<div class="row" id="menu"></div>
 	</main>
-	<div class="bg-dark h5 m-0 mr-5 text-white text-center px-5 py-2" style="position: fixed;bottom: 0;right: 0;height: 45px;width: 300px;">
-		Your Order
-	</div>
+	<span id="order_list" style="display: none;">
+		<span class="bg-dark m-0" style="position: fixed;bottom: 0;right: -20px;width: 400px;height: 40px;transform: skew(-45deg);"></span>
+		<span id="order-list" class="m-0" style="position: fixed;bottom: 0;right: 0;width: 400px;height: 40px;background-color: rgba(0, 0, 0, 0.5);transform: skew(-45deg);"></span>
+		<span class="text-white text-center m-0" style="position: fixed;bottom: 0;right: 0;width: 400px;height: 40px;font-size: 1.5rem;cursor: pointer;">
+			Your Orders
+			<span class="badge badge-danger" id="count_order"></span>
+		</span>
+	</span>
+	<script src="../js/orders.js"></script>
 	<script type="text/javascript">
+		function is_exist(array, id){
+			for(var i = 0; i < array.length; i++){
+				if(array[i].food_id == id){
+					return true;
+				}
+			}
+		}
 		$(document).ready(function() {
 			$.ajax({url: "../layout/top_nav_customer.php", success: function(result) {
 					$("#nav").html(result);
@@ -68,7 +88,60 @@
 				}, function(data, status) {
 					$("#menu").html(data);
 				});
-			})
+			});
+			// make orders
+			$("#menu").on("click", ".page-link", function() {
+				if($("#search-bar").val() == ''){
+					var page_num = $(this).attr('data-page');
+					$.post("menu_card.php", {
+						stall_username: c, 
+						page: page_num
+					}, function(data, status) {
+						$("#menu").html(data);
+					});
+				}else{
+					var keyword = $("#search-bar").val();
+					var page_num = $(this).attr('data-page');
+					$.post("menu_card.php", {
+						stall_username: c, 
+						food_name: keyword, 
+						page: page_num
+					}, function(data, status) {
+						$("#menu").html(data);
+					});
+				}
+			});
+
+			var order_list = [];
+			var count_order_quantity = 0;
+			$("#menu").on("click", ".stall_menu", function() {
+				var count_order_quantity = 0;
+				var food_id = $(this).attr("data-food_id");
+				if (order_list != 0) {
+					if (is_exist(order_list, food_id)) {
+						for (var i = 0; i < order_list.length; i++) {
+							if(order_list[i].food_id == food_id){
+								order_list[i].add_quantity();
+							}
+						}
+					}else{
+						order_list.push(new Orders(food_id, 1, ''));
+					}
+				}else{
+					order_list.push(new Orders(food_id, 1, ''));
+					$("#order_list").fadeIn();
+				}
+
+				for (var i = order_list.length - 1; i >= 0; i--) {
+					count_order_quantity += order_list[i].getQuantity;
+				}
+				$("#count_order").html(count_order_quantity);
+				console.log(order_list);
+			});
+
+			$("#order_list").on("click", "span", function() {
+				window.location.assign("order_list.php?order_detail="+ order_list[]);
+			});
 		});
 	</script>
 </body>
