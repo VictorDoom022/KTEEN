@@ -115,32 +115,47 @@
 			var order_list = [];
 			var count_order_quantity = 0;
 			$("#menu").on("click", ".stall_menu", function() {
-				var count_order_quantity = 0;
-				var food_id = $(this).attr("data-food_id");
-				if (order_list != 0) {
-					if (is_exist(order_list, food_id)) {
-						for (var i = 0; i < order_list.length; i++) {
-							if(order_list[i].food_id == food_id){
-								order_list[i].add_quantity();
+				$.ajax({
+					type: 'POST',
+					url: "../process/handle_if_logout_customer.php",
+					dataType: 'json',
+					success: function(data){
+						console.log(data.status);
+						if (data.status == 0) {
+							window.location.assign("login.php");
+						}else{
+							var count_order_quantity = 0;
+							var food_id = $(this).attr("data-food_id");
+							if (order_list != 0) {
+								if (is_exist(order_list, food_id)) {
+									for (var i = 0; i < order_list.length; i++) {
+										if(order_list[i].food_id == food_id){
+											order_list[i].add_quantity();
+										}
+									}
+								}else{
+									order_list.push(new Orders(food_id, 1, ''));
+								}
+							}else{
+								order_list.push(new Orders(food_id, 1, ''));
+								$("#order_list").fadeIn();
 							}
-						}
-					}else{
-						order_list.push(new Orders(food_id, 1, ''));
-					}
-				}else{
-					order_list.push(new Orders(food_id, 1, ''));
-					$("#order_list").fadeIn();
-				}
 
-				for (var i = order_list.length - 1; i >= 0; i--) {
-					count_order_quantity += order_list[i].getQuantity;
-				}
-				$("#count_order").html(count_order_quantity);
-				console.log(order_list);
+							for (var i = order_list.length - 1; i >= 0; i--) {
+								count_order_quantity += order_list[i].getQuantity;
+							}
+							$("#count_order").html(count_order_quantity);
+							console.log(order_list);
+						}
+					},
+					error: function(){
+						alert("Something error!");
+					}
+				});
 			});
 
 			$("#order_list").on("click", "span", function() {
-				window.location.assign("order_list.php?order_detail="+ order_list);
+				window.location.assign("checkout_orders.php?order_detail="+ order_list);
 			});
 		});
 	</script>
