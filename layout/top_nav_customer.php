@@ -13,6 +13,9 @@ include '../config/config.php';
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto pr-4">
             <li class="nav-item pr-2">
+                <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item pr-2">
                 <a href="" class="nav-link">Wallet</a>
             </li>
             <li class="nav-item dropdown pr-2">
@@ -20,7 +23,7 @@ include '../config/config.php';
                     <?= $_SESSION['customer_username']; ?>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Setting</a>
+                    <a class="dropdown-item" href="setting.html">Setting</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="../process/handle_logout_customer.php">Log Out</a>
                 </div>
