@@ -17,17 +17,32 @@
 </head>
 <body>
 	<div id="nav"></div>
-	<?php
-	$orders_detail= $_GET['order_detail'];
-	echo $orders_detail;
-	?>
-	<script src="../js/orders.js"></script>
+	<main class="container mb-4">
+		<div class="row py-4 mt-2">
+			<div class="col-12 bg-white shadow p-4">
+				<div class="title h4 border-bottom">Your Order List</div>
+				<div id="order-list" class="p-2"></div>
+				<div class="border-top text-right px-2 pt-2">
+					<a href="index.html" class="btn rounded-0">Cancel</a>
+					<button class="btn btn-dark rounded-0">Submit</button>
+				</div>
+			</div>
+		</div>
+	</main>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$.ajax({url: "../layout/top_nav_customer.php", success: function(result) {
 					$("#nav").html(result);
 				}
 			});
+			if(typeof(Storage) != "undefined"){
+				var order_list = sessionStorage.getItem("order_list");
+				$.post("order_list.php", {
+					order_list: order_list
+				},function(data, status) {
+					$("#order-list").html(data);
+				});
+			}
 		});
 	</script>
 </body>

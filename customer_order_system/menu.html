@@ -115,17 +115,17 @@
 			var order_list = [];
 			var count_order_quantity = 0;
 			$("#menu").on("click", ".stall_menu", function() {
+				var food_id = $(this).attr("data-food_id");
 				$.ajax({
 					type: 'POST',
 					url: "../process/handle_if_logout_customer.php",
 					dataType: 'json',
 					success: function(data){
-						console.log(data.status);
 						if (data.status == 0) {
 							window.location.assign("login.php");
 						}else{
 							var count_order_quantity = 0;
-							var food_id = $(this).attr("data-food_id");
+							console.log(food_id);
 							if (order_list != 0) {
 								if (is_exist(order_list, food_id)) {
 									for (var i = 0; i < order_list.length; i++) {
@@ -155,7 +155,10 @@
 			});
 
 			$("#order_list").on("click", "span", function() {
-				window.location.assign("checkout_orders.php?order_detail="+ order_list);
+				if(typeof(Storage) != "undefined"){
+					sessionStorage.setItem("order_list", JSON.stringify(order_list));
+					window.location.assign("checkout_orders.php");
+				}
 			});
 		});
 	</script>
