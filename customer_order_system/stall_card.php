@@ -3,12 +3,18 @@ include '../config/config.php';
 
 $search = "";// search stall name by keyword
 if (isset($_POST['search_stall_name'])) {
-	$search = " AND stall_name LIKE '%". $_POST['search_stall_name'] ."%';";
+	$search = "WHERE stall_name LIKE '%". $_POST['search_stall_name'] ."%' ";
 }
 ?>
 <div class="row">
-	<?php 
-	$sql = "SELECT username, stall_name, status FROM stall WHERE '0' = '0'". $search;
+	<?php
+	$page = @ $_POST['page'];
+	if($page == 0 || $page == 1){
+		$page = 0;
+	}else{
+		$page = ($page * 8) - 8;
+	}
+	$sql = "SELECT username, stall_name, status FROM stall ". $search ."LIMIT ". $page .", 8;";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while ($row = $result->fetch_assoc()) {
@@ -51,5 +57,17 @@ if (isset($_POST['search_stall_name'])) {
 	</div>
 	<?php
 	}
+	$count = mysqli_num_rows($result);
+	mysqli_close($conn);
+	$a = ceil($count / 8);
 	?>
+	<div class="col-12 mt-2">
+		<ul class="pagination pagination-md">
+			<?php for ($i=1; $i <= $a; $i++) { ?>
+			<li class="page-item">
+				<span class="page-link rounded-0 border-0 <?= $r = ($page == ($i * 8) - 8)? 'bg-dark text-white': 'text-dark' ?>" style="cursor: pointer;" data-page="<?= $i ?>"><?= $i ?></span>
+			</li>
+			<?php } ?>
+		</ul>
+	</div>
 </div>

@@ -20,7 +20,7 @@ foreach ($order_list as $key => $order_detail) {
 		<button class="btn btn-sm btn-dark">+</button>
 	</div>
 	<div class="col-4">
-		<input type="text" name="" class="form-control form-control-sm">
+		<input type="text" name="remark" class="form-control form-control-sm rounded-0 border border-dark border-top-0 border-left-0 border-right-0" readonly>
 	</div>
 </div>
 <?php

@@ -74,6 +74,7 @@ food.price AS price
 FROM food LEFT JOIN stall ON food.stall_ID = stall.ID WHERE username = '". $_POST['stall_username'] ."' AND food.available = '1'". $search .";";
 $result = mysqli_query($conn, $sql);
 $count = mysqli_num_rows($result);
+mysqli_close($conn);
 $a = ceil($count / 8);
 ?>
 <div class="col-12 mt-2">
