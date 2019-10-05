@@ -15,6 +15,7 @@ if (isset($_POST['stall_username'])) {
 	}
 	$sql = "SELECT 
 	stall.username AS username, 
+	stall.status AS status,
 	food.ID AS food_id,
 	food.name AS food_name, 
 	food.image AS image, 
@@ -26,7 +27,7 @@ if (isset($_POST['stall_username'])) {
 			$image = $row['image'];
 ?>
 <div class="col-md-3 p-2">
-	<div class="k-card card k-hover-shadow h-100 stall_menu" style="cursor: pointer;" data-food_id="<?= $row['food_id']; ?>">
+	<div class="k-card card k-hover-shadow h-100 <?= $r = ($row['status'] == '1')? 'stall_menu' : '' ?>" style="cursor: pointer;<?= $r = ($row['status'] == '1')? '' : 'filter: blur(5px);' ?>" data-food_id="<?= $row['food_id']; ?>">
 		<div style="position: relative;overflow: hidden;"> 
 			<img src="../images/<?= $row['username']; ?>/menu/<?= $image; ?>" class="items" height="100" alt="" style="width: 100%;height: 200px;align-self: center;vertical-align: center;" />
 		</div>
