@@ -1,6 +1,5 @@
 <?php
 session_start();
-include '../config/config.php';
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-white p-4 fixed-top shadow">
     <div class="container">
@@ -17,7 +16,7 @@ include '../config/config.php';
                     <a href="index.html" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Wallet</a>
+                    <a href="ewallet.html" class="nav-link">Wallet</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

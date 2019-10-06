@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../config/config.php';
+include '../config/test_input.php';
 
 if (isset($_POST['stall_username'])) {
 	$page =@ $_POST['page'];
@@ -11,7 +12,8 @@ if (isset($_POST['stall_username'])) {
 	}
 	$search = '';
 	if(isset($_POST['food_name'])){
-		$search = " AND food.name LIKE '%". $_POST['food_name'] ."%'";
+		$food_name = test_input($_POST['food_name']);
+		$search = " AND food.name LIKE '%$food_name%'";
 	}
 	$sql = "SELECT 
 	stall.username AS username, 
@@ -45,7 +47,7 @@ if (isset($_POST['stall_username'])) {
 		if (isset($_POST['food_name'])) {
 		?>
 		<div class="col h5 text-center">
-			Not have the result for '<?= $_POST['food_name']; ?>'
+			Not have the result for '<?= $food_name; ?>'
 		</div>
 		<?php
 		}else{

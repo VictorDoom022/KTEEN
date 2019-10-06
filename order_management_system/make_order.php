@@ -158,7 +158,7 @@ include '../config/config.php';
 					data: {order_list: JSON.stringify(orders)},
 					dataType: 'json',
 					success: function(data) {
-						if(data.status = 0){
+						if(data.status == 0){
 							alert(data.msg);
 						}else{
 							alert(data.msg);

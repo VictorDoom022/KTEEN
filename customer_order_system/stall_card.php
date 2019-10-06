@@ -1,9 +1,11 @@
 <?php
 include '../config/config.php';
+include '../config/test_input.php';
 
 $search = "";// search stall name by keyword
 if (isset($_POST['search_stall_name'])) {
-	$search = "WHERE stall_name LIKE '%". $_POST['search_stall_name'] ."%' ";
+	$search_stall_name = test_input($_POST['search_stall_name']);
+	$search = "WHERE stall_name LIKE '%$search_stall_name%' ";
 }
 ?>
 <div class="row">
@@ -53,7 +55,7 @@ if (isset($_POST['search_stall_name'])) {
 	}else{
 	?>
 	<div class="col text-center h5">
-		Not has the result for '<?= $_POST['search_stall_name']; ?>'
+		Not has the result for '<?= $search_stall_name; ?>'
 	</div>
 	<?php
 	}

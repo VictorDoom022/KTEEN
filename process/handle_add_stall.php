@@ -47,8 +47,8 @@ if (isset($_POST['add_stall'])) {
 
 	if($username_valid == 'is-valid' && $owner_name_valid == 'is-valid' && $stall_name_valid == 'is-valid' && $NRIC_valid == 'is-valid' && $contact_no_valid == 'is-valid' && $email_valid == 'is-valid' && $password_valid == 'is-valid'){
 
-		$owner_image = $username.'_owner.jpg';
-		$stall_image = $username.'_stall.jpg';
+		$owner_image = 'owner.jpg';
+		$stall_image = 'stall.jpg';
 
 		$sql = "INSERT INTO stall(username, stall_name, owner_name, NRIC, owner_image, stall_image, contact_no, email, password, status) VALUES ('$username', '$stall_name', '$owner_name', '$NRIC', '$owner_image', '$stall_image', '$contact_no', '$email', '$password', '1');";
 		$result = mysqli_query($conn, $sql) or die(mysqli_error());

@@ -2,25 +2,36 @@
 include '../config/config.php';
 if (isset($_POST['order_list'])) {
 	$order_list = json_decode($_POST['order_list'], true);
+	$totalprice = 0;
 }
 foreach ($order_list as $key => $order_detail) {
 	$food_id = $order_detail['food_id'];
-	$sql = "SELECT name FROM food WHERE ID = '$food_id'";
+	$sql = "SELECT name, price FROM food WHERE ID = '$food_id'";
 	$result = mysqli_query($conn, $sql);
 	if(mysqli_num_rows($result) == 1){
 		while ($row = mysqli_fetch_assoc($result)) {
+			$price = $row['price'] * $order_detail['quantity'];
+			$totalprice += $price;
 ?>
-<div class="row pb-2">
-	<div class="col-5">
+<div class="row py-1">
+	<div class="col-4">
 		<?= $row['name']; ?>
 	</div>
-	<div class="col-3">
-		<button class="btn btn-sm btn-dark">-</button>
-		<?= $order_detail['quantity']; ?>
-		<button class="btn btn-sm btn-dark">+</button>
+	<div class="col-4">
+		<div class="form-group row m-0">
+			<button class="btn btn-sm btn-dark rounded-0 col-3">
+				<i class="fas fa-minus"></i>
+			</button>
+			<div class="col-6">
+				<input type="" name="" class="form-control form-control-sm rounded-0 text-center" value="<?= $order_detail['quantity']; ?>" readonly>
+			</div>
+			<button class="btn btn-sm btn-dark rounded-0 col-3">
+				<i class="fas fa-plus"></i>
+			</button>
+		</div>
 	</div>
 	<div class="col-4">
-		<input type="text" name="remark" class="form-control form-control-sm rounded-0 border border-dark border-top-0 border-left-0 border-right-0" readonly>
+		RM <?= $price ?>
 	</div>
 </div>
 <?php
@@ -28,3 +39,9 @@ foreach ($order_list as $key => $order_detail) {
 	}
 }
 ?>
+<div class="row">
+	<div class="col-8"></div>
+	<div class="col-4 h6 border-top">
+		total: RM <?= $totalprice ?>
+	</div>
+</div>

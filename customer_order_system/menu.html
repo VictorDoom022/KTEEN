@@ -156,8 +156,9 @@
 
 			$("#order_list").on("click", "span", function() {
 				if(typeof(Storage) != "undefined"){
+					sessionStorage.setItem("stall_username", c);
 					sessionStorage.setItem("order_list", JSON.stringify(order_list));
-					window.location.assign("checkout_orders.php");
+					window.location.assign("checkout_orders.html");
 				}
 			});
 		});
