@@ -24,7 +24,7 @@
 				<div id="order-list" class="p-2"></div>
 				<div class="border-top text-right px-2 pt-2">
 					<a href="index.html" class="btn rounded-0">Cancel</a>
-					<button class="btn btn-dark rounded-0" id="btn-checkout">CheckOut</button>
+					<button class="btn btn-dark rounded-0 unclicked" id="btn-checkout">CheckOut</button>
 				</div>
 			</div>
 		</div>
@@ -57,24 +57,28 @@
 				});
 
 				$("#btn-checkout").click(function() {
-					$.ajax({
-						type: 'POST',
-						url: "../process/handle_add_order_customer.php", 
-						data: {
-							order_list: order_list,
-							stall_username: stall_username
-						},
-						dataType: 'json',
-						success: function(data) {
-							if (data.status == 0) {
-								alert(data.msg);
+					console.log($(this).hasClass("unclicked"));
+					if($(this).hasClass("unclicked")){
+						$(this).removeClass("unclicked");
+						$.ajax({
+							type: 'POST',
+							url: "../process/handle_add_order_customer.php", 
+							data: {
+								order_list: order_list,
+								stall_username: stall_username
+							},
+							dataType: 'json',
+							success: function(data) {
+								if (data.status == 0) {
+									alert(data.msg);
 
+								}
+							},
+							error: function() {
+								alert("Something error!");
 							}
-						},
-						error: function() {
-							alert("Something error!");
-						}
-					});
+						});
+					}
 				});
 			}
 		});
