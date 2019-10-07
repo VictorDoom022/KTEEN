@@ -53,7 +53,7 @@ if (isset($_POST['stall_username'])) {
 		}else{
 		?>
 		<div class="col h5 text-center">
-			Not have any food
+			Not food available yet
 		</div>
 		<?php
 		}
