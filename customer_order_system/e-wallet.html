@@ -17,6 +17,16 @@
 </head>
 <body>
 	<div id="nav"></div>
+	<main class="container py-4">
+		<div class="jumbotron bg-white shadow">
+			<div class="container">
+				<p class="text-muted">Wallet balance</p>
+				<h1>RM 200.00</h1>
+				<hr>
+				<button class="btn btn-dark">TopUp</button>
+			</div>
+		</div>
+	</main>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$.ajax({url: "../layout/top_nav_customer.php", success: function(result) {
