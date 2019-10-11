@@ -6,9 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<!-- css -->
 	<link rel="stylesheet" href="../css/style.css">
+	<link href="../css/fontawesome.css" rel="stylesheet">
+	<link href="../css/brands.css" rel="stylesheet">
+	<link href="../css/solid.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-	<script src="https://kit.fontawesome.com/baa8fb89d5.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -52,6 +54,7 @@
 		</span>
 	</span>
 	<script src="../js/orders.js"></script>
+	<script src="../js/top-nav-customer.js"></script>
 	<script type="text/javascript">
 		function is_exist(array, id){
 			for(var i = 0; i < array.length; i++){
@@ -61,11 +64,6 @@
 			}
 		}
 		$(document).ready(function() {
-			$.ajax({url: "../layout/top_nav_customer.php", success: function(result) {
-					$("#nav").html(result);
-				}
-			});
-
 			var url = new URL(window.location.href);// get current url
 			var c = url.searchParams.get("stall");// get $_GET['stall'] (stall) value form url
 			$.post("stall_info.php", {

@@ -6,8 +6,8 @@ session_start();
         <span class="navbar-brand mb-0 h1">
             KTEEN
         </span>
-        <?php if(isset($_SESSION['customer_username'])){ ?>
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <?php if(isset($_SESSION['customer_name'])){ ?>
+         <button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -16,14 +16,11 @@ session_start();
                     <a href="index.html" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Your Order</a>
-                </li>
-                <li class="nav-item">
                     <a href="e-wallet.html" class="nav-link">Wallet</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?= $_SESSION['customer_username']; ?>
+                        <?= $_SESSION['customer_name']; ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="setting.html">Setting</a>

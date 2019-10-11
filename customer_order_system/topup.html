@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- css -->
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/all.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<title></title>
+</head>
+<body>
+	<div id="nav"></div>
+	<main class="container py-4">
+		<div class="jumbotron bg-white shadow">
+			<div class="container">
+				<div class="h3 text-center mb-5">Amount to Topup</div>
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="input-group mb-3 col-md-4">
+						<div class="input-group-prepend">
+							<span class="input-group-text border-0 bg-transparent">RM</span>
+						</div>
+						<input type="number" name="" class="form-control border-dark text-right border-top-0 border-left-0 border-right-0 bg-light rounded-0" value="0.00">
+					</div>
+					<div class="col-md-5 text-center">
+						<button class="btn btn-dark rounded-pill amount" data-amount="20">RM 20</button>
+						<button class="btn btn-dark rounded-pill amount" data-amount="50">RM 50</button>
+						<button class="btn btn-dark rounded-pill amount" data-amount="100">RM 100</button>
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col text-center">
+						<div id="paypal-button"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script src="../js/top-nav-customer.js"></script>
+	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+	<script type="text/javascript">
+		var amount_topup = '';
+		
+		$(".amount").click(function() {
+			amount_topup = $(this).val();
+			console.log(amount_topup);
+		});
+
+		paypal.Button.render({
+	        env: 'sandbox', // Or 'production'
+
+	        client: {
+	            sandbox:    'AfQr7At7722ndTxT2zWlc7JCiO8tSGI1DUOGmwWynY_DS74MDfdlWGvt6kE4sl9QCTdSTNrdj4gkNqlB'
+	        },
+
+	        commit: true, // Show a 'Pay Now' button
+						
+	        payment: function(data, actions) {
+	            return actions.payment.create({
+	                payment: {
+	                    transactions: [
+	                        {
+								amount: { total: amount_topup, currency: 'MYR' }
+								
+	                        }
+	                    ]
+	                }
+	            });
+	        },
+
+	        onAuthorize: function(data, actions) {
+	            return actions.payment.execute().then(function(payment) {
+					$.ajax({
+						type: 'POST',
+						url: "../process/handle_add_money.php",
+						data: {moneyReload: JSON.stringify(amount_topup)},
+						dataType: 'json',
+						success: function(data) {
+							alert(data);
+						},
+						error: function() {
+							alert("Something error!");
+						}
+					});
+	            	window.alert('Payment Complete!');
+	            	// window.location.replace("reload.php");
+
+
+	                // The payment is complete!
+	                // You can now show a confirmation message to the customer
+	            });
+	        }
+
+	    }, '#paypal-button');
+	</script>
+</body>
+</html>
