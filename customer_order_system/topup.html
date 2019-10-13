@@ -9,8 +9,8 @@
 	<link rel="stylesheet" href="../css/all.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<title></title>
@@ -27,7 +27,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text border-0 bg-transparent">RM</span>
 						</div>
-						<input type="number" name="" class="form-control border-dark text-right border-top-0 border-left-0 border-right-0 bg-light rounded-0" value="0.00">
+						<input type="number" name="" class="form-control border-dark text-right border-top-0 border-left-0 border-right-0 bg-light rounded-0" step="0.01" value="0.00" id="amount_topup">
 					</div>
 					<div class="col-md-5 text-center">
 						<button class="btn btn-dark rounded-pill amount" data-amount="20">RM 20</button>
@@ -50,15 +50,15 @@
 		var amount_topup = '';
 		
 		$(".amount").click(function() {
-			amount_topup = $(this).val();
-			console.log(amount_topup);
+			var amount = $(this).attr('data-amount');
+			$('#amount_topup').val(amount+ ".00");
 		});
 
 		paypal.Button.render({
 	        env: 'sandbox', // Or 'production'
 
 	        client: {
-	            sandbox:    'AfQr7At7722ndTxT2zWlc7JCiO8tSGI1DUOGmwWynY_DS74MDfdlWGvt6kE4sl9QCTdSTNrdj4gkNqlB'
+	            sandbox:    'AWBkHA31N5EeAHZ1OAGGT6R_FUVgR_KcKQo-MOy6AknfMi1VFe1W32ceBcE2P0ECUjoBga4M-xXBm7Uf'
 	        },
 
 	        commit: true, // Show a 'Pay Now' button
@@ -68,7 +68,7 @@
 	                payment: {
 	                    transactions: [
 	                        {
-								amount: { total: amount_topup, currency: 'MYR' }
+								amount: { total: $('#amount_topup').val(), currency: 'MYR' }
 								
 	                        }
 	                    ]
@@ -78,21 +78,22 @@
 
 	        onAuthorize: function(data, actions) {
 	            return actions.payment.execute().then(function(payment) {
+	            	amount_topup = $('#amount_topup').val();
 					$.ajax({
 						type: 'POST',
-						url: "../process/handle_add_money.php",
-						data: {moneyReload: JSON.stringify(amount_topup)},
-						dataType: 'json',
+						url: "../process/handle_add_amount.php",
+						data: {
+							amount_topup: JSON.stringify(amount_topup)
+						},
 						success: function(data) {
 							alert(data);
 						},
-						error: function() {
-							alert("Something error!");
+						error: function(XMLHttpRequest) {
+							alert(XMLHttpRequest.status);
 						}
 					});
 	            	window.alert('Payment Complete!');
-	            	// window.location.replace("reload.php");
-
+	            	window.location.replace("wallet.html");
 
 	                // The payment is complete!
 	                // You can now show a confirmation message to the customer

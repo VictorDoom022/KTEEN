@@ -16,7 +16,7 @@ session_start();
                     <a href="index.html" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="e-wallet.html" class="nav-link">Wallet</a>
+                    <a href="wallet.html" class="nav-link">Wallet</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

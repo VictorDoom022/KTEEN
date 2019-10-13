@@ -3,7 +3,7 @@ session_start();
 include '../config/config.php';
 $error = "";
 if(isset($_POST['login'])){
-    $u = $_POST['username'];
+    $u = md5($_POST['username']);
     $p = md5($_POST['password']);
     if($stmt = $conn->prepare("SELECT name, username FROM customer WHERE username=? AND password=?")){
             /*bind parameters for markers*/

@@ -73,7 +73,7 @@ include '../process/handle_add_customer.php';
 										<div class="form-group row">
 											<label for="username" class="col-md-3 col-form-label">Username</label>
 											<div class="col-md-9">
-												<input id="username" type="text" name="username" class="form-control <?= $valid_username ?>" value="<?= $contact_no; ?>">
+												<input id="username" type="text" name="username" class="form-control <?= $valid_username ?>" value="<?= $c; ?>">
 												<div class="invalid-feedback">
 													the username has been taken !
 												</div>

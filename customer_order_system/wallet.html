@@ -21,12 +21,22 @@
 		<div class="jumbotron bg-white shadow">
 			<div class="container">
 				<p class="text-muted">Wallet balance</p>
-				<h1>RM 200.00</h1>
+				<h1 id="amount"></h1>
 				<hr>
 				<a href="topup.html" class="btn btn-dark">TopUp</a>
 			</div>
 		</div>
 	</main>
 	<script src="../js/top-nav-customer.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.ajax({
+				url: "wallet_amount.php", 
+				success: function(data) {
+					$('#amount').html(data);
+				}
+			});
+		});
+	</script>
 </body>
 </html>
