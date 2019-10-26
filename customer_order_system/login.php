@@ -1,5 +1,9 @@
 <?php
 include '../process/verification_customer.php';
+
+if(isset($_SESSION['customer_username'])){
+	header("location: index.html");
+}
 ?>
 <!DOCTYPE html>
 <html>

@@ -20,8 +20,20 @@
 	<main class="container mb-4">
 		<div class="row py-4 mt-2">
 			<div class="col-12 bg-white shadow p-4">
-				<div class="title h4 border-bottom">Your Order List</div>
-				<div id="order-list" class="p-2"></div>
+				<div class="title h4">Your Order List</div>
+				<table class="table text-center">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Quantity</th>
+							<th>price</th>
+						</tr>
+					</thead>
+					<tbody id="order-list">
+						
+					</tbody>
+				</table>
 				<div class="border-top text-right px-2 pt-2">
 					<a href="index.html" class="btn rounded-0">Cancel</a>
 					<button class="btn btn-dark rounded-0 unclicked" id="btn-checkout">CheckOut</button>
@@ -29,27 +41,33 @@
 			</div>
 		</div>
 	</main>
-	<script src="../js/top_nav_customer.js"></script>
+	<script src="../js/top-nav-customer.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$.ajax({
-				type: 'POST',
-				url: "../process/handle_if_logout_customer.php",
-				dataType: 'json',
-				success: function(data){
-					if (data.status == 0) {
-						window.location.assign("login.php");
-					}
-				}
-			});
-
+		function get_order(){
 			if(typeof(Storage) != "undefined"){
 				var stall_username = sessionStorage.getItem("stall_username");
 				var order_list = sessionStorage.getItem("order_list");
+				var total_price = 0;
 				$.post("order_list.php", {
 					order_list: order_list
-				},function(data, status) {
-					$("#order-list").html(data);
+				},function(data) {
+					var order_list = JSON.parse(data);
+					for (var i = 0;i < order_list.length; i++) {
+						var price = parseInt(order_list[i]["price"]) * order_list[i]["quantity"];
+						total_price += price;
+						$("#order-list").html("");
+						$("#order-list").append("<tr><td>"+ (i + 1) +"</td><td>"+ order_list[i]["food_name"] +"</td><td><button class='btn btn-sm btn-dark minus-btn'><i class='fas fa-minus'></i></button><span class='px-2'>"+ order_list[i]["quantity"] +"</span><button class='btn btn-sm btn-dark add-btn'><i class='fas fa-plus'></i></button></td><td>RM "+ price.toFixed(2) +"</td></tr>");
+					}
+					$("#order-list").append("<tr><td></td><td></td><td class='text-right'>Total Price:</td><td>RM "+ total_price.toFixed(2) +"</td></tr>");
+				});
+
+				$("#order-list").on("click", ".minus-btn", function() {
+					console.log("minus quantity");
+				});
+
+				$("#order-list").on("click", ".add-btn", function() {
+					
+					get_order();
 				});
 
 				$("#btn-checkout").click(function() {
@@ -67,7 +85,6 @@
 							success: function(data) {
 								if (data.status == 0) {
 									alert(data.msg);
-
 								}
 							},
 							error: function() {
@@ -77,6 +94,20 @@
 					}
 				});
 			}
+		}
+
+		$(document).ready(function() {
+			$.ajax({
+				type: 'POST',
+				url: "../process/handle_if_logout_customer.php",
+				dataType: 'json',
+				success: function(data){
+					if (data.status == 0) {
+						window.location.assign("login.php");
+					}
+				}
+			});
+			get_order();
 		});
 	</script>
 </body>
