@@ -10,4 +10,15 @@ if($v){
 	echo "false";
 }
 
+
+if (isset($_POST['testing'])) {
+	echo "<br>".$_POST['test'];
+	unset($_POST['testing']);
+}
+
  ?>
+<form method="post">
+	<input type="text" name="test">
+	<input type="submit" name="testing">
+	<input type="reset" name="">
+</form>
