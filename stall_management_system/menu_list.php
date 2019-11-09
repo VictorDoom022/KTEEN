@@ -51,11 +51,11 @@ if(isset($_GET['c'])){
 						<td>
 							<?php 
 							if ($row['available'] == 1) { ?>
-								<button class="btn btn-sm btn-outline-warning">hidden</button>
+								<a href="menu.php?hf='<?= $row['ID']; ?>'" class="btn btn-sm btn-outline-warning">hidden</a>
 							<?php
 							}else{
 							?>
-								<button class="btn btn-sm btn-outline-primary">action</button>
+								<a href="menu.php?af='<?= $row['ID']; ?>'" class="btn btn-sm btn-outline-primary">action</a>
 							<?php 
 							}
 							?>

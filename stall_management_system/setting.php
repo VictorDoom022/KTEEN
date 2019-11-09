@@ -11,10 +11,9 @@ include '../process/handle_change_password_stall.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	<link href="../css/all.css" rel="stylesheet">
 	<!-- Bootstarp CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+	<script src="https://kit.fontawesome.com/586e3dfa1f.js" crossorigin="anonymous"></script>
 	<script src="../js/show_input_image.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -99,9 +98,7 @@ include '../process/handle_change_password_stall.php';
 								</div>
 								<div class="col-md-2"></div>
 							</div>
-							
 						</div>
-						
 					</div>
 				</div>
 			</div>
