@@ -27,9 +27,9 @@ switch ($site) {
 
 <nav class="k-top-nav navbar navbar-expand-lg navbar-light pl-4 col-10 bg-white border-bottom">
     <span class="navbar-brand h1 mb-0 col"><?php echo $icon.$site ?></span>
-    <ul class="navbar-nav px-4">
+    <ul class="nav px-4">
         <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="#" class="nav-link dropdown-toggle text-reset" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img class="rounded-circle" style="height: 40px;width: 40px;" src="../images/<?= $_SESSION['stall_username'] ?>/owner.jpg">
                 <?php echo $_SESSION['kteen_stall_name']; ?>
             </a>
