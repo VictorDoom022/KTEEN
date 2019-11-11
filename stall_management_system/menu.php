@@ -73,6 +73,13 @@ include '../process/handle_delete_menu.php';
 		</div>
 	</main>
 	<script type="text/javascript">
+		function ask_delete_menu(x){
+			var confirmBox = confirm("Are you want to delete the menu?");
+			if (confirmBox == true) {
+				window.location.assign("menu.php?df="+ x);
+			}
+		}
+
 		var view = 'card';
 
 		function change_view(btn){
