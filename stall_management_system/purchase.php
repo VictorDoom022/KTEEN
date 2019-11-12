@@ -36,7 +36,7 @@ include '../process/handle_delete_supplier.php';
 							
 						</div>
 						<div class="btn-group shadow-sm m-2">
-							<a href="sentPurchase.php" class="btn bg-white">
+							<a href="sent_purchase.php" class="btn bg-white">
 								Check Sent Email
 							</a>
 						</div>
