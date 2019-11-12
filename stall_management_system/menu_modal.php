@@ -31,7 +31,7 @@
                         <?php }else{ ?>
                             <a href="menu.php?af=<?= $row['ID']; ?>" class="btn text-primary">Action</a>
                         <?php } ?>
-                        <a href="" class="btn text-danger">Delete</a>
+                        <button class="btn text-danger" onclick="ask_delete_menu('<?= $row['ID']; ?>')">Delete</button>
                         <button class="btn text-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
