@@ -34,10 +34,19 @@ switch ($site) {
                 <?php echo $_SESSION['kteen_stall_name']; ?>
             </a>
             <div class="dropdown-menu dropdown-menu-right rounded-0 shadow border-0" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="notifications.php">Notification</a>
-                <a class="dropdown-item" href="setting.php">Settings</a>
+                <a class="dropdown-item" href="notifications.php">
+                    <i class="fas fa-bell"></i>
+                    <span class="mx-2">Notification</span>
+                </a>
+                <a class="dropdown-item" href="setting.php">
+                    <i class="fas fa-cog"></i>
+                    <span class="mx-2">Settings</span>
+                </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="index.php?logout='1'">Log Out</a>
+                <a class="dropdown-item" href="index.php?logout='1'">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="mx-2">Log Out</span>
+                </a>
             </div>
         </li>
     </ul>
