@@ -24,7 +24,7 @@ include '../process/handle_add_stall.php';
 </head>
 <body>
 	<?php 
-	$site = '';
+	$site = 'Add Stall';
 	include '../layout/top_nav_admin.php';
 	include '../layout/side_nav_admin.php';
 	?>

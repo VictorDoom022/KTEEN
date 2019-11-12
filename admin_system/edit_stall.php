@@ -1,18 +1,26 @@
 <?php
+session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
-
-session_start();
-
-if(isset($_SESSION['username'])){
-    $username = $_SESSION['username'];
-}else{
-    echo "<script>window.location.assign('login.php');</script>";
-}
+include '../process/handle_if_logout_admin.php';
 
 $stall_ID = "";
-if (isset($_GET['sid'])) {
-    $stall_ID = test_input($_GET['sid']);
+if (isset($_GET['su'])) {
+    $stall_username = test_input($_GET['su']);
+    $sql = "SELECT username, stall_image, owner_image, stall_name, owner_name, NRIC, contact_no, email FROM stall WHERE username = '$stall_username';";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) == 1) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $owner_name = $row['owner_name'];
+            $username = $row['username'];
+            $stall_name = $row['stall_name'];
+            $NRIC = $row['NRIC'];
+            $contact_no = $row['contact_no'];
+            $email = $row['email'];
+        }
+    }
+}else{
+    header("location: index.php");
 }
 
 //edit
@@ -91,9 +99,8 @@ if (isset($_POST["edit_stall_image"])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/style.css">
-    <link href="../css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <script src="https://kit.fontawesome.com/586e3dfa1f.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
@@ -119,65 +126,133 @@ if (isset($_POST["edit_stall_image"])) {
         }
     </style>
 </head>
-<body class="bg-light">
+<body>
     <?php 
     $site = 'Edit Stall';
     include '../layout/top_nav_admin.php';
     include '../layout/side_nav_admin.php';
     ?>
-    <div class="container-fluid">
-        <div class="row">
+    <main class="container-fluid">
+        <div class="row py-3">
             <div class="col-2"></div>
-            <main class="col-10 p-4">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <div class="k-card card">
-                        <div class="card-header bg-white p-0">
-                            <img src="../images/stall/S1_stall.jpg" class="w-100" height="250px" id="img-target">
-                            <img src="" width="250px" height="250px" id="img-target-2">
-                        </div>
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md">
-                                    <label for="stall_name">Stall Name</label>
-                                    <input type="text" name="stall_name" id="stall_name" class="form-control" value="">
-                                </div>
-                                <div class="form-group col-md">
-                                    <label for="owner_name">Owner Name</label>
-                                    <input type="text" name="owner_name" id="owner_name" class="form-control" value="">
+            <div class="col-10">
+                <div class="k-card card">
+                    <form id="add_stall_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
+                        <div class="row no-gutters">
+                            <div style="position: relative;width: 100%;height: 250px;">
+                                <img src="../images/stall_image.png" style="height: 250px; width: 100%;position: absolute;" id="img-stall">
+                                <input type="file" name="stall_image" id="input-stall-image" accept="image/*" required style="position: absolute;width: 100%;height: 100%;opacity: 0;" data-target="#img-stall">
+                                <label for="input-stall-image" class="btn btn-light" style="position: absolute;right: 10px;bottom: 5px;"><i class="fas fa-camera"></i></label>
+                                <div style="position: absolute;top: 50%;left: 3%;">
+                                    <div style="position: relative;width: 250px;height: 250px;">
+                                        <img src="../images/personal.jpg" class="rounded-circle" style="width: 250px;height: 250px;position: absolute;" id="img-owner">
+                                        <input type="file" name="owner_image" id="input-owner-image" data-target="#img-owner" accept="image/*" style="width: 250px;height: 250px;position: absolute;border-radius: 50%;opacity: 0;" required>
+                                        <label for="input-owner-image" class="btn btn-dark" style="position: absolute;bottom: 10px;right: 20px;z-index: 2;"><i class="fas fa-camera"></i></label>
+                                    </div>
                                 </div>
                             </div>
-                            <input type="file" name="" id="image" data-target="#img-target">
-                            <input type="file" name="" id="image-2" data-target="#img-target-2">
                         </div>
-                    </div>
-                </form>
-            </main>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-title h3">
+                                        Personal Detail
+                                    </div>
+                                    <hr>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">Name</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="owner_name" value="<?= $owner_name; ?>" class="form-control <?= $owner_name_valid ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">NRIC</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="NRIC" value="<?= $NRIC; ?>" class="form-control <?= $NRIC_valid ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">Contact No</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="contact_no" value="<?= $contact_no; ?>" class="form-control <?= $contact_no_valid ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">Email</label>
+                                        <div class="col-md-9">
+                                            <input type="email" name="email" value="<?= $email; ?>" class="form-control <?= $email_valid ?>" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                            <div class="col-12 card-title h3">
+                                Account
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">Username</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="username" class="form-control <?= $username_valid ?>" value="<?= $username ?>" readonly required>
+                                            <div class="invalid-feedback">
+                                                That username is taken.Try another.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="password">Password</label>
+                                        <div class="col-md-9">
+                                            <input type="password" name="password" id="password" class="form-control <?= $password_valid; ?>" value="<?= $p ?>" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label">Stall Name</label>
+                                        <div class="col-md-9">
+                                            <input type="text" name="stall_name" class="form-control <?= $stall_name_valid ?>" value="<?= $stall_name; ?>" required>
+                                            <div class="invalid-feedback">
+                                                That stall is already exist.Try another.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 col-form-label" for="confirm_password" style="font-size: 0.82rem;">Confirm Password</label>
+                                        <div class="col-md-9">
+                                            <input type="password" name="confirm_password" id="confirm_password" class="form-control <?= $password_valid; ?>" value="<?= $p; ?>" required>
+                                            <div class="invalid-feedback">
+                                                Those password didn't match.Try again.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-right">
+                                    <button class="btn text-danger">Cancel</button>
+                                    <input type="submit" name="add_stall" class="btn" value="Submit">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
     <script src="../js/show_input_image.js"></script>
-    <script>
-        $(".custom-file-input").on("change", function() {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        });
-
-        $('#password1').on('keyup', function () {
-            if ($('#password').val() == $('#password1').val()) {
-                $('#validate-status').html('Matched').css('display', 'none');
-                $('#submitbtn').removeAttr('disabled');
-            } 
-            if ($('#password').val() != $('#password1').val()) {
-                $('#validate-status').html('The password Not Match').css('display', 'flex');
-                // document.getElementById("add").diabled = true;
-                $('#submitbtn').attr('disabled','disabled');
-            }
-        });
-
-        $("#image").change(function() {
+    <script type="text/javascript">
+        $("#input-stall-image").change(function() {
             readURL(this);
         });
-
-        $("#image-2").change(function() {
+        $("#input-owner-image").change(function() {
             readURL(this);
         });
     </script>

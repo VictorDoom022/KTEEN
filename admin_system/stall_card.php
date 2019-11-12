@@ -119,7 +119,7 @@ if(isset($_GET['k'])){
                 </div>
                 <div class="modal-footer">
 					<button class="btn text-dark" data-dismiss="modal">CLOSE</button>
-					<a href="edit_stall.php?sid=<?php echo $stall_id; ?>" class="btn text-warning">EDIT</a>
+					<a href="edit_stall.php?su=<?= $row['username']; ?>" class="btn text-warning">EDIT</a>
 					<button onclick="ComfirmDelete('<?= $row['username']; ?>')" class="btn text-danger">DELETE</button>
 				</div>
             </div>
