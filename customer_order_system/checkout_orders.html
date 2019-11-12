@@ -36,66 +36,13 @@
 				</table>
 				<div class="border-top text-right px-2 pt-2">
 					<a href="index.html" class="btn rounded-0">Cancel</a>
-					<button class="btn btn-dark rounded-0 unclicked" id="btn-checkout">CheckOut</button>
+					<button class="btn btn-dark rounded-0" id="btn-checkout">CheckOut</button>
 				</div>
 			</div>
 		</div>
 	</main>
 	<script src="../js/top-nav-customer.js"></script>
 	<script type="text/javascript">
-		function get_order(){
-			if(typeof(Storage) != "undefined"){
-				var stall_username = sessionStorage.getItem("stall_username");
-				var order_list = sessionStorage.getItem("order_list");
-				var total_price = 0;
-				$.post("order_list.php", {
-					order_list: order_list
-				},function(data) {
-					var order_list = JSON.parse(data);
-					for (var i = 0;i < order_list.length; i++) {
-						var price = parseInt(order_list[i]["price"]) * order_list[i]["quantity"];
-						total_price += price;
-						$("#order-list").html("");
-						$("#order-list").append("<tr><td>"+ (i + 1) +"</td><td>"+ order_list[i]["food_name"] +"</td><td><button class='btn btn-sm btn-dark minus-btn'><i class='fas fa-minus'></i></button><span class='px-2'>"+ order_list[i]["quantity"] +"</span><button class='btn btn-sm btn-dark add-btn'><i class='fas fa-plus'></i></button></td><td>RM "+ price.toFixed(2) +"</td></tr>");
-					}
-					$("#order-list").append("<tr><td></td><td></td><td class='text-right'>Total Price:</td><td>RM "+ total_price.toFixed(2) +"</td></tr>");
-				});
-
-				$("#order-list").on("click", ".minus-btn", function() {
-					console.log("minus quantity");
-				});
-
-				$("#order-list").on("click", ".add-btn", function() {
-					
-					get_order();
-				});
-
-				$("#btn-checkout").click(function() {
-					console.log($(this).hasClass("unclicked"));
-					if($(this).hasClass("unclicked")){
-						$(this).removeClass("unclicked");
-						$.ajax({
-							type: 'POST',
-							url: "../process/handle_add_order_customer.php", 
-							data: {
-								order_list: order_list,
-								stall_username: stall_username
-							},
-							dataType: 'json',
-							success: function(data) {
-								if (data.status == 0) {
-									alert(data.msg);
-								}
-							},
-							error: function() {
-								alert("Something error!");
-							}
-						});
-					}
-				});
-			}
-		}
-
 		$(document).ready(function() {
 			$.ajax({
 				type: 'POST',
@@ -107,7 +54,69 @@
 					}
 				}
 			});
-			get_order();
+
+			if(typeof(Storage) != "undefined"){
+				var stall_username = sessionStorage.getItem("stall_username");
+				var order_list = sessionStorage.getItem("order_list");
+				var total_price = 0;
+				$.post("order_list.php", {
+					order_list: order_list
+				},function(data) {
+					var order_list = JSON.parse(data);
+					for (var i = 0;i < order_list.length; i++) {
+						var price = parseInt(order_list[i]["price"]) * order_list[i]["quantity"];
+						total_price += price;
+						$("#order-list").append("<tr><td>"+ (i + 1) +"</td><td>"+ order_list[i]["food_name"] +"</td><td data-food_id='"+ order_list[i]["food_id"] +"'><button class='btn btn-sm btn-dark minus-btn'><i class='fas fa-minus'></i></button><span class='px-2'>"+ order_list[i]["quantity"] +"</span><button class='btn btn-sm btn-dark add-btn'><i class='fas fa-plus'></i></button></td><td>RM "+ price.toFixed(2) +"</td></tr>");
+					}
+					$("#order-list").append("<tr><td></td><td></td><td class='text-right'>Total Price:</td><td>RM "+ total_price.toFixed(2) +"</td></tr>");
+				});
+				order_list = JSON.parse(order_list);
+				$("#order-list").on("click", ".minus-btn", function() {
+					for (var i = 0;i < order_list.length; i++) {
+						if(order_list[i]['food_id'] == $(this).parent().attr("data-food_id")){
+							var quantity = order_list[i]['quantity'] - 1;
+							console.log(order_list);
+							if (quantity == 0) {
+								var r = confirm("Are you sure?");
+								if(r){
+									$(this).parent().parent().remove();
+									if (i == 0) {
+										order_list.shift();
+									}else{
+										order_list.splice(i, i);
+									}
+									console.log(order_list);
+									if(order_list.length == 0){
+										sessionStorage.removeItem("order_list");
+										console.log("removed");
+										window.location.assign("index.html");
+									}
+								}
+							}else{
+								order_list[i]['quantity'] = quantity;
+								console.log(order_list[i]["quantity"]);
+								$($(this).parent().find("span")).html(quantity);
+							}
+							sessionStorage.setItem("order_list", JSON.stringify(order_list));
+						}
+					}
+				});
+
+				$("#order-list").on("click", ".add-btn", function() {
+					for (var i = 0;i < order_list.length; i++) {
+						if(order_list[i]['food_id'] == $(this).parent().attr("data-food_id")){
+							var quantity = order_list[i]['quantity'] + 1;
+							order_list[i]['quantity'] = quantity;
+							$($(this).parent().find("span")).html(quantity);
+							sessionStorage.setItem("order_list", JSON.stringify(order_list));
+						}
+					}
+				});
+
+				$("#btn-checkout").click(function() {
+					
+				});
+			}
 		});
 	</script>
 </body>

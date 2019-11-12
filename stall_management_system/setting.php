@@ -123,6 +123,7 @@ include '../process/handle_change_password_stall.php';
 					$(".password").attr("type", "password");
 					$($(this).attr("data-target")).find(":password").removeClass("is-invalid");
 					$($(this).attr("data-target")).find(":password").removeClass("is-valid");
+					window.location.assign("setting.php");
 				}
 			});
 
