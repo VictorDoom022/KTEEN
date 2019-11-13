@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2019 at 03:38 PM
+-- Generation Time: Nov 13, 2019 at 04:55 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -119,23 +119,6 @@ INSERT INTO `food` (`ID`, `name`, `stall_ID`, `category_ID`, `image`, `price`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `food_changer_pool`
---
-
-CREATE TABLE `food_changer_pool` (
-  `food_changer_pool_id` int(6) NOT NULL,
-  `name` int(100) NOT NULL,
-  `stall_ID` int(6) NOT NULL,
-  `category_ID` int(6) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `price` double(5,2) NOT NULL,
-  `available` varchar(1) NOT NULL,
-  `approve` varchar(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `ingredient`
 --
 
@@ -144,6 +127,23 @@ CREATE TABLE `ingredient` (
   `ingredient_name` varchar(100) NOT NULL,
   `supplier_ID` varchar(32) NOT NULL,
   `price` double(7,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_approve`
+--
+
+CREATE TABLE `menu_approve` (
+  `menu_approve_id` int(6) NOT NULL,
+  `name` int(100) NOT NULL,
+  `stall_ID` int(6) NOT NULL,
+  `category_ID` int(6) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `price` double(5,2) NOT NULL,
+  `available` varchar(1) NOT NULL,
+  `approve` varchar(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -636,10 +636,10 @@ ALTER TABLE `food`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `food_changer_pool`
+-- Indexes for table `menu_approve`
 --
-ALTER TABLE `food_changer_pool`
-  ADD PRIMARY KEY (`food_changer_pool_id`);
+ALTER TABLE `menu_approve`
+  ADD PRIMARY KEY (`menu_approve_id`);
 
 --
 -- Indexes for table `notice`
@@ -742,10 +742,10 @@ ALTER TABLE `food`
   MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `food_changer_pool`
+-- AUTO_INCREMENT for table `menu_approve`
 --
-ALTER TABLE `food_changer_pool`
-  MODIFY `food_changer_pool_id` int(6) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `menu_approve`
+  MODIFY `menu_approve_id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notice`
