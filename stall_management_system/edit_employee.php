@@ -2,7 +2,7 @@
 session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
-include '../process/handle_add_employee.php';
+include '../process/handle_edit_employee.php';
 ?>
 <!DOCTYPE html>
 <html>
