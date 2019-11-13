@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2019 at 06:29 AM
+-- Generation Time: Nov 13, 2019 at 03:38 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -31,15 +31,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `ID` int(6) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `password` varchar(32) NOT NULL
+  `password` varchar(32) NOT NULL,
+  `position` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`ID`, `name`, `password`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO `admin` (`ID`, `name`, `password`, `position`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '');
 
 -- --------------------------------------------------------
 
@@ -118,19 +119,87 @@ INSERT INTO `food` (`ID`, `name`, `stall_ID`, `category_ID`, `image`, `price`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `log`
+-- Table structure for table `food_changer_pool`
 --
 
-CREATE TABLE `log` (
+CREATE TABLE `food_changer_pool` (
+  `food_changer_pool_id` int(6) NOT NULL,
+  `name` int(100) NOT NULL,
+  `stall_ID` int(6) NOT NULL,
+  `category_ID` int(6) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `price` double(5,2) NOT NULL,
+  `available` varchar(1) NOT NULL,
+  `approve` varchar(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ingredient`
+--
+
+CREATE TABLE `ingredient` (
+  `ingredient_ID` int(6) NOT NULL,
+  `ingredient_name` varchar(100) NOT NULL,
+  `supplier_ID` varchar(32) NOT NULL,
+  `price` double(7,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notice`
+--
+
+CREATE TABLE `notice` (
+  `ID` int(10) NOT NULL,
+  `stall_ID` varchar(32) NOT NULL,
+  `date` date NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notice`
+--
+
+INSERT INTO `notice` (`ID`, `stall_ID`, `date`, `description`) VALUES
+(5, 'stall01', '2019-09-19', 'We will closed form september 20 to 22'),
+(6, 'stall01', '2019-10-02', 'jjyy');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `ID` int(32) NOT NULL,
+  `recipient_id` int(32) NOT NULL,
+  `sender_id` int(32) NOT NULL,
+  `unread` tinyint(1) NOT NULL DEFAULT '1',
+  `type` varchar(255) NOT NULL,
+  `parameter` text NOT NULL,
+  `reference_id` int(32) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `number`
+--
+
+CREATE TABLE `number` (
   `order_number` int(4) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'free'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `log`
+-- Dumping data for table `number`
 --
 
-INSERT INTO `log` (`order_number`, `status`) VALUES
+INSERT INTO `number` (`order_number`, `status`) VALUES
 (1, 'free'),
 (2, 'free'),
 (3, 'free'),
@@ -335,50 +404,12 @@ INSERT INTO `log` (`order_number`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `notice`
---
-
-CREATE TABLE `notice` (
-  `ID` int(10) NOT NULL,
-  `stall_ID` varchar(32) NOT NULL,
-  `date` date NOT NULL,
-  `description` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `notice`
---
-
-INSERT INTO `notice` (`ID`, `stall_ID`, `date`, `description`) VALUES
-(5, 'stall01', '2019-09-19', 'We will closed form september 20 to 22'),
-(6, 'stall01', '2019-10-02', 'jjyy');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `notifications`
---
-
-CREATE TABLE `notifications` (
-  `ID` int(32) NOT NULL,
-  `recipient_id` int(32) NOT NULL,
-  `sender_id` int(32) NOT NULL,
-  `unread` tinyint(1) NOT NULL DEFAULT '1',
-  `type` varchar(255) NOT NULL,
-  `parameter` text NOT NULL,
-  `reference_id` int(32) NOT NULL,
-  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
   `ID` int(11) NOT NULL,
-  `customer_ID` varchar(32) NOT NULL,
+  `customer_username` varchar(32) NOT NULL,
   `stall_ID` int(6) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `number` int(11) NOT NULL,
@@ -389,7 +420,7 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`ID`, `customer_ID`, `stall_ID`, `date`, `number`, `completed`) VALUES
+INSERT INTO `orders` (`ID`, `customer_username`, `stall_ID`, `date`, `number`, `completed`) VALUES
 (92, 'test', 1, '2019-10-06 17:50:56', 0, 0),
 (93, 'test', 1, '2019-10-10 15:12:44', 0, 0),
 (94, 'test', 1, '2019-10-13 15:47:47', 0, 0),
@@ -550,22 +581,11 @@ INSERT INTO `stall` (`ID`, `username`, `stall_image`, `owner_image`, `stall_name
 CREATE TABLE `supplier` (
   `ID` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
+  `company_name` varchar(255) NOT NULL,
+  `contact_no` varchar(11) NOT NULL,
+  `address` text NOT NULL,
   `stall_ID` int(11) NOT NULL,
   `email` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `timeable`
---
-
-CREATE TABLE `timeable` (
-  `ID` int(10) NOT NULL,
-  `staff_ID` int(6) NOT NULL,
-  `date` date NOT NULL,
-  `in_time` time NOT NULL,
-  `out_time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -616,10 +636,10 @@ ALTER TABLE `food`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `log`
+-- Indexes for table `food_changer_pool`
 --
-ALTER TABLE `log`
-  ADD PRIMARY KEY (`order_number`);
+ALTER TABLE `food_changer_pool`
+  ADD PRIMARY KEY (`food_changer_pool_id`);
 
 --
 -- Indexes for table `notice`
@@ -632,6 +652,12 @@ ALTER TABLE `notice`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `number`
+--
+ALTER TABLE `number`
+  ADD PRIMARY KEY (`order_number`);
 
 --
 -- Indexes for table `orders`
@@ -682,12 +708,6 @@ ALTER TABLE `supplier`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `timeable`
---
-ALTER TABLE `timeable`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Indexes for table `wallet`
 --
 ALTER TABLE `wallet`
@@ -722,10 +742,10 @@ ALTER TABLE `food`
   MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `log`
+-- AUTO_INCREMENT for table `food_changer_pool`
 --
-ALTER TABLE `log`
-  MODIFY `order_number` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+ALTER TABLE `food_changer_pool`
+  MODIFY `food_changer_pool_id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notice`
@@ -738,6 +758,12 @@ ALTER TABLE `notice`
 --
 ALTER TABLE `notifications`
   MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `number`
+--
+ALTER TABLE `number`
+  MODIFY `order_number` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -786,12 +812,6 @@ ALTER TABLE `stall`
 --
 ALTER TABLE `supplier`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `timeable`
---
-ALTER TABLE `timeable`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `wallet`
