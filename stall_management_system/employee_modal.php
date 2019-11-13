@@ -53,7 +53,7 @@
 					<div class="col text-right">
 						<button class="btn text-secondary" data-dismiss="modal">Close</button>
 						<a href="" class="btn text-danger">Delete</a>
-						<a href="" class="btn text-warning">Edit</a>
+						<a href="edit_employee.php" class="btn text-warning">Edit</a>
 					</div>
 				</div>
 			</div>
