@@ -23,7 +23,7 @@ include '../process/handle_delete_stall.php'
 
 	<title>Admin</title>
 </head>
-<body>
+<body onload="filter()">
 	<?php 
 	$site = 'index';
 	include '../layout/top_nav_admin.php';
@@ -34,15 +34,26 @@ include '../process/handle_delete_stall.php'
 			<div class="col-2"></div>
 			<main class="col-10">
 				<div class="row">
-					<div class="col-12">
+					<div class="col-12 col-sm-5 col-md-4 col-lg-3">
 						<div class="btn-group shadow-sm m-2">
 							<a href="add_stall.php" class="btn bg-white">
 								<i class="fas fa-plus"></i>
 							</a>
 						</div>
 					</div>
+					<div class="col-12 col-sm-7 col-md-8 col-lg-9">
+						<div class="input-group shadow-sm m-2">
+							<div class="input-group-prepend">
+								<div class="input-group-text border-0 bg-white">
+									<i class="fas fa-search"></i>
+								</div>
+						    </div>
+							<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" oninput="filter()">
+							<div id="result"></div>
+						</div>
+					</div>
 				</div>
-				<?php include 'stall_card.php'; ?>
+				<div id="stall"></div>
 			</main>
 		</div>
 	</div>
@@ -51,6 +62,26 @@ include '../process/handle_delete_stall.php'
 			var confirmBox = confirm("Are you sure you want to delete?");
 			if (confirmBox == true) {
 				window.location.assign("index.php?st_u="+ x);
+			}
+		}
+
+		function filter(){
+			var k = document.getElementById("search").value;
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					document.getElementById("stall").innerHTML = this.responseText;
+				}
+			};
+			if(k == ""){
+				xhttp.open("GET", "stall_card.php", true);
+				xhttp.send();
+				return;
+			}else if(k != ""){
+				xhttp.open("GET" , "stall_card.php?k="+k, true);
+				xhttp.send();
+				return;
 			}
 		}
 	</script>

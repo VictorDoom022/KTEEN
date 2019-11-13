@@ -13,6 +13,8 @@ if (isset($_GET['su'])) {
         while ($row = mysqli_fetch_assoc($result)) {
             $owner_name = $row['owner_name'];
             $username = $row['username'];
+            $stall_image = $row['stall_image'];
+            $owner_image = $row['owner_image'];
             $stall_name = $row['stall_name'];
             $NRIC = $row['NRIC'];
             $contact_no = $row['contact_no'];
@@ -140,12 +142,12 @@ if (isset($_POST["edit_stall_image"])) {
                     <form id="add_stall_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
                         <div class="row no-gutters">
                             <div style="position: relative;width: 100%;height: 250px;">
-                                <img src="../images/stall_image.png" style="height: 250px; width: 100%;position: absolute;" id="img-stall">
+                                <img src="../images/<?= $stall_username; ?>/<?= $stall_image; ?>" style="height: 250px; width: 100%;position: absolute;" id="img-stall">
                                 <input type="file" name="stall_image" id="input-stall-image" accept="image/*" required style="position: absolute;width: 100%;height: 100%;opacity: 0;" data-target="#img-stall">
                                 <label for="input-stall-image" class="btn btn-light" style="position: absolute;right: 10px;bottom: 5px;"><i class="fas fa-camera"></i></label>
                                 <div style="position: absolute;top: 50%;left: 3%;">
                                     <div style="position: relative;width: 250px;height: 250px;">
-                                        <img src="../images/personal.jpg" class="rounded-circle" style="width: 250px;height: 250px;position: absolute;" id="img-owner">
+                                        <img src="../images/<?= $stall_username; ?>/<?= $owner_image; ?>" class="rounded-circle" style="width: 250px;height: 250px;position: absolute;" id="img-owner">
                                         <input type="file" name="owner_image" id="input-owner-image" data-target="#img-owner" accept="image/*" style="width: 250px;height: 250px;position: absolute;border-radius: 50%;opacity: 0;" required>
                                         <label for="input-owner-image" class="btn btn-dark" style="position: absolute;bottom: 10px;right: 20px;z-index: 2;"><i class="fas fa-camera"></i></label>
                                     </div>
@@ -207,12 +209,6 @@ if (isset($_POST["edit_stall_image"])) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3 col-form-label" for="password">Password</label>
-                                        <div class="col-md-9">
-                                            <input type="password" name="password" id="password" class="form-control <?= $password_valid; ?>" value="<?= $p ?>" required>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
@@ -221,15 +217,6 @@ if (isset($_POST["edit_stall_image"])) {
                                             <input type="text" name="stall_name" class="form-control <?= $stall_name_valid ?>" value="<?= $stall_name; ?>" required>
                                             <div class="invalid-feedback">
                                                 That stall is already exist.Try another.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-md-3 col-form-label" for="confirm_password" style="font-size: 0.82rem;">Confirm Password</label>
-                                        <div class="col-md-9">
-                                            <input type="password" name="confirm_password" id="confirm_password" class="form-control <?= $password_valid; ?>" value="<?= $p; ?>" required>
-                                            <div class="invalid-feedback">
-                                                Those password didn't match.Try again.
                                             </div>
                                         </div>
                                     </div>
