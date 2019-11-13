@@ -61,7 +61,7 @@ if(isset($_POST['reject'])){
 			<main class="col-10">
 				<div class="row">
 					<?php
-					$sql = "SELECT ID, name, stall_ID, category_ID ,image, price FROM stall_approve WHERE approve = '0'";
+					$sql = "SELECT name, stall_ID, category_ID ,image, price FROM food_changer_pool WHERE approve = '0'";
 					$result = $conn -> query($sql);
 
 					if($result ->num_rows >0){
@@ -113,6 +113,10 @@ if(isset($_POST['reject'])){
 						</form>
 						<?php 
 							}
+						}else{
+						?>
+						<div class="col text-center h3 pt-3">No Action Need</div>
+						<?php
 						}
 						?>
 					</div>
