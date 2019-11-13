@@ -1,6 +1,7 @@
 <?php 
 session_start();
-include('../config/config.php');
+include '../config/config.php';
+include '../config/test_input.php';
 $filterCategory = "";
 
 if(isset($_GET['c'])){
