@@ -16,7 +16,7 @@ if(isset($_GET['id'])){
 }
 
 
-if(isset($_POST['add_menu'])){
+if(isset($_POST['edit_menu'])){
     $food_id = test_input($_POST['food_id']);
     $food_name = $category_ID = $image = $price = "";
 

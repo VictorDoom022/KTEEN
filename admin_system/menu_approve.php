@@ -9,8 +9,8 @@ if(isset($_POST['approve'])){
     $ID = $_POST['ID'];
     $approve = $_POST['approve'];
 
-    $sql = "UPDATE stall_approve SET approve = '$approve' WHERE ID = '$ID'";
-    $result = $conn->query($sql);
+    $sql = "UPDATE menu_approve SET approve = '$approve' WHERE ID = '$ID'";
+    $result = mysqli_query($conn, $sql);
 
     //store to food table
     $name = $_POST['name'];
@@ -61,12 +61,12 @@ if(isset($_POST['reject'])){
 			<main class="col-10">
 				<div class="row">
 					<?php
-					$sql = "SELECT name, stall_ID, category_ID ,image, price FROM food_changer_pool WHERE approve = '0'";
-					$result = $conn -> query($sql);
+					$sql = "SELECT name, stall_ID, category_ID ,image, price FROM menu_approve WHERE approve = '0'";
+					$result = mysqli_query($conn ,$sql);
 
-					if($result ->num_rows >0){
-						while($row = $result -> fetch_assoc()){
-							$ID = $row['ID'];
+					if(mysqli_num_rows($result) >0){
+						while($row = mysqli_fetch_assoc($result)){
+							// $ID = $row['ID'];
 							$name = $row['name'];
 							$stall_ID = $row['stall_ID'];
 							$category_ID = $row['category_ID'];
@@ -108,9 +108,9 @@ if(isset($_POST['reject'])){
 		                    
 		                        </div>
 		                    </div>
-                </div>
 						</div>
 						</form>
+	                </div>
 						<?php 
 							}
 						}else{
@@ -119,8 +119,8 @@ if(isset($_POST['reject'])){
 						<?php
 						}
 						?>
-					</div>
 				<!-- <?php include 'stall_card.php'; ?> -->
+				</div>
 			</main>
 		</div>
 	</div>

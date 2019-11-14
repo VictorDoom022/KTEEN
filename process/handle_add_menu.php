@@ -9,7 +9,7 @@ if(isset($_POST['add_menu'])){
     $image = test_input("S".$_SESSION['kteen_stall_id']."_".$foodname.".jpg");
     $price = test_input($_POST['price']);
 
-    $sql = "INSERT INTO food (name, stall_ID, category_ID, image, price, available) VALUES ('$foodname', '".$_SESSION['kteen_stall_id']."', '$category_ID', '$image', '$price', '1');";
+    $sql = "INSERT INTO menu_approve (name, stall_ID, category_ID, image, price, available) VALUES ('$foodname', '".$_SESSION['kteen_stall_id']."', '$category_ID', '$image', '$price', '1');";
     $result = $conn->query($sql);
 
     $target_dir = "../images/" . $_SESSION['stall_username'] . "/menu/";
@@ -55,7 +55,7 @@ if(isset($_POST['add_menu'])){
         }
     }
     $conn->close();
-    // header('location: menu.php');
+    header('location: menu.php');
 }
 
 ?>

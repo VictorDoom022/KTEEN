@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2019 at 04:55 PM
+-- Generation Time: Nov 14, 2019 at 08:22 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -114,7 +114,8 @@ INSERT INTO `food` (`ID`, `name`, `stall_ID`, `category_ID`, `image`, `price`, `
 (6, 'Nasi Pattaya', 1, 1, 'S1_Nasi Pattaya.jpg', 5.00, '1'),
 (7, 'Wan Tan Mee', 1, 2, 'S1_Wan Tan Mee.jpg', 6.00, '1'),
 (8, 'Maggi Mee', 1, 2, 'S1_Maggi Mee.jpg', 4.00, '1'),
-(10, 'nasi lemak kampung', 4, 1, 'S4_nasi lemak kampung.jpg', 6.00, '1');
+(10, 'nasi lemak kampung', 4, 1, 'S4_nasi lemak kampung.jpg', 6.00, '1'),
+(13, '0', 1, 1, 'S1_Si Comel.jpg', 6.00, '0');
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,7 @@ CREATE TABLE `ingredient` (
 
 CREATE TABLE `menu_approve` (
   `menu_approve_id` int(6) NOT NULL,
-  `name` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `stall_ID` int(6) NOT NULL,
   `category_ID` int(6) NOT NULL,
   `image` varchar(255) NOT NULL,
@@ -145,6 +146,14 @@ CREATE TABLE `menu_approve` (
   `available` varchar(1) NOT NULL,
   `approve` varchar(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `menu_approve`
+--
+
+INSERT INTO `menu_approve` (`menu_approve_id`, `name`, `stall_ID`, `category_ID`, `image`, `price`, `available`, `approve`) VALUES
+(1, '0', 1, 1, 'S1_Si Comel.jpg', 6.00, '1', '0'),
+(2, 'Fried Rice', 1, 0, 'S1_Fried Rice.jpg', 6.00, '1', '0');
 
 -- --------------------------------------------------------
 
@@ -588,6 +597,18 @@ CREATE TABLE `supplier` (
   `email` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`ID`, `name`, `company_name`, `contact_no`, `address`, `stall_ID`, `email`) VALUES
+(1, 'test', 'test', '345678', 'dfytui', 0, 'victordoom022@gmail.com'),
+(2, 'test', 'test', '0123345678', 'adada', 0, 'victordoom022@gmail.com'),
+(3, 'fs', 'fs', 'fdsf', 'sfs', 0, 'fd@grihs'),
+(4, 'test', 'test', '0123345678', 'sdad', 0, 'victordoom022@gmail.com'),
+(5, 'test', 'test', '0123345678', 'adad', 0, 'victordoom022@gmail.com'),
+(6, 'fs', 'fs', '0187801201', 'sdfs', 1, 'stall01@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -739,13 +760,13 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `menu_approve`
 --
 ALTER TABLE `menu_approve`
-  MODIFY `menu_approve_id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `menu_approve_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `notice`
@@ -811,7 +832,7 @@ ALTER TABLE `stall`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `wallet`
