@@ -23,7 +23,7 @@ session_start();
                         <?= $_SESSION['customer_name']; ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="setting.html">Setting</a>
+                        <a class="dropdown-item" href="setting.php">Setting</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="../process/handle_logout_customer.php">Log Out</a>
                     </div>

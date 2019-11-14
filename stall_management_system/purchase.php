@@ -33,7 +33,6 @@ include '../process/handle_delete_supplier.php';
 							<a href="add_supplier.php" class="btn bg-white">
 								<i class="fas fa-plus"></i>
 							</a>
-							
 						</div>
 						<div class="btn-group shadow-sm m-2">
 							<a href="sent_purchase.php" class="btn bg-white">

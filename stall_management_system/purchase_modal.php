@@ -13,7 +13,7 @@
 									<small class="text-muted col">Name</small>
 									<div class="w-100"></div>
 									<div class="col">
-										<?php echo $row['Name']; ?>
+										<?php echo $row['name']; ?>
 									</div>
 								</div>
 							</div>
@@ -62,7 +62,7 @@
 									<small class="text-muted col">Order ID</small>
 									<div class="w-100"></div>
 									<div class="col">
-										<?php echo $row['order_ID']; ?>
+										<!-- <?php echo $row['order_ID']; ?> -->
 									</div>
 								</div>
 							</div>

@@ -1,10 +1,10 @@
 <div class="row">
 	<?php 
 	$stallID = $_SESSION['kteen_stall_id'];
-	$sql = "SELECT * FROM supplier where stall_ID= '$stallID'";
-	$result = $conn -> query($sql);
-	if ($result->num_rows > 0) {
-		while ($row = $result->fetch_assoc()) {
+	$sql = "SELECT * FROM supplier where stall_ID = '$stallID';";
+	$result = mysqli_query($conn, $sql);
+	if (mysqli_num_rows($result) > 0) {
+		while ($row = mysqli_fetch_assoc($result)) {
 	?>
 	<div class=" col-12 col-md-6 col-lg-4 p-1">
 		<a href="#modal<?php echo $row['ID']; ?>" class="text-decoration-none text-reset" data-toggle="modal">
@@ -16,7 +16,7 @@
 					<div class="col-8">
 						<div class="card-body">
 							<div class="card-title mb-0">
-								<?php echo $row['Name']; ?>
+								<?php echo $row['name']; ?>
 							</div>
 							<div class="card-text">
 								<small class="text-muted mt-0">

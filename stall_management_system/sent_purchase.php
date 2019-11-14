@@ -57,7 +57,7 @@ include '../process/handle_if_logout_stall.php';
 										<?php
 											$stallID = $_SESSION['kteen_stall_id'];
 											$count=0;
-											$sql = "SELECT ID, stall_ID, date, supplier_ID, content, product_name, price, quantity,total from purchase where stall_ID = '$stallID'";
+											echo $sql = "SELECT ID, stall_ID, date, supplier_ID, content, product_name, price, quantity,total from purchase where stall_ID = '$stallID'";
 											$result = $conn -> query($sql);
 											if(mysqli_num_rows($result)){
 												while ($row = mysqli_fetch_assoc($result)) {
