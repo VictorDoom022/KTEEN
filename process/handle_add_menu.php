@@ -12,7 +12,7 @@ if(isset($_POST['add_menu'])){
     $sql = "INSERT INTO menu_approve (name, stall_ID, category_ID, image, price, available) VALUES ('$foodname', '".$_SESSION['kteen_stall_id']."', '$category_ID', '$image', '$price', '1');";
     $result = $conn->query($sql);
 
-    $target_dir = "../images/" . $_SESSION['stall_username'] . "/menu/";
+    $target_dir = "../images/menu2approve/". $_SESSION['stall_username'] ."/";
     $target_file = $target_dir.$image;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

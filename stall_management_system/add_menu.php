@@ -48,12 +48,6 @@ include '../process/handle_add_menu.php';
 								</div>
 								<div class="col-md-8">
 									<div class="form-group row">
-										<label class="col-md-3 col-form-label text-nowrap">Food ID :</label>
-										<div class="col-md-9">
-											<input type="text" name="ID" class="form-control" placeholder="">
-										</div>
-									</div>
-									<div class="form-group row">
 										<label class="col-md-3 col-form-label text-nowrap">Food Name :</label>
 										<div class="col-md-9">
 											<input type="text" name="name" class="form-control">

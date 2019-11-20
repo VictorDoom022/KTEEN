@@ -58,59 +58,49 @@ if(isset($_POST['reject'])){
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2"></div>
-			<main class="col-10">
-				<div class="row">
+			<main class="col-10 container-fluid">
+				<div class="row pt-3">
 					<?php
-					$sql = "SELECT name, stall_ID, category_ID ,image, price FROM menu_approve WHERE approve = '0'";
+					$sql = "SELECT menu_approve_id, username, menu_approve.name, stall_ID, category.name AS category_name ,image, price FROM menu_approve LEFT JOIN stall ON menu_approve.stall_ID = stall.ID LEFT JOIN category ON menu_approve.category_ID = category.ID WHERE approve = '0'";
 					$result = mysqli_query($conn ,$sql);
 
 					if(mysqli_num_rows($result) >0){
 						while($row = mysqli_fetch_assoc($result)){
-							// $ID = $row['ID'];
+							$ID = $row['menu_approve_id'];
+							$username = $row['username'];
 							$name = $row['name'];
 							$stall_ID = $row['stall_ID'];
-							$category_ID = $row['category_ID'];
+							$category_name = $row['category_name'];
 							$image = $row['image'];
 							$price = $row['price'];
 						?>
-						<div class="col-12 col-md-6 col-lg-4 p-2">
-							<form action="menu_approve.php" method="post" enctype="multipart/form-data">
+						<div class="col-12">
 							<div class="k-card card k-hover-shadow h-100">
-								<div class="row no-gutters">
-		                    <div class="col-5">
-		                        <img style="width: 100%;height: 125px;" src="../images/menu/<?php echo $image; ?>">
-		                    </div>
-		                    <div class="col-7">
-		                        <div class="card-body">
-		                            <div class="card-title h5 mb-0">
-		                                <?= $row['name']; ?>
-		                            </div>
-		                            <div class="card-text">
-		                                <small class="text-muted">
-		                                    <?= $row['stall_ID']; ?>
-		                                </small>
-		                            </div>
-		                            <div class="card-text mb-0">
-		                                RM <?php echo $row['price']; ?>
-		                            </div> 
-		                            <input type="hidden" name="ID" id="ID" value="<?= $ID?>">
-		                            <input type="hidden" name="name" id="name" value="<?= $name ?>">
-		                            <input type="hidden" name="stall_ID" id="stall_ID" value="<?= $stall_ID ?>">
-		                            <input type="hidden" name="category_ID" id="category_ID" value="<?= $category_ID?> ">
-		                            <input type="hidden" name="image" id="image" value="<?= $image ?>">
-		                            <input type="hidden" name="price" id="price" value="<?= $price ?>">
-
-		                            <input type="hidden" name="approve" id="approve" value="1">
-		                            <input type="hidden" name="reject" id="reject" value="2">
-
-		                            <button class="btn btn-outline-success">Approve</button>
-		                            <button type="reject" class="btn btn-outline-danger">Reject</button>
-		                    
-		                        </div>
-		                    </div>
-						</div>
-						</form>
-	                </div>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-5 col-md-2">
+											<img src="../images/menu2approve/<?= $username ?>/<?= $image; ?>" class="w-100 h-100">
+										</div>
+										<div class="col-7 col-md-10 my-auto">
+											<div class="row">
+												<div class="col-md-9 my-auto">
+													<div class="h4 mb-0"><?= $name; ?></div>
+													<div class="text-muted"><small><?= $category_name; ?></small></div>
+													<div>RM <?= $price; ?></div>
+												</div>
+												<div class="col-md-3 text-center my-auto">
+													<button class="btn btn-sm btn-success">Approve</button>
+													<button class="btn btn-sm btn-danger">reject</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- <div class="card-body border bg-light mx-3">
+									
+								</div> -->
+							</div>
+	                	</div>
 						<?php 
 							}
 						}else{
@@ -119,7 +109,6 @@ if(isset($_POST['reject'])){
 						<?php
 						}
 						?>
-				<!-- <?php include 'stall_card.php'; ?> -->
 				</div>
 			</main>
 		</div>

@@ -10,15 +10,16 @@ if(isset($_GET['c'])){
 
 $keyword = "";
 if (isset($_GET['k'])) {
-    $keyword = " AND food.name LIKE '%".$_GET['k']."%'";
+    $temp = test_input($_GET['k']);
+    $keyword = " AND food.name LIKE '%$temp%'";
 }
 ?>
 <div class="row">
     <?php
     $sql = "SELECT food.ID AS ID, food.name AS name, category.name AS category, category.ID as category_ID, image, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '".$_SESSION['kteen_stall_id']."'".$filterCategory.$keyword;
-    $result = $conn -> query($sql);
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) { 
+    $result = mysqli_query($conn, $sql) or die("<div class='col h5 text-center'>Something error</div>");
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) { 
             $image = $row['image'];
     ?>
     <div class="col-sm-6 col-md-4 p-2">
@@ -76,7 +77,6 @@ if (isset($_GET['k'])) {
 </div>
 <?php
 $sql = "SELECT 
-stall.username AS username, 
 food.name AS food_name, 
 food.image AS image, 
 food.price AS price

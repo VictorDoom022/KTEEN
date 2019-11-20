@@ -62,6 +62,7 @@ if (isset($_POST['add_stall'])) {
 		mkdir('../images/'.$username);
 		mkdir('../images/'.$username.'/menu');
 		mkdir('../images/'.$username.'/staff');
+		mkdir('../images/menu2approve/'.$username);
 
 		if (move_uploaded_file($_FILES["owner_image"]["tmp_name"], $target_owner_image)) {
 		    $error = "The file ". basename( $_FILES["owner_image"]["name"]). " has been uploaded.";
