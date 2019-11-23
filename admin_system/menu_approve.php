@@ -3,33 +3,8 @@ session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
 include '../process/handle_if_logout_admin.php';
-
-
-if(isset($_POST['approve'])){
-    $ID = $_POST['ID'];
-    $approve = $_POST['approve'];
-
-    $sql = "UPDATE menu_approve SET approve = '$approve' WHERE ID = '$ID'";
-    $result = mysqli_query($conn, $sql);
-
-    //store to food table
-    $name = $_POST['name'];
-	$stall_ID = $_POST['stall_ID'];
-	$category_ID = $_POST['category_ID'];
-	$image = $_POST['image'];
-	$price = $_POST['price'];
-
-	$sql = "INSERT INTO food(name, stall_ID, category_ID, image, price, available) VALUES ('$name', '$stall_ID', '$category_ID' , '$image', '$price', '0')";
-	$result = $conn->query($sql);
-}
-
-if(isset($_POST['reject'])){
-    $ID = $_POST['ID'];
-    $reject = $_POST['approve'];
-
-    $sql = "UPDATE stall_approve SET approve = '$reject' WHERE ID = '$ID'";
-    $result = $conn->query($sql);
-}
+include '../process/handle_approve_menu.php';
+include '../process/handle_reject_menu.php';
  ?>
 <!DOCTYPE html>
 <html>
@@ -58,57 +33,59 @@ if(isset($_POST['reject'])){
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2"></div>
-			<main class="col-10 container-fluid">
-				<div class="row pt-3">
-					<?php
-					$sql = "SELECT menu_approve_id, username, menu_approve.name, stall_ID, category.name AS category_name ,image, price FROM menu_approve LEFT JOIN stall ON menu_approve.stall_ID = stall.ID LEFT JOIN category ON menu_approve.category_ID = category.ID WHERE approve = '0'";
-					$result = mysqli_query($conn ,$sql);
+			<main class="col-10">
+				<div class="container-fluid">
+					<div class="row pt-3">
+						<?php
+						$sql = "SELECT menu_approve_id, username, menu_approve.name, stall_ID, category.name AS category_name ,image, price FROM menu_approve LEFT JOIN stall ON menu_approve.stall_ID = stall.ID LEFT JOIN category ON menu_approve.category_ID = category.ID WHERE approve = '0'";
+						$result = mysqli_query($conn ,$sql);
 
-					if(mysqli_num_rows($result) >0){
-						while($row = mysqli_fetch_assoc($result)){
-							$ID = $row['menu_approve_id'];
-							$username = $row['username'];
-							$name = $row['name'];
-							$stall_ID = $row['stall_ID'];
-							$category_name = $row['category_name'];
-							$image = $row['image'];
-							$price = $row['price'];
-						?>
-						<div class="col-12">
-							<div class="k-card card k-hover-shadow h-100">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-5 col-md-2">
-											<img src="../images/menu2approve/<?= $username ?>/<?= $image; ?>" class="w-100 h-100">
-										</div>
-										<div class="col-7 col-md-10 my-auto">
-											<div class="row">
-												<div class="col-md-9 my-auto">
-													<div class="h4 mb-0"><?= $name; ?></div>
-													<div class="text-muted"><small><?= $category_name; ?></small></div>
-													<div>RM <?= $price; ?></div>
-												</div>
-												<div class="col-md-3 text-center my-auto">
-													<button class="btn btn-sm btn-success">Approve</button>
-													<button class="btn btn-sm btn-danger">reject</button>
+						if(mysqli_num_rows($result) >0){
+							while($row = mysqli_fetch_assoc($result)){
+								$ID = $row['menu_approve_id'];
+								$username = $row['username'];
+								$name = $row['name'];
+								$stall_ID = $row['stall_ID'];
+								$category_name = $row['category_name'];
+								$image = $row['image'];
+								$price = $row['price'];
+							?>
+							<div class="col-12">
+								<div class="k-card card k-hover-shadow h-100">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-5 col-md-2">
+												<img src="../images/menu2approve/<?= $username ?>/<?= $image; ?>" class="w-100 h-100">
+											</div>
+											<div class="col-7 col-md-10 my-auto">
+												<div class="row">
+													<div class="col-md-9 my-auto">
+														<div class="h4 mb-0"><?= $name; ?></div>
+														<div class="text-muted"><small><?= $category_name; ?></small></div>
+														<div>RM <?= $price; ?></div>
+													</div>
+													<div class="col-md-3 text-center my-auto">
+														<a href="menu_approve.php?approve=<?= $ID; ?>" class="btn btn-sm btn-success">Approve</a>
+														<a href="menu_approve.php?reject=<?= $ID; ?>&stall_id=<?= $stall_ID; ?>" class="btn btn-sm btn-danger">reject</a>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
+									<!-- <div class="card-body border bg-light mx-3">
+										
+									</div> -->
 								</div>
-								<!-- <div class="card-body border bg-light mx-3">
-									
-								</div> -->
-							</div>
-	                	</div>
-						<?php 
+		                	</div>
+							<?php 
+								}
+							}else{
+							?>
+							<div class="col text-center h3 pt-3">No Action Need</div>
+							<?php
 							}
-						}else{
-						?>
-						<div class="col text-center h3 pt-3">No Action Need</div>
-						<?php
-						}
-						?>
+							?>
+					</div>
 				</div>
 			</main>
 		</div>

@@ -29,14 +29,23 @@ switch ($site) {
     <div class="container-fluid">
         <span class="navbar-brand h1 mb-0 py-0 col"><?php echo $icon.$site ?></span>
         <ul class="navbar-nav">
-            <!-- <li class="nav-item">
-                <a href="notifications.php" class="nav-link mx-3" style="position: relative;">
-                    <i class="fas fa-bell"></i>
-                    <small>
-                        <span class="badge badge-danger rounded-circle" style="position: absolute;top: 0;left: 60%;">1</span>
-                    </small>
-                </a>
-            </li> -->
+            <?php
+            $sql = "SELECT recipient_id FROM notifications WHERE unread = '0' AND recipient_id ='". $_SESSION['kteen_stall_id'] ."';";
+            $result = mysqli_query($conn, $sql);
+            if(mysqli_num_rows($result) > 0){
+            ?>
+                <li class="nav-item">
+                    <a href="notifications.php" class="nav-link mx-3" style="position: relative;">
+                        <i class="fas fa-bell"></i>
+                        <small>
+                            <span class="badge badge-danger rounded-circle" style="position: absolute;top: 0;left: 60%;"><?= mysqli_num_rows($result); ?></span>
+                        </small>
+                    </a>
+                </li>
+            <?php
+            }
+            ?>
+            
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle text-reset" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position: relative;margin-left: 40px;">
                     <img class="rounded-circle" style="height: 40px;width: 40px;position: absolute;top: 50%;left: -20px;transform: translate(-50%, -50%);" src="../images/<?= $_SESSION['stall_username'] ?>/owner.jpg">

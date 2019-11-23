@@ -25,7 +25,7 @@ include '../process/handle_delete_stall.php'
 </head>
 <body onload="filter()">
 	<?php 
-	$site = 'index';
+	$site = 'Stall';
 	include '../layout/top_nav_admin.php';
 	include '../layout/side_nav_admin.php';
 	?>
@@ -53,7 +53,7 @@ include '../process/handle_delete_stall.php'
 						</div>
 					</div>
 				</div>
-				<div id="stall"></div>
+				<div class="row" id="stall"></div>
 			</main>
 		</div>
 	</div>

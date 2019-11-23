@@ -16,15 +16,15 @@
                 </li>
             <?php }else{?>
                 <li class="nav-item w-100 mb-1">
-                    <a href="index.php" class="nav-link w-100 <?php if($site == 'index'){ echo 'active'; } ?>">
-                        <i class="fas fa-bars d-inline-flex"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Home</span>
+                    <a href="index.php" class="nav-link w-100 <?php if($site == 'Stall'){ echo 'active'; } ?>">
+                        <i class="fas fa-store"></i>
+                        <span class="d-none d-md-inline-flex ml-3">Stall</span>
                     </a>
                 </li>
                 <li class="nav-item w-100 mb-1">
-                    <a href="menu_approve.php" class="nav-link w-100 <?php if($site == 'Manage'){ echo 'active'; } ?>">
-                        <i class="far fa-check-square"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Approve</span>
+                    <a href="menu.php" class="nav-link w-100 <?php if($site == 'Menu'){ echo 'active'; } ?>">
+                        <i class="fas fa-bars d-inline-flex"></i>
+                        <span class="d-none d-md-inline-flex ml-3">Menu</span>
                     </a>
                 </li>
             <?php } ?>
