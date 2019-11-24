@@ -1,7 +1,9 @@
 <?php
 session_start();
 include '../config/config.php';
+include '../process/handle_logout.php';
 include '../process/handle_if_logout_stall.php';
+include '../process/handle_delete_notification.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,7 +26,39 @@ include '../process/handle_if_logout_stall.php';
 		<div class="row pt-3">
 			<div class="col-2"></div>
 			<div class="col-10">
-				
+				<div class="container-fluid">
+					<?php
+					$stall_id = $_SESSION['kteen_stall_id'];
+					$sql = "SELECT ID, unread, title, parameter, created_date FROM notifications WHERE recipient_id = '$stall_id' ORDER BY ID DESC;";
+					$result = mysqli_query($conn, $sql);
+					if (mysqli_num_rows($result) > 0) {
+						while ($row = mysqli_fetch_assoc($result)) {
+					?>
+					<div class="k-card card k-hover-shadow mb-2 hover-show">
+						<div class="card-body" style="position: relative;">
+							<div class="hover-show-item" style="position: absolute;right: 0;padding: 0 20px;">
+								<a href="notifications.php?dnid=<?= $row['ID']; ?>" title="Delete" class="text-muted">
+									<i class="far fa-trash-alt"></i>
+								</a>
+							</div>
+							<div class="h5 <?= ($row['title'] == 'approve')? 'text-success' : '' ; ?>">
+								<?= ucfirst($row['title']) ?><?= ($row['unread'] == '0')? ' <span class="badge badge-danger">New</span>' : ''; ?>
+							</div>
+							<div>
+								<?= $row['parameter']; ?>
+							</div>
+							<div class="text-right text-muted">
+								<small><?= $row['created_date']; ?></small>
+							</div>
+						</div>
+					</div>
+					<?php		
+						}
+					}
+					$sql = "UPDATE notifications SET unread = '1';";
+					mysqli_query($conn, $sql);
+					?>
+				</div>
 			</div>
 		</div>
 	</main>

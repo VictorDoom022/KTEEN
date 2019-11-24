@@ -1,7 +1,7 @@
 <?php
 if(isset($_GET['approve'])){
 	$id = $_GET['approve'];
-	echo $sql = "SELECT stall.username AS username, menu_approve.name AS food_name, stall_ID, category_ID, image, price, available FROM menu_approve LEFT JOIN stall ON menu_approve.stall_ID = stall.ID WHERE menu_approve_id = '$id';";
+	$sql = "SELECT stall.username AS username, menu_approve.name AS food_name, stall_ID, category_ID, image, price, available FROM menu_approve LEFT JOIN stall ON menu_approve.stall_ID = stall.ID WHERE menu_approve_id = '$id';";
 	$result = mysqli_query($conn, $sql);
 	if(mysqli_num_rows($result) == 1){
 		$row = mysqli_fetch_assoc($result);
@@ -17,10 +17,10 @@ if(isset($_GET['approve'])){
 		mysqli_query($conn, $sql);
 
 		//insert data to menu (food table)
-		echo $sql = "INSERT INTO food(name, stall_ID, category_ID, image, price, available) VALUES ('$food_name', '$stall_ID', '$category_ID', '$image', '$price', '$available');";
+		$sql = "INSERT INTO food(name, stall_ID, category_ID, image, price, available) VALUES ('$food_name', '$stall_ID', '$category_ID', '$image', '$price', '$available');";
 		mysqli_query($conn, $sql);
 		rename("../images/menu2approve/$stall_username/$image", "../images/$stall_username/menu/$image");
-		$sql = "INSERT INTO notifications(recipient_id, sender_id, type, parameter, created_date) VALUES ('$stall_ID', 'Administrator', 'approve', '', CURDATE())";
+		$sql = "INSERT INTO notifications(recipient_id, sender_id, title, parameter, created_date) VALUES ('$stall_ID', '0', 'approve', 'You menu has been approve by Administrator', CURRENT_TIMESTAMP())";
 		mysqli_query($conn, $sql);
 	}
 	mysqli_close();

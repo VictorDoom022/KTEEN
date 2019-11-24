@@ -107,3 +107,11 @@ div.k-card div.k-card-body{
 a.card-link:hover{
     cursor: pointer;
 }
+
+.hover-show-item{
+    display: none;
+}
+
+.hover-show:hover .hover-show-item{
+    display: block;
+}
