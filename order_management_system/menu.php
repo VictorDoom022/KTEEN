@@ -18,7 +18,7 @@ include '../process/handle_if_logout_staff.php';
 </head>
 <body>
 	<?php 
-	$site = "Home";
+	$site = "Menu";
 	include '../layout/top_nav_staff.php';
 	include '../layout/side_nav_staff.php';
 	?>
