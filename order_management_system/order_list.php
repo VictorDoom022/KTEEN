@@ -5,7 +5,7 @@ include '../config/config.php';
 date_default_timezone_set("Asia/Kuala_Lumpur");
 $current_time = date_create(date('Y-m-d H:i:s'));
 
-$sql = "SELECT ID, date, number, customer_ID FROM orders WHERE stall_ID = '" . $_SESSION['stall_ID'] . "';";
+$sql = "SELECT ID, date, number, customer_username FROM orders WHERE stall_ID = '" . $_SESSION['stall_ID'] . "';";
 $result = mysqli_query($conn, $sql);
 $num_row = mysqli_num_rows($result);
 if($num_row > 0){
@@ -17,7 +17,7 @@ if($num_row > 0){
 				<div class="container">
 					<div class="row border bg-light">
 						<div class="col-5">Number <?= $row['number']; ?></div>
-						<div class="col-5">Order by <?= $r = ($row['customer_ID'] == '0')? 'staff': $row['customer_ID']; ?></div>
+						<div class="col-5">Order by <?= $r = ($row['customer_username'] == 'NULL')? 'staff': $row['customer_username']; ?></div>
 						<div class="col-2">
 							<button class="btn btn-sm btn-dark btn-block">Complete</button>
 						</div>
