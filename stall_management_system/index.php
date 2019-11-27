@@ -6,6 +6,7 @@ include '../process/handle_if_logout_stall.php';
 include '../process/handle_add_notice.php';
 include '../process/handle_edit_notice.php';
 include '../process/handle_delete_notice.php';
+include '../process/handle_edit_stall_status.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,6 +31,16 @@ include '../process/handle_delete_notice.php';
 		<div class="row py-3">
 			<div class="col-2"></div>
 			<div class="col-10">
+				<div class="row mb-4">
+					<div class="col-8">
+						<div class="k-card bg-white mb-3 h-100">
+							<div class="card-body">
+								
+							</div>
+						</div>
+					</div>
+					<?php include 'control_panel.php'; ?>
+				</div>
 				<?php include 'notice_panel.php'; ?>
 			</div>
 		</div>
