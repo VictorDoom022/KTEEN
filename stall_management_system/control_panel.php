@@ -1,4 +1,4 @@
-<div class="col-4">
+<div class="col-md-4 mb-3">
 	<div class="k-card bg-white h-100">
 		<div class="card-body">
 			<div class="h3">Control Panel</div>
@@ -26,7 +26,7 @@
 				<?php if ($status == 1) { ?>
 					<a href="index.php?close=1" title="Click to Close" class="btn btn-sm text-danger">Close</a>
 				<?php }else{ ?>
-					<a href="index.php?open=1" title="Click to open" class="btn text-success">Open</a>
+					<a href="index.php?open=1" title="Click to open" class="btn btn-sm text-success">Open</a>
 				<?php } ?>
 			</div>
 		</div>

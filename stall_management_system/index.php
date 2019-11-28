@@ -31,9 +31,9 @@ include '../process/handle_edit_stall_status.php';
 		<div class="row py-3">
 			<div class="col-2"></div>
 			<div class="col-10">
-				<div class="row mb-4">
-					<div class="col-8">
-						<div class="k-card bg-white mb-3 h-100">
+				<div class="row">
+					<div class="col-md-8 mb-3">
+						<div class="k-card bg-white h-100">
 							<div class="card-body">
 								
 							</div>
