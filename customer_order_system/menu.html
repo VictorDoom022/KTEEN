@@ -64,13 +64,13 @@
 		$(document).ready(function() {
 			var url = new URL(window.location.href);// get current url
 			var c = url.searchParams.get("stall");// get $_GET['stall'] (stall) value form url
-			$.post("stall_info.php", {
+			$.post("stall_info.php", { //get stall_info
 				stall_username: c
 			}, function(data, status) {
 				$("#stall_info").html(data);
 			});
 
-			$.post("menu_card.php", {
+			$.post("menu_card.php", { //get stall menu
 				stall_username: c
 			}, function(data, status) {
 				$("#menu").html(data);
@@ -85,7 +85,8 @@
 					$("#menu").html(data);
 				});
 			});
-			// make orders
+			
+			//pagination
 			$("#menu").on("click", ".page-link", function() {
 				if($("#search-bar").val() == ''){
 					var page_num = $(this).attr('data-page');
@@ -108,6 +109,7 @@
 				}
 			});
 
+			//make order
 			var order_list = [];
 			var count_order_quantity = 0;
 			$("#menu").on("click", ".stall_menu", function() {
