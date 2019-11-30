@@ -29,8 +29,14 @@ if (isset($_POST['stall_username'])) {
 			$image = $row['image'];
 ?>
 <div class="col-md-3 p-2">
-	<div class="k-card card k-hover-shadow h-100 <?= $r = ($row['status'] == '1')? 'stall_menu' : '' ?>" style="cursor: pointer;<?= $r = ($row['status'] == '1')? '' : 'filter: blur(5px);' ?>" data-food_id="<?= $row['food_id']; ?>">
+	
+	<div class="k-card card k-hover-shadow h-100 <?= $r = ($row['status'] == '1')? 'stall_menu' : '' ?>" style="cursor: pointer;<?= $r = ($row['status'] == '1')? '' : 'filter: blur(1px);' ?>" data-food_id="<?= $row['food_id']; ?>">
 		<div style="position: relative;overflow: hidden;"> 
+			<?php if (!$row['status'] == '1') { ?>
+				<span class="h4 text-white" style="position: absolute;top: 50%;left: 50%;z-index: 2;transform: rotate(-30deg) translate(-50%, -50%);">
+					Closing
+				</span>
+			<?php } ?>
 			<img src="../images/<?= $row['username']; ?>/menu/<?= $image; ?>" class="items" height="100" alt="" style="width: 100%;height: 200px;align-self: center;vertical-align: center;" />
 		</div>
 		<div class="card-body" style="position: relative;">
