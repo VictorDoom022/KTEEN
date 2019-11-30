@@ -23,7 +23,7 @@ include '../process/handle_change_password_customer.php';
 </head>
 <body>
 	<div id="nav"></div>
-	<main class="container">
+	<main class="container py-3">
 		<div class="k-card bg-white mb-4 p-4">
 			<div class="h4">Security</div>
 			<hr>
