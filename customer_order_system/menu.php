@@ -43,14 +43,6 @@
 		</div>
 		<div class="row" style="margin-bottom: 55px;" id="menu"></div>
 	</main>
-<!-- 	<span id="order_list" style="display: none;">
-		<span class="bg-dark m-0" style="position: fixed;bottom: 0;right: -20px;width: 400px;height: 40px;transform: skew(-45deg);"></span>
-		<span id="order-list" class="m-0" style="position: fixed;bottom: 0;right: 0;width: 400px;height: 40px;background-color: rgba(0, 0, 0, 0.5);transform: skew(-45deg);"></span>
-		<span class="text-white text-center m-0" style="position: fixed;bottom: 0;right: 0;width: 400px;height: 40px;font-size: 1.5rem;cursor: pointer;">
-			Your Orders
-			<span class="badge badge-danger" id="count_order"></span>
-		</span>
-	</span> -->
 	<div id="order_list" class="bg-dark col-md-4 p-0" style="display: none;position: fixed;bottom: 0;right: 0;margin: 0;box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.3);z-index: 10;">
 		<div id="order_detail" class="bg-white px-4 py-2 text-reset" style="display: none;">
 			<div style="height: 350px;overflow: auto;">
@@ -59,9 +51,7 @@
 						<tr>
 							<th>#</th>
 							<th>Food Name</th>
-							<th></th>
 							<th>Quantity</th>
-							<th></th>
 							<th>Price</th>
 						</tr>
 					</thead>
@@ -70,7 +60,7 @@
 			</div>
 			<div class="bg-white px-4 py-2 text-reset border-top text-right">
 				<button id="btn-clear" class="btn">Empty</button>
-				<a href="" class="btn">Check out</a>
+				<a href="payment.php" class="btn">Check out</a>
 			</div>
 		</div>
 		<div id="order_list_footer" class="py-2 px-4 text-white h3" style="cursor: pointer;position: relative;">
@@ -189,6 +179,51 @@
 			var order_item = [];
 			var count_order_quantity = 0;
 
+			if (sessionStorage.getItem("stall_username") == null) {
+				sessionStorage.setItem("stall_username", c);
+			}else{
+				if(sessionStorage.getItem("stall_username") == c){
+					if(sessionStorage.getItem("order_list") !== null){
+						temp =  JSON.parse(sessionStorage.getItem("order_list"));
+						for (var i = 0; i < temp.length; i++) {
+							order_item.push(new Orders(temp[i]['food_id'], temp[i]['name'], temp[i]['quantity'], temp[i]['price']));
+							count_order_quantity += order_item[i]['quantity'];
+						}
+						var count_order_group = order_item.length;
+						var table = document.getElementById("order_item");
+						table.innerHTML = "";
+						var totalPrice = 0;
+
+						for (var i = 0; i < count_order_group; i++) {
+							var row = table.insertRow(-1);
+							var noCell = row.insertCell(0);
+							var nameCell = row.insertCell(1);
+							var quantityCell = row.insertCell(2);
+							var priceCell = row.insertCell(3);
+							noCell.innerHTML = i + 1;
+							nameCell.innerHTML = order_item[i].getName;
+							quantityCell.innerHTML = "<button class='btn btn-sm'>-</button>x"+ order_item[i].getQuantity +"<button class='btn btn-sm'>+</button>";
+							var price = order_item[i].getTotalPrice;
+							priceCell.innerHTML = "RM "+ price;
+
+							totalPrice += price;
+						}
+						var row = table.insertRow(-1);
+						row.insertCell(0);
+						row.insertCell(1);
+						var totalLabelCell = row.insertCell(2);
+						var totalPriceCell = row.insertCell(3);
+						totalLabelCell.innerHTML = "Total";
+						totalPriceCell.innerHTML = "RM"+ totalPrice;
+						$("#count_order").html(count_order_quantity);
+						$("#order_list").fadeIn();
+					}
+				}else{
+					sessionStorage.setItem("stall_username", c);
+					sessionStorage.removeItem("order_list");
+				}
+			}
+
 			$("#menu").on("click", ".stall_menu", function(){
 				var food_id = $(this).attr("data-food_id");
 				$.ajax({
@@ -234,13 +269,11 @@
 									var row = table.insertRow(-1);
 									var noCell = row.insertCell(0);
 									var nameCell = row.insertCell(1);
-									var minusCell = row.insertCell(2);
-									var quantityCell = row.insertCell(3);
-									var plusCell = row.insertCell(4);
-									var priceCell = row.insertCell(5);
+									var quantityCell = row.insertCell(2);
+									var priceCell = row.insertCell(3);
 									noCell.innerHTML = i + 1;
 									nameCell.innerHTML = order_item[i].getName;
-									quantityCell.innerHTML = "x"+ order_item[i].getQuantity;
+									quantityCell.innerHTML = "<button class='btn btn-sm'>-</button>x"+ order_item[i].getQuantity +"<button class='btn btn-sm plus_btn'>+</button>";
 									var price = order_item[i].getTotalPrice;
 									priceCell.innerHTML = "RM "+ price;
 
@@ -249,8 +282,6 @@
 								var row = table.insertRow(-1);
 								row.insertCell(0);
 								row.insertCell(1);
-								row.insertCell(2);
-								row.insertCell(3);
 								var totalLabelCell = row.insertCell(2);
 								var totalPriceCell = row.insertCell(3);
 								totalLabelCell.innerHTML = "Total";

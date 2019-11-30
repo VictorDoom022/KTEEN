@@ -1,3 +1,6 @@
+<?php
+include '../config/config.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
