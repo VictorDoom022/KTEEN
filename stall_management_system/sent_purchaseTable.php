@@ -21,9 +21,16 @@ include '../config/test_input.php';
 		</thead>
 <tbody>
 	<?php
+	$page =@ $_POST['page'];
+	if ($page == 0 || $page == 1) {
+		$page = 0;
+	}else{
+		$page = ($page * 15) - 15;
+	}
+
 		$count=0;
 		$sql = "SELECT ID, stall_ID, date, supplier_ID, content, product_name, price, quantity,total 
-		from purchase where stall_ID = '".$_SESSION['kteen_stall_id']."'".$searchword;
+		from purchase where stall_ID = '".$_SESSION['kteen_stall_id']."'".$searchword." LIMIT ". $page .", 15;";
 		$result = mysqli_query($conn, $sql);
 		if(mysqli_num_rows($result)>0){
 			while ($row = mysqli_fetch_assoc($result)) {
@@ -97,3 +104,22 @@ include '../config/test_input.php';
 	?>
 	</tbody>
 </table>
+
+<?php
+$sql = "SELECT ID, stall_ID, date, supplier_ID, content, product_name, price, quantity,total 
+from purchase where stall_ID = '".$_SESSION['kteen_stall_id']."'".$searchword;
+$result = mysqli_query($conn, $sql);
+$count = mysqli_num_rows($result);
+mysqli_close($conn);
+$a = ceil($count / 15);
+?>
+
+<div class="col-12 mt-2">
+    <ul class="pagination pagination-md">
+        <?php for ($i=1; $i <= $a; $i++) { ?>
+        <li class="page-item">
+            <span class="page-link rounded-0 border-0 <?= $r = ($page == ($i * 15) - 15)? 'bg-dark text-white': 'text-dark' ?>" style="cursor: pointer;" data-page="<?= $i ?>"><?= $i ?></span>
+        </li>
+        <?php } ?>
+    </ul>
+</div>
