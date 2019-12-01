@@ -13,7 +13,7 @@
 									<small class="text-muted col">Name</small>
 									<div class="w-100"></div>
 									<div class="col">
-										<?php echo $row['name']; ?>
+										<?php echo $row['Name']; ?>
 									</div>
 								</div>
 							</div>
