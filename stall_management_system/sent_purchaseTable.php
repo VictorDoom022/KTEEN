@@ -100,9 +100,16 @@ include '../config/test_input.php';
 									
 	<?php
 			}
+		}else if($searchword != ""){
+			?>
+			
+	</tbody>
+			<div class="col">
+				<h4 class="text-center"><?php echo "No result for '".$_GET['word']."'"; ?></h4>
+			</div>
+	<?php
 		}
 	?>
-	</tbody>
 </table>
 
 <?php
