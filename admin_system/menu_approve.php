@@ -81,7 +81,7 @@ include '../process/handle_reject_menu.php';
 								}
 							}else{
 							?>
-							<div class="col text-center h3 pt-3">No Action Need</div>
+							<div class="col text-center h3 pt-3">No Action Needed</div>
 							<?php
 							}
 							?>

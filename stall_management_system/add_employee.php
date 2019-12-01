@@ -76,7 +76,7 @@ include '../process/handle_add_employee.php';
 											<label for="employee_id" class="col-md-3 col-form-label">Employee ID</label>
 											<div class="col-md-9">
 												<input id="employee_id" type="text" name="employee_id" class="form-control <?= $valid_staff_username; ?>" value="dww">
-												<div class="invalid-feedback">That username is taken.Try another.</div>
+												<div class="invalid-feedback">That username has been taken.Try another.</div>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -89,7 +89,7 @@ include '../process/handle_add_employee.php';
 											<label class="col-md-3 col-form-label" style="font-size: 0.8rem;">Confirm Password</label>
 											<div class="col-md-9">
 												<input type="password" name="password_confirm" class="form-control <?= $valid_password; ?>" value="<?= $p; ?>">
-												<div class="invalid-feedback">Those password didn't match.Try again.</div>
+												<div class="invalid-feedback">The password didn't match.Try again.</div>
 											</div>
 										</div>
 									</div>

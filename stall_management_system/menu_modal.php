@@ -29,7 +29,7 @@
                         <?php if ($row['available'] == 1) { ?>
                             <a href="menu.php?hf=<?= $row['ID']; ?>" class="btn text-warning">Hidden</a>
                         <?php }else{ ?>
-                            <a href="menu.php?af=<?= $row['ID']; ?>" class="btn text-primary">Action</a>
+                            <a href="menu.php?af=<?= $row['ID']; ?>" class="btn text-primary">Available</a>
                         <?php } ?>
                         <button class="btn text-danger" onclick="ask_delete_menu('<?= $row['ID']; ?>')">Delete</button>
                         <button class="btn text-secondary" data-dismiss="modal">Close</button>

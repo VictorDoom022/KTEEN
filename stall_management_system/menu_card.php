@@ -58,7 +58,7 @@ if (isset($_GET['k'])) {
                     <span class="bg-dark text-white py-1 px-2" style="position: absolute;right: -5px;bottom: 10px;">RM <?=$row['price']; ?></span>
                     <?php if ($row['available'] == 1) { ?>
                         <div class="py-5 px-5" style="position: absolute;right: 0;top: 0;overflow: hidden;">
-                            <span class="py-1 px-4 text-white" style="position: absolute;background-color: rgb(0, 255, 0);right: -25px;top: 5px;transform: rotate(45deg);overflow: hidden;">action</span>
+                            <span class="py-1 px-4 text-white" style="position: absolute;background-color: rgb(0, 255, 0);right: -25px;top: 11px;transform: rotate(45deg);overflow: hidden;">available</span>
                         </div>
                     <?php }else{ ?>
                         <div class="py-5 px-5" style="position: absolute;right: 0;top: 0;overflow: hidden;">
