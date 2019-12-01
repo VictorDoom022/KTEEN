@@ -16,7 +16,7 @@ include '../process/handle_delete_supplier.php';
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<title></title>
 </head>
-<body>
+<body onload="searchfunc()">
 	<?php
 	$site = 'Purchase';
 	include '../layout/top_nav_stall.php';
@@ -52,11 +52,12 @@ include '../process/handle_delete_supplier.php';
 									<i class="fas fa-search"></i>
 								</div>
 						    </div>
-							<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" oninput="filter()">
+							<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" oninput="searchfunc()">
 						</div>
 					</div>
 				</div>
-				<?php include 'purchase_card.php'; ?>
+				
+				<div id="suppliers"></div>
 			</div>
 		</div>
 	</main>
@@ -74,6 +75,26 @@ include '../process/handle_delete_supplier.php';
 				window.location.assign("purchase.php?ID="+ x);
 			}
 		}
+
+		function searchfunc(){
+		var word = document.getElementById("search").value;
+		var xhttp;
+		xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				document.getElementById("suppliers").innerHTML = this.responseText;
+			}
+		};
+		if(word == ""){
+			xhttp.open("GET", "purchase_card.php", true);
+			xhttp.send();
+			return;
+		}else if(word != ""){
+			xhttp.open("GET" , "purchase_card.php?word="+word, true);
+			xhttp.send();
+			return;
+		}
+	}
 	</script>
 </body>
 </html>

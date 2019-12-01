@@ -1,7 +1,18 @@
+<?php 
+session_start();
+include '../config/config.php';
+
+
+$searchword = "";
+if (isset($_GET['word'])) {
+    //$temp = test_input($_GET['keyword']);
+    $searchword = " AND Name LIKE '%".$_GET['word']."%'";
+}
+?>
 <div class="row">
 	<?php 
 	$stallID = $_SESSION['kteen_stall_id'];
-	$sql = "SELECT * FROM supplier where stall_ID = '$stallID';";
+	$sql = "SELECT * FROM supplier where stall_ID = '$stallID'".$searchword;
 	$result = mysqli_query($conn, $sql);
 	if (mysqli_num_rows($result) > 0) {
 		while ($row = mysqli_fetch_assoc($result)) {
