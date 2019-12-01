@@ -16,7 +16,7 @@
 					<div class="col-8">
 						<div class="card-body">
 							<div class="card-title mb-0">
-								<?php echo $row['name']; ?>
+								<?php echo $row['Name']; ?>
 							</div>
 							<div class="card-text">
 								<small class="text-muted mt-0">
