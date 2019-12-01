@@ -121,6 +121,28 @@ include '../process/handle_delete_menu.php';
 				return;
 			}
 		}
+
+		$("#view").on("click", ".page-link", function() {
+			if($("#search-bar").val() == ''){
+				var page_num = $(this).attr('data-page');
+				$.post("menu_card.php", {
+					// stall_username: c, 
+					page: page_num
+				}, function(data, status) {
+					$("#view").html(data);
+				});
+			}else{
+				var keyword = $("#search-bar").val();
+				var page_num = $(this).attr('data-page');
+				$.post("menu_card.php", {
+					// stall_username: c, 
+					food_name: keyword, 
+					page: page_num
+				}, function(data, status) {
+					$("#view").html(data);
+				});
+			}
+		});
 	</script>
 </body>
 </html>

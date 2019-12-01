@@ -16,7 +16,21 @@ if (isset($_GET['k'])) {
 ?>
 <div class="row">
     <?php
-    $sql = "SELECT food.ID AS ID, food.name AS name, category.name AS category, category.ID as category_ID, image, price, available FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '".$_SESSION['kteen_stall_id']."'".$filterCategory.$keyword;
+    $page =@ $_POST['page'];
+	if ($page == 0 || $page == 1) {
+		$page = 0;
+	}else{
+		$page = ($page * 9) - 9;
+	}
+    $sql = "SELECT 
+    food.ID AS ID, 
+    food.name AS name, 
+    category.name AS category, 
+    category.ID as category_ID,
+    image,
+    price, 
+    available 
+    FROM food LEFT JOIN category ON food.category_ID = category.ID WHERE stall_ID = '".$_SESSION['kteen_stall_id']."'".$filterCategory.$keyword." LIMIT ". $page .", 9;";
     $result = mysqli_query($conn, $sql) or die("<div class='col h5 text-center'>Something error</div>");
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) { 
