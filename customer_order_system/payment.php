@@ -134,7 +134,7 @@ if(mysqli_num_rows($result) == 1){
 					$.post("../process/handle_add_order_customer.php", { //get stall_info
 						order_list: JSON.stringify(order_item), 
 						stall_username: stall_name,
-						wallet: 1
+						e_wallet: 1
 					}, function(data, status) {
 						$("#order_number").html(data);
 						sessionStorage.removeItem("stall_username");
