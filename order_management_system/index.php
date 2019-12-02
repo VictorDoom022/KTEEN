@@ -26,7 +26,90 @@ include '../process/handle_if_logout_staff.php';
 		<div class="row py-3">
 			<div class="col-2"></div>
 			<div class="col-10">
-
+				<div class="container">
+					<div class="row" style="height: 500px;">
+						<div class="col-md-6">
+							<div class="k-card card h-100">
+								<div class="card-body">
+									<div class="card-title">The number has not pay yet (Pay with cash)</div>
+									<table class="table table-sm">
+										<thead>
+											<tr>
+												<th>Number</th>
+												<th>Date & time</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php
+										$stall_ID = $_SESSION['stall_ID'];
+										$sql = "SELECT number, payment.date FROM orders LEFT JOIN payment ON orders.ID = payment.order_ID WHERE stall_ID = '$stall_ID' AND method = '';";
+										$result = mysqli_query($conn, $sql);
+										if(mysqli_num_rows($result) > 0){
+											while($row = mysqli_fetch_assoc($result)){
+										?>
+											<tr>
+												<td>
+													<?= $row['number'] ?>
+												</td>
+												<td>
+													<?= $row['date']; ?>	
+												</td>
+												<td>
+													<button class="btn btn-sm btn-success">Pay</button>
+												</td>
+											</tr>
+										<?php
+											}
+										}
+										?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="k-card card h-100">
+								<div class="card-body">
+									<div class="card-title">The Number Waiting Take food</div>
+									<table class="table table-sm">
+										<thead>
+											<tr>
+												<th>Number</th>
+												<th>Date</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php
+										$stall_ID = $_SESSION['stall_ID'];
+										$sql = "SELECT number, date FROM orders WHERE stall_ID = '$stall_ID' AND completed = '1' AND taken = '0';";
+										$result = mysqli_query($conn, $sql);
+										if(mysqli_num_rows($result) > 0){
+											while($row = mysqli_fetch_assoc($result)){
+										?>
+											<tr>
+												<td>
+													<?= $row['number'] ?>
+												</td>
+												<td>
+													<?= $row['date']; ?>	
+												</td>
+												<td>
+													<button class="btn btn-sm btn-dark">Taken</button>
+												</td>
+											</tr>
+										<?php
+											}
+										}
+										?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</main>
