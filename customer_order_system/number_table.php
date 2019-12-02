@@ -26,5 +26,9 @@ if(mysqli_num_rows($result) > 0){
 	</tbody>
 </table>
 <?php
+}else{
+?>
+<div class="text-center h4" style="margin: 80px 0;">Please wait</div>
+<?php
 }
 ?>
