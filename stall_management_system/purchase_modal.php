@@ -57,22 +57,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="col">
-								<div class="row">
-									<small class="text-muted col">Order ID</small>
-									<div class="w-100"></div>
-									<div class="col">
-										<!-- <?php echo $row['order_ID']; ?> -->
-									</div>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col text-right">
 						<button class="btn text-secondary" data-dismiss="modal">Close</button>
-						<a href="editSupplier.php?ID=<?= $row['ID']; ?>" class="btn text-warning">Edit</a>
+						<a href="edit_supplier.php?ID=<?= $row['ID']; ?>" class="btn text-warning">Edit</a>
 						<button class="btn text-danger" onclick="ComfirmDelete('<?= $row['ID']; ?>')">Delete</button>
 						<a href="purchase_send.php?ID=<?= $row['ID']; ?>" class="btn text-primary">Purchase</a>
 					</div>

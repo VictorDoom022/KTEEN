@@ -29,7 +29,7 @@
                         <?php if ($row['available'] == 1) { ?>
                             <a href="menu.php?hf=<?= $row['ID']; ?>" class="btn text-warning">Hidden</a>
                         <?php }else{ ?>
-                            <a href="menu.php?af=<?= $row['ID']; ?>" class="btn text-primary">Action</a>
+                            <a href="menu.php?af=<?= $row['ID']; ?>" class="btn text-primary">Available</a>
                         <?php } ?>
                         <button class="btn text-danger" onclick="ask_delete_menu('<?= $row['ID']; ?>')">Delete</button>
                         <button class="btn text-secondary" data-dismiss="modal">Close</button>
@@ -40,7 +40,7 @@
                 </span>
                 <?php if ($row['available'] == 1) { ?>
                     <div class="py-5 px-5" style="position: absolute;right: 0;top: 0;overflow: hidden;">
-                        <span class="py-1 px-4 text-white" style="position: absolute;background-color: rgb(0, 255, 0);right: -25px;top: 5px;transform: rotate(45deg);overflow: hidden;">action</span>
+                        <span class="py-1 px-4 text-white" style="position: absolute;background-color: rgb(0, 255, 0);right: -25px;top: 10px;transform: rotate(45deg);overflow: hidden;">available</span>
                     </div>
                 <?php }else{ ?>
                     <div class="py-5 px-5" style="position: absolute;right: 0;top: 0;overflow: hidden;">

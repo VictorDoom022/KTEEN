@@ -43,6 +43,12 @@ if (isset($_GET['word'])) {
 	<?php include 'purchase_modal.php'; ?>
 	<?php
 		}
+	}else if($searchword != ""){
+		?>
+		<div class="col">
+				<h4 class="text-center"><?php echo "No result for '".$_GET['word']."'"; ?></h4>
+		</div>
+		<?php
 	}
 	?>
 </div>

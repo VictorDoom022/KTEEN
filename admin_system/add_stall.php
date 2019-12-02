@@ -125,7 +125,7 @@ include '../process/handle_add_stall.php';
 										<div class="col-md-9">
 											<input type="password" name="confirm_password" id="confirm_password" class="form-control <?= $password_valid; ?>" value="<?= $p; ?>" required>
 											<div class="invalid-feedback">
-												Those password didn't match.Try again.
+												The password are not matched.Try again.
 											</div>
 										</div>
 									</div>

@@ -41,7 +41,7 @@ if(isset($_GET['c'])){
 						<td><?= $row['name']; ?></td>
 						<td><?= $row['category']; ?></td>
 						<td>RM <?= $row['price']; ?></td>
-						<td><?= $r = ($row['available'] == 1) ? '<small class="text-success">action</small>' : '<small class="text-danger">hidden</small>' ; ?></td>
+						<td><?= $r = ($row['available'] == 1) ? '<small class="text-success">available</small>' : '<small class="text-danger">hidden</small>' ; ?></td>
 						<td>
 							<a href="#modal_<?= $row['ID']; ?>" class="btn btn-sm btn-outline-dark" data-toggle="modal">View</a>
 						</td>
@@ -51,11 +51,11 @@ if(isset($_GET['c'])){
 						<td>
 							<?php 
 							if ($row['available'] == 1) { ?>
-								<a href="menu.php?hf='<?= $row['ID']; ?>'" class="btn btn-sm btn-outline-warning">hidden</a>
+								<a href="menu.php?hf='<?= $row['ID']; ?>'" class="btn btn-sm btn-outline-warning">hide</a>
 							<?php
 							}else{
 							?>
-								<a href="menu.php?af='<?= $row['ID']; ?>'" class="btn btn-sm btn-outline-primary">action</a>
+								<a href="menu.php?af='<?= $row['ID']; ?>'" class="btn btn-sm btn-outline-primary">available</a>
 							<?php 
 							}
 							?>

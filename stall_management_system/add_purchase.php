@@ -12,54 +12,41 @@ if(isset($_POST['add_Invoice'])){
 	$invoice_date = $_POST['invoice_date'];
 	$invoice_due = $_POST['invoice_due'];
 	$invoice_amount = $_POST['invoice_amount'];
-	$invoice_file = ("S".$_SESSION['kteen_stall_id']."_".$supplier_name.".doc");
+	//$invoice_file = ("S".$_SESSION['kteen_stall_id']."_".$supplier_name.".doc");
+	
+	// name of the uploaded file
+    $filename = $_FILES['invoice_file']['name'];
 
-	$sql = "INSERT INTO invoice(invoice_number, stall_ID,supplier_name,invoice_date,invoice_due,invoice_amount,invoice_file,date_add) 
-				values ('$invoice_number','$stall_ID','$supplier_name','$invoice_date','$invoice_due','$invoice_amount','$invoice_file',NOW())";
-	$result = $conn -> query($sql);
+    // destination of the file on the server
+    $destination = '../uploads/' . $filename;
 
-	$target_dir = "../files/" . $_SESSION['stall_username'];
-    $target_file = $target_dir.$invoice_file;
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["add_Invoice"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
-    // Check if file already exists
-    if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
-            $uploadOk = 0;
-    }
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-            echo "Sorry, your file is too large.";
-            $uploadOk = 0;
-    }
-    // Allow certain file formats
-    if($imageFileType != "docx" && $imageFileType != "doc" && $imageFileType != "xls" && $imageFileType != "xlsx") {
-            echo "Sorry,file format is not supported.";
-            $uploadOk = 0;
-    }
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
+    // get the file extension
+    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+    // the physical file on a temporary uploads directory on the server
+    $file = $_FILES['invoice_file']['tmp_name'];
+    $size = $_FILES['invoice_file']['size'];
+
+    if (!in_array($extension, ['zip', 'pdf', 'docx'])) {
+        echo "You file extension must be .zip, .pdf or .docx";
+    } elseif ($_FILES['invoice_file']['size'] > 1000000) { // file shouldn't be larger than 1Megabyte
+        echo "File too large!";
     } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-            echo "<script>alert('Add Successful')</script>";
+        // move the uploaded (temporary) file to the specified destination
+        if (move_uploaded_file($file, $destination)) {
+            $sql = "INSERT INTO invoice (invoice_number, stall_ID,supplier_name,invoice_date,invoice_due,invoice_amount,invoice_file,date_add)
+			 VALUES ('$invoice_number','$stall_ID','$supplier_name','$invoice_date','$invoice_due','$invoice_amount','$filename',NOW())";
+            if (mysqli_query($conn, $sql)) {
+                echo '<script>alert("Success");</script>';
+            }
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            echo "Failed to upload file.";
         }
     }
+
+	// $sql = "INSERT INTO invoice(invoice_number, stall_ID,supplier_name,invoice_date,invoice_due,invoice_amount,invoice_file,date_add) 
+	// 			values ('$invoice_number','$stall_ID','$supplier_name','$invoice_date','$invoice_due','$invoice_amount','$invoice_file',NOW())";
+	// $result = $conn -> query($sql);
 }
 
 if(isset($_POST['add_Bill'])){
@@ -149,7 +136,7 @@ if(isset($_POST['add_receipt'])){
 						<div class="row">
 							<div class="k-card card col-12">
 								<div class="card-body">
-									<form method="post" action="add_purchase.php">
+									<form method="post" action="add_purchase.php" enctype="multipart/form-data">
 										<div class="row">
 											<div class="col-md-1"></div>
 											<div class="col-md-12">

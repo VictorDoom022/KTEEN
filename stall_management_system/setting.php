@@ -83,7 +83,7 @@ include '../process/handle_change_password_stall.php';
 											<div class="col-md-9">
 												<input type="password" name="retype_new_password" class="form-control form-control-sm password <?= $valid_not_match_password; ?>">
 												<div class="invalid-feedback">
-													The password are not match
+													The password does not match
 												</div>
 											</div>
 										</div>
