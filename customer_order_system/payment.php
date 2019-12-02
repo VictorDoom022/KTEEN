@@ -137,6 +137,8 @@ if(mysqli_num_rows($result) == 1){
 						wallet: 1
 					}, function(data, status) {
 						$("#order_number").html(data);
+						sessionStorage.removeItem("stall_username");
+						sessionStorage.removeItem("order_list");
 					});
 
 					$("#order_list_card").animate({left: '-1500px'});
@@ -147,6 +149,14 @@ if(mysqli_num_rows($result) == 1){
 			});
 
 			$("#btn_cash").click(function() {
+				$.post("../process/handle_add_order_customer.php", { //get stall_info
+					order_list: JSON.stringify(order_item), 
+					stall_username: stall_name,
+				}, function(data, status) {
+					$("#order_number").html(data);
+					sessionStorage.removeItem("stall_username");
+					sessionStorage.removeItem("order_list");
+				});
 				$("#order_list_card").animate({left: '-1500px'});
 				$("#order_number_panel").animate({left: '0'});
 				$("#c_payment_method_footer_bar").fadeOut();
