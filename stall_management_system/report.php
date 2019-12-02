@@ -1,6 +1,8 @@
 <?php
 session_start();
 include '../config/config.php';
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +27,115 @@ include '../config/config.php';
 	include '../layout/top_nav_stall.php';
 	include '../layout/side_nav_stall.php';
 	?>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-2"></div>
+			<main class="col-10 p-4">
+				<div class="k-card card col-12">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-3"></div>
+							<div class="col-md-6">
+								<h4 class="card-title text-center">Expenses</h4>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="table-responsive">
+								<table class="table table-hover table-borderless table-striped table-sm">
+									<thead class="thead-dark">
+										<tr>
+											<th>Type of records</th>
+											<th>Total (RM)</th>
+											<th>Sub-total (RM)</th>
+										</tr>
+									<?php 
+										$sql = "SELECT SUM(invoice_amount) AS total FROM invoice";
+										$result = $conn -> query($sql);
+										if(mysqli_num_rows($result)){
+											while ($row = mysqli_fetch_assoc($result)) {
+												$_SESSION["invoice_total"] = $row['total'];
+									?>	
+										<tr>
+											<td>Invoice </td>
+											<td><?php echo $row['total']?> </td>
+										</tr>
+										<?php
+											}
+										}		
+									?>
+									<?php
+										$sql = "SELECT SUM(bill_amount) AS bill_total FROM bill";
+										$result = $conn -> query($sql);
+										if(mysqli_num_rows($result)){
+											while ($row = mysqli_fetch_assoc($result)) {
+												$_SESSION["bill_total"] = $row['bill_total'];
+									?>
+										<tr>
+											<td>Bill</td>
+											<td><?php echo $row['bill_total']?></td>
+										</tr>
+
+									<?php
+											}
+										}		
+									?>
+
+									<?php 		
+										$sql = "SELECT SUM(receipt_amount) AS receipt_total FROM receipt";
+										$result = $conn -> query($sql);
+										if(mysqli_num_rows($result)){
+											while ($row = mysqli_fetch_assoc($result)) {
+												$_SESSION["receipt_total"] = $row['receipt_total'];
+									?>
+										<tr>
+											<td>Receipt</td>
+											<td><?php echo $row['receipt_total']?></td>
+										</tr>
+									<?php
+											}
+										}		
+									?>
+
+									<?php
+										$sql = "SELECT SUM(total) AS mail_total FROM purchase";
+										$result = $conn -> query($sql);
+										if(mysqli_num_rows($result)){
+											while ($row = mysqli_fetch_assoc($result)) {
+												$_SESSION["mail_total"] = $row['mail_total'];
+									?>
+										<tr>
+											<td>Sent from Mail</td>
+											<td><?php echo $row['mail_total']?></td>
+										</tr>
+
+									<?php
+											}
+										}		
+									?>
+
+									<?php
+										$total =$_SESSION["invoice_total"] + $_SESSION["bill_total"] + $_SESSION["receipt_total"] + $_SESSION["mail_total"];
+									?>
+										<tr>
+											<td colspan="2" class="border-top"><strong>Total:</strong></td>
+											<td class="border-top"><strong><?php echo $total ?></strong></td>
+										</tr>
+
+									<?php
+									// 	}
+									// }
+									?>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+
 </body>
 </html>
 
