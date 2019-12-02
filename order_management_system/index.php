@@ -3,6 +3,7 @@ session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
 include '../process/handle_if_logout_staff.php';
+include '../process/handle_order_taken.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -83,7 +84,7 @@ include '../process/handle_if_logout_staff.php';
 										<tbody>
 										<?php
 										$stall_ID = $_SESSION['stall_ID'];
-										$sql = "SELECT number, date FROM orders WHERE stall_ID = '$stall_ID' AND completed = '1' AND taken = '0';";
+										$sql = "SELECT ID, number, date FROM orders WHERE stall_ID = '$stall_ID' AND completed = '1' AND taken = '0';";
 										$result = mysqli_query($conn, $sql);
 										if(mysqli_num_rows($result) > 0){
 											while($row = mysqli_fetch_assoc($result)){
@@ -96,7 +97,7 @@ include '../process/handle_if_logout_staff.php';
 													<?= $row['date']; ?>	
 												</td>
 												<td>
-													<button class="btn btn-sm btn-dark">Taken</button>
+													<a href="index.php?taken_id=<?= $row['ID'] ?>" class="btn btn-sm btn-dark">Taken</a>
 												</td>
 											</tr>
 										<?php

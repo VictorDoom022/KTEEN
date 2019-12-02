@@ -47,9 +47,7 @@
 						</a>
 					</div>
 			</div>
-			<div class="col-md-3 mt-2 mt-md-0 bg-white shadow">
-				number
-			</div>
+			<div class="col-md-3 mt-2 mt-md-0 bg-white shadow" style="height: 250px;overflow: auto;" id="number_area"></div>
 		</div>
 		<div class="row pb-4 px-2">
 			<div class="col bg-white shadow pl-0 pr-0">
@@ -84,6 +82,10 @@
 			}else{
 				search();
 			}
+
+			var auto_refresh_element = setInterval(function() {
+				$('#number_area').load('number_table.php');
+			}, 2000);
 		});
 		$("#search-btn").click(function() {
 			search();
