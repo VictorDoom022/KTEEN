@@ -81,8 +81,38 @@
 				}
 			}
 		}
-
+		
 		$(document).ready(function() {
+			// this function provide method to refresh the order list
+			function generate_order_list(){
+				var count_order_group = order_item.length;
+				var table = document.getElementById("order_item");
+				table.innerHTML = "";
+				var totalPrice = 0;
+
+				for (var i = 0; i < count_order_group; i++) {
+					var row = table.insertRow(-1);
+					var noCell = row.insertCell(0);
+					var nameCell = row.insertCell(1);
+					var quantityCell = row.insertCell(2);
+					var priceCell = row.insertCell(3);
+					noCell.innerHTML = i + 1;
+					nameCell.innerHTML = order_item[i].getName;
+					quantityCell.innerHTML = "<button class='bg-white border-0 mx-1 minus-btn' data-food_id='"+ order_item[i].getFood_id +"'>-</button>x"+ order_item[i].getQuantity +"<button class='bg-white border-0 mx-1 add-btn'>+</button>";
+					var price = order_item[i].getTotalPrice;
+					priceCell.innerHTML = "RM "+ price;
+
+					totalPrice += price;
+				}
+				var row = table.insertRow(-1);
+				row.insertCell(0);
+				row.insertCell(1);
+				var totalLabelCell = row.insertCell(2);
+				var totalPriceCell = row.insertCell(3);
+				totalLabelCell.innerHTML = "Total";
+				totalPriceCell.innerHTML = "RM"+ totalPrice;
+			}
+
 			var url = new URL(window.location.href);// get current url
 			var c = url.searchParams.get("stall");// get $_GET['stall'] (stall) value form url
 			$.post("stall_info.php", { //get stall_info
@@ -131,51 +161,6 @@
 			});
 
 			// make order
-			// $("#menu").on("click", ".stall_menu", function() {
-			// 	var food_id = $(this).attr("data-food_id");
-			// 	$.ajax({
-			// 		type: 'POST',
-			// 		url: "../process/handle_if_logout_customer.php",
-			// 		dataType: 'json',
-			// 		success: function(data){
-			// 			if (data.status == 0) {
-			// 				window.location.assign("login.php");
-			// 			}else{
-			// 				var count_order_quantity = 0;
-			// 				console.log(food_id);
-			// 				if (order_list != 0) {
-			// 					if (is_exist(order_list, food_id)) {
-			// 						for (var i = 0; i < order_list.length; i++) {
-			// 							if(order_list[i].food_id == food_id){
-			// 								order_list[i].add_quantity();
-			// 							}
-			// 						}
-			// 					}else{
-			// 						order_list.push(new Orders(food_id, 1, ''));
-			// 					}
-			// 				}else{
-			// 					order_list.push(new Orders(food_id, 1, ''));
-			// 					$("#order_list").fadeIn();
-			// 				}
-			// 				for (var i = order_list.length - 1; i >= 0; i--) {
-			// 					count_order_quantity += order_list[i].getQuantity;
-			// 				}
-			// 				$("#count_order").html(count_order_quantity);
-			// 				console.log(order_list);
-			// 			}
-			// 		},
-			// 		error: function(){
-			// 			alert("Something error!");
-			// 		}
-			// 	});
-			// });
-
-			// $("#order_list").on("click", "span", function() {
-			// 	if(typeof(Storage) != "undefined"){
-			// 		sessionStorage.setItem("stall_username", c);
-			// 		window.location.assign("checkout_orders.html");
-			// 	}
-			// });
 			var order_item = [];
 			var count_order_quantity = 0;
 
@@ -189,32 +174,7 @@
 							order_item.push(new Orders(temp[i]['food_id'], temp[i]['name'], temp[i]['quantity'], temp[i]['price']));
 							count_order_quantity += order_item[i]['quantity'];
 						}
-						var count_order_group = order_item.length;
-						var table = document.getElementById("order_item");
-						table.innerHTML = "";
-						var totalPrice = 0;
-
-						for (var i = 0; i < count_order_group; i++) {
-							var row = table.insertRow(-1);
-							var noCell = row.insertCell(0);
-							var nameCell = row.insertCell(1);
-							var quantityCell = row.insertCell(2);
-							var priceCell = row.insertCell(3);
-							noCell.innerHTML = i + 1;
-							nameCell.innerHTML = order_item[i].getName;
-							quantityCell.innerHTML = "<button class='btn btn-sm'>-</button>x"+ order_item[i].getQuantity +"<button class='btn btn-sm'>+</button>";
-							var price = order_item[i].getTotalPrice;
-							priceCell.innerHTML = "RM "+ price;
-
-							totalPrice += price;
-						}
-						var row = table.insertRow(-1);
-						row.insertCell(0);
-						row.insertCell(1);
-						var totalLabelCell = row.insertCell(2);
-						var totalPriceCell = row.insertCell(3);
-						totalLabelCell.innerHTML = "Total";
-						totalPriceCell.innerHTML = "RM"+ totalPrice;
+						generate_order_list();
 						$("#count_order").html(count_order_quantity);
 						$("#order_list").fadeIn();
 					}
@@ -239,7 +199,6 @@
 							},function(data) {
 								var food_info = JSON.parse(data);
 								if(order_item != 0){
-
 									if (is_exist(order_item, food_id)) {
 										for (var i = 0; i < order_item.length; i++) {
 											if(order_item[i].getFood_id == food_id){
@@ -259,33 +218,7 @@
 									count_order_quantity++;
 									$("#count_order").html(count_order_quantity);
 								}
-
-								var count_order_group = order_item.length;
-								var table = document.getElementById("order_item");
-								table.innerHTML = "";
-								var totalPrice = 0;
-
-								for (var i = 0; i < count_order_group; i++) {
-									var row = table.insertRow(-1);
-									var noCell = row.insertCell(0);
-									var nameCell = row.insertCell(1);
-									var quantityCell = row.insertCell(2);
-									var priceCell = row.insertCell(3);
-									noCell.innerHTML = i + 1;
-									nameCell.innerHTML = order_item[i].getName;
-									quantityCell.innerHTML = "<button class='btn btn-sm'>-</button>x"+ order_item[i].getQuantity +"<button class='btn btn-sm plus_btn'>+</button>";
-									var price = order_item[i].getTotalPrice;
-									priceCell.innerHTML = "RM "+ price;
-
-									totalPrice += price;
-								}
-								var row = table.insertRow(-1);
-								row.insertCell(0);
-								row.insertCell(1);
-								var totalLabelCell = row.insertCell(2);
-								var totalPriceCell = row.insertCell(3);
-								totalLabelCell.innerHTML = "Total";
-								totalPriceCell.innerHTML = "RM"+ totalPrice;
+								generate_order_list();
 							});
 						}
 					},
@@ -309,6 +242,38 @@
 
 			$("#order_list_footer").click(function() {
 				$("#order_detail").fadeToggle();
+			});
+
+			$("#order_item").on("click", ".add-btn", function(){
+				var index = $(this).parent().parent().index();//index of table row = array index
+				var food_id2minus = $(this).attr("data-food_id");
+				order_item[index].add_quantity();
+				sessionStorage.setItem("order_list", JSON.stringify(order_item));
+				generate_order_list();
+				//refresh quantity
+				count_order_quantity++;
+				$("#count_order").html(count_order_quantity);
+			});
+
+			function checkQuantity(order_item){
+				return order_item.quantity > 0;
+			}
+
+			$("#order_item").on("click", ".minus-btn", function(){
+				var index = $(this).parent().parent().index();//index of table row = array index
+				var food_id2minus = $(this).attr("data-food_id");
+				order_item[index].minus_quantiy();
+				order_item = order_item.filter(checkQuantity);
+				sessionStorage.setItem("order_list", JSON.stringify(order_item));
+				generate_order_list();
+
+				//refresh quantity
+				count_order_quantity--;
+				$("#count_order").html(count_order_quantity);
+
+				console.log(order_item);
+				console.log(food_id2minus);
+				console.log(index);
 			});
 		});
 	</script>
