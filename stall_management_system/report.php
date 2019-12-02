@@ -19,6 +19,7 @@ include '../config/config.php';
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 	<title></title>
 </head>
 <body>
@@ -59,6 +60,7 @@ include '../config/config.php';
 										<tr>
 											<td>Invoice </td>
 											<td><?php echo $row['total']?> </td>
+											<input type="hidden" id="invoice_session" value="<?php echo $row['total'] ?>"/>
 										</tr>
 										<?php
 											}
@@ -74,6 +76,7 @@ include '../config/config.php';
 										<tr>
 											<td>Bill</td>
 											<td><?php echo $row['bill_total']?></td>
+											<input type="hidden" id="bill_session" value="<?php echo $row['bill_total'] ?>"/>
 										</tr>
 
 									<?php
@@ -91,6 +94,7 @@ include '../config/config.php';
 										<tr>
 											<td>Receipt</td>
 											<td><?php echo $row['receipt_total']?></td>
+											<input type="hidden" id="receipt_session" value="<?php echo $row['receipt_total'] ?>"/>
 										</tr>
 									<?php
 											}
@@ -107,6 +111,7 @@ include '../config/config.php';
 										<tr>
 											<td>Sent from Mail</td>
 											<td><?php echo $row['mail_total']?></td>
+											<input type="hidden" id="mail_session" value="<?php echo $row['mail_total'] ?>"/>
 										</tr>
 
 									<?php
@@ -132,10 +137,55 @@ include '../config/config.php';
 						</div>
 					</div>
 				</div>
+				
+				<canvas id="myChart"></canvas>
 			</main>
 		</div>
 	</div>
 
 </body>
+
+<script type="text/javascript">
+var invoice_total = document.getElementById("invoice_session").value;
+var bill_total = document.getElementById("bill_session").value;
+var receipt_total = document.getElementById("receipt_session").value;
+var mail_total = document.getElementById("mail_session").value;
+console.log(mail_total);
+// Load google charts
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'pie',
+
+    // The data for our dataset
+    data: {
+        labels: ['Invoice', 'Bill', 'Receipt', 'Mail'],
+        datasets: [{
+            label: 'Expenses',
+            backgroundColor:[
+						'rgba(3, 49, 255)',
+						'rgba(247, 20, 50)',
+						'rgba(255, 206, 86, 0.6)',
+						'rgba(75, 192, 192, 0.6)'
+					],
+            borderColor: 'rgb(18, 18, 18)',
+            data: [invoice_total, bill_total, receipt_total, mail_total]
+        }]
+    },
+
+    // Configuration options go here
+    options: {
+		layout:{
+			padding:{
+					left:0,
+					right:0,
+					bottom:0,
+					top:0
+				},
+			},
+
+	}
+});
+</script>
 </html>
 
