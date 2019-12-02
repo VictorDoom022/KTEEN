@@ -35,7 +35,8 @@ include '../process/handle_edit_stall_status.php';
 					<div class="col-md-8 mb-3">
 						<div class="k-card bg-white h-100">
 							<div class="card-body">
-								
+								<div class="h3">Dashboard</div>
+								<hr>
 							</div>
 						</div>
 					</div>
