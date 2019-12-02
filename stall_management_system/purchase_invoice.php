@@ -20,7 +20,7 @@ include '../process/handle_if_logout_stall.php';
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<title></title>
 </head>
-<body>
+<body onload="live_search()">
 <?php
 	$site = 'Purchase';
 	include '../layout/top_nav_stall.php';
@@ -40,48 +40,18 @@ include '../process/handle_if_logout_stall.php';
 						</div>
 					</div>
 
+					<div class="input-group shadow-sm m-2">
+						<div class="input-group-prepend">
+							<div class="input-group-text border-0 bg-white">
+								<i class="fas fa-search"></i>
+							</div>
+					    </div>
+						<input type="search" id="search" name="search" placeholder="Search" class="form-control border-0" oninput="live_search()">
+					</div>
+
 					<div class="row">
 					<div class="table-responsive">
-						<table class="table table-hover table-borderless table-striped table-sm">
-							<thead class="thead-dark">
-								<tr>
-									<th>No.</th>
-                                    <th>Invoice Number</th>
-                                    <th>Supplier Name</th>
-                                    <th>Invoice Date</th>
-                                    <th>Due Date</th>
-                                    <th>Total Amount</th>
-                                    <th>File</th>
-                                    <th>Key-in date<th>
-								</tr>
-
-                                <?php
-							    	$stallID = $_SESSION['kteen_stall_id'];
-									$count=0;
-									$sql = "SELECT invoice_number, supplier_name, invoice_date, invoice_due, invoice_amount, invoice_file, date_add from invoice where stall_ID = '$stallID'";
-									$result = $conn -> query($sql);
-										if(mysqli_num_rows($result)){
-										    while ($row = mysqli_fetch_assoc($result)) {
-											$count++;
-								?>
-                                    <tr>
-                                        <td><?php echo ($count)?></td>
-                                        <td><?php echo $row['invoice_number']?></td>
-                                        <td><?php echo $row['supplier_name']?></td>
-                                        <td><?php echo $row['invoice_date']?></td>
-                                        <td><?php echo $row['invoice_due']?></td>
-                                        <td>RM<?php echo $row['invoice_amount']?></td>
-                                       
-										<td><a href="../uploads/Invoice/<?php echo $row['invoice_file']?>" download><?php echo $row['invoice_file'] ?></a></td>
-                                        <td><?php echo $row['date_add']?></td>
-                                    </tr>
-
-                                <?php
-                                        }
-                                    }
-                                ?>
-							</thead>
-						</table>
+						<div id="tableContent"></div>
 					</div>
 					</div>
 				</div>
@@ -90,4 +60,26 @@ include '../process/handle_if_logout_stall.php';
 		</div>
 	</div>
 </body>
+<script>
+function live_search(){
+		var word = document.getElementById("search").value;
+		var xhttp;
+		xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				document.getElementById("tableContent").innerHTML = this.responseText;
+			}
+		};
+		if(word == ""){
+			xhttp.open("GET", "purchase_invoiceTable.php", true);
+			xhttp.send();
+			return;
+		}else if(word != ""){
+			xhttp.open("GET" , "purchase_invoiceTable.php?word="+word, true);
+			xhttp.send();
+			return;
+		}
+	}
+</script>
+
 </html>
