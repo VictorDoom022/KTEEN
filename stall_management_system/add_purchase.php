@@ -18,7 +18,7 @@ if(isset($_POST['add_Invoice'])){
     $filename = $_FILES['invoice_file']['name'];
 
     // destination of the file on the server
-    $destination = '../uploads/' . $filename;
+    $destination = '../uploads/Invoice/' . $filename;
 
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
@@ -61,7 +61,7 @@ if(isset($_POST['add_Bill'])){
     $filename = $_FILES['bill_file']['name'];
 
     // destination of the file on the server
-    $destination = '../uploads/' . $filename;
+    $destination = '../uploads/Bill/' . $filename;
 
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
@@ -104,7 +104,7 @@ if(isset($_POST['add_receipt'])){
     $filename = $_FILES['receipt_file']['name'];
 
     // destination of the file on the server
-    $destination = '../uploads/' . $filename;
+    $destination = '../uploads/Receipt/' . $filename;
 
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);

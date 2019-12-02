@@ -72,7 +72,7 @@ include '../process/handle_if_logout_stall.php';
                                         <td><?php echo $row['invoice_due']?></td>
                                         <td>RM<?php echo $row['invoice_amount']?></td>
                                        
-										<td><a href="../uploads/<?php echo $row['invoice_file']?>" download><?php echo $row['invoice_file'] ?></a></td>
+										<td><a href="../uploads/Invoice/<?php echo $row['invoice_file']?>" download><?php echo $row['invoice_file'] ?></a></td>
                                         <td><?php echo $row['date_add']?></td>
                                     </tr>
 
