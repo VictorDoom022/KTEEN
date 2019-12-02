@@ -160,7 +160,7 @@ if(mysqli_num_rows($result) == 1){
 				$("#order_list_card").animate({left: '-1500px'});
 				$("#order_number_panel").animate({left: '0'});
 				$("#c_payment_method_footer_bar").fadeOut();
-				alert("Go to stall and pay");
+				alert("1.Pay at the stall pay first\n2. Wait for the number");
 				$("#back2home").fadeIn();
 			});
 		});
