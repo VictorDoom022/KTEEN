@@ -6,7 +6,7 @@ include '../config/config.php';
 $searchword = "";
 if (isset($_GET['word'])) {
     //$temp = test_input($_GET['keyword']);
-    $searchword = " AND Name LIKE '%".$_GET['word']."%'";
+    $searchword = " AND name LIKE '%".$_GET['word']."%'";
 }
 ?>
 <div class="row">
@@ -27,7 +27,7 @@ if (isset($_GET['word'])) {
 					<div class="col-8">
 						<div class="card-body">
 							<div class="card-title mb-0">
-								<?php echo $row['Name']; ?>
+								<?php echo $row['name']; ?>
 							</div>
 							<div class="card-text">
 								<small class="text-muted mt-0">
