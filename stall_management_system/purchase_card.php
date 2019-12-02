@@ -40,8 +40,8 @@ if (isset($_GET['word'])) {
 			</div>
 		</a>
 	</div>
-	<?php include 'purchase_modal.php'; ?>
-	<?php
+	<?php 
+	include 'purchase_modal.php';
 		}
 	}else if($searchword != ""){
 		?>
