@@ -179,7 +179,7 @@ var chart = new Chart(ctx, {
 			padding:{
 					left:0,
 					right:0,
-					bottom:0,
+					bottom:300,
 					top:0
 				},
 			},
