@@ -32,6 +32,53 @@ include '../config/config.php';
 		<div class="row">
 			<div class="col-2"></div>
 			<main class="col-10 p-4">
+				<!-- income -->
+				<div class="k-card card col-12">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-3"></div>
+								<div class="col-md-6">
+									<h4 class="card-title text-center">Income</h4>
+								</div>			
+						</div>
+						<div class="row">
+							<div class="table-responsive">
+								<table class="table table-hover table-borderless table-striped table-sm">
+									<thead class="thead-dark">
+										<tr>
+											<th>Type of Income</th>
+											<th>Total (RM)</th>
+											<th>Total (RM)</th>
+										</tr>
+									<?php 
+										$sql = "SELECT SUM(total) AS total_income FROM payment";
+										$result = $conn -> query($sql);
+										if(mysqli_num_rows($result)){
+											while ($row = mysqli_fetch_assoc($result)) {
+												$_SESSION["total_income"] = $row['total_income'];
+									?>
+										<tr>
+											<td>Food</td>
+											<td><?php echo $row['total_income']; ?></td>
+										</tr>
+									
+										<tr>
+											<td colspan="2" class="border-top"><strong>Total:</strong></td>
+											<td class="border-top"><strong><?php echo $row['total_income']; ?></strong></td>
+											
+										</tr>
+										<?php
+											}
+										}
+									?>
+									</thead>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Expenses -->
 				<div class="k-card card col-12">
 					<div class="card-body">
 						<div class="row">
@@ -46,9 +93,9 @@ include '../config/config.php';
 								<table class="table table-hover table-borderless table-striped table-sm">
 									<thead class="thead-dark">
 										<tr>
-											<th>Type of records</th>
+											<th>Type of Expenses</th>
 											<th>Total (RM)</th>
-											<th>Sub-total (RM)</th>
+											<th>Total (RM)</th>
 										</tr>
 									<?php 
 										$sql = "SELECT SUM(invoice_amount) AS total FROM invoice";
@@ -133,7 +180,51 @@ include '../config/config.php';
 						</div>
 					</div>
 				</div>
+
+				<!-- final calculatations -->
+				<div class="k-card card col-12">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-3"></div>
+								<div class="col-md-6">
+									<h4 class="card-title text-center">Income - Expenses</h4>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="table-responsive">
+								<table class="table table-hover table-borderless table-striped table-sm">
+									<thead class="thead-dark">
+										<tr>
+											<th>Income / Expenses</th>
+											<th>Total (RM)</th>
+											<th>Total (RM)</th>
+										</tr>
+
+										<tr>
+											<td>Income</td>
+											<td><?php echo $_SESSION["total_income"] ?></td>
+										</tr>
+
+										<tr>
+											<td>Expenses</td>
+											<td><?php echo $total ?></td>
+										</tr>
+										<?php
+											$finalCal = $_SESSION["total_income"] - $total;
+										?>
+										<tr>
+											<td colspan="2" class="border-top"><strong>Total:</strong></td>
+											<td class="border-top"><strong><?php echo $finalCal ?></strong></td>
+										</tr>
+									</thead>
+								</table>	
+						</div>
+				</div>
 				<canvas id="ExpenseChart"></canvas>
+				
+				
 			</main>
 		</div>
 	</div>
@@ -145,8 +236,8 @@ var invoice_total = document.getElementById("invoice_session").value;
 var bill_total = document.getElementById("bill_session").value;
 var receipt_total = document.getElementById("receipt_session").value;
 var mail_total = document.getElementById("mail_session").value;
-console.log(mail_total);
-// Load google charts
+// console.log(mail_total);
+
 var ctx = document.getElementById('ExpenseChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -170,6 +261,10 @@ var chart = new Chart(ctx, {
 
     // Configuration options go here
     options: {
+		title:{
+			display: true,
+			text: 'Expenses'
+		},
 		layout:{
 			padding:{
 					left:0,
