@@ -26,6 +26,10 @@ class Orders{
 		this.quantity ++;
 	}
 
+	minus_quantiy(){
+		this.quantity --;
+	}
+
 	get getTotalPrice(){
 		return this.price * this.quantity;
 	}

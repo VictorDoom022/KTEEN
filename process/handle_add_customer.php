@@ -63,4 +63,3 @@ if (isset($_POST['add_customer'])) {
 	}
 }
 ?>
-<!-- <script>console.log("<?= $employee_id; ?>")</script> -->
