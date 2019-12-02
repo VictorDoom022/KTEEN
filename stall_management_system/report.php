@@ -127,18 +127,13 @@ include '../config/config.php';
 											<td class="border-top"><strong><?php echo $total ?></strong></td>
 										</tr>
 
-									<?php
-									// 	}
-									// }
-									?>
 									</thead>
 								</table>
 							</div>
 						</div>
 					</div>
 				</div>
-				
-				<canvas id="myChart"></canvas>
+				<canvas id="ExpenseChart"></canvas>
 			</main>
 		</div>
 	</div>
@@ -152,10 +147,10 @@ var receipt_total = document.getElementById("receipt_session").value;
 var mail_total = document.getElementById("mail_session").value;
 console.log(mail_total);
 // Load google charts
-var ctx = document.getElementById('myChart').getContext('2d');
+var ctx = document.getElementById('ExpenseChart').getContext('2d');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
-    type: 'pie',
+    type: 'doughnut',
 
     // The data for our dataset
     data: {
@@ -165,10 +160,10 @@ var chart = new Chart(ctx, {
             backgroundColor:[
 						'rgba(3, 49, 255)',
 						'rgba(247, 20, 50)',
-						'rgba(255, 206, 86, 0.6)',
+						'rgba(83, 237, 104)',
 						'rgba(75, 192, 192, 0.6)'
 					],
-            borderColor: 'rgb(18, 18, 18)',
+            borderColor: 'rgb(255, 255, 255)',
             data: [invoice_total, bill_total, receipt_total, mail_total]
         }]
     },
