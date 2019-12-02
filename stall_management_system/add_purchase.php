@@ -57,9 +57,39 @@ if(isset($_POST['add_Bill'])){
 	$bill_date = $_POST['bill_date'];
 	$bill_amount = $_POST['bill_amount'];
 
-	$sql = "INSERT INTO bill(bill_number, stall_ID,supplier_name,bill_date,bill_amount,bill_file,date_add) 
-				values ('$bill_number','$stall_ID','$supplier_name','$bill_date','$bill_amount','',NOW())";
-	$result = $conn -> query($sql);
+	// name of the uploaded file
+    $filename = $_FILES['bill_file']['name'];
+
+    // destination of the file on the server
+    $destination = '../uploads/' . $filename;
+
+    // get the file extension
+    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+    // the physical file on a temporary uploads directory on the server
+    $file = $_FILES['bill_file']['tmp_name'];
+    $size = $_FILES['bill_file']['size'];
+
+    if (!in_array($extension, ['zip', 'pdf', 'docx'])) {
+        echo "You file extension must be .zip, .pdf or .docx";
+    } elseif ($_FILES['bill_file']['size'] > 1000000) { // file shouldn't be larger than 1Megabyte
+        echo "File too large!";
+    } else {
+        // move the uploaded (temporary) file to the specified destination
+        if (move_uploaded_file($file, $destination)) {
+            $sql = "INSERT INTO bill(bill_number, stall_ID,supplier_name,bill_date,bill_amount,bill_file,date_add) 
+			values ('$bill_number','$stall_ID','$supplier_name','$bill_date','$bill_amount','$filename',NOW())";
+            if (mysqli_query($conn, $sql)) {
+                echo '<script>alert("Success");</script>';
+            }
+        } else {
+            echo "Failed to upload file.";
+        }
+	}
+	
+	// $sql = "INSERT INTO bill(bill_number, stall_ID,supplier_name,bill_date,bill_amount,bill_file,date_add) 
+	// 			values ('$bill_number','$stall_ID','$supplier_name','$bill_date','$bill_amount','',NOW())";
+	// $result = $conn -> query($sql);
 }
 
 if(isset($_POST['add_receipt'])){
@@ -233,7 +263,7 @@ if(isset($_POST['add_receipt'])){
 				    <div class="row">
 						<div class="k-card card col-12">
 							<div class="card-body">
-							<form method="post" action="add_purchase.php">
+							<form method="post" action="add_purchase.php"  enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-md-1"></div>
 									<div class="col-md-12">

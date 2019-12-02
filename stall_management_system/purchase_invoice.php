@@ -4,27 +4,6 @@ include '../config/config.php';
 include '../process/handle_logout.php';
 include '../process/handle_if_logout_stall.php';
 
-if(isset($_GET['invoice_file'])){
-	$file_name = $_GET['invoice_file'];
-
-	$sql = "SELECT * FROM invoice WHERE invoice_file =$file_name";
-    $result = mysqli_query($conn, $sql);
-
-    $file = mysqli_fetch_assoc($result);
-	$filepath = '../uploads/' . $file['name'];
-	
-	if (file_exists($filepath)) {
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . basename($filepath));
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize('../uploads/' . $file['name']));
-        readfile('../uploads/' . $file['name']);
-    }
-}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -93,7 +72,7 @@ if(isset($_GET['invoice_file'])){
                                         <td><?php echo $row['invoice_due']?></td>
                                         <td>RM<?php echo $row['invoice_amount']?></td>
                                        
-										<td><a href="../upload/<?php echo $row['invoice_file']?>" download><?php echo $row['invoice_file'] ?></a></td>
+										<td><a href="../uploads/<?php echo $row['invoice_file']?>" download><?php echo $row['invoice_file'] ?></a></td>
                                         <td><?php echo $row['date_add']?></td>
                                     </tr>
 

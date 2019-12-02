@@ -69,7 +69,7 @@ include '../process/handle_if_logout_stall.php';
                                         <td><?php echo $row['supplier_name']?></td>
                                         <td><?php echo $row['bill_date']?></td>
                                         <td>RM<?php echo $row['bill_amount']?></td>
-                                        <td><?php echo $row['bill_file']?></td>
+                                        <td><a href="../uploads/<?php echo $row['bill_file']?>" download><?php echo $row['bill_file']?></a></td>
                                         <td><?php echo $row['date_add']?></td>
                                     </tr>
 
