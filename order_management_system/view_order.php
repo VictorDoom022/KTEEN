@@ -3,6 +3,7 @@ session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
 include '../process/handle_if_logout_staff.php';
+include '../process/handle_complete_order.php';
 ?>
 <!DOCTYPE html>
 <html>

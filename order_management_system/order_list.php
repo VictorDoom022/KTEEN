@@ -4,8 +4,8 @@ include '../config/config.php';
 
 date_default_timezone_set("Asia/Kuala_Lumpur");
 $current_time = date_create(date('Y-m-d H:i:s'));
-
-$sql = "SELECT ID, date, number, customer_username FROM orders WHERE stall_ID = '" . $_SESSION['stall_ID'] . "';";
+$stall_ID = $_SESSION['stall_ID'];
+$sql = "SELECT orders.ID, orders.date, number, customer_username FROM orders LEFT JOIN payment ON orders.ID = payment.order_ID WHERE stall_ID = '$stall_ID' AND completed = '0' AND method <> '';";
 $result = mysqli_query($conn, $sql);
 $num_row = mysqli_num_rows($result);
 if($num_row > 0){
@@ -16,10 +16,9 @@ if($num_row > 0){
 			<div class="card-body">
 				<div class="container">
 					<div class="row border bg-light">
-						<div class="col-5">Number <?= $row['number']; ?></div>
-						<div class="col-5">Order by <?= $r = ($row['customer_username'] == 'NULL')? 'staff': $row['customer_username']; ?></div>
+						<div class="col-10 h5">Order number: <?= $row['number']; ?></div>
 						<div class="col-2">
-							<button class="btn btn-sm btn-dark btn-block">Complete</button>
+							<a href="view_order.php?complete_id=<?= $order_ID ?>" class="btn btn-sm btn-dark btn-block">Complete</a>
 						</div>
 					</div>
 					<table class="table table-sm table-borderless">
