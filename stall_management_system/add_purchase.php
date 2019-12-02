@@ -100,9 +100,38 @@ if(isset($_POST['add_receipt'])){
 	$receipt_date = $_POST['receipt_date'];
 	$receipt_amount = $_POST['receipt_amount'];
 
-	$sql = "INSERT INTO receipt(receipt_number, stall_ID,supplier_name,receipt_date,receipt_amount,receipt_file,date_add) 
-				values ('$receipt_number','$stall_ID','$supplier_name','$receipt_date','$receipt_amount','',NOW())";
-	$result = $conn -> query($sql);
+	// name of the uploaded file
+    $filename = $_FILES['receipt_file']['name'];
+
+    // destination of the file on the server
+    $destination = '../uploads/' . $filename;
+
+    // get the file extension
+    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+    // the physical file on a temporary uploads directory on the server
+    $file = $_FILES['receipt_file']['tmp_name'];
+    $size = $_FILES['receipt_file']['size'];
+
+    if (!in_array($extension, ['zip', 'pdf', 'docx'])) {
+        echo "You file extension must be .zip, .pdf or .docx";
+    } else if ($_FILES['receipt_file']['size'] > 1000000) { // file shouldn't be larger than 1Megabyte
+        echo "File too large!";
+    } else {
+        // move the uploaded (temporary) file to the specified destination
+        if (move_uploaded_file($file, $destination)) {
+            $sql = "INSERT INTO receipt(receipt_number, stall_ID,supplier_name,receipt_date,receipt_amount,receipt_file,date_add) 
+			values ('$receipt_number','$stall_ID','$supplier_name','$receipt_date','$receipt_amount','$filename',NOW())";
+            if (mysqli_query($conn, $sql)) {
+                echo '<script>alert("Success");</script>';
+            }
+        } else {
+            echo "Failed to upload file.";
+        }
+	}
+	// $sql = "INSERT INTO receipt(receipt_number, stall_ID,supplier_name,receipt_date,receipt_amount,receipt_file,date_add) 
+	// 			values ('$receipt_number','$stall_ID','$supplier_name','$receipt_date','$receipt_amount','',NOW())";
+	// $result = $conn -> query($sql);
 }
 
 
@@ -349,7 +378,7 @@ if(isset($_POST['add_receipt'])){
 				  <div class="row">
 						<div class="k-card card col-12">
 							<div class="card-body">
-							<form method="post" action="add_purchase.php">
+							<form method="post" action="add_purchase.php"  enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-md-1"></div>
 									<div class="col-md-12">
@@ -407,7 +436,14 @@ if(isset($_POST['add_receipt'])){
 												<input type="date" name="receipt_date" class="form-control" required>
 											</div>
 										</div>
-										
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">
+												Upload Invoice
+											</label>
+											<div class="col-md-9">
+												<input type="file" name="receipt_file" class="custom-file-input">
+											</div>
+										</div>
 									</div>
 									
 								</div>
