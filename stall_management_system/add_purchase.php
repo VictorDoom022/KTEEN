@@ -37,7 +37,7 @@ if(isset($_POST['add_Invoice'])){
             $sql = "INSERT INTO invoice (invoice_number, stall_ID,supplier_name,invoice_date,invoice_due,invoice_amount,invoice_file,date_add)
 			 VALUES ('$invoice_number','$stall_ID','$supplier_name','$invoice_date','$invoice_due','$invoice_amount','$filename',NOW())";
             if (mysqli_query($conn, $sql)) {
-                echo "File uploaded successfully";
+                echo '<script>alert("Success");</script>';
             }
         } else {
             echo "Failed to upload file.";
