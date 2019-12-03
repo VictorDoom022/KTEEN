@@ -33,25 +33,19 @@ include '../process/handle_edit_menu.php';
 			<div class="col-10">
 				<div class="k-card card mt-3">
 					<div class="card-body">
-						<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
+						<form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
 							<div class="h3 pl-5 mb-0">Food Detail</div>
 							<hr class="mt-0">
 							<div class="row">
 								<div class="col-md-4">
 									<div class="mx-auto" style="position: relative;height: 250px;width: 250px;">
 										<img src="../images/<?= $_SESSION['stall_username']; ?>/menu/<?= $image; ?>" style="width: 250px;height: 250px;position: absolute;" id="food_image">
-										<input type="file" name="fileToUpload" id="image" data-target="#food_image" style="opacity: 0;width: 100%;height: 100%;" required>
+										<input type="file" name="fileToUpload" id="image" data-target="#food_image" style="opacity: 0;width: 100%;height: 100%;">
 										<label class="btn btn-dark m-0" for="image" style="position: absolute;right: -10px;bottom: 5px;">Browse</label>
 									</div>
 								</div>
 								<div class="col-md-8">
 									<input type="hidden" name="food_id" value="<?= $food_id; ?>">
-									<div class="form-group row">
-										<!-- <label class="col-md-3 col-form-label text-nowrap">Food ID :</label>
-										<div class="col-md-9">
-											<input type="text" name="ID" class="form-control">
-										</div> -->
-									</div>
 									<div class="form-group row">
 										<label class="col-md-3 col-form-label text-nowrap">Food Name :</label>
 										<div class="col-md-9">
@@ -89,7 +83,7 @@ include '../process/handle_edit_menu.php';
 							<div class="row">
 								<div class="col-12 text-right">
 									<a href="menu.php" class="btn">Cancel</a>
-									<input type="submit" name="add_menu" class="btn btn-dark">
+									<input type="submit" name="edit_menu" class="btn btn-dark">
 								</div>
 							</div>
 						</form>

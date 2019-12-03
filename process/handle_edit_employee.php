@@ -24,10 +24,10 @@ if(isset($_GET['employee_id'])){
 if (isset($_POST['edit_employee'])) {
     $employee_name = $NRIC = $image = $contact_no = $address = $salary = "";
 
-    // $employee_name = test_input($_POST['name']);
-    // $NRIC = test_input($_POST['NRIC']);
-    // $contact_no = test_input($_POST['contact_no']);uncomplete
-    // $employee_name = test_input($_POST['name']);
+    $employee_name = test_input($_POST['name']);
+    $NRIC = test_input($_POST['NRIC']);
+    $contact_no = test_input($_POST['contact_no']);
+    $employee_name = test_input($_POST['name']);
 
     // $sql = "UPDATE staff SET name = '',  = '' WHERE ID = '$employee_id';";
     header("location: employee.php");
