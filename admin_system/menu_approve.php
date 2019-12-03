@@ -50,7 +50,7 @@ include '../process/handle_reject_menu.php';
 								$image = $row['image'];
 								$price = $row['price'];
 							?>
-							<div class="col-12">
+							<div class="col-12 mb-2">
 								<div class="k-card card k-hover-shadow h-100">
 									<div class="card-body">
 										<div class="row">

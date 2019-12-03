@@ -16,11 +16,13 @@ if(isset($_GET['approve'])){
 		$sql = "UPDATE menu_approve SET approve = '1' WHERE menu_approve_id = '$id';";
 		mysqli_query($conn, $sql);
 
+		$infor = "You menu (".$food_name.") has been approve by Administrator ";
+
 		//insert data to menu (food table)
 		$sql = "INSERT INTO food(name, stall_ID, category_ID, image, price, available) VALUES ('$food_name', '$stall_ID', '$category_ID', '$image', '$price', '$available');";
 		mysqli_query($conn, $sql);
 		rename("../images/menu2approve/$stall_username/$image", "../images/$stall_username/menu/$image");
-		$sql = "INSERT INTO notifications(recipient_id, sender_id, title, parameter, created_date) VALUES ('$stall_ID', '0', 'approve', 'You menu has been approve by Administrator', CURRENT_TIMESTAMP())";
+		$sql = "INSERT INTO notifications(recipient_id, sender_id, title, parameter, created_date) VALUES ('$stall_ID', '0', 'approve', '$infor', CURRENT_TIMESTAMP())";
 		mysqli_query($conn, $sql);
 	}
 	mysqli_close();

@@ -16,10 +16,11 @@ if (isset($_POST['add_employee'])) {
 	$contact_no = test_input($_POST['contact_no']);
 	$address = test_input($_POST['address']);
 	$salary =test_input($_POST['salary']);
+	$position =test_input($_POST['position']);
 
 	$valid_employee_name = $valid_NRIC = $valid_contact_no = $valid_address = $valid_salary = $valid;
 	// check username
-	$staff_username = test_input($_POST['employee_id']);// (username)
+	$staff_username = test_input($_POST['employee_username']);// (username)
 	$sql = "SELECT username FROM staff WHERE username = '$staff_username';";
 	$result = mysqli_query($conn, $sql);
 	if(mysqli_num_rows($result) != 0){//validation employee id
@@ -31,7 +32,7 @@ if (isset($_POST['add_employee'])) {
 	
 	// check password
 	$password = test_input($_POST['password']);
-	$password_confirm = test_input('password_confirm');
+	$password_confirm = test_input($_POST['password_confirm']);
 	if($password == $password_confirm){
 		$p = $password;
 		$password = md5($p);
@@ -40,10 +41,14 @@ if (isset($_POST['add_employee'])) {
 		$valid_password = $invalid;
 		$ok2add = false;
 	}
+	$image = $staff_username.".jpg";
 
 	if ($ok2add) {
-		$sql = "INSERT INTO staff() VALUES ();";
+		$stall_ID = $_SESSION['kteen_stall_id'];
+		echo $sql = "INSERT INTO staff(name, NRIC, image, stall_ID, contact_no, address, username, password, position, salary) VALUES ('$employee_name', '$NRIC', '$image', '$stall_ID', '$contact_no', '$address', '$staff_username',  '$p', '$position', '$salary');";
+		mysqli_query($conn, $sql);
+		header("location: employee.php");
 	}
+
 }
 ?>
-<!-- <script>console.log("<?= $employee_id; ?>")</script> -->

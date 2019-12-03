@@ -45,25 +45,25 @@ include '../process/handle_add_employee.php';
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Name</label>
 											<div class="col-md-9">
-												<input type="text" name="employee_name" class="form-control <?= $valid_employee_name ?>" value="qwe" required>
+												<input type="text" name="employee_name" class="form-control <?= $valid_employee_name ?>" value="<?= $employee_name; ?>" required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">NRIC</label>
 											<div class="col-md-9">
-												<input type="text" name="NRIC" class="form-control <?= $valid_NRIC; ?>" value="" required>
+												<input type="text" name="NRIC" class="form-control <?= $valid_NRIC; ?>" value="<?= $NRIC; ?>" required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Contact No</label>
 											<div class="col-md-9">
-												<input type="text" name="contact_no" class="form-control <?= $valid_contact_no; ?>" value="" required>
+												<input type="text" name="contact_no" class="form-control <?= $valid_contact_no; ?>" value="<?= $contact_no; ?>" required>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Address</label>
 											<div class="col-md-9">
-												<textarea class="form-control <?= $valid_address; ?>" name="address" required><?php echo md5("stall01") ?></textarea>
+												<textarea class="form-control <?= $valid_address; ?>" name="address" required><?= $address; ?></textarea>
 											</div>
 										</div>
 									</div>
@@ -75,7 +75,7 @@ include '../process/handle_add_employee.php';
 										<div class="form-group row">
 											<label for="employee_id" class="col-md-3 col-form-label">Employee ID</label>
 											<div class="col-md-9">
-												<input id="employee_id" type="text" name="employee_id" class="form-control <?= $valid_staff_username; ?>" value="dww">
+												<input id="employee_id" type="text" name="employee_username" class="form-control <?= $valid_staff_username; ?>" value="<?= $staff_username; ?>">
 												<div class="invalid-feedback">That username has been taken.Try another.</div>
 											</div>
 										</div>
@@ -97,11 +97,12 @@ include '../process/handle_add_employee.php';
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Position</label>
 											<div class="col-md-9">
-												<select name="position" class="form-control" required="">
+												<select name="position" class="form-control" required>
 													<option>Choose one</option>
-													<option value="Head Chef">Head Chef</option>
-													<option></option>
-													<option></option>
+													<option value="head chef" <?= $r = ($position == 'head chef')? 'selected':''; ?>>Head Chef</option>
+													<option value="kitchen porter" <?= $r = ($position == 'kitchen porter')? 'selected':''; ?>>Kitchen Porter</option>
+													<option value="dishwasher" <?= $r = ($position == 'dishwasher')? 'selected':''; ?>>Dishwasher</option>
+													<option value="counter" <?= $r = ($position == 'counter')? 'selected':''; ?>>Counter</option>
 												</select>
 											</div>
 										</div>
@@ -111,7 +112,7 @@ include '../process/handle_add_employee.php';
 												<div class="input-group-prepend">
 													<span class="input-group-text">RM</span>
 												</div>
-												<input type="number" min="0" name="salary" class="form-control <?= $valid_salary; ?>" value="3000" required="">
+												<input type="number" min="0" name="salary" class="form-control <?= $valid_salary; ?>" value="<?= $salary; ?>" required="">
 											</div>
 										</div>
 									</div>

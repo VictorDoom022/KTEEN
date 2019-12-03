@@ -90,7 +90,7 @@ include '../process/handle_edit_employee.php';
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Position</label>
 											<div class="col-md-9">
-												<select name="position" class="form-control" required="">
+												<select name="position" class="form-control" required>
 													<option>Choose one</option>
 													<option value="head chef" <?= $r = ($position == 'head chef')? 'selected':''; ?>>Head Chef</option>
 													<option value="kitchen porter" <?= $r = ($position == 'kitchen porter')? 'selected':''; ?>>Kitchen Porter</option>
