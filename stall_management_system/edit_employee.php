@@ -39,7 +39,7 @@ include '../process/handle_edit_employee.php';
 									<div class="col-md-1"></div>
 									<div class="col-md-3">
 										<div style="height: 200px;width: 200px;position: relative;">
-											<img src="../images/stall/<?= $image; ?>" id="img" style="height: 200px;width: 200px;" class="rounded-circle">
+											<img src="../images/staff/<?= $image; ?>" id="img" style="height: 200px;width: 200px;" class="rounded-circle">
 											<input type="file" name="image" id="image" accept="image/gif, image/jpeg, image/png" style="opacity: 0;position: absolute;right: 10px;bottom: 5px;width: 10px;" data-target="#img">
 											<label for="image" class="btn btn-dark m-0" style="position: absolute;right: 0;bottom: 5px;">Browse</label>
 										</div>
