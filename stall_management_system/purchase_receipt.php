@@ -69,11 +69,11 @@ function live_search(){
 			}
 		};
 		if(word == ""){
-			xhttp.open("GET", "purchase_billTable.php", true);
+			xhttp.open("GET", "purchase_receiptTable.php", true);
 			xhttp.send();
 			return;
 		}else if(word != ""){
-			xhttp.open("GET" , "purchase_billTable.php?word="+word, true);
+			xhttp.open("GET" , "purchase_receiptTable.php?word="+word, true);
 			xhttp.send();
 			return;
 		}

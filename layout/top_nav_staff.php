@@ -22,9 +22,7 @@ switch ($site) {
 			    <?= $_SESSION['staff_name']; ?>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="navbarDropdown">
-				<a class="dropdown-item" href="#">Action</a>
-				<a class="dropdown-item" href="#">Another action</a>
-				<div class="dropdown-divider"></div>
+				<a href="" class="dropdown-item">setting</a>
 				<a class="dropdown-item" href="index.php?logout='1'">Log Out</a>
 			</div>
 		</li>
