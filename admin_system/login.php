@@ -27,6 +27,7 @@ include '../process/verification_admin.php';
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<div class="k-card card shadow rounded-0" style="padding: 20px;">
+					<h4 class="card-title pb-3 text-center">Admin Login</h4>
 					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 						<div class="form-group">
 							<label for="username">Username</label>

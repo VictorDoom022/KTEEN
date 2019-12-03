@@ -23,7 +23,8 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<div class="k-card card p-0">
+				<div class="k-card card pt-3">
+					<h4 class="card-title pb-3 text-center">Stall Onwer Login</h4>
 					<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 						<div class="card-body">
 							<div class="form-group">

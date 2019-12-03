@@ -42,7 +42,7 @@
 			<div class="col-md-8">
 				<div class="k-card card p-0 shadow">
 					<div class="card-body">
-						<h4 class="card-title pb-3">Staff Login</h4>
+						<h4 class="card-title pb-3 text-center">Staff Login</h4>
 						<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 							<div class="form-group">
 								<label for="username">Username</label>
