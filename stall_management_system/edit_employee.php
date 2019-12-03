@@ -31,6 +31,7 @@ include '../process/handle_edit_employee.php';
 			<div class="col-2"></div>
 			<main class="col-10 p-4">
 				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="employee_id" value="<?= $employee_id ?>" readonly required>
 					<div class="row">
 						<div class="k-card card col-12">
 							<div class="card-body">
@@ -38,7 +39,7 @@ include '../process/handle_edit_employee.php';
 									<div class="col-md-1"></div>
 									<div class="col-md-3">
 										<div style="height: 200px;width: 200px;position: relative;">
-											<img src="../images/staff/<?= $image; ?>" id="img" style="height: 200px;width: 200px;" class="rounded-circle">
+											<img src="../images/stall/<?= $image; ?>" id="img" style="height: 200px;width: 200px;" class="rounded-circle">
 											<input type="file" name="image" id="image" accept="image/gif, image/jpeg, image/png" style="opacity: 0;position: absolute;right: 10px;bottom: 5px;width: 10px;" data-target="#img">
 											<label for="image" class="btn btn-dark m-0" style="position: absolute;right: 0;bottom: 5px;">Browse</label>
 										</div>
@@ -48,7 +49,7 @@ include '../process/handle_edit_employee.php';
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Name</label>
 											<div class="col-md-9">
-												<input type="text" name="employee_name" class="form-control <?= $valid_employee_name ?>" value="<?= $name; ?>" required>
+												<input type="text" name="employee_name" class="form-control <?= $valid_employee_name ?>" value="<?= $employee_name; ?>" required>
 											</div>
 										</div>
 										<div class="form-group row">
@@ -76,19 +77,12 @@ include '../process/handle_edit_employee.php';
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group row">
-											<label for="employee_id" class="col-md-3 col-form-label">Employee ID</label>
-											<div class="col-md-9">
-												<input id="employee_id" type="text" name="employee_id" class="form-control <?= $valid_staff_username; ?>" value="<?= $staff_username ?>" readonly>
-												<div class="invalid-feedback">That username is taken.Try another.</div>
-											</div>
-										</div>
-										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Salary</label>
 											<div class="input-group col-md-9">
 												<div class="input-group-prepend">
 													<span class="input-group-text">RM</span>
 												</div>
-												<input type="number" min="0" name="salary" class="form-control <?= $valid_salary; ?>" value="<?= $salary; ?>" required="">
+												<input type="number" min="0" name="salary" class="form-control <?= $valid_salary; ?>" value="<?= $salary; ?>" required>
 											</div>
 										</div>
 									</div>
@@ -98,7 +92,7 @@ include '../process/handle_edit_employee.php';
 											<div class="col-md-9">
 												<select name="position" class="form-control" required="">
 													<option>Choose one</option>
-													<option value="Head Chef" <?= $r = ($position == $row['ID'])? 'selected':''; ?>>Head Chef</option>
+													<option value="head chef" <?= $r = ($position == 'head chef')? 'selected':''; ?>>Head Chef</option>
 													<option value="kitchen porter" <?= $r = ($position == 'kitchen porter')? 'selected':''; ?>>Kitchen Porter</option>
 													<option value="dishwasher" <?= $r = ($position == 'dishwasher')? 'selected':''; ?>>Dishwasher</option>
 													<option value="counter" <?= $r = ($position == 'counter')? 'selected':''; ?>>Counter</option>

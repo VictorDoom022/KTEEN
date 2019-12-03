@@ -45,9 +45,9 @@ if (isset($_POST['name']) && isset($_POST['company_name']) && isset($_POST['emai
                 
             </script>";
 
-        echo $sql = "INSERT INTO purchase(stall_ID, date,content, product_name, price, quantity,total) values('$kteen_stall_id', '$datetime','$context', '$product_name', '$price', '$quantity', '$total')";
+        $sql = "INSERT INTO purchase(stall_ID, date,content, product_name, price, quantity,total) values('$kteen_stall_id', '$datetime','$context', '$product_name', '$price', '$quantity', '$total')";
         mysqli_query($conn, $sql);
-      
+        header("location: purchase.php");
     } catch (Exception $e) {
         echo $e;
     }

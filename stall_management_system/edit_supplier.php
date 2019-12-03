@@ -11,7 +11,7 @@ if(isset($_GET['ID'])){
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
 			$ID = $row['ID'];
-            $Name = $row['Name'];
+            $Name = $row['name'];
             $company_name = $row['company_name'];
             $contact_no = $row['contact_no'];
 			$email = $row['email'];

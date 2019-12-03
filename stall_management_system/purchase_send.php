@@ -10,7 +10,7 @@ if (isset($_GET['ID'])) {
 	$result = mysqli_query($conn, "SELECT * FROM supplier WHERE ID = '$ID';");
 	if (mysqli_num_rows($result) == 1) {
 		while ($row = mysqli_fetch_assoc($result)) {
-			$name = $row['Name'];
+			$name = $row['name'];
 			$email = $row['email'];
 		}
 	}
