@@ -59,10 +59,10 @@ if(mysqli_num_rows($result_stall) > 0){
 			}
 			?>
 		</div>
+	</div>
 			<?php
 			}
 			?>
-	</div>
 			<?php
 		}
 			 ?>
