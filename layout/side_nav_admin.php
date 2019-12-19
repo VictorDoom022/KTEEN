@@ -9,22 +9,22 @@
         <ul class="k-nav nav">
             <?php if ($site == 'Add Stall' || $site == 'Edit Stall') { ?>
                 <li class="nav-item w-100 mb-1">
-                    <a href="index.php" class="nav-link w-100">
+                    <a href="index.php" class="nav-link w-100 text-center">
                         <i class="fas fa-arrow-left"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Cancel</span>
+                        <span class="d-none d-sm-none d-lg-inline-flex ml-3">Cancel</span>
                     </a>
                 </li>
             <?php }else{?>
                 <li class="nav-item w-100 mb-1">
-                    <a href="index.php" class="nav-link w-100 <?php if($site == 'Stall'){ echo 'active'; } ?>">
+                    <a href="index.php" class="nav-link w-100 <?php if($site == 'Stall'){ echo 'active'; } ?>  text-center">
                         <i class="fas fa-store"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Stall</span>
+                        <span class="d-none d-sm-none d-lg-inline-flex ml-3">Stall</span>
                     </a>
                 </li>
                 <li class="nav-item w-100 mb-1">
-                    <a href="menu.php" class="nav-link w-100 <?php if($site == 'Menu'){ echo 'active'; } ?>">
+                    <a href="menu.php" class="nav-link w-100 <?php if($site == 'Menu'){ echo 'active'; } ?>  text-center">
                         <i class="fas fa-bars d-inline-flex"></i>
-                        <span class="d-none d-md-inline-flex ml-3">Menu</span>
+                        <span class="d-none d-sm-none d-lg-inline-flex ml-3">Menu</span>
                     </a>
                 </li>
             <?php } ?>
