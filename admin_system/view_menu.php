@@ -1,8 +1,8 @@
 <?php
+session_start();
 include '../config/config.php';
 include '../process/handle_logout.php';
 
-session_start();
 
 if(isset($_SESSION['username'])){
     $username = $_SESSION['username'];
