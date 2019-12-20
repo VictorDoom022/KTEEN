@@ -44,7 +44,7 @@ include '../process/handle_change_password_customer.php';
 											<div class="col-md-9">
 												<input type="password" name="current_password" class="form-control form-control-sm password <?= $valid_current_password; ?>" value="<?= $p; ?>" <?= $r = ($valid_current_password == 'is-invalid') ? 'autofocus' : ''; ?> required>
 												<div class="invalid-feedback">
-													wrong password.
+													Wrong password.
 												</div>
 											</div>
 										</div>
@@ -59,7 +59,7 @@ include '../process/handle_change_password_customer.php';
 											<div class="col-md-9">
 												<input type="password" name="retype_new_password" class="form-control form-control-sm password <?= $valid_not_match_password; ?>">
 												<div class="invalid-feedback">
-													The password are not match
+													Password not matched
 												</div>
 											</div>
 										</div>

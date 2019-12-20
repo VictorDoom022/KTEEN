@@ -55,7 +55,7 @@ if (isset($_POST['search_stall_name'])) {
 	}else{
 	?>
 	<div class="col text-center h5">
-		Not has the result for '<?= $search_stall_name; ?>'
+		No result for '<?= $search_stall_name; ?>'
 	</div>
 	<?php
 	}

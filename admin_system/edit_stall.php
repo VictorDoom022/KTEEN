@@ -205,7 +205,7 @@ if (isset($_POST["edit_stall_image"])) {
                                         <div class="col-md-9">
                                             <input type="text" name="username" class="form-control <?= $username_valid ?>" value="<?= $username ?>" readonly required>
                                             <div class="invalid-feedback">
-                                                That username is taken.Try another.
+                                                The username has been taken. Please try another.
                                             </div>
                                         </div>
                                     </div>
@@ -216,7 +216,7 @@ if (isset($_POST["edit_stall_image"])) {
                                         <div class="col-md-9">
                                             <input type="text" name="stall_name" class="form-control <?= $stall_name_valid ?>" value="<?= $stall_name; ?>" required>
                                             <div class="invalid-feedback">
-                                                That stall is already exist.Try another.
+                                                Stall already existed. Please try again.
                                             </div>
                                         </div>
                                     </div>

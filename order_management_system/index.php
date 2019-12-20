@@ -38,7 +38,7 @@ include '../process/handle_payment_cash.php';
 						<div class="col-md-6">
 							<div class="k-card card h-100">
 								<div class="card-body">
-									<div class="card-title">The number has not pay yet (Pay with cash)</div>
+									<div class="card-title">Payment not done (cash)</div>
 									<?php include 'cash_payment_table.php'; ?>
 								</div>
 							</div>
@@ -46,7 +46,7 @@ include '../process/handle_payment_cash.php';
 						<div class="col-md-6">
 							<div class="k-card card h-100">
 								<div class="card-body">
-									<div class="card-title">The Number Waiting Take food</div>
+									<div class="card-title">The Number Waiting For Food</div>
 									<table class="table table-sm">
 										<thead>
 											<tr>

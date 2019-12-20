@@ -87,7 +87,7 @@ if (isset($_GET['k'])) {
     ?>
     <div class="col">
         <h4 class="text-center">
-            Click the <i class="fas fa-plus"></i> button to add Food
+            Click the <i class="fas fa-plus"></i> button to add food
         </h4>
     </div>
     <?php
