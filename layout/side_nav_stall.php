@@ -8,33 +8,33 @@
     <div class="k-nav-container h-75">
         <ul class="k-nav nav">
             <li class="nav-item w-100 mb-1">
-                <a href="index.php" class="nav-link w-100 <?php if($site == 'Dashboard'){ echo 'active'; } ?>">
+                <a href="index.php" class="nav-link w-100 text-center text-xl-left <?php if($site == 'Dashboard'){ echo 'active'; } ?>">
                     <i class="fas fa-home d-inline-flex px-auto"></i>
-                    <span class="d-none d-lg-inline-flex ml-3">Dashboard</span>
+                    <span class="d-none d-xl-inline-flex ml-3">Dashboard</span>
                 </a>
             </li>
             <li class="nav-item w-100 mb-1">
-                <a href="menu.php" class="nav-link w-100 <?php if($site == 'Menu'){ echo 'active'; } ?>">
+                <a href="menu.php" class="nav-link w-100 text-center text-xl-left <?php if($site == 'Menu'){ echo 'active'; } ?>">
                     <i class="fas fa-bars d-inline-flex"></i>
-                    <span class="d-none d-lg-inline-flex ml-3">Menu</span>
+                    <span class="d-none d-xl-inline-flex mx-3">Menu</span>
                 </a>
             </li>
             <li class="nav-item w-100 mb-1">
-                <a href="report.php" class="nav-link w-100 <?php if($site == 'Report'){ echo 'active'; } ?>">
+                <a href="report.php" class="nav-link w-100 text-center text-xl-left <?php if($site == 'Report'){ echo 'active'; } ?>">
                     <i class="far fa-chart-bar d-inline-flex"></i>
-                    <span class="d-none d-lg-inline-flex ml-3">Report</span>
+                    <span class="d-none d-sm-none d-xl-inline-flex mx-3">Report</span>
                 </a>
             </li>
             <li class="nav-item w-100 mb-1">
-                <a href="employee.php" class="nav-link w-100 <?php if($site == 'Employee'){ echo 'active'; } ?>">
+                <a href="employee.php" class="nav-link w-100 text-center text-xl-left <?php if($site == 'Employee'){ echo 'active'; } ?>">
                     <i class="fas fa-user d-inline-flex"></i>
-                    <span class="d-none d-lg-inline-flex ml-3">Employee</span>
+                    <span class="d-none d-xl-inline-flex ml-3">Employee</span>
                 </a>
             </li>
             <li class="nav-item w-100 mb-1">
-                <a href="purchase.php" class="nav-link w-100 <?php if($site == 'Purchase'){ echo 'active'; } ?>">
+                <a href="purchase.php" class="nav-link w-100 text-center text-xl-left <?php if($site == 'Purchase'){ echo 'active'; } ?>">
                     <i class="fas fa-boxes d-inline-flex"></i>
-                    <span class="d-none d-lg-inline-flex ml-3">Purchase</span>
+                    <span class="d-none d-xl-inline-flex ml-3">Purchase</span>
                 </a>
             </li>
         </ul>
