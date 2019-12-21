@@ -10,6 +10,8 @@ if(isset($_POST['amount_topup']) ){
     $total_amount = $current_amount + $topup_amount;
 
     $sql = "UPDATE wallet SET amount = '$total_amount' WHERE username ='$username'";
+    $sql1 = "INSERT INTO transaction_history(customer_name, amount,date,type) VALUES ('$username', '$topup_amount', NOW(),'1')";
+    mysqli_query($conn, $sql1);
     mysqli_query($conn, $sql);
     echo true;
 }else{
