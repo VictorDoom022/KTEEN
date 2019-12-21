@@ -33,16 +33,16 @@ include '../process/handle_delete_stall.php'
 		<div class="row">
 			<div class="col-2"></div>
 			<main class="col-10">
-				<div class="row">
+				<div class="row my-3">
 					<div class="col-12 col-sm-5 col-md-4 col-lg-3">
-						<div class="btn-group shadow-sm m-2">
+						<div class="btn-group shadow-sm">
 							<a href="add_stall.php" class="btn bg-white">
 								<i class="fas fa-plus"></i>
 							</a>
 						</div>
 					</div>
 					<div class="col-12 col-sm-7 col-md-8 col-lg-9">
-						<div class="input-group shadow-sm m-2">
+						<div class="input-group shadow-sm">
 							<div class="input-group-prepend">
 								<div class="input-group-text border-0 bg-white">
 									<i class="fas fa-search"></i>
