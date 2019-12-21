@@ -8,35 +8,9 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 	<div class="card-body">
 		<div class="h3">Control Panel</div>
 		<hr>
-		<?php
-		$weekday = "";
-		switch (date("w", time())) {
-			case '0':
-				$weekday = "Monday";
-				break;
-			case '1':
-				$weekday = "Tuesday";
-				break;
-			case '2':
-				$weekday = "Tuesday";
-				break;
-			case '3':
-				$weekday = "Tuesday";
-				break;
-			case '4':
-				$weekday = "Tuesday";
-				break;
-			case '5':
-				$weekday = "Tuesday";
-				break;
-			case '6':
-				$weekday = "Saturday";
-				break;
-		}
-		?>
 		<div class="font-weight-bold text-center bg-light mb-2 py-1">
 			<div class="h5 mb-0"><?= date("h:i:sa", time()); ?></div>
-			<?= $weekday; ?>, <?= date('M d,Y', time()); ?>
+			<?= date('D, M d,Y', time()); ?>
 		</div>
 		<?php
 		$sql = "SELECT start_time, end_time FROM opening_time WHERE stall_ID = '$stall_ID' AND weekday = WEEKDAY(CURDATE());";
@@ -66,9 +40,9 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 				<span style="position: absolute;right: 0;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);background-color: rgba(0, 255, 0, 0.5);"></span>
 				<span class="text-white px-3 py-1" style="position: absolute;right: 2px;bottom: 0;">Opening</span>
 			<?php }else{ ?>
-				<span class="bg-danger" style="position: absolute;right: -10px;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);"></span>
-				<span style="position: absolute;right: 0;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);background-color: rgba(255, 0, 0, 0.5);"></span>
-				<span class="text-white px-3 py-1" style="position: absolute;right: 2px;bottom: 0;">Closing</span>
+				<span class="bg-danger" style="position: absolute;right: -10px;bottom: 0;width: 170px;height: 30px;transform: skew(45deg);"></span>
+				<span style="position: absolute;right: 0;bottom: 0;width: 170px;height: 30px;transform: skew(45deg);background-color: rgba(255, 0, 0, 0.5);"></span>
+				<span class="text-white px-3 py-1" style="position: absolute;right: 2px;bottom: 0;">Closing (<?= ($status == 1)? 'Auto' : 'Manually'; ?>)</span>
 			<?php } ?>
 		</div>
 		<div class="text-right mt-2">
