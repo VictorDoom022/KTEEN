@@ -46,12 +46,37 @@ if (isset($_POST['add_stall'])) {
 	}
 
 	if($username_valid == 'is-valid' && $owner_name_valid == 'is-valid' && $stall_name_valid == 'is-valid' && $NRIC_valid == 'is-valid' && $contact_no_valid == 'is-valid' && $email_valid == 'is-valid' && $password_valid == 'is-valid'){
+		$start_time = array(
+			test_input($_POST['monday_start']), 
+			test_input($_POST['tuesday_start']),
+			test_input($_POST['wednesday_start']),
+			test_input($_POST['thursday_start']),
+			test_input($_POST['friday_start']),
+			test_input($_POST['saturday_start']),
+			test_input($_POST['sunday_start'])
+		);
+		$end_time = array(
+			test_input($_POST['monday_end']),
+			test_input($_POST['tuesday_end']),
+			test_input($_POST['wednesday_end']),
+			test_input($_POST['thursday_end']),
+			test_input($_POST['friday_end']),
+			test_input($_POST['saturday_end']),
+			test_input($_POST['sunday_end'])
+		);
 
 		$owner_image = 'owner.jpg';
 		$stall_image = 'stall.jpg';
 
 		$sql = "INSERT INTO stall(username, stall_name, owner_name, NRIC, owner_image, stall_image, contact_no, email, password, status) VALUES ('$username', '$stall_name', '$owner_name', '$NRIC', '$owner_image', '$stall_image', '$contact_no', '$email', '$password', '1');";
 		$result = mysqli_query($conn, $sql) or die(mysqli_error());
+		$stall_ID = mysqli_insert_id($conn);
+
+		// opening time
+		for ($i=0; $i < count($start_time); $i++) { 
+			$sql = "INSERT INTO opening_time(stall_ID, weekday, start_hour, end_hour) VALUES ('$stall_ID', '$i', '$start_time[0]', '$end_time[0]');";
+			$result = mysqli_query($conn, $sql) or die(mysqli_error());
+		}
 		
 		$target_dir = "../images/".$username."/";
 		$target_owner_image = $target_dir.$owner_image;
