@@ -50,28 +50,28 @@ include '../process/handle_if_logout_stall.php';
 											<th>Total (RM)</th>
 											<th>Total (RM)</th>
 										</tr>
-									<?php 
-										$sql = "SELECT SUM(total) AS total_income FROM payment";
+									<?php
+										$total_income; 
+										$sql = "SELECT total FROM payment";
 										$result = $conn -> query($sql);
 										if(mysqli_num_rows($result)){
 											while ($row = mysqli_fetch_assoc($result)) {
-												$_SESSION["total_income"] = $row['total_income'];
+												$total_income = $row['total'];
+											}
+										}
 									?>
 										<tr>
 											<td>Food</td>
-											<td><?php echo $row['total_income']; ?></td>
-											<input type="hidden" id="total_income" value="<?php echo $row['total_income']; ?>"></input>
+											<td><?php echo $total_income ?></td>
+											<input type="hidden" id="total_income" value="<?php echo $total_income ?>"></input>
 										</tr>
 									
 										<tr>
 											<td colspan="2" class="border-top"><strong>Total:</strong></td>
-											<td class="border-top"><strong><?php echo $row['total_income']; ?></strong></td>
+											<td class="border-top"><strong><?php echo $total_income ?></strong></td>
 											
 										</tr>
-										<?php
-											}
-										}
-									?>
+									
 									</thead>
 								</table>
 							</div>
@@ -99,73 +99,71 @@ include '../process/handle_if_logout_stall.php';
 											<th>Total (RM)</th>
 										</tr>
 									<?php 
-										$sql = "SELECT SUM(invoice_amount) AS total FROM invoice";
+										$invoice_total=0;
+										$sql = "SELECT invoice_amount FROM invoice";
 										$result = $conn -> query($sql);
 										if(mysqli_num_rows($result)){
 											while ($row = mysqli_fetch_assoc($result)) {
-												$_SESSION["invoice_total"] = $row['total'];
+												// $_SESSION["invoice_total"] = $row['total'];	
+												$invoice_total += $row['invoice_amount'];
+											}
+										}
 									?>	
 										<tr>
 											<td>Invoice </td>
-											<td><?php echo $row['total']?> </td>
-											<input type="hidden" id="invoice_session" value="<?php echo $row['total'] ?>"/>
+											<td><?php echo $invoice_total?> </td>
+											<input type="hidden" id="invoice_session" value="<?php echo $invoice_total ?>"/>
 										</tr>
-										<?php
-											}
-										}		
-									?>
+										
 									<?php
-										$sql = "SELECT SUM(bill_amount) AS bill_total FROM bill";
+										$bill_total=0;
+										$sql = "SELECT bill_amount FROM bill";
 										$result = $conn -> query($sql);
 										if(mysqli_num_rows($result)){
 											while ($row = mysqli_fetch_assoc($result)) {
-												$_SESSION["bill_total"] = $row['bill_total'];
+												$bill_total += $row['bill_amount'];
+											}
+										}
 									?>
 										<tr>
 											<td>Bill</td>
-											<td><?php echo $row['bill_total']?></td>
-											<input type="hidden" id="bill_session" value="<?php echo $row['bill_total'] ?>"/>
+											<td><?php echo $bill_total?></td>
+											<input type="hidden" id="bill_session" value="<?php echo $bill_total ?>"/>
 										</tr>
 
 									<?php
-											}
-										}		
-									?>
-
-									<?php 		
-										$sql = "SELECT SUM(receipt_amount) AS receipt_total FROM receipt";
+										$receipt_total=0;	
+										$sql = "SELECT receipt_amount FROM receipt";
 										$result = $conn -> query($sql);
 										if(mysqli_num_rows($result)){
 											while ($row = mysqli_fetch_assoc($result)) {
-												$_SESSION["receipt_total"] = $row['receipt_total'];
+												$receipt_total += $row['receipt_amount'];
+											}
+										}
 									?>
 										<tr>
 											<td>Receipt</td>
-											<td><?php echo $row['receipt_total']?></td>
-											<input type="hidden" id="receipt_session" value="<?php echo $row['receipt_total'] ?>"/>
+											<td><?php echo $receipt_total?></td>
+											<input type="hidden" id="receipt_session" value="<?php echo $receipt_total ?>"/>
 										</tr>
-									<?php
-											}
-										}		
-									?>
+									
 
 									<?php
-										$sql = "SELECT SUM(total) AS mail_total FROM purchase";
+										$mail_total=0;
+										$sql = "SELECT total FROM purchase";
 										$result = $conn -> query($sql);
 										if(mysqli_num_rows($result)){
 											while ($row = mysqli_fetch_assoc($result)) {
-												$_SESSION["mail_total"] = $row['mail_total'];
+												$mail_total = $row['total'];
+											} 
+										}
 									?>
 										<tr>
 											<td>Sent from Mail</td>
-											<td><?php echo $row['mail_total']?></td>
-											<input type="hidden" id="mail_session" value="<?php echo $row['mail_total'] ?>"/>
+											<td><?php echo $mail_total?></td>
+											<input type="hidden" id="mail_session" value="<?php echo $mail_total ?>"/>
 										</tr>
 
-									<?php
-											}
-										}		
-									?>
 
 									<?php
 										$total =$_SESSION["invoice_total"] + $_SESSION["bill_total"] + $_SESSION["receipt_total"] + $_SESSION["mail_total"];
