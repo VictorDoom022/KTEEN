@@ -33,8 +33,8 @@ include '../process/handle_if_logout_stall.php';
 			<div class="col-2"></div>
 			<main class="col-10 p-4">
 			<div class="btn-group shadow-sm m-2">
-				<button class="btn bg-white"><i class="fas fa-search"></i></button>
-				<select name="position" class="btn bg-white" onchange="live_search()" id="date">
+				<button class="btn bg-white" style="cursor:default"><i class="fas fa-search"></i></button>
+				<select name="position" class="btn bg-white" onchange="live_search()" id="date" style="cursor: pointer;">
 					<option value="">All</option>
 					<option value="<?php echo date('Y-m-d');?>">Daily</option>
 					<option value="<?php echo date('Y-m');?>">Monthly</option>
@@ -42,7 +42,12 @@ include '../process/handle_if_logout_stall.php';
 				</select>
 			</div>
 				<div id="info"></div>
-				
+				<div class="container-fluid">
+					<div class="row">
+						<canvas id="ExpenseChart"></canvas>
+						<canvas id="finalChart"></canvas>
+					</div>
+				</div>
 			</main>
 		</div>
 	</div>
@@ -80,7 +85,7 @@ var mail_total = document.getElementById("mail_session").value;
 
 var income_total = document.getElementById("total_income").value;
 var expenses_total = document.getElementById("total_expenses").value;
-//console.log(expenses_total);
+console.log(expenses_total);
 
 var ctx = document.getElementById('ExpenseChart').getContext('2d');
 var chart = new Chart(ctx, {

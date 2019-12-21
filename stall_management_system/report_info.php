@@ -201,9 +201,4 @@ include '../config/test_input.php';
 								</table>	
 						</div>
 				</div>
-				<div class="container-fluid">
-					<div class="row">
-						<canvas id="ExpenseChart"></canvas>
-						<canvas id="finalChart"></canvas>
-					</div>
-				</div>
+				
