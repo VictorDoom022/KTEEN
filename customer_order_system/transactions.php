@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<!-- css -->
@@ -20,24 +20,13 @@
 	<main class="container py-4">
 		<div class="jumbotron bg-white shadow">
 			<div class="container">
-				<p class="text-muted">Wallet balance</p>
-				<h1 id="amount"></h1>
+				<p class="text">Transaction History</p>
+				
 				<hr>
-				<a href="topup.html" class="btn btn-dark">TopUp</a>
-				<a href="transactions.php" class="btn btn-dark">Transaction History</a>
+				
 			</div>
 		</div>
 	</main>
-	<script src="../js/top-nav-customer.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$.ajax({
-				url: "wallet_amount.php", 
-				success: function(data) {
-					$('#amount').html(data);
-				}
-			});
-		});
-	</script>
 </body>
+<script src="../js/top-nav-customer.js"></script>
 </html>
