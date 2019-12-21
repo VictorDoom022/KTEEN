@@ -34,8 +34,8 @@
 							<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 								<input type="hidden" name="notice_id" value="<?= $row['ID']; ?>">
 								<div class="form-group">
-									<label for="description">Description</label>
-									<textarea class="form-control border-0 rounded-0" cols="30" rows="15" name="description" id="description" required><?= $row['description']; ?></textarea>
+									<label for="description_<?= $row['ID']; ?>">Description</label>
+									<textarea class="form-control border-0 rounded-0" cols="30" rows="15" name="description" id="description_<?= $row['ID']; ?>" required><?= $row['description']; ?></textarea>
 								</div>
 								<hr>
 								<div class="row">
