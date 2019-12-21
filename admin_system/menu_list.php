@@ -11,7 +11,7 @@ if(mysqli_num_rows($result_stall) > 0){
 		$temp = $row['ID'];
 		$username = $row['username'];
 ?>
-<div class="card mb-2">
+<div class="k-card card mb-2">
 	<div class="card-header bg-white">
 		<h2 class="card-title">
 			<?php echo $row['stall_name']; ?>
