@@ -57,7 +57,7 @@ include '../config/config.php';
 					</thead>
 					<table>	
 				<hr>
-				
+				<a href="wallet.html" class="btn btn-dark">Back to Wallet</a>
 			</div>
 		</div>
 	</main>
