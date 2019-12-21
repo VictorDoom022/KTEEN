@@ -54,7 +54,7 @@ if(mysqli_num_rows($result_stall) > 0){
 			<?php
 			}else{
 			?>
-			<div class="text-center">Not food Yet</div>
+			<div class="text-center">No Food Available Yet.</div>
 			<?php	
 			}
 			?>

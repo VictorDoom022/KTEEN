@@ -29,7 +29,7 @@ if(isset($_POST['add_Invoice'])){
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO invoice (invoice_number, stall_ID,supplier_name,invoice_date,invoice_due,invoice_amount,invoice_file,date_add)
+            $sql = "INSERT INTO invoice (invoice_number, stall_ID,supplier_name,date,invoice_due,invoice_amount,invoice_file,date_add)
 			 VALUES ('$invoice_number','$stall_ID','$supplier_name','$invoice_date','$invoice_due','$invoice_amount','$filename',NOW())";
             if (mysqli_query($conn, $sql)) {
                 echo '<script>alert("File Upload Success!");</script>';
@@ -69,7 +69,7 @@ if(isset($_POST['add_Bill'])){
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO bill(bill_number, stall_ID,supplier_name,bill_date,bill_amount,bill_file,date_add) 
+            $sql = "INSERT INTO bill(bill_number, stall_ID,supplier_name,date,bill_amount,bill_file,date_add) 
 			values ('$bill_number','$stall_ID','$supplier_name','$bill_date','$bill_amount','$filename',NOW())";
             if (mysqli_query($conn, $sql)) {
                 echo '<script>alert("File Upload Success!");</script>';
@@ -109,7 +109,7 @@ if(isset($_POST['add_receipt'])){
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO receipt(receipt_number, stall_ID,supplier_name,receipt_date,receipt_amount,receipt_file,date_add) 
+            $sql = "INSERT INTO receipt(receipt_number, stall_ID,supplier_name,date,receipt_amount,receipt_file,date_add) 
 			values ('$receipt_number','$stall_ID','$supplier_name','$receipt_date','$receipt_amount','$filename',NOW())";
             if (mysqli_query($conn, $sql)) {
                 echo '<script>alert("File Upload Success!");</script>';

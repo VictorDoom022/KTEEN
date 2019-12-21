@@ -22,7 +22,7 @@ include '../process/handle_if_logout_stall.php';
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 	<title></title>
 </head>
-<body>
+<body onload="live_search()">
 	<?php
 	$site = 'Report';
 	include '../layout/top_nav_stall.php';
@@ -32,207 +32,22 @@ include '../process/handle_if_logout_stall.php';
 		<div class="row">
 			<div class="col-2"></div>
 			<main class="col-10 p-4">
-				<!-- income -->
-				<div class="k-card card col-12">
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-3"></div>
-								<div class="col-md-6">
-									<h4 class="card-title text-center">Income</h4>
-								</div>			
-						</div>
-						<div class="row">
-							<div class="table-responsive">
-								<table class="table table-hover table-borderless table-striped table-sm">
-									<thead class="thead-dark">
-										<tr>
-											<th>Type of Income</th>
-											<th>Total (RM)</th>
-											<th>Total (RM)</th>
-										</tr>
-									<?php 
-										$sql = "SELECT SUM(total) AS total_income FROM payment";
-										$result = $conn -> query($sql);
-										if(mysqli_num_rows($result)){
-											while ($row = mysqli_fetch_assoc($result)) {
-												$_SESSION["total_income"] = $row['total_income'];
-									?>
-										<tr>
-											<td>Food</td>
-											<td><?php echo $row['total_income']; ?></td>
-											<input type="hidden" id="total_income" value="<?php echo $row['total_income']; ?>"></input>
-										</tr>
-									
-										<tr>
-											<td colspan="2" class="border-top"><strong>Total:</strong></td>
-											<td class="border-top"><strong><?php echo $row['total_income']; ?></strong></td>
-											
-										</tr>
-										<?php
-											}
-										}
-									?>
-									</thead>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Expenses -->
-				<div class="k-card card col-12">
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-3"></div>
-							<div class="col-md-6">
-								<h4 class="card-title text-center">Expenses</h4>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="table-responsive">
-								<table class="table table-hover table-borderless table-striped table-sm">
-									<thead class="thead-dark">
-										<tr>
-											<th>Type of Expenses</th>
-											<th>Total (RM)</th>
-											<th>Total (RM)</th>
-										</tr>
-									<?php 
-										$sql = "SELECT SUM(invoice_amount) AS total FROM invoice";
-										$result = $conn -> query($sql);
-										if(mysqli_num_rows($result)){
-											while ($row = mysqli_fetch_assoc($result)) {
-												$_SESSION["invoice_total"] = $row['total'];
-									?>	
-										<tr>
-											<td>Invoice </td>
-											<td><?php echo $row['total']?> </td>
-											<input type="hidden" id="invoice_session" value="<?php echo $row['total'] ?>"/>
-										</tr>
-										<?php
-											}
-										}		
-									?>
-									<?php
-										$sql = "SELECT SUM(bill_amount) AS bill_total FROM bill";
-										$result = $conn -> query($sql);
-										if(mysqli_num_rows($result)){
-											while ($row = mysqli_fetch_assoc($result)) {
-												$_SESSION["bill_total"] = $row['bill_total'];
-									?>
-										<tr>
-											<td>Bill</td>
-											<td><?php echo $row['bill_total']?></td>
-											<input type="hidden" id="bill_session" value="<?php echo $row['bill_total'] ?>"/>
-										</tr>
-
-									<?php
-											}
-										}		
-									?>
-
-									<?php 		
-										$sql = "SELECT SUM(receipt_amount) AS receipt_total FROM receipt";
-										$result = $conn -> query($sql);
-										if(mysqli_num_rows($result)){
-											while ($row = mysqli_fetch_assoc($result)) {
-												$_SESSION["receipt_total"] = $row['receipt_total'];
-									?>
-										<tr>
-											<td>Receipt</td>
-											<td><?php echo $row['receipt_total']?></td>
-											<input type="hidden" id="receipt_session" value="<?php echo $row['receipt_total'] ?>"/>
-										</tr>
-									<?php
-											}
-										}		
-									?>
-
-									<?php
-										$sql = "SELECT SUM(total) AS mail_total FROM purchase";
-										$result = $conn -> query($sql);
-										if(mysqli_num_rows($result)){
-											while ($row = mysqli_fetch_assoc($result)) {
-												$_SESSION["mail_total"] = $row['mail_total'];
-									?>
-										<tr>
-											<td>Sent from Mail</td>
-											<td><?php echo $row['mail_total']?></td>
-											<input type="hidden" id="mail_session" value="<?php echo $row['mail_total'] ?>"/>
-										</tr>
-
-									<?php
-											}
-										}		
-									?>
-
-									<?php
-										$total =$_SESSION["invoice_total"] + $_SESSION["bill_total"] + $_SESSION["receipt_total"] + $_SESSION["mail_total"];
-									?>
-										<tr>
-											<td colspan="2" class="border-top"><strong>Total:</strong></td>
-											<td class="border-top"><strong><?php echo $total ?></strong></td>
-											<input type="hidden" id="total_expenses" value="<?php echo $total?>" />
-										</tr>
-
-									</thead>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- final calculatations -->
-				<div class="k-card card col-12">
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-3"></div>
-								<div class="col-md-6">
-									<h4 class="card-title text-center">Income - Expenses</h4>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="table-responsive">
-								<table class="table table-hover table-borderless table-striped table-sm">
-									<thead class="thead-dark">
-										<tr>
-											<th>Income / Expenses</th>
-											<th>Total (RM)</th>
-											<th>Total (RM)</th>
-										</tr>
-
-										<tr>
-											<td>Income</td>
-											<td><?php echo $_SESSION["total_income"] ?></td>
-										</tr>
-
-										<tr>
-											<td>Expenses</td>
-											<td><?php echo $total ?></td>
-										</tr>
-										<?php
-											$finalCal = $_SESSION["total_income"] - $total;
-										?>
-										<tr>
-											<td colspan="2" class="border-top"><strong>Total:</strong></td>
-											<td class="border-top"><strong><?php echo $finalCal ?></strong></td>
-										</tr>
-									</thead>
-								</table>	
-						</div>
-				</div>
+			<div class="btn-group shadow-sm m-2">
+				<button class="btn bg-white" style="cursor:default"><i class="fas fa-search"></i></button>
+				<select name="position" class="btn bg-white" onchange="live_search()" id="date" style="cursor: pointer;">
+					<option value="">All</option>
+					<option value="<?php echo date('Y-m-d');?>">Daily</option>
+					<option value="<?php echo date('Y-m');?>">Monthly</option>
+					<option value="<?php echo date('Y');?>">Yearly</option>
+				</select>
+			</div>
+				<div id="info"></div>
 				<div class="container-fluid">
 					<div class="row">
 						<canvas id="ExpenseChart"></canvas>
 						<canvas id="finalChart"></canvas>
 					</div>
 				</div>
-				
-				
-				
 			</main>
 		</div>
 	</div>
@@ -240,6 +55,29 @@ include '../process/handle_if_logout_stall.php';
 </body>
 
 <script type="text/javascript">
+function live_search(){
+		var word = document.getElementById("date").value;
+		var xhttp;
+		xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if(this.readyState == 4 && this.status == 200){
+				document.getElementById("info").innerHTML = this.responseText;
+			}
+		};
+		if(word == ""){
+			xhttp.open("GET", "report_info.php", true);
+			xhttp.send();
+			return;
+		}else if(word != ""){
+			xhttp.open("GET" , "report_info.php?word="+word, true);
+			xhttp.send();
+			return;
+		}
+	}
+
+
+
+
 var invoice_total = document.getElementById("invoice_session").value;
 var bill_total = document.getElementById("bill_session").value;
 var receipt_total = document.getElementById("receipt_session").value;
@@ -247,7 +85,7 @@ var mail_total = document.getElementById("mail_session").value;
 
 var income_total = document.getElementById("total_income").value;
 var expenses_total = document.getElementById("total_expenses").value;
-//console.log(expenses_total);
+console.log(expenses_total);
 
 var ctx = document.getElementById('ExpenseChart').getContext('2d');
 var chart = new Chart(ctx, {

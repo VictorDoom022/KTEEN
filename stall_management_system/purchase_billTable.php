@@ -24,7 +24,7 @@ include '../config/test_input.php';
         <?php
 	    	$stallID = $_SESSION['kteen_stall_id'];
 			$count=0;
-			$sql = "SELECT bill_number, supplier_name, bill_date, bill_amount, bill_file, date_add from bill where stall_ID = '".$_SESSION['kteen_stall_id']."'".$searchword;
+			$sql = "SELECT bill_number, supplier_name,date, bill_amount, bill_file, date_add from bill where stall_ID = '".$_SESSION['kteen_stall_id']."'".$searchword;
 			$result = $conn -> query($sql);
 				if(mysqli_num_rows($result)){
 				    while ($row = mysqli_fetch_assoc($result)) {
@@ -34,7 +34,7 @@ include '../config/test_input.php';
                 <td><?php echo ($count)?></td>
                 <td><?php echo $row['bill_number']?></td>
                 <td><?php echo $row['supplier_name']?></td>
-                   <td><?php echo $row['bill_date']?></td>
+                   <td><?php echo $row['date']?></td>
                    <td>RM<?php echo $row['bill_amount']?></td>
                    <td><a href="../uploads/Bill/<?php echo $row['bill_file']?>" download><?php echo $row['bill_file']?></a></td>
                    <td><?php echo $row['date_add']?></td>

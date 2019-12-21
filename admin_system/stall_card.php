@@ -39,9 +39,9 @@ if($result ->num_rows >0){
 						</div>
 						<div class="card-text">
 							<?php if ($status == "1") { ?>
-								<small class="text-success">opening</small>
+								<small class="text-success">open</small>
 							<?php }else{ ?>
-								<small class="text-danger">closing</small>
+								<small class="text-danger">close</small>
 							<?php } ?>
 						</div>
 					</div>
@@ -105,9 +105,9 @@ if($result ->num_rows >0){
         					<div class="w-100"></div>
         					<div class="col">
         						<?php if ($status == "1") { ?>
-                                    <small class="text-success">opening</small>
+                                    <small class="text-success">open</small>
                                 <?php }else{ ?>
-                                    <small class="text-danger">closing</small>
+                                    <small class="text-danger">close</small>
                                 <?php } ?>
         					</div>
         				</div>
@@ -133,7 +133,7 @@ if($result ->num_rows >0){
 ?>
 <div class="col">
     <h4 class="text-center">
-        Click the <i class="fas fa-plus"></i> button to add Stall
+        Click the <i class="fas fa-plus"></i> button to add a new stall
     </h4>
 </div>
 <?php

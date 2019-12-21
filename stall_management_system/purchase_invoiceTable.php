@@ -25,7 +25,7 @@ include '../config/test_input.php';
 
         <?php
 			$count=0;
-			$sql = "SELECT invoice_number, supplier_name, invoice_date, invoice_due, invoice_amount, invoice_file, date_add from invoice where stall_ID = '".$_SESSION['kteen_stall_id']."'".$searchword;
+			$sql = "SELECT invoice_number, supplier_name,date, invoice_due, invoice_amount, invoice_file, date_add from invoice where stall_ID = '".$_SESSION['kteen_stall_id']."'".$searchword;
 			$result = $conn -> query($sql);
 				if(mysqli_num_rows($result)){
 				    while ($row = mysqli_fetch_assoc($result)) {
@@ -35,7 +35,7 @@ include '../config/test_input.php';
                 <td><?php echo ($count)?></td>
                 <td><?php echo $row['invoice_number']?></td>
                 <td><?php echo $row['supplier_name']?></td>
-                <td><?php echo $row['invoice_date']?></td>
+                <td><?php echo $row['date']?></td>
                 <td><?php echo $row['invoice_due']?></td>
                 <td>RM<?php echo $row['invoice_amount']?></td>
                                        

@@ -78,7 +78,7 @@ include '../process/handle_add_customer.php';
 											<div class="col-md-9">
 												<input id="username" type="text" name="username" class="form-control <?= $valid_username ?>" value="<?= $c; ?>">
 												<div class="invalid-feedback">
-													the username has been taken !
+													The username has been taken. Please try another!
 												</div>
 											</div>
 										</div>
@@ -93,7 +93,7 @@ include '../process/handle_add_customer.php';
 											<div class="col-md-9">
 												<input type="password" name="password_confirm" class="form-control <?= $valid_password ?>" value="<?= $p; ?>">
 												<div class="invalid-feedback">
-													Password not match !
+													Password not matched. Try again!
 												</div>
 											</div>
 										</div>

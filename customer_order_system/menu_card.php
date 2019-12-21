@@ -34,7 +34,7 @@ if (isset($_POST['stall_username'])) {
 		<div style="position: relative;overflow: hidden;"> 
 			<?php if (!$row['status'] == '1') { ?>
 				<span class="h4 text-white" style="position: absolute;top: 50%;left: 50%;z-index: 2;transform: rotate(-30deg) translate(-50%, -50%);">
-					Closing
+					Closed
 				</span>
 			<?php } ?>
 			<img src="../images/<?= $row['username']; ?>/menu/<?= $image; ?>" class="items" height="100" alt="" style="width: 100%;height: 200px;align-self: center;vertical-align: center;" />
@@ -59,7 +59,7 @@ if (isset($_POST['stall_username'])) {
 		}else{
 		?>
 		<div class="col h5 text-center">
-			Not food available yet
+			No Food Available Yet
 		</div>
 		<?php
 		}

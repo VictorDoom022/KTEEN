@@ -94,7 +94,7 @@ include '../process/handle_add_stall.php';
 										<div class="col-md-9">
 											<input type="text" name="username" class="form-control <?= $username_valid ?>" value="<?= $username ?>" required>
 											<div class="invalid-feedback">
-												That username is taken.Try another.
+											The username has been taken. Please try another.
 											</div>
 										</div>
 									</div>
@@ -111,7 +111,7 @@ include '../process/handle_add_stall.php';
 										<div class="col-md-9">
 											<input type="text" name="stall_name" class="form-control <?= $stall_name_valid ?>" value="<?= $stall_name; ?>" required>
 											<div class="invalid-feedback">
-												That stall is already exist.Try another.
+												Stall already existed. Please try again.
 											</div>
 										</div>
 									</div>
@@ -120,7 +120,7 @@ include '../process/handle_add_stall.php';
 										<div class="col-md-9">
 											<input type="password" name="confirm_password" id="confirm_password" class="form-control <?= $password_valid; ?>" value="<?= $p; ?>" required>
 											<div class="invalid-feedback">
-												The password are not matched.Try again.
+												Password not matched. Try again.
 											</div>
 										</div>
 									</div>
