@@ -34,7 +34,7 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 				break;
 		}
 		?>
-		<div class="font-weight-bold text-center bg-light my-4 py-2">
+		<div class="font-weight-bold text-center bg-light mb-2 py-1">
 			<div class="h5 mb-0"><?= date("h:i:sa", time()); ?></div>
 			<?= $weekday; ?>, <?= date('M d,Y', time()); ?>
 		</div>
@@ -43,9 +43,12 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 		$result = mysqli_query($conn, $sql);
 		if(mysqli_num_rows($result) == 1){
 			while($row = mysqli_fetch_assoc($result)){
-				echo $start_time = $row['start_time'];
-				echo " - ". $end_time = $row['end_time'];
+				$start_time = date('h:m a', strtotime($row['start_time']));
+				$end_time = date('h:m a', strtotime($row['end_time']));
 			}
+		?>
+		<div class="mb-2 text-center">Open Time: <?= $start_time ?> - <?= $end_time ?></div>
+		<?php
 		}
 		?>
 		<div style="position: relative;">
@@ -56,7 +59,8 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 			$sql = "SELECT status FROM stall WHERE ID = '$stall_ID';";
 			$result = mysqli_query($conn, $sql);
 			$status = mysqli_fetch_assoc($result)['status'];
-			if ($status == 1) {
+			$current_time = date('h:i:a', time());
+			if (($current_time > $start_time && $current_time < $end_time) && $status == 1) {
 			?>
 				<span class="bg-success" style="position: absolute;right: -10px;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);"></span>
 				<span style="position: absolute;right: 0;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);background-color: rgba(0, 255, 0, 0.5);"></span>
