@@ -17,11 +17,13 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 		$result = mysqli_query($conn, $sql);
 		if(mysqli_num_rows($result) == 1){
 			while($row = mysqli_fetch_assoc($result)){
-				$start_time = date('h:m a', strtotime($row['start_time']));
-				$end_time = date('h:m a', strtotime($row['end_time']));
+				$start_time = strtotime($row['start_time']);
+				$str_start_time = date('h:i a', strtotime($row['start_time']));
+				$end_time = strtotime($row['end_time']);
+				$str_end_time = date('h:i a', strtotime($row['end_time']));
 			}
 		?>
-		<div class="mb-2 text-center">Open Time: <?= $start_time ?> - <?= $end_time ?></div>
+		<div class="mb-2 text-center">Open Time: <?= $str_start_time ?> - <?= $str_end_time ?></div>
 		<?php
 		}
 		?>
@@ -33,7 +35,7 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 			$sql = "SELECT status FROM stall WHERE ID = '$stall_ID';";
 			$result = mysqli_query($conn, $sql);
 			$status = mysqli_fetch_assoc($result)['status'];
-			$current_time = date('h:i:a', time());
+			$current_time = time();
 			if (($current_time > $start_time && $current_time < $end_time) && $status == 1) {
 			?>
 				<span class="bg-success" style="position: absolute;right: -10px;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);"></span>
