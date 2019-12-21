@@ -34,7 +34,7 @@ if(isset($_POST['stall_username']) && !empty($_POST['stall_username'])){
 		}
 	}else{
 	?>
-	not has notice
+	No notice so far
 	<?php
 	}
 	?>

@@ -1,3 +1,7 @@
+<?php 
+session_start();
+include '../config/config.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +25,37 @@
 		<div class="jumbotron bg-white shadow">
 			<div class="container">
 				<p class="text">Transaction History</p>
-				
+					<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th style="text-align: center;">Type</th>
+							<th style="text-align: center;">Date</th>
+							<th style="text-align: center;">Amount (RM)</th>
+						</tr>
+						<?php 
+							$username = $_SESSION['customer_username'];
+							$typename;
+							$sql = "SELECT ID,customer_name,amount,date,type FROM transaction_history where customer_name ='$username'";
+							$result = mysqli_query($conn, $sql);
+							if (mysqli_num_rows($result)) {
+								while ($row = mysqli_fetch_assoc($result)) {
+									if($row['type'] == '1'){
+										$typename = '<td class="text-success" style="text-align: center;">Top-Up</td>' ;
+									}else if($row['type'] == '2'){ 
+										$typename = '<td  class="text-danger" style="text-align: center;">Food</td>' ;
+									};
+						?>
+								<tr>
+									<?php echo $typename; ?>
+									<td style="text-align: center;"><?php echo $row['date']; ?></td>
+									<td style="text-align: center;"><?php echo $row['amount']; ?></td>
+								</tr>	
+						<?php
+							}
+						}	
+						?>
+					</thead>
+					<table>	
 				<hr>
 				
 			</div>
