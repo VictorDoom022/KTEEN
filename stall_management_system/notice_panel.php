@@ -12,7 +12,8 @@
 		</div>
 		<hr>
 		<?php 
-		$sql = "SELECT ID, date, description FROM notice WHERE stall_ID = '".$_SESSION['stall_username']."' LIMIT 3";
+		$stall_username = $_SESSION['stall_username'];
+		$sql = "SELECT ID, date, description FROM notice WHERE stall_ID = '$stall_username' Order BY ID DESC";
 		$result = mysqli_query($conn, $sql);
 		if (mysqli_num_rows($result) > 0) {
 			while ($row = mysqli_fetch_assoc($result)) {
