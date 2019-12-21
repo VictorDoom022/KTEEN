@@ -36,13 +36,13 @@ include '../process/handle_if_logout_stall.php';
 				<button class="btn bg-white"><i class="fas fa-search"></i></button>
 				<select name="position" class="btn bg-white" onchange="live_search()" id="date">
 					<option value="">All</option>
-					<option value="2019-12-21">Daily</option>
-					<option value="2019-12">Monthly</option>
-					<option value="2019">Yearly</option>
+					<option value="<?php echo date('Y-m-d');?>">Daily</option>
+					<option value="<?php echo date('Y-m');?>">Monthly</option>
+					<option value="<?php echo date('Y');?>">Yearly</option>
 				</select>
 			</div>
 				<div id="info"></div>
-				<?php include 'report_info.php';?>	
+				
 			</main>
 		</div>
 	</div>

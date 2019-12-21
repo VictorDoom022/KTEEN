@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include '../config/config.php';
 include '../config/test_input.php';
 
@@ -30,7 +30,7 @@ include '../config/test_input.php';
 								<th>Total (RM)</th>
 							</tr>
 						<?php
-							$total_income; 
+							$total_income=0; 
 							$sql = "SELECT total FROM payment".$searchword;
 							$result = $conn -> query($sql);
 							if(mysqli_num_rows($result)){
@@ -145,7 +145,7 @@ include '../config/test_input.php';
 
 
 									<?php
-										$total =$_SESSION["invoice_total"] + $_SESSION["bill_total"] + $_SESSION["receipt_total"] + $_SESSION["mail_total"];
+										$total =$invoice_total + $bill_total + $receipt_total + $mail_total;
 									?>
 										<tr>
 											<td colspan="2" class="border-top"><strong>Total:</strong></td>
@@ -183,7 +183,7 @@ include '../config/test_input.php';
 
 										<tr>
 											<td>Income</td>
-											<td><?php echo $_SESSION["total_income"] ?></td>
+											<td><?php echo $total_income ?></td>
 										</tr>
 
 										<tr>
@@ -191,7 +191,7 @@ include '../config/test_input.php';
 											<td><?php echo $total ?></td>
 										</tr>
 										<?php
-											$finalCal = $_SESSION["total_income"] - $total;
+											$finalCal = $total_income - $total;
 										?>
 										<tr>
 											<td colspan="2" class="border-top"><strong>Total:</strong></td>
