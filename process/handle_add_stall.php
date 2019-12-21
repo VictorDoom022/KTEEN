@@ -74,7 +74,7 @@ if (isset($_POST['add_stall'])) {
 
 		// opening time
 		for ($i=0; $i < count($start_time); $i++) { 
-			$sql = "INSERT INTO opening_time(stall_ID, weekday, start_hour, end_hour) VALUES ('$stall_ID', '$i', '$start_time[0]', '$end_time[0]');";
+			$sql = "INSERT INTO opening_time(stall_ID, weekday, start_time, end_time) VALUES ('$stall_ID', '$i', '$start_time[0]', '$end_time[0]');";
 			$result = mysqli_query($conn, $sql) or die(mysqli_error());
 		}
 		
