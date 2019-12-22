@@ -6,7 +6,7 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 $search = "";// search stall name by keyword
 if (isset($_POST['search_stall_name'])) {
 	$search_stall_name = test_input($_POST['search_stall_name']);
-	$search = "AND stall_name LIKE '%$search_stall_name%' ";
+	$search = "WHERE stall_name LIKE '%$search_stall_name%' ";
 }
 ?>
 <div class="row">
@@ -17,14 +17,22 @@ if (isset($_POST['search_stall_name'])) {
 	}else{
 		$page = ($page * 8) - 8;
 	}
-	$sql = "SELECT username, stall_name, status, start_time, end_time FROM stall LEFT JOIN opening_time ON stall.ID = opening_time.stall_ID WHERE weekday = WEEKDAY(CURDATE()) ". $search ."ORDER BY stall_ID ASC LIMIT ". $page .", 8;";
+	$sql = "SELECT ID, username, stall_name, status FROM stall ". $search ." LIMIT ". $page .", 8;";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while ($row = $result->fetch_assoc()) {
+			$stall_ID = $row['ID'];
 			$stall_username = $row['username'];
 			$stallname = $row['stall_name'];
-			$start_time = strtotime($row['start_time']);
-			$end_time = strtotime($row['end_time']);
+			$time_sql = "SELECT start_time, end_time FROM opening_time WHERE stall_ID = '$stall_ID' AND weekday = WEEKDAY(CURDATE());";
+			$start_time = '';//bypass
+			$end_time = '';//bypass
+			$time_result = mysqli_query($conn, $time_sql);
+			if(mysqli_num_rows($time_result) == 1){
+				$time = mysqli_fetch_assoc($time_result);
+				$start_time = strtotime($time['start_time']);
+				$end_time = strtotime($time['end_time']);
+			}
 	?>
 	<div class="col-sm-6 col-md-4 col-lg-3 p-2">
 		<div class="k-card card k-hover-shadow h-100 stall" style="cursor: pointer;" data-stall="<?= $stall_username; ?>">
