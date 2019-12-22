@@ -19,9 +19,9 @@ if(isset($_SESSION['customer_username'])){
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-white p-4 fixed-top shadow">
 	    <div class="container">
-	        <span class="navbar-brand mb-0 h1">
+	        <a href="index.html" class="navbar-brand mb-0 h1">
 	            KTEEN
-	        </span>
+	        </a>
             <ul class="navbar-nav ml-auto px-4">
                 <li class="nav-item">
                     <a href="register.php" class="nav-link">Register</a>
