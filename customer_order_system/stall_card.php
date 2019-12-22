@@ -1,11 +1,12 @@
 <?php
 include '../config/config.php';
 include '../config/test_input.php';
+date_default_timezone_set("Asia/Kuala_Lumpur");
 
 $search = "";// search stall name by keyword
 if (isset($_POST['search_stall_name'])) {
 	$search_stall_name = test_input($_POST['search_stall_name']);
-	$search = "WHERE stall_name LIKE '%$search_stall_name%' ";
+	$search = "AND stall_name LIKE '%$search_stall_name%' ";
 }
 ?>
 <div class="row">
@@ -16,19 +17,22 @@ if (isset($_POST['search_stall_name'])) {
 	}else{
 		$page = ($page * 8) - 8;
 	}
-	$sql = "SELECT username, stall_name, status FROM stall ". $search ."LIMIT ". $page .", 8;";
+	$sql = "SELECT username, stall_name, status, start_time, end_time FROM stall LEFT JOIN opening_time ON stall.ID = opening_time.stall_ID WHERE weekday = WEEKDAY(CURDATE()) ". $search ."ORDER BY stall_ID ASC LIMIT ". $page .", 8;";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while ($row = $result->fetch_assoc()) {
 			$stall_username = $row['username'];
 			$stallname = $row['stall_name'];
+			$start_time = strtotime($row['start_time']);
+			$end_time = strtotime($row['end_time']);
 	?>
 	<div class="col-sm-6 col-md-4 col-lg-3 p-2">
 		<div class="k-card card k-hover-shadow h-100 stall" style="cursor: pointer;" data-stall="<?= $stall_username; ?>">
 			<div style="position: relative;overflow: hidden;"> 
 				<img src="../images/<?= $stall_username; ?>/stall.jpg" class="items" height="100" alt="" style="width: 100%;height: 200px;align-self: center;vertical-align: center;" />
 				<?php
-				if ($row['status'] == 1) {
+				$current_time = time();
+				if ($row['status'] == 1 && ($start_time < $current_time && $end_time > $current_time)) {
 				?>
 				<span class="bg-success" style="position: absolute;right: 0;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);"></span>
 				<span style="position: absolute;right: 15px;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);background-color: rgba(0, 255, 0, 0.5);"></span>
