@@ -33,7 +33,7 @@ include '../process/handle_payment_cash.php';
 		<div class="row py-3">
 			<div class="col-2"></div>
 			<div class="col-10">
-				<div class="container">
+				<div class="container-fluid">
 					<div class="row" style="height: 500px;">
 						<div class="col-md-6">
 							<div class="k-card card h-100">
