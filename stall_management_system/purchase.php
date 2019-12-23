@@ -49,6 +49,11 @@ include '../process/handle_delete_supplier.php';
 								Check purchase
 							</a>
 						</div>
+						<div class="btn-group shadow-sm m-2">
+							<a href="inventory.php" class="btn bg-white">
+								Inventory
+							</a>
+						</div>
 					</div>
 				</div>
 				<div class="row">
