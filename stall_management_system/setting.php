@@ -31,34 +31,19 @@ include '../process/handle_change_password_stall.php';
 		<div class="row pt-3">
 			<div class="col-2"></div>
 			<div class="col-10">
-				<div class="k-card bg-white p-4 mb-4">
-					<div class="h4">Contact Info</div>
-					<hr>
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-9">
-								<div class="row">
-									<div class="col">Contact Phone</div>
-									<div class="col">012-12151515</div>
-								</div>
-							</div>
-							<div class="col-md-3 text-right">
-								<button class="btn btn-dark btn-sm edit">Edit</button>
-							</div>
-						</div>
-					</div>
+				<div class="k-card bg-white mb-4 p-4">
 				</div>
 				<div class="k-card bg-white mb-4 p-4">
-					<div class="h4">Security</div>
-					<hr>
-					<div class="container-fluid">
+					<div class="card-body">
+						<div class="h4">Security</div>
+						<hr>
 						<div class="row">
-							<div class="col-md-9">Change password</div>
-							<div class="col-md-3 text-right">
-								<button class="btn btn-dark btn-sm edit" id="show_change_p_form" data-target="#change_password_panel">Edit</button>
+							<div class="col-9">Change password</div>
+							<div class="col-3 text-right">
+								<button class="btn btn-dark btn-sm edit" id="show_change_p_form" data-target="#change_password_form">Edit</button>
 							</div>
 						</div>
-						<div id="change_password_panel" style="display: none;" class="pt-4">
+						<div id="change_password_form" style="display: none;" class="pt-4 container-fluid">
 							<div class="row bg-light border p-3">
 								<div class="col-md-2"></div>
 								<div class="col-md-8">
