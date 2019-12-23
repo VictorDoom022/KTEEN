@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2019 at 05:15 AM
+-- Generation Time: Dec 23, 2019 at 01:27 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -53,7 +53,7 @@ CREATE TABLE `bill` (
   `bill_number` varchar(200) NOT NULL,
   `stall_ID` int(6) NOT NULL,
   `supplier_name` varchar(100) NOT NULL,
-  `bill_date` varchar(200) NOT NULL,
+  `date` varchar(200) NOT NULL,
   `bill_amount` varchar(200) NOT NULL,
   `bill_file` text NOT NULL,
   `date_add` varchar(200) NOT NULL
@@ -63,8 +63,9 @@ CREATE TABLE `bill` (
 -- Dumping data for table `bill`
 --
 
-INSERT INTO `bill` (`ID`, `bill_number`, `stall_ID`, `supplier_name`, `bill_date`, `bill_amount`, `bill_file`, `date_add`) VALUES
-(10, 'BILL001', 5, 'Supplier1 Sdn Bhd', '2019-12-04', '1243', 'MathQuizPanel.zip', '2019-12-03 10:12:05');
+INSERT INTO `bill` (`ID`, `bill_number`, `stall_ID`, `supplier_name`, `date`, `bill_amount`, `bill_file`, `date_add`) VALUES
+(8, 'Test Bill', 1, 'company sdn bnd', '2019-12-18', '5678', 'Tutorial 5.docx', '2019-12-02 14:39:24'),
+(9, 'Bill', 1, 'company sdn bnd', '2019-12-05', '123', 'COA_Assignment_2_).docx', '2019-12-02 15:13:09');
 
 -- --------------------------------------------------------
 
@@ -109,7 +110,8 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`ID`, `name`, `username`, `password`, `contact_no`, `NRIC`) VALUES
 (1, 'jingyong', 'cefed8806f481b2768a65bfa2fe7d38e', 'cefed8806f481b2768a65bfa2fe7d38e', 1110011001, 2147483647),
 (2, 'victor tan', 'ae2b1fca515949e5d54fb22b8ed95575', 'ae2b1fca515949e5d54fb22b8ed95575', 1116264, 1010010111),
-(3, 'Bobo', 'fa7efac14f396ba1d4d5f26209493574', 'e10adc3949ba59abbe56e057f20f883e', 197290964, 1023011891);
+(3, 'Bobo', 'fa7efac14f396ba1d4d5f26209493574', 'e10adc3949ba59abbe56e057f20f883e', 197290964, 1023011891),
+(4, 'Test', '098f6bcd4621d373cade4e832627b4f6', '098f6bcd4621d373cade4e832627b4f6', 999, 0);
 
 -- --------------------------------------------------------
 
@@ -140,7 +142,31 @@ INSERT INTO `food` (`ID`, `name`, `stall_ID`, `category_ID`, `image`, `price`, `
 (35, 'Maggi Mee', 6, 2, 'S6_Maggi Mee.jpg', 4.00, '1'),
 (36, 'Mee Pok', 6, 2, 'S6_Mee Pok.jpg', 6.00, '1'),
 (37, 'Prawn Noodle', 6, 2, 'S6_Prawn Noodle.jpg', 7.00, '1'),
-(38, 'Wan Tan Mee', 6, 2, 'S6_Wan Tan Mee.jpg', 7.00, '1');
+(38, 'Wan Tan Mee', 6, 2, 'S6_Wan Tan Mee.jpg', 7.00, '1'),
+(40, 'Maggi Mee2', 5, 2, 'S5_Maggi Mee2.jpg', 7.00, '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inventory`
+--
+
+CREATE TABLE `inventory` (
+  `ID` int(100) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `unit` varchar(100) NOT NULL,
+  `price` double(10,2) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `date` varchar(200) NOT NULL,
+  `stall_ID` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`ID`, `name`, `unit`, `price`, `description`, `date`, `stall_ID`) VALUES
+(4, 'Test', 'kgis', 500.00, 'Test edit', '2019-12-23 14:12:44', 5);
 
 -- --------------------------------------------------------
 
@@ -153,7 +179,7 @@ CREATE TABLE `invoice` (
   `invoice_number` varchar(200) NOT NULL,
   `stall_ID` int(6) NOT NULL,
   `supplier_name` varchar(100) NOT NULL,
-  `invoice_date` varchar(20) NOT NULL,
+  `date` varchar(20) NOT NULL,
   `invoice_due` varchar(200) NOT NULL,
   `invoice_amount` varchar(200) NOT NULL,
   `invoice_file` varchar(200) NOT NULL,
@@ -164,8 +190,11 @@ CREATE TABLE `invoice` (
 -- Dumping data for table `invoice`
 --
 
-INSERT INTO `invoice` (`ID`, `invoice_number`, `stall_ID`, `supplier_name`, `invoice_date`, `invoice_due`, `invoice_amount`, `invoice_file`, `date_add`) VALUES
-(11, 'INV01', 5, 'Supplier1 Sdn Bhd', '2019-12-04', '2019-12-06', '1230', 'INDIVIDUAL EXERCISE 220519.docx', '2019-12-03 10:10:40');
+INSERT INTO `invoice` (`ID`, `invoice_number`, `stall_ID`, `supplier_name`, `date`, `invoice_due`, `invoice_amount`, `invoice_file`, `date_add`) VALUES
+(8, 'Test1', 1, 'Choose company', '2019-12-03', '2019-12-06', '3456', 'Tutorial 3.docx', '2019-12-02 13:39:07'),
+(9, 'Inv 003', 1, 'Choose company', '2019-12-04', '2019-12-07', '234', 'System Catalog.docx', '2019-12-02 15:11:59'),
+(10, 'Test2', 1, 'company sdn bnd', '2019-12-04', '2019-12-06', '996', 'Tutorial 3.docx', '2019-12-02 15:21:37'),
+(11, 'TestInv', 1, 'company sdn bnd', '2019-12-03', '2019-12-04', '2000', 'Tutorial 01.docx', '2019-12-21 14:21:21');
 
 -- --------------------------------------------------------
 
@@ -200,7 +229,9 @@ INSERT INTO `menu_approve` (`menu_approve_id`, `name`, `stall_ID`, `category_ID`
 (13, 'Maggi Mee', 6, 2, 'S6_Maggi Mee.jpg', 4.00, '1', '1'),
 (14, 'Mee Pok', 6, 2, 'S6_Mee Pok.jpg', 6.00, '1', '1'),
 (15, 'Prawn Noodle', 6, 2, 'S6_Prawn Noodle.jpg', 7.00, '1', '1'),
-(16, 'Wan Tan Mee', 6, 2, 'S6_Wan Tan Mee.jpg', 7.00, '1', '1');
+(16, 'Wan Tan Mee', 6, 2, 'S6_Wan Tan Mee.jpg', 7.00, '1', '1'),
+(17, 'jeng', 5, 2, 'S5_jeng.jpg', 6.00, '1', '1'),
+(18, 'Maggi Mee2', 5, 2, 'S5_Maggi Mee2.jpg', 7.00, '1', '1');
 
 -- --------------------------------------------------------
 
@@ -220,7 +251,9 @@ CREATE TABLE `notice` (
 --
 
 INSERT INTO `notice` (`ID`, `stall_ID`, `date`, `description`) VALUES
-(5, 'stall01', '2019-09-19', 'We will closed form september 20 to 22');
+(5, 'stall01', '2019-09-19', 'We will closed form september 20 to 22'),
+(7, 'stall01', '2019-12-03', 'abc'),
+(8, 'stall01', '2019-12-03', 'abcabc');
 
 -- --------------------------------------------------------
 
@@ -251,7 +284,8 @@ INSERT INTO `notifications` (`ID`, `recipient_id`, `sender_id`, `unread`, `title
 (19, 6, 0, 1, 'approve', 'You menu has been approve by Administrator', 0, '2019-12-03 10:29:52'),
 (20, 6, 0, 1, 'approve', 'You menu has been approve by Administrator', 0, '2019-12-03 10:30:21'),
 (21, 6, 0, 1, 'approve', 'You menu has been approve by Administrator', 0, '2019-12-03 10:31:21'),
-(22, 6, 0, 1, 'approve', 'You menu has been approve by Administrator', 0, '2019-12-03 10:31:21');
+(22, 6, 0, 1, 'approve', 'You menu has been approve by Administrator', 0, '2019-12-03 10:31:21'),
+(24, 5, 0, 1, 'approve', 'You menu (Maggi Mee2) has been approve by Administrator ', 0, '2019-12-03 14:43:15');
 
 -- --------------------------------------------------------
 
@@ -371,9 +405,9 @@ INSERT INTO `number` (`order_number`, `status`) VALUES
 (100, 'busy'),
 (101, 'busy'),
 (102, 'busy'),
-(103, 'free'),
-(104, 'free'),
-(105, 'free'),
+(103, 'busy'),
+(104, 'busy'),
+(105, 'busy'),
 (106, 'free'),
 (107, 'free'),
 (108, 'free'),
@@ -473,6 +507,35 @@ INSERT INTO `number` (`order_number`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `opening_time`
+--
+
+CREATE TABLE `opening_time` (
+  `ID` int(77) NOT NULL,
+  `stall_ID` int(11) NOT NULL,
+  `weekday` int(1) NOT NULL,
+  `start_time` time DEFAULT NULL,
+  `end_time` time DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `opening_time`
+--
+
+INSERT INTO `opening_time` (`ID`, `stall_ID`, `weekday`, `start_time`, `end_time`) VALUES
+(1, 7, 0, '08:30:00', '21:00:00'),
+(2, 7, 1, '08:30:00', '21:00:00'),
+(3, 7, 2, '08:30:00', '21:00:00'),
+(4, 7, 3, '08:30:00', '21:00:00'),
+(5, 7, 4, '08:30:00', '21:00:00'),
+(6, 7, 5, '08:30:00', '21:00:00'),
+(7, 7, 6, '08:30:00', '21:00:00'),
+(8, 5, 0, '09:00:00', '20:00:00'),
+(9, 5, 1, '06:00:00', '17:54:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -494,10 +557,13 @@ INSERT INTO `orders` (`ID`, `customer_username`, `stall_ID`, `date`, `number`, `
 (14, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 10:31:17', 96, 1, '1'),
 (15, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 10:32:23', 97, 1, '1'),
 (16, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 10:32:33', 98, 1, '1'),
-(17, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 10:32:44', 99, 1, '0'),
-(18, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 10:51:12', 100, 1, '0'),
+(17, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 10:32:44', 99, 1, '1'),
+(18, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 10:51:12', 100, 1, '1'),
 (19, 'fa7efac14f396ba1d4d5f26209493574', 6, '2019-12-03 11:13:08', 101, 0, '0'),
-(20, 'cefed8806f481b2768a65bfa2fe7d38e', 6, '2019-12-03 11:14:46', 102, 0, '0');
+(20, 'cefed8806f481b2768a65bfa2fe7d38e', 6, '2019-12-03 11:14:46', 102, 0, '0'),
+(21, 'fa7efac14f396ba1d4d5f26209493574', 6, '2019-12-03 13:50:31', 103, 0, '0'),
+(22, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 14:49:42', 104, 1, '1'),
+(23, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 14:52:43', 105, 1, '1');
 
 -- --------------------------------------------------------
 
@@ -527,7 +593,13 @@ INSERT INTO `order_detail` (`ID`, `order_ID`, `food_ID`, `quantity`, `remark`) V
 (28, 18, 29, 1, NULL),
 (29, 19, 37, 1, NULL),
 (30, 20, 35, 1, NULL),
-(31, 20, 34, 1, NULL);
+(31, 20, 34, 1, NULL),
+(32, 21, 38, 9, NULL),
+(33, 22, 30, 1, NULL),
+(34, 22, 31, 1, NULL),
+(35, 23, 30, 1, NULL),
+(36, 23, 31, 1, NULL),
+(37, 0, 29, 29, NULL);
 
 -- --------------------------------------------------------
 
@@ -554,7 +626,10 @@ INSERT INTO `payment` (`ID`, `method`, `date`, `total`, `order_ID`) VALUES
 (9, 'cash', '0000-00-00 00:00:00', 20.00, 17),
 (10, 'e-wallet', '0000-00-00 00:00:00', 5.00, 18),
 (11, '', '0000-00-00 00:00:00', 7.00, 19),
-(12, '', '2019-12-03 11:14:46', 11.00, 20);
+(12, '', '2019-12-03 11:14:46', 11.00, 20),
+(13, '', '2019-12-03 13:50:31', 63.00, 21),
+(14, 'e-wallet', '2019-12-03 14:49:42', 9.00, 22),
+(15, 'cash', '2019-12-03 14:52:43', 9.00, 23);
 
 -- --------------------------------------------------------
 
@@ -586,7 +661,8 @@ INSERT INTO `purchase` (`ID`, `stall_ID`, `date`, `supplier_ID`, `content`, `pro
 (11, 1, '2019-10-10', 0, 'Testing', 'IDK', '50', 200, 0),
 (22, 5, '2019-10-11', 0, 'eegewgg', 'IDK123', '10', 10, 100),
 (23, 1, '2019-12-03', 0, '', 'tt', '0', 0, 0),
-(24, 1, '2019-12-03', 0, 'jjyy', 'choong jing yong', '1', 1, 1);
+(24, 1, '2019-12-03', 0, 'jjyy', 'choong jing yong', '1', 1, 1),
+(25, 5, '2019-12-03', 0, 'Buy', 'Product', '10', 2, 20);
 
 -- --------------------------------------------------------
 
@@ -612,7 +688,7 @@ CREATE TABLE `receipt` (
   `receipt_number` varchar(200) NOT NULL,
   `stall_ID` int(6) NOT NULL,
   `supplier_name` varchar(100) NOT NULL,
-  `receipt_date` varchar(100) NOT NULL,
+  `date` varchar(100) NOT NULL,
   `receipt_amount` varchar(200) NOT NULL,
   `receipt_file` varchar(200) NOT NULL,
   `date_add` varchar(200) NOT NULL
@@ -622,8 +698,9 @@ CREATE TABLE `receipt` (
 -- Dumping data for table `receipt`
 --
 
-INSERT INTO `receipt` (`ID`, `receipt_number`, `stall_ID`, `supplier_name`, `receipt_date`, `receipt_amount`, `receipt_file`, `date_add`) VALUES
-(8, 'RE01', 5, 'Supplier1 Sdn Bhd', '2019-12-05', '100', 'Doc1.docx', '2019-12-03 11:56:45');
+INSERT INTO `receipt` (`ID`, `receipt_number`, `stall_ID`, `supplier_name`, `date`, `receipt_amount`, `receipt_file`, `date_add`) VALUES
+(2, 'RE123', 1, 'company sdn bnd', '2019-11-05', '345678', '', '2019-11-24 21:45:58'),
+(3, 'Receipt01', 1, 'company sdn bnd', '2019-12-06', '109', 'COA_Assignment_2_CPUoperationTempate (Repaired).docx', '2019-12-02 15:03:30');
 
 -- --------------------------------------------------------
 
@@ -651,7 +728,8 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`ID`, `name`, `NRIC`, `image`, `stall_ID`, `contact_no`, `address`, `username`, `password`, `position`, `salary`, `available`) VALUES
-(8, 'jing yong', 1999101010, 'jingyong.jpg', '5', '01110011001', 'jln', 'jingyong', 'jingyong', 'head chef', 300, '1');
+(8, 'jing yong', 1999101010, 'jingyong.jpg', '5', '01110011001', 'jln', 'jingyong', 'jingyong', 'head chef', 300, '1'),
+(9, 'victor', 333, 'victor.jpg', '5', '0187801201', 'jhg', 'victor', 'victor', 'counter', 3000, '1');
 
 -- --------------------------------------------------------
 
@@ -679,7 +757,8 @@ CREATE TABLE `stall` (
 
 INSERT INTO `stall` (`ID`, `username`, `stall_image`, `owner_image`, `stall_name`, `owner_name`, `NRIC`, `contact_no`, `email`, `password`, `status`) VALUES
 (5, 'stall01', 'stall.jpg', 'owner.jpg', 'Stall01', 'Tuan Hee', 2147483647, '0125648965', 'stall01@gmail.com', 'b2ca12dcc3fc922a59956e9b9a4c1484', 1),
-(6, 'stall02', 'stall.jpg', 'owner.jpg', 'Stall02', 'Victor', 999999, '999-9999999', 'stall02@gmail.com', 'e7994bc07b3d3cc596624c07c9966bad', 1);
+(6, 'stall02', 'stall.jpg', 'owner.jpg', 'Stall02', 'Victor', 999999, '999-9999999', 'stall02@gmail.com', 'e7994bc07b3d3cc596624c07c9966bad', 1),
+(7, 'stall03', 'stall.jpg', 'owner.jpg', 'stall03', 'hongyee', 1010010111, '0187801201', 'stall03@gmail.com', 'b8d1efbc8fdbf3547f0b549515ef336f', 1);
 
 -- --------------------------------------------------------
 
@@ -726,9 +805,10 @@ CREATE TABLE `wallet` (
 --
 
 INSERT INTO `wallet` (`ID`, `username`, `amount`) VALUES
-(1, 'cefed8806f481b2768a65bfa2fe7d38e', 629.00),
+(1, 'cefed8806f481b2768a65bfa2fe7d38e', 640.00),
 (2, 'ae2b1fca515949e5d54fb22b8ed95575', 20.00),
-(3, 'fa7efac14f396ba1d4d5f26209493574', 20.00);
+(3, 'fa7efac14f396ba1d4d5f26209493574', 20.00),
+(4, '098f6bcd4621d373cade4e832627b4f6', 70.00);
 
 --
 -- Indexes for dumped tables
@@ -765,6 +845,12 @@ ALTER TABLE `food`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `invoice`
 --
 ALTER TABLE `invoice`
@@ -793,6 +879,12 @@ ALTER TABLE `notifications`
 --
 ALTER TABLE `number`
   ADD PRIMARY KEY (`order_number`);
+
+--
+-- Indexes for table `opening_time`
+--
+ALTER TABLE `opening_time`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `orders`
@@ -868,7 +960,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `ID` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -880,13 +972,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `inventory`
+--
+ALTER TABLE `inventory`
+  MODIFY `ID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `invoice`
@@ -898,19 +996,19 @@ ALTER TABLE `invoice`
 -- AUTO_INCREMENT for table `menu_approve`
 --
 ALTER TABLE `menu_approve`
-  MODIFY `menu_approve_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `menu_approve_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `number`
@@ -919,28 +1017,34 @@ ALTER TABLE `number`
   MODIFY `order_number` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
+-- AUTO_INCREMENT for table `opening_time`
+--
+ALTER TABLE `opening_time`
+  MODIFY `ID` int(77) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `purchase_detail`
@@ -952,19 +1056,19 @@ ALTER TABLE `purchase_detail`
 -- AUTO_INCREMENT for table `receipt`
 --
 ALTER TABLE `receipt`
-  MODIFY `ID` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `stall`
 --
 ALTER TABLE `stall`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `supplier`
@@ -976,7 +1080,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `wallet`
 --
 ALTER TABLE `wallet`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
