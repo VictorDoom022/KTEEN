@@ -8,7 +8,7 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 	<div class="card-body">
 		<div class="h3">Control Panel</div>
 		<hr>
-		<div class="font-weight-bold text-center bg-light mb-2 py-1">
+		<div class="font-weight-bold text-center bg-light border mb-2 py-1">
 			<div class="h5 mb-0"><?= date("h:i:sa", time()); ?></div>
 			<?= date('D, M d,Y', time()); ?>
 		</div>
