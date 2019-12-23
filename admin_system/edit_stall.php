@@ -222,6 +222,100 @@ if (isset($_POST["edit_stall_image"])) {
                                     </div>
                                 </div>
                             </div>
+                            <div class="h3">
+                                Opening time
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-7">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label col-form-label-sm text-md-right">Sunday</label>
+                                        <div class="col-md-8">
+                                            <div class="input-group input-group-sm">
+                                                <input type="time" name="sunday_start" class="form-control" required>
+                                                <div class="input-group-prepend input-group-append">
+                                                    <span class="input-group-text">-</span>
+                                                </div>
+                                                <input type="time" name="sunday_end" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label col-form-label-sm text-md-right">Monday</label>
+                                        <div class="col-md-8">
+                                            <div class="input-group input-group-sm">
+                                                <input type="time" name="monday_start" class="form-control" required>
+                                                <div class="input-group-prepend input-group-append">
+                                                    <span class="input-group-text">-</span>
+                                                </div>
+                                                <input type="time" name="monday_end" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label col-form-label-sm text-md-right">Tuesday</label>
+                                        <div class="col-md-8">
+                                            <div class="input-group input-group-sm">
+                                                <input type="time" name="tuesday_start" class="form-control" required>
+                                                <div class="input-group-prepend input-group-append">
+                                                    <span class="input-group-text">-</span>
+                                                </div>
+                                                <input type="time" name="tuesday_end" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label col-form-label-sm text-md-right">Wednesday</label>
+                                        <div class="col-md-8">
+                                            <div class="input-group input-group-sm">
+                                                <input type="time" name="wednesday_start" class="form-control" required>
+                                                <div class="input-group-prepend input-group-append">
+                                                    <span class="input-group-text">-</span>
+                                                </div>
+                                                <input type="time" name="wednesday_end" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label col-form-label-sm text-md-right">Thursday</label>
+                                        <div class="col-md-8">
+                                            <div class="input-group input-group-sm">
+                                                <input type="time" name="thursday_start" class="form-control" required>
+                                                <div class="input-group-prepend input-group-append">
+                                                    <span class="input-group-text">-</span>
+                                                </div>
+                                                <input type="time" name="thursday_end" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label col-form-label-sm text-md-right">Friday</label>
+                                        <div class="col-md-8">
+                                            <div class="input-group input-group-sm">
+                                                <input type="time" name="friday_start" class="form-control" required>
+                                                <div class="input-group-prepend input-group-append">
+                                                    <span class="input-group-text">-</span>
+                                                </div>
+                                                <input type="time" name="friday_end" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label col-form-label-sm text-md-right">Saturday</label>
+                                        <div class="col-md-8">
+                                            <div class="input-group input-group-sm">
+                                                <input type="time" name="saturday_start" class="form-control" required>
+                                                <div class="input-group-prepend input-group-append">
+                                                    <span class="input-group-text">-</span>
+                                                </div>
+                                                <input type="time" name="saturday_end" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3"></div>
+                            </div>
                             <div class="row">
                                 <div class="col text-right">
                                     <button class="btn text-danger">Cancel</button>
