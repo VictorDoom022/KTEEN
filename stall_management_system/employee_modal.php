@@ -4,7 +4,7 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-md-4 text-center">
-						<img class="rounded-circle p-2" src="../images/staff/<?php echo $row['image']; ?>" style="height: 240px;width: 240px;">
+						<img class="rounded-circle p-2" src="../images/<?= $_SESSION['stall_username']; ?>/staff/<?= $row['image']; ?>" style="height: 240px;width: 240px;">
 					</div>
 					<div class="col-md-8 pt-4">
 						<div class="row pb-2">
@@ -52,7 +52,7 @@
 				<div class="row">
 					<div class="col text-right">
 						<button class="btn text-secondary" data-dismiss="modal">Close</button>
-						<a href="" class="btn text-danger">Delete</a>
+						<button class="btn text-danger" onclick="ask_delete_employee('<?= $row['ID'] ?>')">Delete</button>
 						<a href="edit_employee.php?employee_id=<?= $row['ID'] ?>" class="btn text-warning">Edit</a>
 					</div>
 				</div>
