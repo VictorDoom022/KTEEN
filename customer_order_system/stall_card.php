@@ -24,9 +24,10 @@ if (isset($_POST['search_stall_name'])) {
 			$stall_ID = $row['ID'];
 			$stall_username = $row['username'];
 			$stallname = $row['stall_name'];
-			$time_sql = "SELECT start_time, end_time FROM opening_time WHERE stall_ID = '$stall_ID' AND weekday = WEEKDAY(CURDATE());";
+			
 			$start_time = '';//bypass
 			$end_time = '';//bypass
+			$time_sql = "SELECT start_time, end_time FROM opening_time WHERE stall_ID = '$stall_ID' AND weekday = WEEKDAY(CURDATE());";
 			$time_result = mysqli_query($conn, $time_sql);
 			if(mysqli_num_rows($time_result) == 1){
 				$time = mysqli_fetch_assoc($time_result);
