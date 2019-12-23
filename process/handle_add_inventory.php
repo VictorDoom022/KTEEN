@@ -7,6 +7,6 @@ if (isset($_POST['add_inventory'])){
 	$sql = "INSERT INTO inventory(name, unit, price,description,date ,stall_ID) VALUES ('$name', '$unit','$price' ,'$description',NOW(),'". $_SESSION['kteen_stall_id'] ."')";
 	mysqli_query($conn, $sql);
 	mysqli_close($conn);
-	header('location: purchase.php');
+	header('location: inventory.php');
 }
 ?>
