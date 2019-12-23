@@ -104,7 +104,6 @@ if (isset($_GET['word'])) {
 											<button class="btn text-secondary" data-dismiss="modal">Close</button>
 											<a href="edit_inventory.php?ID=<?= $row['ID']; ?>" class="btn text-warning">Edit</a>
 											<button class="btn text-danger" onclick="ComfirmDelete('<?= $row['ID']; ?>')">Delete</button>
-											<a href="purchase_send.php?ID=<?= $row['ID']; ?>" class="btn text-primary">Purchase</a>
 										</div>
 									</div>
 								</div>
