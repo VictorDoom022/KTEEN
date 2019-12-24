@@ -6,7 +6,28 @@ if(isset($_POST['add_Invoice'])){
 	$supplier_name = $_POST['supplier_name'];
 	$invoice_date = $_POST['invoice_date'];
 	$invoice_due = $_POST['invoice_due'];
-	$invoice_amount = $_POST['invoice_amount'];
+    $invoice_amount = $_POST['invoice_amount'];
+
+    $test = $_POST['test'];
+    $test1 = $_POST['test1'];
+    $test2 = $_POST['test2'];
+    $test3 = $_POST['test3'];
+    $test4 = $_POST['test4'];
+
+    $quantity = $_POST['quantity'];
+    $quantity1 = $_POST['quantity1'];
+    $quantity2 = $_POST['quantity2'];
+    $quantity3 = $_POST['quantity3'];
+    $quantity4 = $_POST['quantity4'];
+
+    $priceperunit = $_POST['priceperunit'];
+    $priceperunit1 = $_POST['priceperunit1'];
+    $priceperunit2 = $_POST['priceperunit2'];
+    $priceperunit3 = $_POST['priceperunit3'];
+    $priceperunit4 = $_POST['priceperunit4'];
+
+    $info = "Inventory : $test"+"Quantity:  $quantity" +"Price per Unit:    $priceperunit";
+    
 	//$invoice_file = ("S".$_SESSION['kteen_stall_id']."_".$supplier_name.".doc");
 	
 	// name of the uploaded file
@@ -29,8 +50,8 @@ if(isset($_POST['add_Invoice'])){
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO invoice (invoice_number, stall_ID,supplier_name,date,invoice_due,invoice_amount,invoice_file,date_add)
-			 VALUES ('$invoice_number','$stall_ID','$supplier_name','$invoice_date','$invoice_due','$invoice_amount','$filename',NOW())";
+            $sql = "INSERT INTO invoice (invoice_number, stall_ID,supplier_name,date,invoice_due,invoice_amount,invoice_file,info,date_add)
+			 VALUES ('$invoice_number','$stall_ID','$supplier_name','$invoice_date','$invoice_due','$invoice_amount','$filename','$info',NOW())";
             if (mysqli_query($conn, $sql)) {
                 echo '<script>alert("File Upload Success!");</script>';
             }

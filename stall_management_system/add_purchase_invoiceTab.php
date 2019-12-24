@@ -47,7 +47,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text">RM</span>
 								</div>
-								<input type="number" class="form-control" name="invoice_amount" aria-label="Dollar amount (with dot and two decimal places)">
+								<input type="number" class="form-control" id="invoice_amount" name="invoice_amount" aria-label="Dollar amount (with dot and two decimal places)" readonly>
 							</div>				
 						</div>
 

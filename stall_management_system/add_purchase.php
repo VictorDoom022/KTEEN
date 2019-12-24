@@ -230,7 +230,149 @@ function cal(){
 
 	var total = price + price1 + price2 + price3 + price4;
 	document.getElementById("total").value = total;
+	document.getElementById("invoice_amount").value = total;
 	console.log(quantity1);
+
+}
+//receipt
+
+$(document).change(function(){
+    var ID = document.getElementById("receipt_test").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#receipt_unit').val(data.unit);
+            $('#receipt_priceperunit').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).change(function(){
+    var ID = document.getElementById("receipt_test1").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#receipt_unit1').val(data.unit);
+            $('#receipt_priceperunit1').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).change(function(){
+    var ID = document.getElementById("receipt_test2").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#receipt_unit2').val(data.unit);
+            $('#receipt_priceperunit2').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).change(function(){
+    var ID = document.getElementById("receipt_test3").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#receipt_unit3').val(data.unit);
+            $('#receipt_priceperunit3').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).change(function(){
+    var ID = document.getElementById("receipt_test4").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#receipt_unit4').val(data.unit);
+            $('#receipt_priceperunit4').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+function receipt_cal(){
+	var receipt_quantity = document.getElementById("receipt_quantity").value;
+	var receipt_quantity1 = document.getElementById("receipt_quantity1").value;
+	var receipt_quantity2 = document.getElementById("receipt_quantity2").value;
+	var receipt_quantity3 = document.getElementById("receipt_quantity3").value;
+	var receipt_quantity4 = document.getElementById("receipt_quantity4").value;
+
+	var receipt_priceperunit = document.getElementById("receipt_priceperunit").value;
+	var receipt_priceperunit1 = document.getElementById("receipt_priceperunit1").value;
+	var receipt_priceperunit2 = document.getElementById("receipt_priceperunit2").value;
+	var receipt_priceperunit3 = document.getElementById("receipt_priceperunit3").value;
+	var receipt_priceperunit4 = document.getElementById("receipt_priceperunit4").value;
+
+	var receipt_price = receipt_quantity * receipt_priceperunit;
+	document.getElementById("receipt_price").value = receipt_price;
+	var receipt_price1 = receipt_quantity1 * receipt_priceperunit1;
+	document.getElementById("receipt_price1").value = receipt_price1;
+	var receipt_price2 = receipt_quantity2 * receipt_priceperunit2;
+	document.getElementById("receipt_price2").value = receipt_price2;
+	var receipt_price3 = receipt_quantity3 * receipt_priceperunit3;
+	document.getElementById("receipt_price3").value = receipt_price3;
+	var receipt_price4 = receipt_quantity4 * receipt_priceperunit4;
+	document.getElementById("receipt_price4").value = receipt_price4;
+
+	var receipt_total = receipt_price + receipt_price1 + receipt_price2 + receipt_price3 + receipt_price4;
+	document.getElementById("receipt_total").value = receipt_total;
+	document.getElementById("receipt_amount").value = receipt_total;
 
 }
 
