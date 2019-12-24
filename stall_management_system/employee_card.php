@@ -25,7 +25,7 @@ if (isset($_GET['k'])) {
 			<div class="k-card card k-hover-shadow">
 				<div class="row no-gutters">
 					<div class="col-4">
-						<img class="rounded-circle p-2" src="../images/staff/<?php echo $row['image']; ?>" style="height: 120px;width: 120px;">
+						<img class="rounded-circle p-2" src="../images/<?= $_SESSION['stall_username'] ?>/staff/<?= $row['image']; ?>" style="height: 120px;width: 120px;">
 					</div>
 					<div class="col-8">
 						<div class="card-body">

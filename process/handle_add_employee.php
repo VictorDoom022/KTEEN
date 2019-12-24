@@ -41,12 +41,20 @@ if (isset($_POST['add_employee'])) {
 		$valid_password = $invalid;
 		$ok2add = false;
 	}
-	$image = $staff_username.".jpg";
 
 	if ($ok2add) {
+		$image = $staff_username.".jpg";
 		$stall_ID = $_SESSION['kteen_stall_id'];
-		echo $sql = "INSERT INTO staff(name, NRIC, image, stall_ID, contact_no, address, username, password, position, salary) VALUES ('$employee_name', '$NRIC', '$image', '$stall_ID', '$contact_no', '$address', '$staff_username',  '$p', '$position', '$salary');";
+		$sql = "INSERT INTO staff(name, NRIC, image, stall_ID, contact_no, address, username, password, position, salary) VALUES ('$employee_name', '$NRIC', '$image', '$stall_ID', '$contact_no', '$address', '$staff_username',  '$p', '$position', '$salary');";
 		mysqli_query($conn, $sql);
+
+		$target_dir = "../images/".$_SESSION['stall_username']."/staff/";
+		$target_image = $target_dir.$image;
+		if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_image)) {
+		    $error = "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
+		} else {
+		    $error = "Sorry, there was an error uploading your file.";
+		}
 		header("location: employee.php");
 	}
 
