@@ -46,24 +46,48 @@ if (isset($_POST['add_stall'])) {
 	}
 
 	if($username_valid == 'is-valid' && $owner_name_valid == 'is-valid' && $stall_name_valid == 'is-valid' && $NRIC_valid == 'is-valid' && $contact_no_valid == 'is-valid' && $email_valid == 'is-valid' && $password_valid == 'is-valid'){
-		$start_time = array(
-			test_input($_POST['monday_start']), 
-			test_input($_POST['tuesday_start']),
-			test_input($_POST['wednesday_start']),
-			test_input($_POST['thursday_start']),
-			test_input($_POST['friday_start']),
-			test_input($_POST['saturday_start']),
-			test_input($_POST['sunday_start'])
-		);
-		$end_time = array(
-			test_input($_POST['monday_end']),
-			test_input($_POST['tuesday_end']),
-			test_input($_POST['wednesday_end']),
-			test_input($_POST['thursday_end']),
-			test_input($_POST['friday_end']),
-			test_input($_POST['saturday_end']),
-			test_input($_POST['sunday_end'])
-		);
+
+		$weekday = array();
+		$start_time = array();
+		$end_time = array();
+
+		if (isset($_POST['monday'])) {
+			array_push($weekday, 0);
+			array_push($start_time, test_input($_POST['monday_start']));
+			array_push($end_time, test_input($_POST['monday_end']));
+		}
+		if (isset($_POST['tuesday'])) {
+			array_push($weekday, 1);
+			array_push($start_time, test_input($_POST['tuesday_start']));
+			array_push($end_time, test_input($_POST['tuesday_end']));
+		}		
+		if (isset($_POST['wednesday'])) {
+			array_push($weekday, 2);
+			array_push($start_time, test_input($_POST['wednesday_start']));
+			array_push($end_time, test_input($_POST['wednesday_end']));
+		}
+		if (isset($_POST['thursday'])) {
+			array_push($weekday, 3);
+			array_push($start_time, test_input($_POST['thursday_start']));
+			array_push($end_time, test_input($_POST['thursday_end']));
+		}
+		if (isset($_POST['friday'])) {
+			array_push($weekday, 4);
+			array_push($start_time, test_input($_POST['friday_start']));
+			array_push($end_time, test_input($_POST['friday_end']));
+		}
+		if (isset($_POST['saturda'])) {
+			array_push($weekday, 5);
+			array_push($start_time, test_input($_POST['saturday_start']));
+			array_push($end_time, test_input($_POST['saturday_end']));
+		}
+		if (isset($_POST['sunday'])) {
+			array_push($weekday, 6);
+			array_push($start_time, test_input($_POST['sunday_start']));
+			array_push($end_time, test_input($_POST['sunday_end']));
+		}
+
+		print_r($start_time);
 
 		$owner_image = 'owner.jpg';
 		$stall_image = 'stall.jpg';
@@ -73,8 +97,8 @@ if (isset($_POST['add_stall'])) {
 		$stall_ID = mysqli_insert_id($conn);
 
 		// opening time
-		for ($i=0; $i < count($start_time); $i++) { 
-			$sql = "INSERT INTO opening_time(stall_ID, weekday, start_time, end_time) VALUES ('$stall_ID', '$i', '$start_time[0]', '$end_time[0]');";
+		for ($i=0; $i < count($weekday); $i++) { 
+			$sql = "INSERT INTO opening_time(stall_ID, weekday, start_time, end_time) VALUES ('$stall_ID', '$weekday[$i]', '$start_time[$i]', '$end_time[$i]');";
 			$result = mysqli_query($conn, $sql) or die(mysqli_error());
 		}
 		
