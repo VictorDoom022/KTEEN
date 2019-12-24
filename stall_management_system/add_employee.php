@@ -112,7 +112,13 @@ include '../process/handle_add_employee.php';
 												<div class="input-group-prepend">
 													<span class="input-group-text">RM</span>
 												</div>
-												<input type="number" min="0" name="salary" class="form-control <?= $valid_salary; ?>" value="<?= $salary; ?>" required="">
+												<input type="number" min="0" name="salary" class="form-control <?= $valid_salary; ?>" value="<?= $salary; ?>" required>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-md-3 col-form-label">Experience</label>
+											<div class="input-group col-md-9">
+												<textarea class="form-control <?= $valid_experience; ?>" name="experience" required><?= $experience; ?></textarea>
 											</div>
 										</div>
 									</div>

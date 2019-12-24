@@ -4,7 +4,7 @@ include '../config/test_input.php';
 $valid = "is-valid";
 $invalid = "is-invalid";
 
-$employee_name = $NRIC = $contact_no = $address = $staff_username = $position = $salary =  $p = "";//init variable
+$employee_name = $NRIC = $contact_no = $address = $staff_username = $position = $salary = $experience = $p = "";//init variable
 
 $valid_employee_name = $valid_NRIC = $valid_contact_no = $valid_address = $valid_staff_username = $valid_position = $valid_salary = $valid_password = "";//init variable for validation
 
