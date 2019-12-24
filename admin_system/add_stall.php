@@ -36,7 +36,7 @@ include '../process/handle_add_stall.php';
 					<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
 						<div class="row no-gutters">
 							<div style="width: 100%;position: relative;height: 250px;">
-								<img src="../images/stall_image.png" style="height: 250px;width: 100%;position: absolute;" id="#img-stall">
+								<img src="../images/stall_image.png" style="height: 250px;width: 100%;position: absolute;" id="img-stall">
 								<input type="file" name="stall_image" id="input-stall-image" accept="image/*" required style="position: absolute;width: 100%;height: 100%;opacity: 0;" data-target="#img-stall">
 								<label for="input-stall-image" class="btn btn-light" style="position: absolute;right: 10px;bottom: 5px;"><i class="fas fa-camera"></i></label>
 								<div style="position: absolute;top: 50%;left: 3%;">
@@ -144,7 +144,7 @@ include '../process/handle_add_stall.php';
 										<tbody>
 											<tr>
 												<td>
-													<input type="checkbox" name="" class="cb-weekday">
+													<input type="checkbox" name="sunday" class="cb-weekday">
 												</td>
 												<td>Sunday</td>
 												<td>
@@ -159,7 +159,7 @@ include '../process/handle_add_stall.php';
 											</tr>
 											<tr>
 												<td>
-													<input type="checkbox" name="" class="cb-weekday">
+													<input type="checkbox" name="monday" class="cb-weekday">
 												</td>
 												<td>Monday</td>
 												<td>
@@ -174,7 +174,7 @@ include '../process/handle_add_stall.php';
 											</tr>
 											<tr>
 												<td>
-													<input type="checkbox" name="" class="cb-weekday">
+													<input type="checkbox" name="tuesday" class="cb-weekday">
 												</td>
 												<td>Tuesday</td>
 												<td>
@@ -189,7 +189,7 @@ include '../process/handle_add_stall.php';
 											</tr>
 											<tr>
 												<td>
-													<input type="checkbox" name="" class="cb-weekday">
+													<input type="checkbox" name="wednesday" class="cb-weekday">
 												</td>
 												<td>Wednesday</td>
 												<td>
@@ -204,7 +204,7 @@ include '../process/handle_add_stall.php';
 											</tr>
 											<tr>
 												<td>
-													<input type="checkbox" name="" class="cb-weekday">
+													<input type="checkbox" name="thursday" class="cb-weekday">
 												</td>
 												<td>Thursday</td>
 												<td>
@@ -219,7 +219,7 @@ include '../process/handle_add_stall.php';
 											</tr>
 											<tr>
 												<td>
-													<input type="checkbox" name="" class="cb-weekday">
+													<input type="checkbox" name="friday" class="cb-weekday">
 												</td>
 												<td>Friday</td>
 												<td>
@@ -234,7 +234,7 @@ include '../process/handle_add_stall.php';
 											</tr>
 											<tr>
 												<td>
-													<input type="checkbox" name="" class="cb-weekday">
+													<input type="checkbox" name="satuday" class="cb-weekday">
 												</td>
 												<td>Saturday</td>
 												<td>
@@ -254,7 +254,7 @@ include '../process/handle_add_stall.php';
 							</div>
 							<div class="row">
 								<div class="col text-right">
-									<button class="btn text-danger">Cancel</button>
+									<a href="index.php" class="btn text-danger">Cancel</a>
 									<input type="submit" name="add_stall" class="btn" value="Submit">
 								</div>
 							</div>
