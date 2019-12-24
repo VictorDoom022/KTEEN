@@ -117,7 +117,7 @@ if($result ->num_rows >0){
             <div class="modal-footer">
 				<button class="btn text-dark" data-dismiss="modal">CLOSE</button>
 				<a href="edit_stall.php?su=<?= $row['username']; ?>" class="btn text-warning">EDIT</a>
-				<button onclick="ComfirmDelete('<?= $row['username']; ?>')" class="btn text-danger">DELETE</button>
+				<button onclick="ComfirmDelete('<?= $row['ID']; ?>')" class="btn text-danger">DELETE</button>
 			</div>
         </div>
     </div>

@@ -61,7 +61,7 @@ include '../process/handle_delete_stall.php'
 		function ComfirmDelete(x){
 			var confirmBox = confirm("Are you sure you want to delete?");
 			if (confirmBox == true) {
-				window.location.assign("index.php?st_u="+ x);
+				window.location.assign("index.php?st_i="+ x);
 			}
 		}
 
