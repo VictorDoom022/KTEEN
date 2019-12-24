@@ -18,7 +18,7 @@ switch ($site) {
 	<ul class="navbar-nav px-4 ml-auto">
 		<li class="nav-item dropdown">
 			<a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    <img class="rounded-circle" style="height: 40px;width: 40px;" src="../images/staff/<?= $_SESSION['staff_image']; ?>">
+			    <img class="rounded-circle" style="height: 40px;width: 40px;" src="../images/<?= $_SESSION['stall_username']; ?>/staff/<?= $_SESSION['staff_image']; ?>">
 			    <?= $_SESSION['staff_name']; ?>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="navbarDropdown">

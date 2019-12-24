@@ -18,12 +18,21 @@ if(isset($_POST['login'])){
             $_SESSION['staff_name'] = $staff_name;
             $_SESSION['staff_image'] = $staff_photo;
             $error = "";
-            header('location: index.php');
         }else{
             $error = "Your email or password is invalid";
         }
         $stmt->close();
     }
     $conn->close();
+
+    if(isset($_SESSION['stall_ID'])){
+        $sql = "SELECT username FROM stall WHERE ID = '". $_SESSION['stall_ID'] ."';";
+        include '../config/config.php';
+        $result = mysqli_query($conn, $sql);
+        $_SESSION['stall_username'] = mysqli_fetch_assoc($result)['username'];
+        mysqli_close($conn);
+        header('location: index.php');
+    }
+
 }
 ?>
