@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="../css/preloading.css">
+	<!-- <link rel="stylesheet" type="text/css" href="../css/preloading.css"> -->
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<!-- Bootstarp CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -14,7 +14,7 @@
 	<title></title>
 </head>
 <body>
-	<div class="loading-wrapper">
+	<!-- <div class="loading-wrapper">
 		<div class="loading">
 			<div id="box-wrapper">
 				<div id="parent">
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	
 	<nav class="navbar navbar-light bg-white shadow">
 		<a class="navbar-brand" href="index.php">
@@ -65,12 +65,12 @@
 			<div class="col-md-2"></div>
 		</div>
 	</div>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		$(document).ready(function() {
 			setTimeout(function() {
 				$(".loading-wrapper").fadeOut(500);
 			}, 1000);
 		})
-	</script>
+	</script> -->
 </body>
 </html>
