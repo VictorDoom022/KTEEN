@@ -376,6 +376,148 @@ function receipt_cal(){
 
 }
 
+//bill 
+
+$(document).change(function(){
+    var ID = document.getElementById("bill_test").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#bill_unit').val(data.unit);
+            $('#bill_priceperunit').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).change(function(){
+    var ID = document.getElementById("bill_test1").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#bill_unit1').val(data.unit);
+            $('#bill_priceperunit1').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).change(function(){
+    var ID = document.getElementById("bill_test2").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#bill_unit2').val(data.unit);
+            $('#bill_priceperunit2').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).change(function(){
+    var ID = document.getElementById("bill_test3").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#bill_unit3').val(data.unit);
+            $('#bill_priceperunit3').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).change(function(){
+    var ID = document.getElementById("bill_test4").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#bill_unit4').val(data.unit);
+            $('#bill_priceperunit4').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+function bill_cal(){
+	var bill_quantity = document.getElementById("bill_quantity").value;
+	var bill_quantity1 = document.getElementById("bill_quantity1").value;
+	var bill_quantity2 = document.getElementById("bill_quantity2").value;
+	var bill_quantity3 = document.getElementById("bill_quantity3").value;
+	var bill_quantity4 = document.getElementById("bill_quantity4").value;
+
+	var bill_priceperunit = document.getElementById("bill_priceperunit").value;
+	var bill_priceperunit1 = document.getElementById("bill_priceperunit1").value;
+	var bill_priceperunit2 = document.getElementById("bill_priceperunit2").value;
+	var bill_priceperunit3 = document.getElementById("bill_priceperunit3").value;
+	var bill_priceperunit4 = document.getElementById("bill_priceperunit4").value;
+
+	var bill_price = bill_quantity * bill_priceperunit;
+	document.getElementById("bill_price").value = bill_price;
+	var bill_price1 = bill_quantity1 * bill_priceperunit1;
+	document.getElementById("bill_price1").value = bill_price1;
+	var bill_price2 = bill_quantity2 * bill_priceperunit2;
+	document.getElementById("bill_price2").value = bill_price2;
+	var bill_price3 = bill_quantity3 * bill_priceperunit3;
+	document.getElementById("bill_price3").value = bill_price3;
+	var bill_price4 = bill_quantity4 * bill_priceperunit4;
+	document.getElementById("bill_price4").value = bill_price4;
+
+	var bill_total = bill_price + bill_price1 + bill_price2 + bill_price3 + bill_price4;
+	document.getElementById("bill_total").value = bill_total;
+	document.getElementById("bill_amount").value = bill_total;
+
+}
+
 	 
 	 
 	//  calculate = (idx, val) => {
