@@ -35,7 +35,7 @@ include '../process/handle_payment_cash.php';
 			<div class="col-10">
 				<div class="container-fluid">
 					<div class="row" style="height: 500px;">
-						<div class="col-md-6">
+						<div class="col-md-6 mb-3">
 							<div class="k-card card h-100">
 								<div class="card-body">
 									<div class="card-title">Payment not done (cash)</div>
