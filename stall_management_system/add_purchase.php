@@ -116,6 +116,124 @@ include '../process/handle_add_purchase.php';
     });
 });
 
+$(document).change(function(){
+    var ID = document.getElementById("test1").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#unit1').val(data.unit);
+            $('#priceperunit1').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).change(function(){
+    var ID = document.getElementById("test2").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#unit2').val(data.unit);
+            $('#priceperunit2').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).change(function(){
+    var ID = document.getElementById("test3").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#unit3').val(data.unit);
+            $('#priceperunit3').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+$(document).change(function(){
+    var ID = document.getElementById("test4").value;
+    //var ID = $(this).val();
+	console.log(ID);
+    //var ID = 6;
+    var dataString = "ID=" + ID;
+    $.ajax ({
+        type: "POST",
+        url: "test1.php",
+        data: dataString,
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            $('#unit4').val(data.unit);
+            $('#priceperunit4').val(data.price);
+        },
+        error: function(data) {
+            console.log(data);
+        }
+    });
+});
+
+function cal(){
+	var quantity = document.getElementById("quantity").value;
+	var quantity1 = document.getElementById("quantity1").value;
+	var quantity2 = document.getElementById("quantity2").value;
+	var quantity3 = document.getElementById("quantity3").value;
+	var quantity4 = document.getElementById("quantity4").value;
+
+	var priceperunit = document.getElementById("priceperunit").value;
+	var priceperunit1 = document.getElementById("priceperunit1").value;
+	var priceperunit2 = document.getElementById("priceperunit2").value;
+	var priceperunit3 = document.getElementById("priceperunit3").value;
+	var priceperunit4 = document.getElementById("priceperunit4").value;
+
+	var price = quantity * priceperunit;
+	document.getElementById("price").value = price;
+	var price1 = quantity1 * priceperunit1;
+	document.getElementById("price1").value = price1;
+	var price2 = quantity2 * priceperunit2;
+	document.getElementById("price2").value = price2;
+	var price3 = quantity3 * priceperunit3;
+	document.getElementById("price3").value = price3;
+	var price4 = quantity4 * priceperunit4;
+	document.getElementById("price4").value = price4;
+
+	var total = price + price1 + price2 + price3 + price4;
+	document.getElementById("total").value = total;
+	console.log(quantity1);
+
+}
+
 	 
 	 
 	//  calculate = (idx, val) => {

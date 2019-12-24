@@ -111,22 +111,166 @@
 							</select>
 						</div>
                         <div class="col-md-2">
-                            <input type="number" name="quantity" id="quantity" class="form-control">
+                            <input type="number" name="quantity" id="quantity" class="form-control" oninput="cal()">
                         </div>
                         <div class="col-md-1">
-                            <input type="text" name="unit" id="unit" class="form-control">
+                            <input type="text" name="unit" id="unit" class="form-control" readonly>
                         </div>	
                         <div class="col-md-1">
-                            <input type="number" name="priceperunit" id="priceperunit" class="form-control">
+                            <input type="number" name="priceperunit" id="priceperunit" class="form-control" readonly>
                         </div>
                         <div class="col-md-2">
-                            <input type="number" name="price" id="price" class="form-control">
+                            <input type="number" name="price" id="price" class="form-control" readonly>
+                        </div>									
+					</div>
+
+					<div class="form-group row">
+						<!-- <label class="col-md-3 col-form-label"></label> -->
+						<div class="col-md-3">
+							<select class="custom-select mr-sm-2" name="test1" id="test1">
+								<option selected>Choose from inventory</option>
+						    		<?php
+						    			$stallID = $_SESSION['kteen_stall_id'];
+						    			$sql = "SELECT * from inventory where stall_ID= '$stallID'";
+                                        $result = $conn -> query($sql);
+						    			if ($result->num_rows > 0) {
+						    				while ($row = $result->fetch_assoc()) {
+                                    ?>
+						    			<option value="<?php echo $row['ID']; ?>">
+						    				<?php echo $row['name']; ?>		
+						    			</option>
+                                        
+						    		<?php
+						    			}
+						    		}
+						    		?>
+							</select>
+						</div>
+                        <div class="col-md-2">
+                            <input type="number" name="quantity1" id="quantity1" class="form-control" oninput="cal()">
+                        </div>
+                        <div class="col-md-1">
+                            <input type="text" name="unit1" id="unit1" class="form-control" readonly>
+                        </div>	
+                        <div class="col-md-1">
+                            <input type="number" name="priceperunit1" id="priceperunit1" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="number" name="price1" id="price1" class="form-control" readonly>
+                        </div>									
+					</div>
+
+					<div class="form-group row">
+						<!-- <label class="col-md-3 col-form-label"></label> -->
+						<div class="col-md-3">
+							<select class="custom-select mr-sm-2" name="test2" id="test2">
+								<option selected>Choose from inventory</option>
+						    		<?php
+						    			$stallID = $_SESSION['kteen_stall_id'];
+						    			$sql = "SELECT * from inventory where stall_ID= '$stallID'";
+                                        $result = $conn -> query($sql);
+						    			if ($result->num_rows > 0) {
+						    				while ($row = $result->fetch_assoc()) {
+                                    ?>
+						    			<option value="<?php echo $row['ID']; ?>">
+						    				<?php echo $row['name']; ?>		
+						    			</option>
+                                        
+						    		<?php
+						    			}
+						    		}
+						    		?>
+							</select>
+						</div>
+                        <div class="col-md-2">
+                            <input type="number" name="quantity2" id="quantity2" class="form-control" oninput="cal()">
+                        </div>
+                        <div class="col-md-1">
+                            <input type="text" name="unit2" id="unit2" class="form-control" readonly>
+                        </div>	
+                        <div class="col-md-1">
+                            <input type="number" name="priceperunit2" id="priceperunit2" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="number" name="price2" id="price2" class="form-control" readonly>
+                        </div>									
+					</div>
+
+					<div class="form-group row">
+						<!-- <label class="col-md-3 col-form-label"></label> -->
+						<div class="col-md-3">
+							<select class="custom-select mr-sm-2" name="test3" id="test3">
+								<option selected>Choose from inventory</option>
+						    		<?php
+						    			$stallID = $_SESSION['kteen_stall_id'];
+						    			$sql = "SELECT * from inventory where stall_ID= '$stallID'";
+                                        $result = $conn -> query($sql);
+						    			if ($result->num_rows > 0) {
+						    				while ($row = $result->fetch_assoc()) {
+                                    ?>
+						    			<option value="<?php echo $row['ID']; ?>">
+						    				<?php echo $row['name']; ?>		
+						    			</option>
+                                        
+						    		<?php
+						    			}
+						    		}
+						    		?>
+							</select>
+						</div>
+                        <div class="col-md-2">
+                            <input type="number" name="quantity3" id="quantity3" class="form-control" oninput="cal()">
+                        </div>
+                        <div class="col-md-1">
+                            <input type="text" name="unit3" id="unit3" class="form-control" readonly>
+                        </div>	
+                        <div class="col-md-1">
+                            <input type="number" name="priceperunit3" id="priceperunit3" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="number" name="price3" id="price3" class="form-control" readonly>
+                        </div>									
+					</div>
+
+					<div class="form-group row">
+						<!-- <label class="col-md-3 col-form-label"></label> -->
+						<div class="col-md-3">
+							<select class="custom-select mr-sm-2" name="test4" id="test4">
+								<option selected>Choose from inventory</option>
+						    		<?php
+						    			$stallID = $_SESSION['kteen_stall_id'];
+						    			$sql = "SELECT * from inventory where stall_ID= '$stallID'";
+                                        $result = $conn -> query($sql);
+						    			if ($result->num_rows > 0) {
+						    				while ($row = $result->fetch_assoc()) {
+                                    ?>
+						    			<option value="<?php echo $row['ID']; ?>">
+						    				<?php echo $row['name']; ?>		
+						    			</option>
+                                        
+						    		<?php
+						    			}
+						    		}
+						    		?>
+							</select>
+						</div>
+                        <div class="col-md-2">
+                            <input type="number" name="quantity4" id="quantity4" class="form-control" oninput="cal()">
+                        </div>
+                        <div class="col-md-1">
+                            <input type="text" name="unit4" id="unit4" class="form-control" readonly>
+                        </div>	
+                        <div class="col-md-1">
+                            <input type="number" name="priceperunit4" id="priceperunit4" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="number" name="price4" id="price4" class="form-control" readonly>
                         </div>									
 					</div>
                     <div class="form-group row">
                         <div class="col-md-9"></div>
                          <div class="col-md-3">
-                            <input type="number" name="total" id="total" class="form-control">
+                            <input type="number" name="total" id="total" class="form-control" readonly>
                         </div>           
                     </div>             
 										
