@@ -29,7 +29,7 @@ if(isset($_POST['login'])){
         $sql = "SELECT username FROM stall WHERE ID = '". $_SESSION['stall_ID'] ."';";
         include '../config/config.php';
         $result = mysqli_query($conn, $sql);
-        $_SESSION['stall_username'] = mysqli_fetch_assoc($result)['username'];
+        $_SESSION['image_folder'] = mysqli_fetch_assoc($result)['username'];
         mysqli_close($conn);
         header('location: index.php');
     }
