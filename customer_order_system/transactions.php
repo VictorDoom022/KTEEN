@@ -26,7 +26,7 @@ include '../config/config.php';
 			<div class="container">
 				<p class="text">Transaction History</p>
 					<table class="table">
-					<thead class="thead-dark">
+					<thead>
 						<tr>
 							<th style="text-align: center;">Type</th>
 							<th style="text-align: center;">Date</th>
