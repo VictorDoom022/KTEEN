@@ -2,6 +2,7 @@
 include '../config/config.php';
 include '../config/test_input.php';
 date_default_timezone_set("Asia/Kuala_Lumpur");
+$current_time = time();
 
 $search = "";// search stall name by keyword
 if (isset($_POST['search_stall_name'])) {
@@ -25,8 +26,6 @@ if (isset($_POST['search_stall_name'])) {
 			$stall_username = $row['username'];
 			$stallname = $row['stall_name'];
 			
-			$start_time = '';//bypass
-			$end_time = '';//bypass
 			$time_sql = "SELECT start_time, end_time FROM opening_time WHERE stall_ID = '$stall_ID' AND weekday = WEEKDAY(CURDATE());";
 			$time_result = mysqli_query($conn, $time_sql);
 			if(mysqli_num_rows($time_result) == 1){
@@ -39,21 +38,28 @@ if (isset($_POST['search_stall_name'])) {
 		<div class="k-card card k-hover-shadow h-100 stall" style="cursor: pointer;" data-stall="<?= $stall_username; ?>">
 			<div style="position: relative;overflow: hidden;"> 
 				<img src="../images/<?= $stall_username; ?>/stall.jpg" class="items" height="100" alt="" style="width: 100%;height: 200px;align-self: center;vertical-align: center;" />
-				<?php
-				$current_time = time();
-				if ($row['status'] == 1 && ($start_time < $current_time && $end_time > $current_time)) {
-				?>
+				<?php if($row['status'] == 0) { ?>
+				<span class="bg-danger" style="position: absolute;right: 0;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);"></span>
+				<span style="position: absolute;right: 15px;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);background-color: rgba(255, 0, 0, 0.5);"></span>
+				<span class="text-white px-3 py-1" style="position: absolute;right: 12px;bottom: 0;">Closing</span>
+				<?php }else if ($row['status'] == 1) { ?>
 				<span class="bg-success" style="position: absolute;right: 0;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);"></span>
 				<span style="position: absolute;right: 15px;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);background-color: rgba(0, 255, 0, 0.5);"></span>
 				<span class="text-white px-3 py-1" style="position: absolute;right: 12px;bottom: 0;">Opening</span>
 				<?php
 				}else{
+					if($start_time < $current_time && $end_time > $current_time){
 				?>
+				<span class="bg-success" style="position: absolute;right: 0;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);"></span>
+				<span style="position: absolute;right: 15px;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);background-color: rgba(0, 255, 0, 0.5);"></span>
+				<span class="text-white px-3 py-1" style="position: absolute;right: 12px;bottom: 0;">Opening</span>
+				<?php }else{ ?>
 				<span class="bg-danger" style="position: absolute;right: 0;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);"></span>
 				<span style="position: absolute;right: 15px;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);background-color: rgba(255, 0, 0, 0.5);"></span>
 				<span class="text-white px-3 py-1" style="position: absolute;right: 12px;bottom: 0;">Closing</span>
 				<?php
-				}
+					}
+				} 
 				?>
 			</div>
 			<div class="card-body">
