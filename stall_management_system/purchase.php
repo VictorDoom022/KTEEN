@@ -68,8 +68,7 @@ include '../process/handle_delete_supplier.php';
 						</div>
 					</div>
 				</div>
-				
-				<div id="suppliers"></div>
+				<div id="suppliers" class="container-fluid"></div>
 			</div>
 		</div>
 	</main>
