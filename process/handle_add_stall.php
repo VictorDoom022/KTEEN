@@ -92,7 +92,7 @@ if (isset($_POST['add_stall'])) {
 		$owner_image = 'owner.jpg';
 		$stall_image = 'stall.jpg';
 
-		$sql = "INSERT INTO stall(username, stall_name, owner_name, NRIC, owner_image, stall_image, contact_no, email, password, status) VALUES ('$username', '$stall_name', '$owner_name', '$NRIC', '$owner_image', '$stall_image', '$contact_no', '$email', '$password', '1');";
+		$sql = "INSERT INTO stall(username, stall_name, owner_name, NRIC, owner_image, stall_image, contact_no, email, password) VALUES ('$username', '$stall_name', '$owner_name', '$NRIC', '$owner_image', '$stall_image', '$contact_no', '$email', '$password');";
 		$result = mysqli_query($conn, $sql) or die(mysqli_error());
 		$stall_ID = mysqli_insert_id($conn);
 
