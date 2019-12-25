@@ -52,7 +52,7 @@ include '../process/handle_delete_employee.php';
 						</div>
 					</div>
 				</div>
-				<div id="view"></div>
+				<div id="view" class="container-fluid"></div>
 			</div>
 		</div>
 	</main>
