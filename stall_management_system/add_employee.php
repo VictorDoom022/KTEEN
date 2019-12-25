@@ -118,7 +118,7 @@ include '../process/handle_add_employee.php';
 										<div class="form-group row">
 											<label class="col-md-3 col-form-label">Experience</label>
 											<div class="input-group col-md-9">
-												<textarea class="form-control <?= $valid_experience; ?>" name="experience" required><?= $experience; ?></textarea>
+												<textarea class="form-control" name="experience"><?= $experience; ?></textarea>
 											</div>
 										</div>
 									</div>

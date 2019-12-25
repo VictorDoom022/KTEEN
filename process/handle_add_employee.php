@@ -17,6 +17,7 @@ if (isset($_POST['add_employee'])) {
 	$address = test_input($_POST['address']);
 	$salary =test_input($_POST['salary']);
 	$position =test_input($_POST['position']);
+	$experience = $_POST['experience'];
 
 	$valid_employee_name = $valid_NRIC = $valid_contact_no = $valid_address = $valid_salary = $valid;
 	// check username
@@ -45,7 +46,7 @@ if (isset($_POST['add_employee'])) {
 	if ($ok2add) {
 		$image = $staff_username.".jpg";
 		$stall_ID = $_SESSION['kteen_stall_id'];
-		$sql = "INSERT INTO staff(name, NRIC, image, stall_ID, contact_no, address, username, password, position, salary) VALUES ('$employee_name', '$NRIC', '$image', '$stall_ID', '$contact_no', '$address', '$staff_username',  '$p', '$position', '$salary');";
+		$sql = "INSERT INTO staff(name, NRIC, image, stall_ID, contact_no, address, username, password, position, salary, experience) VALUES ('$employee_name', '$NRIC', '$image', '$stall_ID', '$contact_no', '$address', '$staff_username',  '$p', '$position', '$salary', '$experience');";
 		mysqli_query($conn, $sql);
 
 		$target_dir = "../images/".$_SESSION['stall_username']."/staff/";

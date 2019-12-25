@@ -47,6 +47,17 @@
 								</div>
 							</div>
 						</div>
+						<div class="row pb-2">
+							<div class="col">
+								<div class="row">
+									<small class="text-muted col">Experience</small>
+									<div class="w-100"></div>
+									<div class="col">
+										<?= ($row['experience'] == '')? 'Not yet' : $row['experience']; ?>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="row">
