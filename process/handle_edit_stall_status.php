@@ -18,4 +18,13 @@ if(isset($_GET['open'])){
 	}
 	header("location: index.php");
 }
+
+if(isset($_GET['auto'])){
+	if($_GET['auto'] == 1){
+		$sql = "UPDATE stall SET status = '2' WHERE ID = '$stall_ID';";
+		mysqli_query($conn, $sql);
+		mysqli_close();
+	}
+	header("location: index.php");
+}
 ?>
