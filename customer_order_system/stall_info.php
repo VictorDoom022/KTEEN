@@ -50,20 +50,29 @@ if(isset($_POST['stall_username']) && !empty($_POST['stall_username'])){
 <?php }else{
 	$time_sql = "SELECT start_time, end_time FROM opening_time WHERE stall_ID = '$stall_ID' AND weekday = WEEKDAY(CURDATE());";
 	$time_result = mysqli_query($conn, $time_sql);
-	if(mysqli_num_rows($time_result) == 1){
+	$is_working_day = mysqli_num_rows($time_result) == 1;
+	if($is_working_day){
 		$time = mysqli_fetch_assoc($time_result);
 		$start_time = strtotime($time['start_time']);
 		$end_time = strtotime($time['end_time']);
 	}
-	if($start_time < $current_time && $end_time > $current_time){
+	if($is_working_day){
+		if($start_time < $current_time && $end_time > $current_time){
 ?>
-	<span class="bg-success" style="position: absolute;bottom: 10px;right: -10px;width: 120px;height: 32px;transform: skew(-45deg);"></span>
-	<span style="position: absolute;bottom: 10px;right: 0;width: 120px;height: 32px;transform: skew(-45deg);background-color: rgba(0, 255, 0, 0.5);"></span>
-	<span class="text-white" style="position: absolute;bottom: 15px;right: 15px;">Opening</span>
+		<span class="bg-success" style="position: absolute;bottom: 10px;right: -10px;width: 120px;height: 32px;transform: skew(-45deg);"></span>
+		<span style="position: absolute;bottom: 10px;right: 0;width: 120px;height: 32px;transform: skew(-45deg);background-color: rgba(0, 255, 0, 0.5);"></span>
+		<span class="text-white" style="position: absolute;bottom: 15px;right: 15px;">Opening</span>
 <?php }else{ ?>
-	<span class="bg-danger" style="position: absolute;bottom: 10px;right: -16px;width: 120px;height: 32px;transform: skew(-45deg);"></span>
-	<span style="position: absolute;bottom: 10px;right: 0;width: 120px;height: 32px;transform: skew(-45deg);background-color: rgba(255, 0, 0, 0.5);"></span>
-	<span class="text-white" style="position: absolute;bottom: 15px;right: 20px;">Closing</span>
+		<span class="bg-danger" style="position: absolute;bottom: 10px;right: -16px;width: 120px;height: 32px;transform: skew(-45deg);"></span>
+		<span style="position: absolute;bottom: 10px;right: 0;width: 120px;height: 32px;transform: skew(-45deg);background-color: rgba(255, 0, 0, 0.5);"></span>
+		<span class="text-white" style="position: absolute;bottom: 15px;right: 20px;">Closing</span>
+<?php
+		}
+	}else{
+?>
+		<span class="bg-danger" style="position: absolute;bottom: 10px;right: -16px;width: 120px;height: 32px;transform: skew(-45deg);"></span>
+		<span style="position: absolute;bottom: 10px;right: 0;width: 120px;height: 32px;transform: skew(-45deg);background-color: rgba(255, 0, 0, 0.5);"></span>
+		<span class="text-white" style="position: absolute;bottom: 15px;right: 20px;">Closing</span>
 <?php
 	}
 } ?>
