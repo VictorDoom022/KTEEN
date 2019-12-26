@@ -34,7 +34,7 @@ $current_time = time();
 		?>
 		<div class="mb-2 text-center">Open Time: <?= $str_start_time ?> - <?= $str_end_time ?></div>
 		<?php }else{?>
-		<div class="text-center font-weight-bold text-danger">Off Day</div>
+		<div class="text-center font-weight-bold text-danger mb-2">Off Day</div>
 		<?php }
 
 		if($status == 0){
@@ -56,15 +56,13 @@ $current_time = time();
 			<span style="position: absolute;right: 0;bottom: 0;width: 100px;height: 30px;transform: skew(45deg);background-color: rgba(0, 255, 0, 0.5);"></span>
 			<span class="text-white px-3 py-1" style="position: absolute;right: 2px;bottom: 0;">Opening</span>
 		</div>
-		<?php 
-		}else{
-			if($is_work_day){
-		?>
+		<?php }else{ ?>
 		<div style="position: relative;">
 			<div class="font-weight-bold">
 				Current status
 			</div>
-			<?php if ($current_time > $start_time && $current_time < $end_time) { ?>
+		<?php if($is_work_day){ 
+		 	if ($current_time > $start_time && $current_time < $end_time) { ?>
 				<span class="bg-success" style="position: absolute;right: -10px;bottom: 0;width: 170px;height: 30px;transform: skew(45deg);"></span>
 				<span style="position: absolute;right: 0;bottom: 0;width: 170px;height: 30px;transform: skew(45deg);background-color: rgba(0, 255, 0, 0.5);"></span>
 				<span class="text-white px-3 py-1" style="position: absolute;right: 2px;bottom: 0;">Opening(Auto)</span>
@@ -72,12 +70,14 @@ $current_time = time();
 				<span class="bg-danger" style="position: absolute;right: -10px;bottom: 0;width: 170px;height: 30px;transform: skew(45deg);"></span>
 				<span style="position: absolute;right: 0;bottom: 0;width: 170px;height: 30px;transform: skew(45deg);background-color: rgba(255, 0, 0, 0.5);"></span>
 				<span class="text-white px-3 py-1" style="position: absolute;right: 2px;bottom: 0;">Closing (Auto)</span>
-			<?php } ?>
+			<?php }
+			}else{ ?>
+				<span class="bg-danger" style="position: absolute;right: -10px;bottom: 0;width: 170px;height: 30px;transform: skew(45deg);"></span>
+				<span style="position: absolute;right: 0;bottom: 0;width: 170px;height: 30px;transform: skew(45deg);background-color: rgba(255, 0, 0, 0.5);"></span>
+				<span class="text-white px-3 py-1" style="position: absolute;right: 2px;bottom: 0;">Closing (Auto)</span>
+		<?php } ?>
 		</div>
-		<?php 
-			}
-		}
-		?>
+		<?php } ?>
 		<div class="text-right mt-2">
 			<?php if ($status == 0) { ?>
 				<a href="index.php?open=1" title="Click to open" class="btn btn-sm text-success">Open</a>
