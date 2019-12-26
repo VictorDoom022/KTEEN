@@ -25,7 +25,7 @@ if(isset($_POST['login'])){
     }
     $conn->close();
 
-    if(isset($_SESSION['stall_ID'])){
+    if(isset($_SESSION['staff_ID'])){
         $sql = "SELECT username FROM stall WHERE ID = '". $_SESSION['stall_ID'] ."';";
         include '../config/config.php';
         $result = mysqli_query($conn, $sql);
