@@ -22,15 +22,15 @@ include '../config/config.php';
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="col-md-1 pl-0 pt-3" style="position: fixed;">
-			<button class="w-100 btn btn-dark shadow-sm mb-2">All</button>
+		<div class="col-md-1 pl-0 pt-3" style="position: fixed;z-index: 3;">
+			<button class="btn btn-dark btn-block shadow-sm mb-2 btn-category" data-target="0">All</button>
 			<?php
 			$sql = "SELECT * FROM category;";
 			$result_catergory = mysqli_query($conn, $sql);
 			if (mysqli_num_rows($result_catergory) > 0) {
 				while ($row = mysqli_fetch_assoc($result_catergory)) {
 			?>
-			<button class="w-100 btn bg-white shadow-sm mb-2">
+			<button class="btn bg-white btn-block shadow-sm mb-2 btn-category" data-target="<?= $row['ID'] ?>">
 				<?= $row['name']; ?>
 			</button>
 			<?php
@@ -42,12 +42,12 @@ include '../config/config.php';
 			<div class="col-md-1 pr-0"></div>
 			<div class="col-md-7 pr-0">
 				<?php
-				$sql = "SELECT food.ID AS food_id, stall.username AS stall_username, food.name AS name, price, image FROM food LEFT JOIN stall ON food.stall_ID = stall.ID WHERE stall_id = '" . $_SESSION['stall_ID'] . "' AND available = '1';";
+				$sql = "SELECT food.category_ID, food.ID AS food_id, stall.username AS stall_username, food.name AS name, price, image FROM food LEFT JOIN stall ON food.stall_ID = stall.ID WHERE stall_id = '" . $_SESSION['stall_ID'] . "' AND available = '1';";
 				$result = mysqli_query($conn, $sql);
 				if(mysqli_num_rows($result) > 0){
 					while ($row = mysqli_fetch_assoc($result)) {
 				?>
-				<div data-food_id="<?= $row['food_id']; ?>" class="k-card card mb-2 bg-white p-3 rounded-0 k-hover-shadow add_order" style="cursor: pointer;">
+				<div data-food_id="<?= $row['food_id']; ?>" class="k-card card mb-2 bg-white p-3 rounded-0 k-hover-shadow add_order" style="cursor: pointer;" data-category="<?= $row['category_ID'] ?>">
 					<div class="row">
 						<div class="col-3">
 							<img src="../images/<?= $row['stall_username'] ?>/menu/<?= $row['image'] ?>" alt="" style="width: 100%;height: 125px;">
@@ -106,6 +106,22 @@ include '../config/config.php';
 		}
 
 		$(document).ready(function() {
+			$(".btn-category").click(function() {
+				console.log("jjyy");
+				$(".btn-category").removeClass("btn-dark");
+				$(".btn-category").addClass("bg-white");
+				$(this).addClass("btn-dark");
+				$(this).removeClass("bg-white");
+				var target = 0;
+				var target = $(this).attr("data-target");
+				if(target == 0){
+					$(".add_order").show();
+				}else{
+					$(".add_order").show();
+					$(".add_order:not([data-category='"+ target +"'])").hide();
+				}
+			});
+
 			var orders = [];
 			$('.add_order').click(function() {
 				var food_id = $(this).attr('data-food_id');
@@ -147,8 +163,7 @@ include '../config/config.php';
 					"<td>RM "+ total_price +"</td>"+
 					"</tr>"
 				);
-				console.log(typeof orders);
-				console.log(orders);
+				// console.log(JSON.stringify(orders));
 			});
 			$('#send_order_btn').click(function() {
 				$.ajax({
