@@ -31,8 +31,8 @@ include '../process/handle_change_password_stall.php';
 		<div class="row pt-3">
 			<div class="col-2"></div>
 			<div class="col-10">
-				<div class="k-card bg-white mb-4 p-4">
-				</div>
+				<!-- <div class="k-card bg-white mb-4 p-4">
+				</div> -->
 				<div class="k-card bg-white mb-4 p-4">
 					<div class="card-body">
 						<div class="h4">Security</div>
