@@ -3,16 +3,16 @@
 include '../config/config.php';
 include '../config/test_input.php';
 
-	$searchword = "";
+$searchword = "";
 
-	if(isset($_GET['word'])){
-		$searchword = " WHERE date LIKE '%".$_GET['word']."%'";
-	}
+if(isset($_GET['word'])){
+	$searchword = " WHERE date LIKE '%".$_GET['word']."%'";
+}
 ?>
 
 
 <!-- income -->
-    <div class="k-card card col-12">
+    <div class="k-card card col-12 mb-2">
 		<div class="card-body">
 			<div class="row">
 				<div class="col-md-3"></div>
@@ -42,15 +42,12 @@ include '../config/test_input.php';
 							<tr>
 								<td>Food</td>
 								<td><?php echo $total_income ?></td>
-											<input type="hidden" id="total_income" value="<?php echo $total_income ?>"></input>
+										<input type="hidden" id="total_income" value="<?php echo $total_income ?>"></input>
 										</tr>
-									
 										<tr>
 											<td colspan="2" class="border-top"><strong>Total:</strong></td>
 											<td class="border-top"><strong><?php echo $total_income ?></strong></td>
-											
 										</tr>
-									
 									</thead>
 								</table>
 							</div>
@@ -59,7 +56,7 @@ include '../config/test_input.php';
 				</div>
 
 				<!-- Expenses -->
-				<div class="k-card card col-12">
+				<div class="k-card card col-12 mb-2">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-3"></div>
@@ -165,9 +162,8 @@ include '../config/test_input.php';
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-3"></div>
-								<div class="col-md-6">
-									<h4 class="card-title text-center">Income - Expenses</h4>
-								</div>
+							<div class="col-md-6">
+								<h4 class="card-title text-center">Income - Expenses</h4>
 							</div>
 						</div>
 
@@ -199,6 +195,7 @@ include '../config/test_input.php';
 										</tr>
 									</thead>
 								</table>	
+							</div>
 						</div>
+					</div>
 				</div>
-				

@@ -31,17 +31,27 @@ include '../process/handle_if_logout_stall.php';
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-2"></div>
-			<main class="col-10 p-4">
-			<div class="btn-group shadow-sm m-2">
-				<button class="btn bg-white" style="cursor:default"><i class="fas fa-search"></i></button>
-				<select name="position" class="btn bg-white" onchange="live_search()" id="date" style="cursor: pointer;">
-					<option value="">All</option>
-					<option value="<?php echo date('Y-m-d');?>">Daily</option>
-					<option value="<?php echo date('Y-m');?>">Monthly</option>
-					<option value="<?php echo date('Y');?>">Yearly</option>
-				</select>
-			</div>
-				<div id="info"></div>
+			<main class="col-10">
+				<div class="row">
+					<div class="col text-right">
+						<div class="btn-group my-2">
+							<div class="dropdown">
+								<button class="btn bg-white mr-2 shadow-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export</button>
+								<div class="dropdown-menu border-0 shadow">
+									<a href="#" class="dropdown-item">CSV</a>
+									<a href="#" class="dropdown-item">PDF</a>
+								</div>
+							</div>
+							<select name="position" class="btn bg-white shadow-sm" onchange="live_search()" id="date" style="cursor: pointer;">
+								<option value="">All</option>
+								<option value="<?php echo date('Y-m-d');?>">Daily</option>
+								<option value="<?php echo date('Y-m');?>">Monthly</option>
+								<option value="<?php echo date('Y');?>">Yearly</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div id="info" class="mb-2"></div>
 				<div class="container-fluid">
 					<div class="row">
 						<canvas id="ExpenseChart"></canvas>
@@ -51,32 +61,28 @@ include '../process/handle_if_logout_stall.php';
 			</main>
 		</div>
 	</div>
-
 </body>
 
 <script type="text/javascript">
 function live_search(){
-		var word = document.getElementById("date").value;
-		var xhttp;
-		xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function(){
-			if(this.readyState == 4 && this.status == 200){
-				document.getElementById("info").innerHTML = this.responseText;
-			}
-		};
-		if(word == ""){
-			xhttp.open("GET", "report_info.php", true);
-			xhttp.send();
-			return;
-		}else if(word != ""){
-			xhttp.open("GET" , "report_info.php?word="+word, true);
-			xhttp.send();
-			return;
+	var word = document.getElementById("date").value;
+	var xhttp;
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			document.getElementById("info").innerHTML = this.responseText;
 		}
+	};
+	if(word == ""){
+		xhttp.open("GET", "report_info.php", true);
+		xhttp.send();
+		return;
+	}else if(word != ""){
+		xhttp.open("GET" , "report_info.php?word="+word, true);
+		xhttp.send();
+		return;
 	}
-
-
-
+}
 
 var invoice_total = document.getElementById("invoice_session").value;
 var bill_total = document.getElementById("bill_session").value;
