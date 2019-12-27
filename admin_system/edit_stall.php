@@ -24,24 +24,38 @@ if (isset($_GET['su'])) {
     }
     $sql = "SELECT weekday, start_time, end_time FROM opening_time WHERE stall_ID = '$stall_ID';";
     $result = mysqli_query($conn, $sql);
+    $monday = $tuesday = $wednesday = $thursday = $friday = $saturday = $sunday = "";
     if(mysqli_num_rows($result) > 0){
         $ckd = "checked";
-        $monday = $tuesday = $wednesday = $thursday = $friday = $saturday = $sunday = "";
         while ($row = mysqli_fetch_assoc($result)) {
             if($row['weekday'] == 0){
                 $monday = $ckd;
+                $monday_start = $row['start_time'];
+                $monday_end = $row['end_time'];
             }elseif ($row['weekday'] == 1) {
-               $tuesday = $ckd;
+                $tuesday = $ckd;
+                $tuesday_start = $row['start_time'];
+                $tuesday_end = $row['end_time'];
             }elseif ($row['weekday'] == 2) {
-               $wednesday = $ckd;
+                $wednesday = $ckd;
+                $wednesday_start = $row['start_time'];
+                $wednesday_end = $row['end_time'];
             }elseif ($row['weekday'] == 3) {
-               $thursday = $ckd;
+                $thursday = $ckd;
+                $thursday_start = $row['start_time'];
+                $thursday_end = $row['end_time'];
             }elseif ($row['weekday'] == 4) {
-               $friday = $ckd;
+                $friday = $ckd;
+                $friday_start = $row['start_time'];
+                $friday_end = $row['end_time'];
             }elseif ($row['weekday'] == 5) {
-               $saturday = $ckd;
+                $saturday = $ckd;
+                $saturday_start = $row['start_time'];
+                $saturday_end = $row['end_time'];
             }elseif ($row['weekday'] == 6) {
-               $sunday = $ckd;
+                $sunday = $ckd;
+                $sunday_start = $row['start_time'];
+                $sunday_end = $row['end_time'];
             }
         }
     }
@@ -269,11 +283,11 @@ if (isset($_POST["edit_stall_image"])) {
                                                 <td>Sunday</td>
                                                 <td>
                                                     <div class="input-group input-group-sm">
-                                                        <input type="time" name="sunday_start" class="form-control" <?= ($sunday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="sunday_start" class="form-control" <?= ($sunday == "")? 'disabled': 'value="'. $sunday_start .'"required'; ?>>
                                                         <div class="input-group-prepend input-group-append">
                                                             <span class="input-group-text">-</span>
                                                         </div>
-                                                        <input type="time" name="sunday_end" class="form-control" <?= ($sunday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="sunday_end" class="form-control" <?= ($sunday == "")? 'disabled': 'value="'. $sunday_end .'"required'; ?>>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -284,11 +298,11 @@ if (isset($_POST["edit_stall_image"])) {
                                                 <td>Monday</td>
                                                 <td>
                                                     <div class="input-group input-group-sm">
-                                                        <input type="time" name="monday_start" class="form-control" <?= ($monday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="monday_start" class="form-control" <?= ($monday == "")? 'disabled': 'value="'. $monday_start .'" required'; ?>>
                                                         <div class="input-group-prepend input-group-append">
                                                             <span class="input-group-text">-</span>
                                                         </div>
-                                                        <input type="time" name="monday_end" class="form-control" <?= ($monday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="monday_end" class="form-control" <?= ($monday == "")? 'disabled': 'value="'. $monday_end .'"required'; ?>>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -299,11 +313,11 @@ if (isset($_POST["edit_stall_image"])) {
                                                 <td>Tuesday</td>
                                                 <td>
                                                     <div class="input-group input-group-sm">
-                                                        <input type="time" name="tuesday_start" class="form-control" <?= ($tuesday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="tuesday_start" class="form-control" <?= ($tuesday == "")? 'disabled': 'value="'. $tuesday_start .'"required'; ?>>
                                                         <div class="input-group-prepend input-group-append">
                                                             <span class="input-group-text">-</span>
                                                         </div>
-                                                        <input type="time" name="tuesday_end" class="form-control" <?= ($tuesday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="tuesday_end" class="form-control" <?= ($tuesday == "")? 'disabled': 'value="'. $tuesday_end .'"required'; ?>>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -314,11 +328,11 @@ if (isset($_POST["edit_stall_image"])) {
                                                 <td>Wednesday</td>
                                                 <td>
                                                     <div class="input-group input-group-sm">
-                                                        <input type="time" name="wednesday_start" class="form-control" <?= ($wednesday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="wednesday_start" class="form-control" <?= ($wednesday == "")? 'disabled': 'value="'. $wednesday_start .'"required'; ?>>
                                                         <div class="input-group-prepend input-group-append">
                                                             <span class="input-group-text">-</span>
                                                         </div>
-                                                        <input type="time" name="wednesday_end" class="form-control" <?= ($wednesday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="wednesday_end" class="form-control" <?= ($wednesday == "")? 'disabled': 'value="'. $wednesday_end .'"required'; ?>>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -329,11 +343,11 @@ if (isset($_POST["edit_stall_image"])) {
                                                 <td>Thursday</td>
                                                 <td>
                                                     <div class="input-group input-group-sm">
-                                                        <input type="time" name="thursday_start" class="form-control" <?= ($thursday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="thursday_start" class="form-control" <?= ($thursday == "")? 'disabled': 'value="'. $thursday_start .'"required'; ?>>
                                                         <div class="input-group-prepend input-group-append">
                                                             <span class="input-group-text">-</span>
                                                         </div>
-                                                        <input type="time" name="thursday_end" class="form-control" <?= ($thursday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="thursday_end" class="form-control" <?= ($thursday == "")? 'disabled': 'value="'. $thursday_end .'"required'; ?>>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -344,11 +358,11 @@ if (isset($_POST["edit_stall_image"])) {
                                                 <td>Friday</td>
                                                 <td>
                                                     <div class="input-group input-group-sm">
-                                                        <input type="time" name="friday_start" class="form-control" <?= ($friday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="friday_start" class="form-control" <?= ($friday == "")? 'disabled': 'value="'. $friday_start .'"required'; ?>>
                                                         <div class="input-group-prepend input-group-append">
                                                             <span class="input-group-text">-</span>
                                                         </div>
-                                                        <input type="time" name="friday_end" class="form-control" <?= ($friday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="friday_end" class="form-control" <?= ($friday == "")? 'disabled': 'value="'. $friday_end .'"required'; ?>>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -359,11 +373,11 @@ if (isset($_POST["edit_stall_image"])) {
                                                 <td>Saturday</td>
                                                 <td>
                                                     <div class="input-group input-group-sm">
-                                                        <input type="time" name="saturday_start" class="form-control" <?= ($saturday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="saturday_start" class="form-control" <?= ($saturday == "")? 'disabled': 'value="'. $saturday_start .'"required'; ?>>
                                                         <div class="input-group-prepend input-group-append">
                                                             <span class="input-group-text">-</span>
                                                         </div>
-                                                        <input type="time" name="saturday_end" class="form-control" <?= ($saturday == "")? 'disabled': 'required'; ?>>
+                                                        <input type="time" name="saturday_end" class="form-control" <?= ($saturday == "")? 'disabled': 'value="'. $saturday_end .'"required'; ?>>
                                                     </div>
                                                 </td>
                                             </tr>
