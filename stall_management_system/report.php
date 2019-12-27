@@ -20,7 +20,7 @@ include '../process/handle_if_logout_stall.php';
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-	<title></title>
+	<title>Report</title>
 </head>
 <body onload="live_search()">
 	<?php
@@ -35,13 +35,13 @@ include '../process/handle_if_logout_stall.php';
 				<div class="row">
 					<div class="col text-right">
 						<div class="btn-group my-2">
-							<div class="dropdown">
+							<!-- <div class="dropdown">
 								<button class="btn bg-white mr-2 shadow-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export</button>
 								<div class="dropdown-menu border-0 shadow">
 									<a href="#" class="dropdown-item">CSV</a>
 									<a href="#" class="dropdown-item">PDF</a>
 								</div>
-							</div>
+							</div> -->
 							<select name="position" class="btn bg-white shadow-sm" onchange="live_search()" id="date" style="cursor: pointer;">
 								<option value="">All</option>
 								<option value="<?php echo date('Y-m-d');?>">Daily</option>

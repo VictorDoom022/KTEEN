@@ -59,30 +59,27 @@ if(mysqli_num_rows($result) > 0){
 	}
 }
 ?>
-
 <div class="k-card bg-white h-100">
 	<div class="card-body">
-		<div class="h3">Dashboard</div>
+		<div class="h3">Total orders</div>
 		<hr>
 		<div class="row">
 			<div class="col-6" style="position: relative;">
-				<small class="text-muted">Total Orders of this week</small>
 				<span class="h2 text-center" style="position: absolute;top: 50%; left: 50%;transform: translate(-50%, -50%);"><?= $total; ?></span>
 			</div>
 			<div class="col-6">
-				<canvas id="myChart">Your browser does not support the HTML5 canvas tag.</canvas>
+				<canvas id="total_order_chart">Your browser does not support the HTML5 canvas tag.</canvas>
 			</div>
 		</div>
 	</div>
 </div>
-
 <script type="text/javascript">
-	var ctx = document.getElementById('myChart').getContext('2d');
+	var ctx = document.getElementById('total_order_chart').getContext('2d');
 	var myChart = new Chart(ctx, {
 		type: 'line',
 		data: {
 			labels: <?php echo json_encode($weekday_data, JSON_NUMERIC_CHECK); ?>,
-			datasets: [{
+	        datasets: [{
 	            label: 'Orders',
 	            data: <?php echo json_encode($count_order, JSON_NUMERIC_CHECK); ?>,
 		        borderColor: 'rgba(0, 0, 0)',
@@ -100,20 +97,12 @@ if(mysqli_num_rows($result) > 0){
 	        },
 	        legend: {
 	        	display: false
-	        },
-	        tooltips: {
-	        	mode: 'index',
-	        	intersect: false,
-	        },
-	        hover: {
-	        	mode: 'nearest',
-				intersect: true
-	        },
-	        elements: {
-	        	point: {
-	        		radius: 0
-	        	}
 	        }
+	        // elements: {
+	        // 	point: {
+	        // 		radius: 0
+	        // 	}
+	        // }
 	    }
 	});
 </script>
