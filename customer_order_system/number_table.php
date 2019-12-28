@@ -28,7 +28,7 @@ if(mysqli_num_rows($result) > 0){
 <?php
 }else{
 ?>
-<div class="text-center h4" style="margin: 80px 0;">Please wait</div>
+<div class="text-center h4" style="margin: 80px 0;">No order so far...<br>Please wait....</div>
 <?php
 }
 ?>

@@ -97,12 +97,20 @@ if(mysqli_num_rows($result) > 0){
 	        },
 	        legend: {
 	        	display: false
+	        },
+	        tooltips: {
+	        	mode: 'index',
+	        	intersect: false,
+	        },
+	        hover: {
+	        	mode: 'nearest',
+				intersect: true
+	        },
+	        elements: {
+	        	point: {
+	        		radius: 0
+	        	}
 	        }
-	        // elements: {
-	        // 	point: {
-	        // 		radius: 0
-	        // 	}
-	        // }
 	    }
 	});
 </script>

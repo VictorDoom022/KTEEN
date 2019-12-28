@@ -24,7 +24,7 @@ if(isset($_POST['stall_username']) && !empty($_POST['stall_username'])){
 	if(mysqli_num_rows($notice) > 0){
 		while ($notice_row = mysqli_fetch_assoc($notice)) {
 	?>
-	<div class="row">
+	<div class="row pb-3">
 		<div class="col-md-2 text-muted">
 			<?= $notice_row['date']; ?>
 		</div>

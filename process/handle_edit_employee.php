@@ -18,7 +18,7 @@ if(isset($_GET['employee_id'])){
         }
     }
 }else{
-    // header("location: index.php");
+    header("location: index.php");
 }
 
 if (isset($_POST['edit_employee'])) {
@@ -37,9 +37,6 @@ if (isset($_POST['edit_employee'])) {
     $sql = "UPDATE staff SET name = '$employee_name', NRIC = '$NRIC', contact_no = '$contact_no', address = '$address', position = '$position', salary = '$salary' WHERE ID = '$employee_id';";
     mysqli_query($conn, $sql);
 
-    // if(){
-
-    // }
-    // header("location: employee.php");
+    header("location: employee.php");
 }
 ?>

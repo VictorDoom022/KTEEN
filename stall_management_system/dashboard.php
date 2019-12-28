@@ -15,31 +15,31 @@ $total = 0;
 
 switch ($weekday_today) {
 	case '0':
-		$weekday_data = array('Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday');
+		$weekday_data = array('Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Today');
 		$temp = array(1, 2, 3, 4, 5, 6, 0);
 		break;
 	case '1':
-		$weekday_data = array('Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday');
+		$weekday_data = array('Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Today');
 		$temp = array(2, 3, 4, 5, 6, 0, 1);
 		break;
 	case '2':
-		$weekday_data = array('Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday');
+		$weekday_data = array('Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Today');
 		$temp = array(3, 4, 5, 6, 0, 1, 2);
 		break;
 	case '3':
-		$weekday_data = array('Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday');
+		$weekday_data = array('Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Today');
 		$temp = array(4, 5, 6, 0, 1, 2, 3);
 		break;
 	case '4':
-		$weekday_data = array('Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
+		$weekday_data = array('Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Today');
 		$temp = array(5, 6, 0, 1, 2, 3, 4);
 		break;
 	case '5':
-		$weekday_data = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+		$weekday_data = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Today');
 		$temp = array(6, 0, 1, 2, 3, 4, 5);
 		break;
 	case '6':
-		$weekday_data = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+		$weekday_data = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Today');
 		$temp = array(0, 1, 2, 3, 4, 5, 6);
 		break;
 }

@@ -41,9 +41,8 @@ if(isset($_POST['order_list']) && isset($_POST['stall_username'])){
 			$amount = mysqli_fetch_assoc($result)['amount'];
 		}
 		$amount -= $total;
-		$customer_username_md5 = md5($customer_username);
 		$sql = "UPDATE wallet SET amount = $amount WHERE username = '$customer_username';";
-		$sql1 ="INSERT INTO transaction_history(customer_name, amount,date,type) VALUES ('$customer_username_md5', '$total', NOW(),'2')";
+		$sql1 ="INSERT INTO transaction_history(customer_name, amount,date,type) VALUES ('$customer_username', '$total', NOW(),'2')";
 		mysqli_query($conn, $sql);
 		mysqli_query($conn, $sql1);
 		$payment_method = "e-wallet";

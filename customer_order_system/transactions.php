@@ -25,7 +25,7 @@ include '../config/config.php';
 		<div class="jumbotron bg-white shadow">
 			<div class="container">
 				<p class="text">Transaction History</p>
-					<table class="table">
+					<table class="table table-sm">
 					<thead>
 						<tr>
 							<th style="text-align: center;">Type</th>
@@ -35,9 +35,9 @@ include '../config/config.php';
 						<?php 
 							$username = $_SESSION['customer_username'];
 							$typename;
-							$sql = "SELECT ID,customer_name,amount,date,type FROM transaction_history where customer_name ='$username'";
+							$sql = "SELECT ID, customer_name, amount,date,type FROM transaction_history where customer_name ='$username' ORDER BY ID DESC;";
 							$result = mysqli_query($conn, $sql);
-							if (mysqli_num_rows($result)) {
+							if (mysqli_num_rows($result) > 0) {
 								while ($row = mysqli_fetch_assoc($result)) {
 									if($row['type'] == '1'){
 										$typename = '<td class="text-success" style="text-align: center;">Top-Up</td>' ;

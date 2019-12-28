@@ -82,94 +82,95 @@ function live_search(){
 		xhttp.send();
 		return;
 	}
+
+	var invoice_total = document.getElementById("invoice_session").value;
+	var bill_total = document.getElementById("bill_session").value;
+	var receipt_total = document.getElementById("receipt_session").value;
+	var mail_total = document.getElementById("mail_session").value;
+
+	var income_total = document.getElementById("total_income").value;
+	var expenses_total = document.getElementById("total_expenses").value;
+	console.log(expenses_total);
+
+	var ctx = document.getElementById('ExpenseChart').getContext('2d');
+	var chart = new Chart(ctx, {
+	    // The type of chart we want to create
+	    type: 'doughnut',
+
+	    // The data for our dataset
+	    data: {
+	        labels: ['Invoice', 'Bill', 'Receipt', 'Mail'],
+	        datasets: [{
+	            label: 'Expenses',
+	            backgroundColor:[
+							'rgba(3, 49, 255)',
+							'rgba(247, 20, 50)',
+							'rgba(83, 237, 104)',
+							'rgba(75, 192, 192, 0.6)'
+						],
+	            borderColor: 'rgb(255, 255, 255)',
+	            data: [invoice_total, bill_total, receipt_total, mail_total]
+	        }]
+	    },
+
+	    // Configuration options go here
+	    options: {
+			title:{
+				display: true,
+				text: 'Expenses'
+			},
+			layout:{
+				padding:{
+						left:0,
+						right:0,
+						bottom:50,
+						top:0
+					},
+				},
+
+		}
+	});
+
+
+	var ctx = document.getElementById('finalChart').getContext('2d');
+	var chart = new Chart(ctx, {
+	    // The type of chart we want to create
+	    type: 'bar',
+
+	    // The data for our dataset
+	    data: {
+	        labels: ['Income', 'Expenses'],
+	        datasets: [{
+	            label: 'Expenses',
+	            backgroundColor:[
+							'rgba(3, 49, 255)',
+							'rgba(83, 237, 104)',
+							'rgba(75, 192, 192, 0.6)'
+						],
+	            borderColor: 'rgb(255, 255, 255)',
+	            data: [income_total, expenses_total]
+	        }]
+	    },
+
+	    // Configuration options go here
+	    options: {
+			title:{
+				display: true,
+				text: 'Income & Expenses Comparison'
+			},
+			layout:{
+				padding:{
+						left:0,
+						right:0,
+						bottom:300,
+						top:0
+					},
+				},
+		}
+	});
 }
 
-var invoice_total = document.getElementById("invoice_session").value;
-var bill_total = document.getElementById("bill_session").value;
-var receipt_total = document.getElementById("receipt_session").value;
-var mail_total = document.getElementById("mail_session").value;
 
-var income_total = document.getElementById("total_income").value;
-var expenses_total = document.getElementById("total_expenses").value;
-console.log(expenses_total);
-
-var ctx = document.getElementById('ExpenseChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'doughnut',
-
-    // The data for our dataset
-    data: {
-        labels: ['Invoice', 'Bill', 'Receipt', 'Mail'],
-        datasets: [{
-            label: 'Expenses',
-            backgroundColor:[
-						'rgba(3, 49, 255)',
-						'rgba(247, 20, 50)',
-						'rgba(83, 237, 104)',
-						'rgba(75, 192, 192, 0.6)'
-					],
-            borderColor: 'rgb(255, 255, 255)',
-            data: [invoice_total, bill_total, receipt_total, mail_total]
-        }]
-    },
-
-    // Configuration options go here
-    options: {
-		title:{
-			display: true,
-			text: 'Expenses'
-		},
-		layout:{
-			padding:{
-					left:0,
-					right:0,
-					bottom:50,
-					top:0
-				},
-			},
-
-	}
-});
-
-
-var ctx = document.getElementById('finalChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'bar',
-
-    // The data for our dataset
-    data: {
-        labels: ['Income', 'Expenses'],
-        datasets: [{
-            label: 'Expenses',
-            backgroundColor:[
-						'rgba(3, 49, 255)',
-						'rgba(83, 237, 104)',
-						'rgba(75, 192, 192, 0.6)'
-					],
-            borderColor: 'rgb(255, 255, 255)',
-            data: [income_total, expenses_total]
-        }]
-    },
-
-    // Configuration options go here
-    options: {
-		title:{
-			display: true,
-			text: 'Income & Expenses Comparison'
-		},
-		layout:{
-			padding:{
-					left:0,
-					right:0,
-					bottom:300,
-					top:0
-				},
-			},
-
-	}
-});
 </script>
 </html>
 

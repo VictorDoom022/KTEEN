@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 include '../config/config.php';
 include '../config/test_input.php';
 
@@ -8,6 +8,8 @@ $searchword = "";
 if(isset($_GET['word'])){
 	$searchword = " WHERE date LIKE '%".$_GET['word']."%'";
 }
+
+$stall_ID = $_SESSION['kteen_stall_id'];
 ?>
 
 
@@ -16,9 +18,9 @@ if(isset($_GET['word'])){
 		<div class="card-body">
 			<div class="row">
 				<div class="col-md-3"></div>
-					<div class="col-md-6">
-						<h4 class="card-title text-center">Income</h4>
-					</div>			
+				<div class="col-md-6">
+					<h4 class="card-title text-center">Income</h4>
+				</div>			
 			</div>
 			<div class="row">
 				<div class="table-responsive">
@@ -31,11 +33,12 @@ if(isset($_GET['word'])){
 							</tr>
 						<?php
 							$total_income=0; 
-							$sql = "SELECT total FROM payment".$searchword;
+							$sql = "SELECT total FROM payment LEFT JOIN orders ON payment.order_ID = orders.ID WHERE stall_ID = '$stall_ID'".$searchword;
+							// $sql = "SELECT total FROM payment".$searchword;
 							$result = $conn -> query($sql);
-							if(mysqli_num_rows($result)){
+							if(mysqli_num_rows($result) > 0){
 								while ($row = mysqli_fetch_assoc($result)) {
-									$total_income = $row['total'];
+									$total_income += $row['total'];
 								}
 							}
 						?>

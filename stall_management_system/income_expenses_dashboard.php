@@ -39,6 +39,10 @@
 	        		}
 	        	}],
 	            yAxes: [{
+	            	// gridLines: {
+	            	// 	borderDash: [5, 15],
+	            	// 	borderDashOffset: 0.5
+	            	// },
                     ticks: {
 	                    beginAtZero: true,
 	                }
@@ -46,12 +50,20 @@
 	        },
 	        legend: {
 	        	display: false
+	        },
+	        tooltips: {
+	        	mode: 'index',
+	        	intersect: false,
+	        },
+	        hover: {
+	        	mode: 'nearest',
+				intersect: true
+	        },
+	        elements: {
+	        	point: {
+	        		radius: 0
+	        	}
 	        }
-	        // elements: {
-	        // 	point: {
-	        // 		radius: 0
-	        // 	}
-	        // }
 	    }
 	});
 </script>
