@@ -1,3 +1,8 @@
+<?php
+session_start();
+include '../config/config.php';
+?>
+<div class="card-title">Payment not done (cash)</div>
 <table class="table table-sm">
 	<thead>
 		<tr>
