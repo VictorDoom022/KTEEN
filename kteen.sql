@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2019 at 01:27 PM
+-- Generation Time: Dec 29, 2019 at 08:23 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -142,8 +142,7 @@ INSERT INTO `food` (`ID`, `name`, `stall_ID`, `category_ID`, `image`, `price`, `
 (35, 'Maggi Mee', 6, 2, 'S6_Maggi Mee.jpg', 4.00, '1'),
 (36, 'Mee Pok', 6, 2, 'S6_Mee Pok.jpg', 6.00, '1'),
 (37, 'Prawn Noodle', 6, 2, 'S6_Prawn Noodle.jpg', 7.00, '1'),
-(38, 'Wan Tan Mee', 6, 2, 'S6_Wan Tan Mee.jpg', 7.00, '1'),
-(40, 'Maggi Mee2', 5, 2, 'S5_Maggi Mee2.jpg', 7.00, '1');
+(38, 'Wan Tan Mee', 6, 2, 'S6_Wan Tan Mee.jpg', 7.00, '1');
 
 -- --------------------------------------------------------
 
@@ -166,7 +165,7 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`ID`, `name`, `unit`, `price`, `description`, `date`, `stall_ID`) VALUES
-(4, 'Test', 'kgis', 500.00, 'Test edit', '2019-12-23 14:12:44', 5);
+(4, 'Test', 'kg', 500.00, 'Test edit', '2019-12-29 14:28:22', 5);
 
 -- --------------------------------------------------------
 
@@ -231,7 +230,9 @@ INSERT INTO `menu_approve` (`menu_approve_id`, `name`, `stall_ID`, `category_ID`
 (15, 'Prawn Noodle', 6, 2, 'S6_Prawn Noodle.jpg', 7.00, '1', '1'),
 (16, 'Wan Tan Mee', 6, 2, 'S6_Wan Tan Mee.jpg', 7.00, '1', '1'),
 (17, 'jeng', 5, 2, 'S5_jeng.jpg', 6.00, '1', '1'),
-(18, 'Maggi Mee2', 5, 2, 'S5_Maggi Mee2.jpg', 7.00, '1', '1');
+(18, 'Maggi Mee2', 5, 2, 'S5_Maggi Mee2.jpg', 7.00, '1', '1'),
+(19, 'abc123', 5, 5, 'S5_abc123.jpg', 0.00, '1', '2'),
+(20, 'abc123', 5, 3, 'S5_abc123.jpg', 0.01, '1', '2');
 
 -- --------------------------------------------------------
 
@@ -251,9 +252,7 @@ CREATE TABLE `notice` (
 --
 
 INSERT INTO `notice` (`ID`, `stall_ID`, `date`, `description`) VALUES
-(5, 'stall01', '2019-09-19', 'We will closed form september 20 to 22'),
-(7, 'stall01', '2019-12-03', 'abc'),
-(8, 'stall01', '2019-12-03', 'abcabc');
+(5, 'stall01', '2019-09-19', 'We will closed form september 20 to 22');
 
 -- --------------------------------------------------------
 
@@ -285,7 +284,9 @@ INSERT INTO `notifications` (`ID`, `recipient_id`, `sender_id`, `unread`, `title
 (20, 6, 0, 1, 'approve', 'You menu has been approve by Administrator', 0, '2019-12-03 10:30:21'),
 (21, 6, 0, 1, 'approve', 'You menu has been approve by Administrator', 0, '2019-12-03 10:31:21'),
 (22, 6, 0, 1, 'approve', 'You menu has been approve by Administrator', 0, '2019-12-03 10:31:21'),
-(24, 5, 0, 1, 'approve', 'You menu (Maggi Mee2) has been approve by Administrator ', 0, '2019-12-03 14:43:15');
+(24, 5, 0, 1, 'approve', 'You menu (Maggi Mee2) has been approve by Administrator ', 0, '2019-12-03 14:43:15'),
+(25, 5, 0, 1, 'reject', 'You menu has been approve by Administrator', 0, '2019-12-29 12:09:00'),
+(26, 5, 0, 1, 'reject', 'You menu has been approve by Administrator', 0, '2019-12-29 12:09:01');
 
 -- --------------------------------------------------------
 
@@ -303,111 +304,111 @@ CREATE TABLE `number` (
 --
 
 INSERT INTO `number` (`order_number`, `status`) VALUES
-(1, 'busy'),
-(2, 'busy'),
-(3, 'busy'),
-(4, 'busy'),
-(5, 'busy'),
-(6, 'busy'),
-(7, 'busy'),
-(8, 'busy'),
-(9, 'busy'),
-(10, 'busy'),
-(11, 'busy'),
-(12, 'busy'),
-(13, 'busy'),
-(14, 'busy'),
-(15, 'busy'),
-(16, 'busy'),
-(17, 'busy'),
-(18, 'busy'),
-(19, 'busy'),
-(20, 'busy'),
-(21, 'busy'),
-(22, 'busy'),
-(23, 'busy'),
-(24, 'busy'),
-(25, 'busy'),
-(26, 'busy'),
-(27, 'busy'),
-(28, 'busy'),
-(29, 'busy'),
-(30, 'busy'),
-(31, 'busy'),
-(32, 'busy'),
-(33, 'busy'),
-(34, 'busy'),
-(35, 'busy'),
-(36, 'busy'),
-(37, 'busy'),
-(38, 'busy'),
-(39, 'busy'),
-(40, 'busy'),
-(41, 'busy'),
-(42, 'busy'),
-(43, 'busy'),
-(44, 'busy'),
-(45, 'busy'),
-(46, 'busy'),
-(47, 'busy'),
-(48, 'busy'),
-(49, 'busy'),
-(50, 'busy'),
-(51, 'busy'),
-(52, 'busy'),
-(53, 'busy'),
-(54, 'busy'),
-(55, 'busy'),
-(56, 'busy'),
-(57, 'busy'),
-(58, 'busy'),
-(59, 'busy'),
-(60, 'busy'),
-(61, 'busy'),
-(62, 'busy'),
-(63, 'busy'),
-(64, 'busy'),
-(65, 'busy'),
-(66, 'busy'),
-(67, 'busy'),
-(68, 'busy'),
-(69, 'busy'),
-(70, 'busy'),
-(71, 'busy'),
-(72, 'busy'),
-(73, 'busy'),
-(74, 'busy'),
-(75, 'busy'),
-(76, 'busy'),
-(77, 'busy'),
-(78, 'busy'),
-(79, 'busy'),
-(80, 'busy'),
-(81, 'busy'),
-(82, 'busy'),
-(83, 'busy'),
-(84, 'busy'),
-(85, 'busy'),
-(86, 'busy'),
-(87, 'busy'),
-(88, 'busy'),
-(89, 'busy'),
-(90, 'busy'),
-(91, 'busy'),
-(92, 'busy'),
-(93, 'busy'),
-(94, 'busy'),
-(95, 'busy'),
-(96, 'busy'),
-(97, 'busy'),
-(98, 'busy'),
-(99, 'busy'),
-(100, 'busy'),
-(101, 'busy'),
-(102, 'busy'),
-(103, 'busy'),
-(104, 'busy'),
-(105, 'busy'),
+(1, 'free'),
+(2, 'free'),
+(3, 'free'),
+(4, 'free'),
+(5, 'free'),
+(6, 'free'),
+(7, 'free'),
+(8, 'free'),
+(9, 'free'),
+(10, 'free'),
+(11, 'free'),
+(12, 'free'),
+(13, 'free'),
+(14, 'free'),
+(15, 'free'),
+(16, 'free'),
+(17, 'free'),
+(18, 'free'),
+(19, 'free'),
+(20, 'free'),
+(21, 'free'),
+(22, 'free'),
+(23, 'free'),
+(24, 'free'),
+(25, 'free'),
+(26, 'free'),
+(27, 'free'),
+(28, 'free'),
+(29, 'free'),
+(30, 'free'),
+(31, 'free'),
+(32, 'free'),
+(33, 'free'),
+(34, 'free'),
+(35, 'free'),
+(36, 'free'),
+(37, 'free'),
+(38, 'free'),
+(39, 'free'),
+(40, 'free'),
+(41, 'free'),
+(42, 'free'),
+(43, 'free'),
+(44, 'free'),
+(45, 'free'),
+(46, 'free'),
+(47, 'free'),
+(48, 'free'),
+(49, 'free'),
+(50, 'free'),
+(51, 'free'),
+(52, 'free'),
+(53, 'free'),
+(54, 'free'),
+(55, 'free'),
+(56, 'free'),
+(57, 'free'),
+(58, 'free'),
+(59, 'free'),
+(60, 'free'),
+(61, 'free'),
+(62, 'free'),
+(63, 'free'),
+(64, 'free'),
+(65, 'free'),
+(66, 'free'),
+(67, 'free'),
+(68, 'free'),
+(69, 'free'),
+(70, 'free'),
+(71, 'free'),
+(72, 'free'),
+(73, 'free'),
+(74, 'free'),
+(75, 'free'),
+(76, 'free'),
+(77, 'free'),
+(78, 'free'),
+(79, 'free'),
+(80, 'free'),
+(81, 'free'),
+(82, 'free'),
+(83, 'free'),
+(84, 'free'),
+(85, 'free'),
+(86, 'free'),
+(87, 'free'),
+(88, 'free'),
+(89, 'free'),
+(90, 'free'),
+(91, 'free'),
+(92, 'free'),
+(93, 'free'),
+(94, 'free'),
+(95, 'free'),
+(96, 'free'),
+(97, 'free'),
+(98, 'free'),
+(99, 'free'),
+(100, 'free'),
+(101, 'free'),
+(102, 'free'),
+(103, 'free'),
+(104, 'free'),
+(105, 'free'),
 (106, 'free'),
 (107, 'free'),
 (108, 'free'),
@@ -531,7 +532,9 @@ INSERT INTO `opening_time` (`ID`, `stall_ID`, `weekday`, `start_time`, `end_time
 (6, 7, 5, '08:30:00', '21:00:00'),
 (7, 7, 6, '08:30:00', '21:00:00'),
 (8, 5, 0, '09:00:00', '20:00:00'),
-(9, 5, 1, '06:00:00', '17:54:00');
+(9, 5, 1, '06:00:00', '17:54:00'),
+(10, 5, 5, '06:00:00', '17:54:00'),
+(11, 5, 6, '06:00:00', '17:54:00');
 
 -- --------------------------------------------------------
 
@@ -541,7 +544,7 @@ INSERT INTO `opening_time` (`ID`, `stall_ID`, `weekday`, `start_time`, `end_time
 
 CREATE TABLE `orders` (
   `ID` int(11) NOT NULL,
-  `customer_username` varchar(32) NOT NULL,
+  `customer_username` varchar(32) NOT NULL DEFAULT '-',
   `stall_ID` int(6) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `number` int(11) NOT NULL,
@@ -559,11 +562,56 @@ INSERT INTO `orders` (`ID`, `customer_username`, `stall_ID`, `date`, `number`, `
 (16, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 10:32:33', 98, 1, '1'),
 (17, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 10:32:44', 99, 1, '1'),
 (18, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 10:51:12', 100, 1, '1'),
-(19, 'fa7efac14f396ba1d4d5f26209493574', 6, '2019-12-03 11:13:08', 101, 0, '0'),
-(20, 'cefed8806f481b2768a65bfa2fe7d38e', 6, '2019-12-03 11:14:46', 102, 0, '0'),
-(21, 'fa7efac14f396ba1d4d5f26209493574', 6, '2019-12-03 13:50:31', 103, 0, '0'),
 (22, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 14:49:42', 104, 1, '1'),
-(23, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 14:52:43', 105, 1, '1');
+(23, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-03 14:52:43', 105, 1, '1'),
+(29, '-', 5, '2019-12-24 16:52:40', 1, 1, '1'),
+(30, '-', 5, '2019-12-22 16:52:45', 2, 1, '1'),
+(31, '-', 5, '2019-12-23 16:53:41', 3, 1, '1'),
+(32, '-', 5, '2019-12-21 16:55:12', 1, 1, '1'),
+(33, '-', 5, '2019-12-26 16:59:45', 2, 1, '1'),
+(34, '-', 5, '2019-12-26 16:59:52', 3, 1, '1'),
+(35, '-', 5, '2019-12-26 16:59:54', 4, 1, '1'),
+(36, '-', 5, '2019-12-26 17:00:37', 5, 1, '1'),
+(37, '-', 5, '2019-12-26 17:01:18', 6, 1, '1'),
+(38, '-', 5, '2019-12-26 17:02:54', 7, 1, '1'),
+(39, '-', 5, '2019-12-26 17:18:16', 1, 1, '1'),
+(40, '-', 5, '2019-12-26 17:18:42', 2, 1, '1'),
+(41, '-', 5, '2019-12-26 17:18:49', 3, 1, '1'),
+(42, '-', 5, '2019-12-26 17:19:01', 4, 1, '1'),
+(43, '-', 5, '2019-12-26 17:19:05', 5, 1, '1'),
+(44, '-', 5, '2019-12-26 17:27:30', 6, 1, '1'),
+(45, '-', 5, '2019-12-26 17:27:55', 7, 1, '1'),
+(46, '-', 5, '2019-12-25 17:34:53', 8, 1, '1'),
+(47, '-', 5, '2019-12-27 20:25:38', 1, 1, '1'),
+(48, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 10:46:23', 1, 1, '1'),
+(49, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 10:52:11', 1, 1, '1'),
+(50, '-', 5, '2019-12-28 10:53:49', 1, 1, '1'),
+(51, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 10:54:31', 2, 1, '1'),
+(52, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 10:54:58', 3, 1, '1'),
+(53, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 10:55:36', 1, 1, '1'),
+(54, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 11:22:18', 1, 1, '1'),
+(55, 'cefed8806f481b2768a65bfa2fe7d38e', 5, '2019-12-28 11:30:28', 1, 1, '1'),
+(56, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 11:38:06', 2, 1, '1'),
+(57, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 11:42:34', 3, 1, '1'),
+(58, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 12:02:39', 4, 1, '1'),
+(59, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 12:45:53', 1, 1, '1'),
+(60, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 13:37:54', 1, 1, '1'),
+(61, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 14:25:40', 1, 1, '1'),
+(62, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 15:02:17', 1, 1, '1'),
+(63, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 15:22:15', 1, 1, '1'),
+(64, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-28 15:39:53', 1, 1, '1'),
+(65, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-29 10:04:15', 1, 1, '1'),
+(66, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-29 10:15:03', 1, 1, '1'),
+(67, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-29 10:19:29', 1, 1, '1'),
+(68, '-', 5, '2019-12-29 11:55:50', 1, 1, '1'),
+(69, '-', 5, '2019-12-29 11:56:09', 2, 1, '1'),
+(70, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-29 12:25:36', 1, 1, '1'),
+(71, '-', 5, '2019-12-29 12:27:24', 1, 1, '1'),
+(72, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-29 12:51:37', 1, 1, '1'),
+(73, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-29 14:09:44', 1, 1, '1'),
+(74, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-29 14:22:31', 1, 1, '1'),
+(75, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-29 14:25:20', 1, 1, '1'),
+(76, '098f6bcd4621d373cade4e832627b4f6', 5, '2019-12-29 14:40:00', 1, 1, '1');
 
 -- --------------------------------------------------------
 
@@ -591,15 +639,84 @@ INSERT INTO `order_detail` (`ID`, `order_ID`, `food_ID`, `quantity`, `remark`) V
 (26, 17, 29, 2, NULL),
 (27, 17, 31, 2, NULL),
 (28, 18, 29, 1, NULL),
-(29, 19, 37, 1, NULL),
-(30, 20, 35, 1, NULL),
-(31, 20, 34, 1, NULL),
-(32, 21, 38, 9, NULL),
 (33, 22, 30, 1, NULL),
 (34, 22, 31, 1, NULL),
 (35, 23, 30, 1, NULL),
 (36, 23, 31, 1, NULL),
-(37, 0, 29, 29, NULL);
+(70, 29, 29, 1, NULL),
+(71, 29, 30, 2, NULL),
+(72, 30, 29, 1, NULL),
+(73, 30, 30, 2, NULL),
+(74, 31, 29, 1, NULL),
+(75, 31, 30, 1, NULL),
+(76, 32, 29, 1, NULL),
+(77, 32, 30, 1, NULL),
+(78, 33, 29, 1, NULL),
+(79, 33, 30, 1, NULL),
+(80, 34, 29, 1, NULL),
+(81, 34, 30, 1, NULL),
+(82, 35, 29, 1, NULL),
+(83, 35, 30, 1, NULL),
+(84, 36, 29, 1, NULL),
+(85, 36, 30, 1, NULL),
+(86, 37, 29, 1, NULL),
+(87, 37, 30, 1, NULL),
+(88, 38, 29, 1, NULL),
+(89, 38, 30, 2, NULL),
+(90, 39, 29, 1, NULL),
+(91, 39, 30, 1, NULL),
+(92, 40, 29, 1, NULL),
+(93, 40, 30, 1, NULL),
+(94, 41, 29, 1, NULL),
+(95, 41, 30, 2, NULL),
+(96, 42, 29, 1, NULL),
+(97, 43, 29, 1, NULL),
+(98, 43, 30, 2, NULL),
+(99, 44, 29, 1, NULL),
+(100, 44, 30, 2, NULL),
+(101, 45, 29, 1, NULL),
+(102, 45, 30, 1, NULL),
+(103, 46, 29, 1, NULL),
+(104, 47, 29, 1, NULL),
+(105, 47, 30, 2, NULL),
+(106, 0, 0, 0, NULL),
+(107, 0, 0, 0, NULL),
+(108, 48, 29, 2, NULL),
+(109, 48, 30, 2, NULL),
+(110, 49, 29, 1, NULL),
+(111, 50, 29, 1, NULL),
+(112, 50, 30, 1, NULL),
+(113, 51, 29, 2, NULL),
+(114, 52, 30, 1, NULL),
+(115, 53, 29, 1, NULL),
+(116, 54, 31, 2, NULL),
+(117, 55, 29, 1, NULL),
+(118, 56, 29, 1, NULL),
+(119, 57, 29, 1, NULL),
+(120, 58, 32, 1, NULL),
+(121, 59, 32, 2, NULL),
+(122, 60, 29, 1, NULL),
+(123, 61, 29, 3, NULL),
+(124, 62, 32, 1, NULL),
+(125, 63, 31, 1, NULL),
+(126, 64, 29, 1, NULL),
+(127, 65, 29, 1, NULL),
+(128, 66, 29, 1, NULL),
+(129, 67, 29, 1, NULL),
+(130, 68, 29, 1, NULL),
+(131, 69, 30, 2, NULL),
+(132, 69, 29, 1, NULL),
+(133, 69, 31, 1, NULL),
+(134, 70, 29, 1, NULL),
+(135, 70, 30, 1, NULL),
+(136, 71, 29, 1, NULL),
+(137, 71, 30, 1, NULL),
+(138, 72, 29, 2, NULL),
+(139, 73, 29, 2, NULL),
+(140, 74, 30, 2, NULL),
+(141, 75, 29, 1, NULL),
+(142, 75, 30, 1, NULL),
+(143, 76, 29, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -625,11 +742,58 @@ INSERT INTO `payment` (`ID`, `method`, `date`, `total`, `order_ID`) VALUES
 (8, 'cash', '0000-00-00 00:00:00', 53.00, 16),
 (9, 'cash', '0000-00-00 00:00:00', 20.00, 17),
 (10, 'e-wallet', '0000-00-00 00:00:00', 5.00, 18),
-(11, '', '0000-00-00 00:00:00', 7.00, 19),
-(12, '', '2019-12-03 11:14:46', 11.00, 20),
-(13, '', '2019-12-03 13:50:31', 63.00, 21),
 (14, 'e-wallet', '2019-12-03 14:49:42', 9.00, 22),
-(15, 'cash', '2019-12-03 14:52:43', 9.00, 23);
+(15, 'cash', '2019-12-03 14:52:43', 9.00, 23),
+(16, 'cash', '2019-12-26 16:01:29', 0.00, 27),
+(17, 'cash', '2019-12-26 16:16:02', 0.00, 28),
+(18, 'cash', '2019-12-26 16:52:40', 0.00, 29),
+(19, 'cash', '2019-12-26 16:52:45', 0.00, 30),
+(20, 'cash', '2019-12-26 16:53:41', 0.00, 31),
+(21, 'cash', '2019-12-26 16:55:13', 0.00, 32),
+(22, 'cash', '2019-12-26 16:59:45', 0.00, 33),
+(23, 'cash', '2019-12-26 16:59:52', 0.00, 34),
+(24, 'cash', '2019-12-26 16:59:55', 0.00, 35),
+(25, 'cash', '2019-12-26 17:00:38', 0.00, 36),
+(26, 'cash', '2019-12-26 17:01:18', 0.00, 37),
+(27, 'cash', '2019-12-26 17:02:55', 0.00, 38),
+(28, 'cash', '2019-12-26 17:18:16', 9.00, 39),
+(29, 'cash', '2019-12-26 17:18:42', 9.00, 40),
+(30, 'cash', '2019-12-26 17:18:49', 13.00, 41),
+(31, 'cash', '2019-12-26 17:19:01', 5.00, 42),
+(32, 'cash', '2019-12-26 17:19:06', 13.00, 43),
+(33, 'cash', '2019-12-26 17:27:30', 13.00, 44),
+(34, 'cash', '2019-12-26 17:27:55', 9.00, 45),
+(35, 'cash', '2019-12-26 17:34:53', 5.00, 46),
+(36, 'cash', '2019-12-26 20:25:38', 13.00, 47),
+(37, 'e-wallet', '2019-12-28 10:46:23', 18.00, 48),
+(38, 'cash', '2019-12-28 10:52:11', 5.00, 49),
+(39, 'cash', '2019-12-28 10:53:49', 9.00, 50),
+(40, 'e-wallet', '2019-12-28 10:54:31', 10.00, 51),
+(41, 'e-wallet', '2019-12-28 10:54:58', 4.00, 52),
+(42, 'e-wallet', '2019-12-28 10:55:36', 5.00, 53),
+(43, 'e-wallet', '2019-12-28 11:22:18', 10.00, 54),
+(44, 'e-wallet', '2019-12-28 11:30:28', 5.00, 55),
+(45, 'e-wallet', '2019-12-28 11:38:06', 5.00, 56),
+(46, 'e-wallet', '2019-12-28 11:42:34', 5.00, 57),
+(47, 'cash', '2019-12-28 12:02:39', 6.00, 58),
+(48, 'e-wallet', '2019-12-28 12:45:54', 12.00, 59),
+(49, 'e-wallet', '2019-12-28 13:37:55', 5.00, 60),
+(50, 'e-wallet', '2019-12-28 14:25:41', 15.00, 61),
+(51, 'cash', '2019-12-28 15:02:17', 6.00, 62),
+(52, 'e-wallet', '2019-12-28 15:22:16', 5.00, 63),
+(53, 'e-wallet', '2019-12-28 15:39:53', 5.00, 64),
+(54, 'e-wallet', '2019-12-29 10:04:16', 5.00, 65),
+(55, 'e-wallet', '2019-12-29 10:15:04', 5.00, 66),
+(56, 'e-wallet', '2019-12-29 10:19:29', 5.00, 67),
+(57, 'cash', '2019-12-29 11:55:50', 5.00, 68),
+(58, 'cash', '2019-12-29 11:56:09', 18.00, 69),
+(59, 'e-wallet', '2019-12-29 12:25:36', 9.00, 70),
+(60, 'cash', '2019-12-29 12:27:24', 9.00, 71),
+(61, 'e-wallet', '2019-12-29 12:51:37', 10.00, 72),
+(62, 'e-wallet', '2019-12-29 14:09:44', 10.00, 73),
+(63, 'e-wallet', '2019-12-29 14:22:31', 8.00, 74),
+(64, 'e-wallet', '2019-12-29 14:25:20', 9.00, 75),
+(65, 'e-wallet', '2019-12-29 14:40:00', 5.00, 76);
 
 -- --------------------------------------------------------
 
@@ -662,7 +826,10 @@ INSERT INTO `purchase` (`ID`, `stall_ID`, `date`, `supplier_ID`, `content`, `pro
 (22, 5, '2019-10-11', 0, 'eegewgg', 'IDK123', '10', 10, 100),
 (23, 1, '2019-12-03', 0, '', 'tt', '0', 0, 0),
 (24, 1, '2019-12-03', 0, 'jjyy', 'choong jing yong', '1', 1, 1),
-(25, 5, '2019-12-03', 0, 'Buy', 'Product', '10', 2, 20);
+(25, 5, '2019-12-03', 0, 'Buy', 'Product', '10', 2, 20),
+(26, 5, '2019-12-28', 0, 'weregdrg', 'Product', '0', 0, 0),
+(27, 5, '2019-12-28', 0, 'Im testing', 'Product', '0', 0, 0),
+(28, 5, '2019-12-28', 0, 'Im testing', 'Product', '0', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -711,15 +878,16 @@ INSERT INTO `receipt` (`ID`, `receipt_number`, `stall_ID`, `supplier_name`, `dat
 CREATE TABLE `staff` (
   `ID` int(6) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `NRIC` int(12) NOT NULL,
+  `NRIC` varchar(14) NOT NULL,
   `image` varchar(255) NOT NULL,
   `stall_ID` varchar(10) NOT NULL,
-  `contact_no` varchar(11) NOT NULL,
+  `contact_no` varchar(12) NOT NULL,
   `address` text NOT NULL,
   `username` varchar(10) NOT NULL,
   `password` varchar(32) NOT NULL,
   `position` varchar(50) NOT NULL,
   `salary` int(7) NOT NULL,
+  `experience` text,
   `available` varchar(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -727,9 +895,8 @@ CREATE TABLE `staff` (
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`ID`, `name`, `NRIC`, `image`, `stall_ID`, `contact_no`, `address`, `username`, `password`, `position`, `salary`, `available`) VALUES
-(8, 'jing yong', 1999101010, 'jingyong.jpg', '5', '01110011001', 'jln', 'jingyong', 'jingyong', 'head chef', 300, '1'),
-(9, 'victor', 333, 'victor.jpg', '5', '0187801201', 'jhg', 'victor', 'victor', 'counter', 3000, '1');
+INSERT INTO `staff` (`ID`, `name`, `NRIC`, `image`, `stall_ID`, `contact_no`, `address`, `username`, `password`, `position`, `salary`, `experience`, `available`) VALUES
+(16, 'jing yong', '990701-01-0115', 'jingyong.jpg', '5', '011-10011001', '5, Jalan Setia 5/9, Taman Setia Indah, Johor Bahru 81100, Johor.', 'jingyong', 'jingyong', 'counter', 3000, NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -748,7 +915,7 @@ CREATE TABLE `stall` (
   `contact_no` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `status` int(1) NOT NULL
+  `status` int(1) NOT NULL DEFAULT '2'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -756,9 +923,9 @@ CREATE TABLE `stall` (
 --
 
 INSERT INTO `stall` (`ID`, `username`, `stall_image`, `owner_image`, `stall_name`, `owner_name`, `NRIC`, `contact_no`, `email`, `password`, `status`) VALUES
-(5, 'stall01', 'stall.jpg', 'owner.jpg', 'Stall01', 'Tuan Hee', 2147483647, '0125648965', 'stall01@gmail.com', 'b2ca12dcc3fc922a59956e9b9a4c1484', 1),
-(6, 'stall02', 'stall.jpg', 'owner.jpg', 'Stall02', 'Victor', 999999, '999-9999999', 'stall02@gmail.com', 'e7994bc07b3d3cc596624c07c9966bad', 1),
-(7, 'stall03', 'stall.jpg', 'owner.jpg', 'stall03', 'hongyee', 1010010111, '0187801201', 'stall03@gmail.com', 'b8d1efbc8fdbf3547f0b549515ef336f', 1);
+(5, 'stall01', 'stall.jpg', 'owner.jpg', 'Stall01', 'Tuan Hee', 2147483647, '012-5648965', 'stall01@gmail.com', 'b2ca12dcc3fc922a59956e9b9a4c1484', 2),
+(6, 'stall02', 'stall.jpg', 'owner.jpg', 'Stall02', 'Victor', 999999, '999-9999999', 'stall02@gmail.com', 'e7994bc07b3d3cc596624c07c9966bad', 2),
+(7, 'stall03', 'stall.jpg', 'owner.jpg', 'stall03', 'hongyee', 1010010111, '018-7801201', 'stall03@gmail.com', 'b8d1efbc8fdbf3547f0b549515ef336f', 1);
 
 -- --------------------------------------------------------
 
@@ -791,6 +958,53 @@ INSERT INTO `supplier` (`ID`, `name`, `company_name`, `contact_no`, `address`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transaction_history`
+--
+
+CREATE TABLE `transaction_history` (
+  `ID` int(255) NOT NULL,
+  `customer_name` varchar(200) NOT NULL,
+  `amount` double(6,2) NOT NULL,
+  `date` varchar(50) NOT NULL,
+  `type` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction_history`
+--
+
+INSERT INTO `transaction_history` (`ID`, `customer_name`, `amount`, `date`, `type`) VALUES
+(3, '098f6bcd4621d373cade4e832627b4f6', 20.00, '2019-12-21 23:14:13', 1),
+(4, '098f6bcd4621d373cade4e832627b4f6', 201.00, '2019-12-21 23:24:14', 2),
+(5, '098f6bcd4621d373cade4e832627b4f6', 12.00, '2019-12-21 23:25:24', 2),
+(6, 'fb469d7ef430b0baf0cab6c436e70375', 4.00, '2019-12-21 23:26:41', 2),
+(7, 'fb469d7ef430b0baf0cab6c436e70375', 18.00, '2019-12-28 10:46:23', 2),
+(8, 'fb469d7ef430b0baf0cab6c436e70375', 10.00, '2019-12-28 10:54:31', 2),
+(9, 'fb469d7ef430b0baf0cab6c436e70375', 4.00, '2019-12-28 10:54:58', 2),
+(10, 'fb469d7ef430b0baf0cab6c436e70375', 5.00, '2019-12-28 10:55:36', 2),
+(11, 'fb469d7ef430b0baf0cab6c436e70375', 10.00, '2019-12-28 11:22:18', 2),
+(12, '9aec1de677f0de0bbc3fd5c6fe919f6e', 5.00, '2019-12-28 11:30:28', 2),
+(13, '9aec1de677f0de0bbc3fd5c6fe919f6e', 5.00, '2019-12-28 11:32:13', 2),
+(14, 'fb469d7ef430b0baf0cab6c436e70375', 5.00, '2019-12-28 11:38:06', 2),
+(15, '098f6bcd4621d373cade4e832627b4f6', 5.00, '2019-12-28 11:42:34', 2),
+(16, '098f6bcd4621d373cade4e832627b4f6', 12.00, '2019-12-28 12:45:53', 2),
+(17, '098f6bcd4621d373cade4e832627b4f6', 5.00, '2019-12-28 13:37:54', 2),
+(18, '098f6bcd4621d373cade4e832627b4f6', 15.00, '2019-12-28 14:25:41', 2),
+(19, '098f6bcd4621d373cade4e832627b4f6', 5.00, '2019-12-28 15:22:16', 2),
+(20, '098f6bcd4621d373cade4e832627b4f6', 5.00, '2019-12-28 15:39:53', 2),
+(21, '098f6bcd4621d373cade4e832627b4f6', 5.00, '2019-12-29 10:04:15', 2),
+(22, '098f6bcd4621d373cade4e832627b4f6', 5.00, '2019-12-29 10:15:04', 2),
+(23, '098f6bcd4621d373cade4e832627b4f6', 5.00, '2019-12-29 10:19:29', 2),
+(24, '098f6bcd4621d373cade4e832627b4f6', 9.00, '2019-12-29 12:25:36', 2),
+(25, '098f6bcd4621d373cade4e832627b4f6', 10.00, '2019-12-29 12:51:37', 2),
+(26, '098f6bcd4621d373cade4e832627b4f6', 10.00, '2019-12-29 14:09:44', 2),
+(27, '098f6bcd4621d373cade4e832627b4f6', 8.00, '2019-12-29 14:22:31', 2),
+(28, '098f6bcd4621d373cade4e832627b4f6', 9.00, '2019-12-29 14:25:20', 2),
+(29, '098f6bcd4621d373cade4e832627b4f6', 5.00, '2019-12-29 14:40:00', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `wallet`
 --
 
@@ -805,10 +1019,10 @@ CREATE TABLE `wallet` (
 --
 
 INSERT INTO `wallet` (`ID`, `username`, `amount`) VALUES
-(1, 'cefed8806f481b2768a65bfa2fe7d38e', 640.00),
+(1, 'cefed8806f481b2768a65bfa2fe7d38e', 735.00),
 (2, 'ae2b1fca515949e5d54fb22b8ed95575', 20.00),
 (3, 'fa7efac14f396ba1d4d5f26209493574', 20.00),
-(4, '098f6bcd4621d373cade4e832627b4f6', 70.00);
+(4, '098f6bcd4621d373cade4e832627b4f6', 1887.00);
 
 --
 -- Indexes for dumped tables
@@ -941,6 +1155,12 @@ ALTER TABLE `supplier`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `transaction_history`
+--
+ALTER TABLE `transaction_history`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `wallet`
 --
 ALTER TABLE `wallet`
@@ -978,7 +1198,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `inventory`
@@ -996,19 +1216,19 @@ ALTER TABLE `invoice`
 -- AUTO_INCREMENT for table `menu_approve`
 --
 ALTER TABLE `menu_approve`
-  MODIFY `menu_approve_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `menu_approve_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `number`
@@ -1026,25 +1246,25 @@ ALTER TABLE `opening_time`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `purchase_detail`
@@ -1062,7 +1282,7 @@ ALTER TABLE `receipt`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `stall`
@@ -1075,6 +1295,12 @@ ALTER TABLE `stall`
 --
 ALTER TABLE `supplier`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `transaction_history`
+--
+ALTER TABLE `transaction_history`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `wallet`

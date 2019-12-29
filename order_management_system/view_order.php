@@ -49,6 +49,7 @@ include '../process/handle_complete_order.php';
 		}
 
 		$(document).ready(function() {
+			$('#order_area').load('order_list.php');
 			var auto_refresh_element = setInterval(function() {
 				$('#order_area').load('order_list.php');
 			}, 2000);

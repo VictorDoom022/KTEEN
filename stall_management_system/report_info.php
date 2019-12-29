@@ -33,7 +33,7 @@ $stall_ID = $_SESSION['kteen_stall_id'];
 							</tr>
 						<?php
 							$total_income=0; 
-							$sql = "SELECT total FROM payment LEFT JOIN orders ON payment.order_ID = orders.ID WHERE stall_ID = '$stall_ID'".$searchword;
+							$sql = "SELECT total FROM payment ".$searchword;
 							// $sql = "SELECT total FROM payment".$searchword;
 							$result = $conn -> query($sql);
 							if(mysqli_num_rows($result) > 0){
@@ -79,7 +79,7 @@ $stall_ID = $_SESSION['kteen_stall_id'];
 										</tr>
 									<?php 
 										$invoice_total=0;
-										$sql = "SELECT invoice_amount FROM invoice".$searchword;
+										$sql = "SELECT invoice_amount FROM invoice ".$searchword;
 										$result = $conn -> query($sql);
 										if(mysqli_num_rows($result)){
 											while ($row = mysqli_fetch_assoc($result)) {

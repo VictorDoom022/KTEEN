@@ -91,9 +91,9 @@ include '../process/handle_payment_cash.php';
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#cash_payment_table').load('cash_payment_table.php');
-			var auto_refresh_element = setInterval(function() {
-				$('#cash_payment_table').load('cash_payment_table.php');
-			}, 1000);
+			// var auto_refresh_element = setInterval(function() {
+			// 	$('#cash_payment_table').load('cash_payment_table.php');
+			// }, 10000);
 		});
 	</script>
 </body>

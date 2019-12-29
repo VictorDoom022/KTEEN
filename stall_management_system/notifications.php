@@ -41,7 +41,7 @@ include '../process/handle_delete_notification.php';
 									<i class="far fa-trash-alt"></i>
 								</a>
 							</div>
-							<div class="h5 <?= ($row['title'] == 'approve')? 'text-success' : '' ; ?>">
+							<div class="h5 <?= ($row['title'] == 'approve')? 'text-success' : 'text-danger' ; ?>">
 								<?= ucfirst($row['title']) ?><?= ($row['unread'] == '0')? ' <span class="badge badge-danger">New</span>' : ''; ?>
 							</div>
 							<div>

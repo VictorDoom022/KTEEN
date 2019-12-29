@@ -8,6 +8,10 @@ date_default_timezone_set("Asia/Kuala_Lumpur");
 $current_time = time();
 $weekday_today = date('w', $current_time) - 1;
 
+if($weekday_today == -1){
+	$weekday_today = 0;
+}
+
 $sql = "SELECT COUNT(ID) AS orders, WEEKDAY(DATE(date)) AS weekday FROM orders WHERE stall_ID = '$stall_ID' AND  DATE > DATE_SUB(DATE(NOW()), INTERVAL DAYOFWEEK(NOW())+6 DAY) AND DATE <= DATE_ADD(DATE(NOW()), INTERVAL DAYOFWEEK(NOW())+1 DAY)  GROUP BY DATE(date);";
 $result = mysqli_query($conn, $sql);
 
@@ -15,16 +19,16 @@ $total = 0;
 
 switch ($weekday_today) {
 	case '0':
+		$weekday_data = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Today');
+		$temp = array(0, 1, 2, 3, 4, 5, 6);
+		break;
+	case '1':
 		$weekday_data = array('Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Today');
 		$temp = array(1, 2, 3, 4, 5, 6, 0);
 		break;
-	case '1':
-		$weekday_data = array('Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Today');
-		$temp = array(2, 3, 4, 5, 6, 0, 1);
-		break;
 	case '2':
 		$weekday_data = array('Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Today');
-		$temp = array(3, 4, 5, 6, 0, 1, 2);
+		$temp = array(2, 3, 4, 5, 6, 0, 1);
 		break;
 	case '3':
 		$weekday_data = array('Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Today');
