@@ -30,7 +30,8 @@ if(isset($_POST['add_Invoice'])){
     
 	//$invoice_file = ("S".$_SESSION['kteen_stall_id']."_".$supplier_name.".doc");
 	
-	// name of the uploaded file
+    // name of the uploaded file
+    
     $filename = $_FILES['invoice_file']['name'];
 
     // destination of the file on the server
